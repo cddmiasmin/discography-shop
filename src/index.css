@@ -1,8 +1,15 @@
-:root {
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
 
+html, body {
+    height: 100%;
 }
 
 body {
-
+    color: black;
+    background-color: aqua;
 }
 
