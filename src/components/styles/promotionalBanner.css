@@ -1,0 +1,40 @@
+.promotional-banner {
+    left: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.MySwiperSlide {
+    width: 100%;
+    height: 100%;
+}
+
+.MySwiper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.MySwiper img {
+    display: block;
+    object-fit: cover;
+}
+
+/* target the active bullet */
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: black;
+    opacity: 1;
+}
+
+/* target all bullets */
+.swiper-pagination-bullet {
+    background-color: white;
+    opacity: 1;
+}

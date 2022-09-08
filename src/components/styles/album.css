@@ -1,0 +1,16 @@
+.album-info {
+    overflow: hidden;
+    transition: 1.5s ease;
+    transform: translateY(15px);
+    opacity: 0;
+}
+
+.album:hover .album-cover{
+    opacity: 30%;
+    transition: 1.5s ease;
+}
+
+.album:hover .album-info{
+    transform: translateY(-3px);
+    opacity: 100%;
+}
