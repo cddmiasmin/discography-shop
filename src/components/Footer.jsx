@@ -10,8 +10,8 @@ import { MdOutlineMailOutline } from 'react-icons/md'
 const Footer = () => {
     return (
         <div
-            className='container-fluid flex-wrap position-absolute w-100 fixed-bottom bg-dark d-flex flex-column justify-content-star align-items-star pt-4 ps-5'
-            style={{ height: '55%' }}
+            className='container-fluid flex-wrap w-100 bg-dark d-flex flex-column justify-content-star align-items-star pt-4 ps-5'
+            style={{ height: '350px' }}
         >
             <div className='d-flex flex-column justify-content-center align-items-star gap-3'>
                 <div
@@ -103,9 +103,9 @@ const Footer = () => {
             </div>
 
             
-            <div style={{height:'10vh'}} className='d-flex flex-column fixed-bottom text-white ms-5'>
+            <div style={{height:'10vh'}} className='d-flex flex-column justify-content-star align-items-star position-absolute bottom-0 text-white gap-2'>
 
-                <div style={{height:'6vh'}} className='d-flex justify-content-center align-items-center'>
+                <div style={{height:'6vh'}} className='d-flex justify-content-star align-items-center w-100'>
                     <img style={{height:'100%'}} src="src\assets\images\payment-card-flag.png" alt="" />
                 </div>
 
@@ -114,7 +114,6 @@ const Footer = () => {
                     <a className='text-black' href="https://github.com/cddmiasmin">Iasmin Dias</a>
                 </p>
             </div>
-
         </div>
     )
 }

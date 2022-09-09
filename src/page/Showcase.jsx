@@ -45,12 +45,10 @@ const Showcase = () => {
             <h1>MAIS VENDIDOS</h1>
             <ListAlbunsShowcase data={dataArtist[1]} />
           </div>
-
         </div>
-
-
+        <br />
+        <Footer />
       </div>
-
     </div>
   )
 }
