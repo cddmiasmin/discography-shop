@@ -1,8 +1,11 @@
 import React from 'react'
+import Footer from '../components/Footer'
 
 const Artists = () => {
   return (
-    <div>Artists</div>
+    <div>
+      <Footer />
+    </div>
   )
 }
 
