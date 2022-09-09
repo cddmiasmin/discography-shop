@@ -37,7 +37,7 @@ const PromotionalBanner = () => {
         >
           <img
             className='h-100 w-100'
-            src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/97fccf01-17c2-4c53-9fe8-44f432d80c15.__CR0,0,970,600_PT0_SX970_V1___.jpg"
+            src="src\assets\images\bp-dance-fever-fatm.jpg"
             alt=""
           />
         </SwiperSlide>
@@ -48,7 +48,7 @@ const PromotionalBanner = () => {
         >
           <img
             className='h-100 w-100'
-            src="https://images5.alphacoders.com/340/340432.jpg"
+            src="src\assets\images\bt-midnights-ts.jpg"
             alt=""
           />
         </SwiperSlide>
@@ -59,7 +59,29 @@ const PromotionalBanner = () => {
         >
           <img
             className='h-100 w-100'
-            src="https://images5.alphacoders.com/576/576939.jpg"
+            src="src\assets\images\bp-holyfvck-dm.jpg"
+            alt=""
+          />
+        </SwiperSlide>
+
+        <SwiperSlide
+          className="MySwiperSlide
+                    d-flex justify-content-center align-items-center"
+        >
+          <img
+            className='h-100 w-100'
+            src="src\assets\images\bp-renaissance-b.jpg"
+            alt=""
+          />
+        </SwiperSlide>
+
+        <SwiperSlide
+          className="MySwiperSlide
+                    d-flex justify-content-center align-items-center"
+        >
+          <img
+            className='h-100 w-100'
+            src="src\assets\images\bt-lana-del-rey.jpg"
             alt=""
           />
         </SwiperSlide>
