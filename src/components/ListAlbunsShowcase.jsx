@@ -11,6 +11,7 @@ import { Pagination, Navigation } from "swiper";
 import Album from './Album'
 
 const ListAlbunsShowcase = (props) => {
+    const artist = props.data.name;
     return (
         <div className='container-fluid m-3'>
             <Swiper
@@ -29,6 +30,7 @@ const ListAlbunsShowcase = (props) => {
                     >
                         <Album
                             cover={album.cover}
+                            artist={artist}
                             name={album.name}
                             year={album.year}
                         />
