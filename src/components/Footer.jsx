@@ -7,7 +7,7 @@ import {
 } from 'react-icons/bs'
 import { MdOutlineMailOutline } from 'react-icons/md'
 
-const Footer = () => {
+const Footer = (props) => {
     return (
         <div
             className='container-fluid flex-wrap w-100 bg-dark d-flex flex-column justify-content-star align-items-star pt-4 ps-5'
@@ -17,7 +17,7 @@ const Footer = () => {
                 <div
                     className='d-flex flex-row align-items-end gap-2'
                 >
-                    <Logo size={50} />
+                    <Logo size={50} color={props.color}/>
                     <h4>Cassandra</h4>
                 </div>
 

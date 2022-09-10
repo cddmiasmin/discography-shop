@@ -14,7 +14,7 @@ const Logo = (props) => {
            >
             <img 
                 style={sizeLogo}
-                src="src/assets/images/logo.png" 
+                src={`src/assets/images/logo-${props.color}.png`}
                 alt="" 
             />
         </div>

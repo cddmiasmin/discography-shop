@@ -11,39 +11,47 @@ import { TbShoppingCart } from 'react-icons/tb'
 
 const ProductDetail = () => {
   const [color, setColor] = useState('#0000');
-  const [colorIsDark, setColorIsDark] = useState(false);
+  const [colorIsDarkOrLight, setColorIsDarkOrLight] = useState('light');
+
+  useEffect(() => {
+    console.log('effetc')
+  }, [colorIsDarkOrLight])
 
   const getColor = () => {
     const fac = new FastAverageColor();
-    fac.getColorAsync(dataArtist[0].album[4].cover)
-        .then(color => {
-            setColor(color.hex)
-            setColorIsDark(color.isDark)
-        })
-        .catch(e => {
-            
-        });
+    fac.getColorAsync('src/assets/images/dataArtist/album/Dance Fever.jpg')
+      .then(color => {
+        setColor(color.hex)
+        if (color.isDark == false) setColorIsDarkOrLight('dark')
+        console.log(color.isDark)
+      })
+      .catch(e => {
+
+      });
 
   }
-  
-  getColor()
 
-  console.log(color);
-  console.log(colorIsDark);
+  getColor();
+
   const style = {
     'paddingRight': '30vh',
-    'backgroundImage': 'linear-gradient(to right, '+color+' 75%,  transparent)'
+    'backgroundImage': 'linear-gradient(to right, ' + color + ' 75%,  transparent)'
+  }
+
+  const sccss = {
+    backgroundColor: `${color}`
   }
 
   return (
-    <div className='w-100 h-100 d-flex justify-content-center align-items-center position-absolute'>
+    <div className={`w-100 h-100 d-flex justify-content-center align-items-center position-absolute text-${colorIsDarkOrLight}`} 
+          style={sccss}>
       <div className='w-100 h-100 d-flex position-absolute top-0 flex-column justify-content-star align-items-center position-relative'>
         <div
           className='w-100 d-flex justify-content-end position-relative'
           style={{ height: '52vh' }}>
 
           <div id="image-container" className=' w-100 h-100 d-flex justify-content-end position-absolute'>
-            <img id="image" className='h-100 w-25' src={dataArtist[0].icon} alt="" />
+            <img id="image" className='h-100 w-25' src={'src/assets/images/dataArtist/album/Dance Fever.jpg'} alt="" />
           </div>
 
 
@@ -54,9 +62,9 @@ const ProductDetail = () => {
               <h3>{dataArtist[0].name}</h3>
               <h6>{dataArtist[0].album[4].year}</h6>
               <div className='mt-3 flex-row d-flex justify-content-center align-items-center gap-4'>
-                <AiOutlineHeart style={{ 'color': 'white', height: '3vh', width: '3vh' }} />
-                <TbShoppingCart style={{ 'color': 'white', height: '3vh', width: '3vh' }} />
-                <BsFillShareFill style={{ 'color': 'white', height: '2vh', width: '2vh' }} />
+                <AiOutlineHeart style={{ 'color': { colorIsDarkOrLight }, height: '3vh', width: '3vh' }} />
+                <TbShoppingCart style={{ 'color': { colorIsDarkOrLight }, height: '3vh', width: '3vh' }} />
+                <BsFillShareFill style={{ 'color': { colorIsDarkOrLight }, height: '2vh', width: '2vh' }} />
               </div>
             </div>
 
@@ -68,7 +76,7 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
-      <Header />
+      <Header color={colorIsDarkOrLight} />
     </div>
   )
 }
