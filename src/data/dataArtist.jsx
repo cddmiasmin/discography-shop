@@ -19,36 +19,36 @@ export const dataArtist = [
     {
         id: 1,
         name: 'Florence And The Machine',
-        icon: 'https://www.independent.ie/entertainment/music/8bee6/41621780.ece/AUTOCROP/w620/SF%20Fl%20Amazon',
+        icon: 'src/assets/images/dataArtist/florenceandthemachine.jpg',
         banner: 'https://premiojovem.com.br/wp-content/uploads/2022/03/FNb8NmQWUAYMn47-scaled-e1648495272736.jpeg',
         album: [
             {
                 id: 1,
-                cover: "https://universalmusic.vteximg.com.br/arquivos/ids/173135-1000-1000/vinil-florence-the-machine-lungs-importado-vinil-florence-the-machine-lungs-00602527091068-00060252709106.jpg?v=637819995231570000",
+                cover: "src/assets/images/dataArtist/album/Lungs.jpg",
                 name:  "Lungs",
                 year:"2009"
             }, 
             {
                 id: 2,
-                cover: "https://www.vagalume.com.br/florence-and-the-machine/discografia/ceremonials.jpg",
+                cover: "src/assets/images/dataArtist/album/Ceremonials.jpg",
                 name:  "Ceremonials",
                 year:"2011"
             }, 
             {
                 id: 3,
-                cover: "https://m.media-amazon.com/images/I/71tp8YpD02L.jpg",
+                cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful.jpg",
                 name:  "How Big, How Blue, How Beautiful",
                 year: "2015"
             }, 
             {
                 id: 4,
-                cover: "https://m.media-amazon.com/images/I/91dEm7sCA+L._AC_SL1500_.jpg",
+                cover: "src/assets/images/dataArtist/album/High As Hope.jpg",
                 name:  "High As Hope",
                 year:"2018"
             }, 
             {
                 id: 5,
-                cover: "https://images-na.ssl-images-amazon.com/images/I/61TkjfcMj5L.jpg",
+                cover: "src/assets/images/dataArtist/album/Dance Fever.jpg",
                 name:  "Dance Fever",
                 year:"2022"
             }
