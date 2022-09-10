@@ -36,7 +36,11 @@ export const dataArtist = [
             }, 
             {
                 id: 3,
-                cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful.jpg",
+                cover: [
+                    { id: 1, cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful 1.jpg"},
+                    { id: 2, cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful 2.jpg"},
+                    { id: 3, cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful 3.jpg"}
+                ],
                 name:  "How Big, How Blue, How Beautiful",
                 year: "2015"
             }, 
@@ -48,7 +52,20 @@ export const dataArtist = [
             }, 
             {
                 id: 5,
-                cover: "src/assets/images/dataArtist/album/Dance Fever.jpg",
+                cover: [
+                    {   
+                        id: 1, cover:'src/assets/images/dataArtist/album/Dance Fever.jpg', shortDescription: 'CAPA PRINCIPAL',
+                        format: [{type:'CD', situation: '1'},{type:'VINIL', situation: '0'},{type:'CASSETE', situation: '0'}, {type:'BOX', situation: '1'}]
+                    },
+                    {  
+                        id: 2, cover:'src/assets/images/dataArtist/album/Dance Fever 1.jpg', shortDescription: 'CAPA ALTERNATIVA',
+                        format: [{type:'CD', situation: '0'}]
+                    },
+                    {   
+                        id: 3, cover:'src/assets/images/dataArtist/album/Dance Fever 2.jpg', shortDescription: 'VERSÃO DELUXE',
+                        format: []
+                    }
+                ],
                 name:  "Dance Fever",
                 year:"2022"
             }
