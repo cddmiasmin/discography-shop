@@ -56,7 +56,7 @@ const ProductDetail = () => {
         <Link to='/artista' className={`text-decoration-none text-${colorIsDarkOrLight}`}>{dataArtist[0].name}</Link>
       </div>
 
-      <div className='d-flex gap-3 flex-wrap h-75 w-100 justify-content-center align-items-center'
+      <div className='container-fluid d-flex gap-3 flex-wrap h-75 w-100 justify-content-center align-items-center'
         style={{ marginTop: '2vh' }}>
 
         <div
@@ -95,7 +95,8 @@ const ProductDetail = () => {
             <div style={{ backgroundColor: `${color}`, height: '1vh', width: '35vh', marginBottom: '2vh' }} />
             <div className='d-flex flex-wrap gap-1 justify-content-center align-items-center'>
 
-              {formatStockAvailable !== null &&
+              {/* {(formatStockAvailable !== null) && 
+                (formatStockAvailable[0].situation === '1' || formatStockAvailable[1].situation === '1') &&
                 formatStockAvailable[1].map((format, key) => (
                   <button
                     key={key}
@@ -106,15 +107,7 @@ const ProductDetail = () => {
                     {format.type}
                   </button>
                 ))
-              }
-
-              {
-                formatStockAvailable === null &&
-
-                  <h2>Iasmin</h2>
-
-              }
-
+              } */}
             </div>
           </div>
 
@@ -122,7 +115,7 @@ const ProductDetail = () => {
             <h2 className='m-0'>SEM ESTOQUE</h2>
             <div style={{ backgroundColor: `${color}`, height: '1vh', width: '35vh', marginBottom: '2vh' }} />
             <div className='d-flex flex-wrap gap-1 justify-content-center align-items-center'>
-            {formatStockAvailable !== null &&
+            {/* {formatStockAvailable !== null &&
               formatStockAvailable[0].map((format, key) => (
                 <button
                   key={key}
@@ -132,7 +125,7 @@ const ProductDetail = () => {
                 >
                   {format.type}
                 </button>
-              ))}
+              ))} */}
               <button
                 className={`text-${colorIsDarkOrLight} fs-5 rounded d-flex justify-content-center align-items-center`}
                 style={{ backgroundColor: `${color}`, height: '6vh', width: '30vh', cursor: 'point' }}

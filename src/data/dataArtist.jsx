@@ -63,7 +63,7 @@ export const dataArtist = [
                     },
                     {   
                         id: 3, cover:'src/assets/images/dataArtist/album/Dance Fever 2.jpg', shortDescription: 'VERSÃO DELUXE',
-                        format: []
+                        format: [{type:'VINIL', situation: '1'}]
                     }
                 ],
                 name:  "Dance Fever",
