@@ -17,7 +17,7 @@ const ProductDetail = () => {
   const [coverAlbum, setCoverAlbum] = useState(0);
 
 
-  const numAlbum = 4;
+  const numAlbum = 2;
 
   useEffect(() => getColor(), [color, coverAlbum])
 
