@@ -47,7 +47,7 @@ const ProductDetail = () => {
   return (
     <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-star position-absolute text-${colorIsDarkOrLight}`}
     >
-      <Header color={colorIsDarkOrLight} />
+      <Header colorIsDarkOrLight={colorIsDarkOrLight} color={color}/>
       <div
         className='d-flex flex-column justify-content-center align-items-center text-center w-100 h-25 '
         style={{ backgroundColor: `${color}`, 'paddingTop': '10vh' }}
