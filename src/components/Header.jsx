@@ -1,36 +1,36 @@
 import React from 'react'
 import { useState } from 'react'
+
 import { Link } from 'react-router-dom'
+
 import './../responsive/responsive.css'
+
+import { dataArtist } from './../data/dataArtist'
 
 import Logo from '../components/Logo'
 
-import { Accordion } from '@mui/material';
 import { Tooltip } from '@mui/material';
-import { AccordionSummary } from '@mui/material';
-import { AccordionDetails } from '@mui/material';
-import { makeStyles } from '@material-ui/core/styles';
-import { Drawer, Box, Typography } from '@mui/material'
 import { withStyles } from '@material-ui/core/styles';
-
-
 import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
+import { Drawer, Box, Typography } from '@mui/material';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
-import MuiTypography from '@material-ui/core/Typography';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 
-import { BiMenu } from 'react-icons/bi'
-import { HiSearch } from 'react-icons/hi'
-import { IoPerson } from 'react-icons/io5'
+import { BiMenu } from 'react-icons/bi';
+import { FaTrash } from 'react-icons/fa';
+import { HiSearch } from 'react-icons/hi';
+import { IoPerson } from 'react-icons/io5';
 import { BsFillBagFill } from 'react-icons/bs';
-import { MdKeyboardArrowDown } from 'react-icons/md'
 import { RiCloseCircleFill } from 'react-icons/ri';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+
 
 const Header = (props) => {
   const [isDrawerMenuOpen, setIsDrawerMenuOpen] = useState(false);
-
+  const [isDrawerCartOpen, setIsDrawerCartOpen] = useState(false);
   const [expandedPanel, setExpandedPanel] = useState(false);
+
+  const numAlbum = 2, coverAlbum = 1;
 
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     console.log({ event, isExpanded });
@@ -100,7 +100,7 @@ const Header = (props) => {
 
       <div
         id='header-desktop'
-        className={`header-desktop flex-row container-fluid d-flex position-absolute top-0 start-0
+        className={`flex-row container-fluid d-flex position-absolute top-0 start-0
                   justify-content-center align-items-center text-${props.colorIsDarkOrLight}`}
       >
 
@@ -157,21 +157,7 @@ const Header = (props) => {
                   <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><RiCloseCircleFill className='fs-5 ' /></button>
                 </Tooltip>
 
-                <button
-                  className={`bg-${colorMaterialUIComponents}`}
-                  style={{ height: '8vh', borderRadius: '10px', color: `${props.color}`, }}
-                >
-                  <h5 style={{
-                    fontFamily: [
-                      'Bebas Neue',
-                      'cursive',
-                    ].join(','), marginLeft: '-20.2vh'
-                  }}
-                  >MEU PERFIL
-                  </h5>
-                </button>
-
-                <Accordion expanded={expandedPanel === 'panel1'} onChange={handleAccordionChange('panel1')}>
+                <Accordion expanded={expandedPanel === 'LeftOptions1'} onChange={handleAccordionChange('LeftOptions1')}>
                   <AccordionSummary
                     expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
                     aria-controls="panel1a-content"
@@ -197,7 +183,7 @@ const Header = (props) => {
                   </AccordionDetails>
                 </Accordion>
 
-                <Accordion expanded={expandedPanel === 'panel2'} onChange={handleAccordionChange('panel2')}>
+                <Accordion expanded={expandedPanel === 'LeftOptions2'} onChange={handleAccordionChange('LeftOptions2')}>
                   <AccordionSummary
                     expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
                     aria-controls="panel1a-content"
@@ -223,31 +209,19 @@ const Header = (props) => {
                   </AccordionDetails>
                 </Accordion>
 
-                <Accordion expanded={expandedPanel === 'panel3'} onChange={handleAccordionChange('panel3')}>
-                  <AccordionSummary
-                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <h5 style={{
-                      fontFamily: [
-                        'Bebas Neue',
-                        'cursive',
-                      ].join(',')
-                    }}>PRÉ-VENDA</h5>
-                  </AccordionSummary>
-                  <AccordionDetails >
-                    <h6 style={{
-                      fontFamily: [
-                        'Bebas Neue',
-                        'cursive',
-                      ].join(',')
-                    }}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                      malesuada lacus ex, sit amet blandit leo lobortis eget.
-                    </h6>
-                  </AccordionDetails>
-                </Accordion>
+                <button
+                  className={`bg-${colorMaterialUIComponents}`}
+                  style={{ height: '8vh', borderRadius: '10px', color: `${props.color}`, }}
+                >
+                  <h5 style={{
+                    fontFamily: [
+                      'Bebas Neue',
+                      'cursive',
+                    ].join(','), marginLeft: '-20.5vh'
+                  }}
+                  >PRÉ-VENDA
+                  </h5>
+                </button>
 
                 <button
                   className={`bg-${colorMaterialUIComponents}`}
@@ -257,7 +231,7 @@ const Header = (props) => {
                     fontFamily: [
                       'Bebas Neue',
                       'cursive',
-                    ].join(','), marginLeft: '-17.5vh'
+                    ].join(','), marginLeft: '-17.3vh'
                   }}
                   >LANÇAMENTOS
                   </h5>
@@ -280,141 +254,136 @@ const Header = (props) => {
           <Logo size={55} color={props.colorIsDarkOrLight} />
         </div>
 
-        <div id='RightOptionMobile' className='col d-flex justify-content-end align-items-center gap-3'>
-          <Tooltip title="Buscar">
-            <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><HiSearch className='fs-5 ' /></button>
+        <div id='RightOptionMobile' className={`col d-flex justify-content-end align-items-center gap-3 text-${props.colorIsDarkOrLight}`}>
+          <Tooltip id='ROM-TooltipIconButttonSearch' title="Buscar">
+            <button id='IconButtonSearch' className={`bg-transparent text-${props.colorIsDarkOrLight}`}><HiSearch className='fs-5 ' /></button>
           </Tooltip>
 
           <Tooltip
-            id='IconButtonMenu'
-            title="Menu"
-            onClick={() => setIsDrawerMenuOpen(true)}
+            id='ROM-TooltipIconButttonCart'
+            title="Cart"
+            onClick={() => setIsDrawerCartOpen(true)}
           >
-            <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><BsFillBagFill className='fs-5' /></button>
+            <button id='IconButttonCart' className={`bg-transparent text-${props.colorIsDarkOrLight}`}><BsFillBagFill className='fs-5' /></button>
           </Tooltip>
 
+
           <Drawer
+            id='ROM-DrawerCart'
             anchor='right'
-            open={isDrawerMenuOpen}
-            onClose={() => { setIsDrawerMenuOpen(false) }}>
+            open={isDrawerCartOpen}
+            onClose={() => { setIsDrawerCartOpen(false) }}>
             <Box
+              id='ROM-BoxCart'
               className='d-flex flex-column'
               p={2} width='40vh' height='100%' role='presentation' textAlign='center'
-              style={{ backgroundColor: `${props.color}` }}>
-              <div className='w-100 d-flex flex-column justify-content-star align-items-star gap-2'>
+              style={{ backgroundColor: `${props.color}`, color: `${props.colorIsDarkOrLight}` }}>
+
+              <div id='ROM-BoxCart-Div' className={`w-100 d-flex flex-column justify-content-center align-items-center gap-2 text-${props.colorIsDarkOrLight}`}>
                 <Tooltip
-                  title="Fechar menu"
-                  onClick={() => setIsDrawerMenuOpen(false)}
+                  id="ROM-BoxCart-TooltipIconButtonClose"
+                  title="Fechar carrinho"
+                  onClick={() => setIsDrawerCartOpen(false)}
                 >
-                  <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><RiCloseCircleFill className='fs-5 ' /></button>
+                  <button id='ROM-BoxCart-IconButtonClose' className={`bg-transparent text-${props.colorIsDarkOrLight}`}><RiCloseCircleFill className='fs-5 ' /></button>
                 </Tooltip>
 
-                <button
-                  className={`bg-${colorMaterialUIComponents}`}
-                  style={{ height: '8vh', borderRadius: '10px', color: `${props.color}`, }}
+                <h1 id='title-cart'>CARRINHO</h1>
+
+                <div
+                  id='container-shopping-cart'
+                  className='w-100 h-100 d-flex flex-column justify-content-center align-items-center gap-2'
                 >
-                  <h5 style={{
-                    fontFamily: [
-                      'Bebas Neue',
-                      'cursive',
-                    ].join(','), marginLeft: '-20.2vh'
-                  }}
-                  >MEU PERFIL
-                  </h5>
-                </button>
-
-                <Accordion expanded={expandedPanel === 'panel1'} onChange={handleAccordionChange('panel1')}>
-                  <AccordionSummary
-                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
+                  <div
+                    id='CartItem'
+                    className={`d-flex rounded flex-column justify-content-center align-items-center w-100 p-0 gap-2 bg-${props.colorIsDarkOrLight}`}
+                    style={{ height: '33vh', width: '100%' }}
                   >
-                    <h5 style={{
-                      fontFamily: [
-                        'Bebas Neue',
-                        'cursive',
-                      ].join(',')
-                    }}>ARTISTAS</h5>
-                  </AccordionSummary>
-                  <AccordionDetails >
-                    <h6 style={{
-                      fontFamily: [
-                        'Bebas Neue',
-                        'cursive',
-                      ].join(',')
-                    }}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                      malesuada lacus ex, sit amet blandit leo lobortis eget.
-                    </h6>
-                  </AccordionDetails>
-                </Accordion>
+                    <div
+                      id='CartItemCheckboxImgTrash'
+                      className='d-flex d-row justify-content-center align-items-center gap-4 '
+                    >
+                      <Tooltip
+                        id="TooltipIconButtonTrash"
+                        title="Adicionar item"
+                      >
+                        <input
+                          class={`form-check-input m-0 p-0`}
+                          style={{height: '2.5vh', width: '2.5vh', backgroundColor: `${props.color}`, }}
+                          type="checkbox"
+                          id="CheckboxCardItem"
+                          value="1"
+                        />
+                      </Tooltip>
 
-                <Accordion expanded={expandedPanel === 'panel2'} onChange={handleAccordionChange('panel2')}>
-                  <AccordionSummary
-                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <h5 style={{
-                      fontFamily: [
-                        'Bebas Neue',
-                        'cursive',
-                      ].join(',')
-                    }}>FORMATOS</h5>
-                  </AccordionSummary>
-                  <AccordionDetails >
-                    <h6 style={{
-                      fontFamily: [
-                        'Bebas Neue',
-                        'cursive',
-                      ].join(',')
-                    }}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                      malesuada lacus ex, sit amet blandit leo lobortis eget.
-                    </h6>
-                  </AccordionDetails>
-                </Accordion>
+                      <img
+                        id='ItemImgAlbum'
+                        className=''
+                        style={{ height: '12vh', width: '12vh', border: `1px solid ${props.color}`}}
+                        src={dataArtist[0].album[numAlbum].cover[coverAlbum].cover}
+                        alt={`Album ${'b'}`}
+                      />
 
-                <Accordion expanded={expandedPanel === 'panel3'} onChange={handleAccordionChange('panel3')}>
-                  <AccordionSummary
-                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <h5 style={{
-                      fontFamily: [
-                        'Bebas Neue',
-                        'cursive',
-                      ].join(',')
-                    }}>PRÉ-VENDA</h5>
-                  </AccordionSummary>
-                  <AccordionDetails >
-                    <h6 style={{
-                      fontFamily: [
-                        'Bebas Neue',
-                        'cursive',
-                      ].join(',')
-                    }}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                      malesuada lacus ex, sit amet blandit leo lobortis eget.
-                    </h6>
-                  </AccordionDetails>
-                </Accordion>
+                      <Tooltip
+                        id="TooltipIconButtonTrash"
+                        title="Remover item"
+                        className=' pe-1 p-0'
+                      >
+                        <button id='IconButtonTrash' className='bg-transparent' style={{color: `${props.color}`}}>
+                          <FaTrash />
+                        </button>
+                      </Tooltip>
+                    </div>
 
-                <button
-                  className={`bg-${colorMaterialUIComponents}`}
-                  style={{ height: '8vh', borderRadius: '10px', color: `${props.color}`, }}
-                >
-                  <h5 style={{
-                    fontFamily: [
-                      'Bebas Neue',
-                      'cursive',
-                    ].join(','), marginLeft: '-17.5vh'
-                  }}
-                  >LANÇAMENTOS
-                  </h5>
-                </button>
+                    <div
+                      id='DetailsItem'
+                      className="p-0 d-flex flex-column justify-content-center align-items-center gap-1"
+                      style={{color: `${props.color}`}}
+                      >
+                      <h6 className='m-0'>{dataArtist[0].album[numAlbum].name}</h6>
+
+                      <div
+                        id='ItemFormatAndPrice'
+                        className='d-flex flex-row justify-content-center align-items-center gap-1'
+                        style={{color: `${props.color}`}}
+                      >
+                        <h6 className='m-0'>{`VINIL`}</h6>
+                        <h6 className='m-0'> | </h6>
+                        <h6 className='m-0'>{`R$44,90`}</h6>
+                      </div>
+
+                      <p className='p-0 m-0'>CAPA ALTERNATIVA</p>
+                    </div>
+
+                    <div
+                      id='container-amount'
+                      className='rounded d-flex flex-row justify-content-center align-items-center gap-2'
+                      style={{ height: '4vh', width: '12vh' }}
+                    >
+                      <button
+                        id='ButtonAmountLess'
+                        className='bg-transparent rounded-circle d-flex justify-content-center align-items-center'
+                        style={{height: '4vh', width: '3vh',  color: `${props.color}`}}
+                      >
+                        -
+                      </button>
+                      <h6 id='AmountNumber' className='m-0' style={{color: `${props.color}`}}>{`1`}</h6>
+                      <button
+                        id='ButtonAmountMore'
+                        className='bg-transparent rounded-circle d-flex justify-content-center align-items-center'
+                        style={{ height: '4vh', width: '3vh', color: `${props.color}`}}
+                      >
+                        +
+                      </button>
+                    </div>
+
+                  </div>
+
+
+                </div>
               </div>
+
+
             </Box>
           </Drawer>
         </div>

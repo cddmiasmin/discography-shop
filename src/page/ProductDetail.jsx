@@ -16,7 +16,6 @@ const ProductDetail = () => {
   const [colorIsDarkOrLight, setColorIsDarkOrLight] = useState('light');
   const [coverAlbum, setCoverAlbum] = useState(0);
 
-
   const numAlbum = 2;
 
   useEffect(() => getColor(), [color, coverAlbum])
