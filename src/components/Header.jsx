@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import './../responsive/responsive.css'
 
 import Logo from '../components/Logo'
 
@@ -97,133 +98,326 @@ const Header = (props) => {
                   justify-content-center align-items-center text-${props.colorIsDarkOrLight}`}
       style={{ height: '10%', width: '100%' }}>
 
-      <div className='col d-flex justify-content-star align-items-center ms-4 gap-4'>
-        <Link to='/artista' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>ARTISTAS</Link>
-        <Link to='/formato' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>FORMATOS</Link>
-        <Link to='/prevenda' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>PRÉ-VENDA</Link>
+      <div
+        id='header-desktop'
+        className={`header-desktop flex-row container-fluid d-flex position-absolute top-0 start-0
+                  justify-content-center align-items-center text-${props.colorIsDarkOrLight}`}
+      >
+
+        <div id='LinksHeader' className='col d-flex justify-content-star align-items-center ms-4 gap-4'>
+          <Link to='/artista' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>ARTISTAS</Link>
+          <Link to='/formato' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>FORMATOS</Link>
+          <Link to='/prevenda' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>PRÉ-VENDA</Link>
+          <Link to='/prevenda' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>LANÇAMENTOS</Link>
+        </div>
+
+        <div id='logo' className='col d-flex justify-content-center align-items-center'>
+          <Logo size={55} color={props.colorIsDarkOrLight} />
+        </div>
+
+        <div id='IconOption' className='col d-flex justify-content-end align-items-center me-4 gap-4'>
+          <Tooltip title="Buscar">
+            <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><HiSearch className='fs-5 ' /></button>
+          </Tooltip>
+          <Tooltip title="Perfil">
+            <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><IoPerson className='fs-5 ' /></button>
+          </Tooltip>
+          <Tooltip title="Carrinho">
+            <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><BsFillBagFill className='fs-5 ' /></button>
+          </Tooltip>
+        </div>
       </div>
 
-      <div id='logo' className='col d-flex justify-content-center align-items-center'>
-        <Logo size={55} color={props.colorIsDarkOrLight} />
-      </div>
+      <div
+        id='header-mobile'
+        className={`flex-row container-fluid d-none justify-content-center align-items-center text-${props.colorIsDarkOrLight}`}
+      >
+        <div id='LeftOptionsMobile' className='col d-flex justify-content-star align-items-center gap-3'>
+          <Tooltip
+            id='IconButtonMenu'
+            title="Menu"
+            onClick={() => setIsDrawerMenuOpen(true)}
+          >
+            <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><BiMenu className='fs-3 ' /></button>
+          </Tooltip>
 
-      <div id='IconOption' className='col d-flex justify-content-end align-items-center me-4 gap-4'>
-        <Tooltip
-          title="Menu"
-          onClick={() => setIsDrawerMenuOpen(true)}
-        >
-          <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><BiMenu className='fs-5 ' /></button>
-        </Tooltip>
+          <Drawer
+            anchor='left'
+            open={isDrawerMenuOpen}
+            onClose={() => { setIsDrawerMenuOpen(false) }}>
+            <Box
+              className='d-flex flex-column'
+              p={2} width='40vh' height='100%' role='presentation' textAlign='center'
+              style={{ backgroundColor: `${props.color}` }}>
+              <div className='w-100 d-flex flex-column justify-content-star align-items-star gap-2'>
+                <Tooltip
+                  title="Fechar menu"
+                  onClick={() => setIsDrawerMenuOpen(false)}
+                >
+                  <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><RiCloseCircleFill className='fs-5 ' /></button>
+                </Tooltip>
 
-        <Drawer
-          anchor='right'
-          open={isDrawerMenuOpen}
-          onClose={() => {setIsDrawerMenuOpen(false)}}>
-          <Box
-            className='d-flex flex-column'
-            p={2} width='40vh' height='100%' role='presentation' textAlign='center'
-            style={{ backgroundColor: `${props.color}` }}>
-            <div className='w-100 d-flex flex-column justify-content-star align-items-star gap-2'>
-              <Tooltip
-                title="Fechar menu"
-                onClick={() => setIsDrawerMenuOpen(false)}
-              >
-                <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><RiCloseCircleFill className='fs-5 ' /></button>
-              </Tooltip>
-
-              <button
-                className={`bg-${colorMaterialUIComponents}`}
-                style={{ height: '8vh', borderRadius: '10px', color: `${props.color}`, }}
-              >
-                <h5 style={{
-                  fontFamily: [
-                    'Bebas Neue',
-                    'cursive',
-                  ].join(','), marginLeft: '-20.2vh'}}
-                >MEU PERFIL
-                </h5>
-              </button>
-
-              <Accordion expanded={expandedPanel === 'panel1'} onChange={handleAccordionChange('panel1')}>
-                <AccordionSummary
-                  expandIcon={<MdKeyboardArrowDown style={{color: `${props.color}`}} />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
+                <button
+                  className={`bg-${colorMaterialUIComponents}`}
+                  style={{ height: '8vh', borderRadius: '10px', color: `${props.color}`, }}
                 >
                   <h5 style={{
                     fontFamily: [
                       'Bebas Neue',
                       'cursive',
-                    ].join(',')
-                  }}>ARTISTAS</h5>
-                </AccordionSummary>
-                <AccordionDetails >
-                  <h6 style={{
-                    fontFamily: [
-                      'Bebas Neue',
-                      'cursive',
-                    ].join(',')
-                  }}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
-                  </h6>
-                </AccordionDetails>
-              </Accordion>
+                    ].join(','), marginLeft: '-20.2vh'
+                  }}
+                  >MEU PERFIL
+                  </h5>
+                </button>
 
-              <Accordion expanded={expandedPanel === 'panel2'} onChange={handleAccordionChange('panel2')}>
-                <AccordionSummary
-                  expandIcon={<MdKeyboardArrowDown style={{color: `${props.color}`}}/>}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
+                <Accordion expanded={expandedPanel === 'panel1'} onChange={handleAccordionChange('panel1')}>
+                  <AccordionSummary
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <h5 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>ARTISTAS</h5>
+                  </AccordionSummary>
+                  <AccordionDetails >
+                    <h6 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                      malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    </h6>
+                  </AccordionDetails>
+                </Accordion>
+
+                <Accordion expanded={expandedPanel === 'panel2'} onChange={handleAccordionChange('panel2')}>
+                  <AccordionSummary
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <h5 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>FORMATOS</h5>
+                  </AccordionSummary>
+                  <AccordionDetails >
+                    <h6 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                      malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    </h6>
+                  </AccordionDetails>
+                </Accordion>
+
+                <Accordion expanded={expandedPanel === 'panel3'} onChange={handleAccordionChange('panel3')}>
+                  <AccordionSummary
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <h5 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>PRÉ-VENDA</h5>
+                  </AccordionSummary>
+                  <AccordionDetails >
+                    <h6 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                      malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    </h6>
+                  </AccordionDetails>
+                </Accordion>
+
+                <button
+                  className={`bg-${colorMaterialUIComponents}`}
+                  style={{ height: '8vh', borderRadius: '10px', color: `${props.color}`, }}
                 >
                   <h5 style={{
                     fontFamily: [
                       'Bebas Neue',
                       'cursive',
-                    ].join(',')
-                  }}>FORMATOS</h5>
-                </AccordionSummary>
-                <AccordionDetails >
-                  <h6 style={{
-                    fontFamily: [
-                      'Bebas Neue',
-                      'cursive',
-                    ].join(',')
-                  }}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
-                  </h6>
-                </AccordionDetails>
-              </Accordion>
+                    ].join(','), marginLeft: '-17.5vh'
+                  }}
+                  >LANÇAMENTOS
+                  </h5>
+                </button>
+              </div>
+            </Box>
+          </Drawer>
 
-              <Accordion expanded={expandedPanel === 'panel3'} onChange={handleAccordionChange('panel3')}>
-                <AccordionSummary
-                  expandIcon={<MdKeyboardArrowDown style={{color: `${props.color}`}}/>}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
+          <Tooltip
+            id='IconButtonMyProfileMobile'
+            title="Menu"
+            onClick={() => setIsDrawerMenuOpen(true)}
+          >
+            <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><IoPerson className='fs-5' /></button>
+          </Tooltip>
+        </div>
+
+
+        <div id='LogoMobile' className='col-7 d-flex justify-content-center align-items-center'>
+          <Logo size={55} color={props.colorIsDarkOrLight} />
+        </div>
+
+        <div id='RightOptionMobile' className='col d-flex justify-content-end align-items-center gap-3'>
+          <Tooltip title="Buscar">
+            <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><HiSearch className='fs-5 ' /></button>
+          </Tooltip>
+
+          <Tooltip
+            id='IconButtonMenu'
+            title="Menu"
+            onClick={() => setIsDrawerMenuOpen(true)}
+          >
+            <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><BsFillBagFill className='fs-5' /></button>
+          </Tooltip>
+
+          <Drawer
+            anchor='right'
+            open={isDrawerMenuOpen}
+            onClose={() => { setIsDrawerMenuOpen(false) }}>
+            <Box
+              className='d-flex flex-column'
+              p={2} width='40vh' height='100%' role='presentation' textAlign='center'
+              style={{ backgroundColor: `${props.color}` }}>
+              <div className='w-100 d-flex flex-column justify-content-star align-items-star gap-2'>
+                <Tooltip
+                  title="Fechar menu"
+                  onClick={() => setIsDrawerMenuOpen(false)}
+                >
+                  <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><RiCloseCircleFill className='fs-5 ' /></button>
+                </Tooltip>
+
+                <button
+                  className={`bg-${colorMaterialUIComponents}`}
+                  style={{ height: '8vh', borderRadius: '10px', color: `${props.color}`, }}
                 >
                   <h5 style={{
                     fontFamily: [
                       'Bebas Neue',
                       'cursive',
-                    ].join(',')
-                  }}>PRÉ-VENDA</h5>
-                </AccordionSummary>
-                <AccordionDetails >
-                  <h6 style={{
+                    ].join(','), marginLeft: '-20.2vh'
+                  }}
+                  >MEU PERFIL
+                  </h5>
+                </button>
+
+                <Accordion expanded={expandedPanel === 'panel1'} onChange={handleAccordionChange('panel1')}>
+                  <AccordionSummary
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <h5 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>ARTISTAS</h5>
+                  </AccordionSummary>
+                  <AccordionDetails >
+                    <h6 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                      malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    </h6>
+                  </AccordionDetails>
+                </Accordion>
+
+                <Accordion expanded={expandedPanel === 'panel2'} onChange={handleAccordionChange('panel2')}>
+                  <AccordionSummary
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <h5 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>FORMATOS</h5>
+                  </AccordionSummary>
+                  <AccordionDetails >
+                    <h6 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                      malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    </h6>
+                  </AccordionDetails>
+                </Accordion>
+
+                <Accordion expanded={expandedPanel === 'panel3'} onChange={handleAccordionChange('panel3')}>
+                  <AccordionSummary
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <h5 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>PRÉ-VENDA</h5>
+                  </AccordionSummary>
+                  <AccordionDetails >
+                    <h6 style={{
+                      fontFamily: [
+                        'Bebas Neue',
+                        'cursive',
+                      ].join(',')
+                    }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                      malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    </h6>
+                  </AccordionDetails>
+                </Accordion>
+
+                <button
+                  className={`bg-${colorMaterialUIComponents}`}
+                  style={{ height: '8vh', borderRadius: '10px', color: `${props.color}`, }}
+                >
+                  <h5 style={{
                     fontFamily: [
                       'Bebas Neue',
                       'cursive',
-                    ].join(',')
-                  }}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
-                  </h6>
-                </AccordionDetails>
-              </Accordion>
-            </div>
-          </Box>
-        </Drawer>
+                    ].join(','), marginLeft: '-17.5vh'
+                  }}
+                  >LANÇAMENTOS
+                  </h5>
+                </button>
+              </div>
+            </Box>
+          </Drawer>
+        </div>
       </div>
     </header>
   )

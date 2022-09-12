@@ -1,0 +1,51 @@
+@media only screen and (max-width: 576px) {
+    #header-mobile {
+        display: flex !important;
+    }
+
+    #header-desktop {
+        display: none !important;
+    }
+
+}
+
+@media screen and (max-width: 768px) { 
+    #header-mobile {
+        display: flex  !important ;
+    }
+
+    #header-desktop {
+        display: none  !important;
+    }
+}
+
+@media screen and (max-width: 992px) { 
+
+    #header-mobile {
+        display: flex !important;
+    }
+
+    #header-desktop {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 1200px) { 
+    #header-mobile {
+        display: none ;
+    }
+
+    #header-desktop {
+        display: flex ;
+    }
+}
+
+@media screen and (max-width: 1400px) { 
+    #header-mobile {
+        display: none ;
+    }
+
+    #header-desktop {
+        display: flex ;
+    }
+} 
