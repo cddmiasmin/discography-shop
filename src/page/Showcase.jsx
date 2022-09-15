@@ -17,7 +17,7 @@ const Showcase = () => {
     >
       <div className='d-flex justify-content-center align-items-center w-100 h-100 position-absolute'>
         <PromotionalBanner />
-        <Header color='light' />
+        <Header colorIsDarkOrLight={'light'} color={'black'} />
       </div>
 
       <div className='d-flex flex-column justify-content-center align-items-center w-100 top-100 position-absolute m-5'>

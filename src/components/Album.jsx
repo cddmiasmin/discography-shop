@@ -20,12 +20,12 @@ const Album = (props) => {
             >
                 <h3
                     style={{
-                        'text-align': 'center',
+                        'textAlign': 'center',
                     }}
                 >{props.name}</h3>
                 <h6
                     style={{
-                        'text-align': 'center',
+                        'textAlign': 'center',
                     }}
                 >{props.artist}</h6>
                 <h6>{props.year}</h6>

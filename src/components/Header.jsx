@@ -42,7 +42,7 @@ const Header = (props) => {
   };
 
   var colorMaterialUIComponents = '';
-  { props.colorIsDarkOrLight === 'light' ? colorMaterialUIComponents = 'white' : colorMaterialUIComponents = 'black' }
+  {props.colorIsDarkOrLight === 'light' ? colorMaterialUIComponents = 'white' : colorMaterialUIComponents = 'black' }
 
   const Accordion = withStyles({
     root: {

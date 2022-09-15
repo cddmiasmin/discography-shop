@@ -24,11 +24,13 @@ const ListAlbunsShowcase = (props) => {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
             >
-                {props.data.album.map((album) => (
+                {props.data.album.map((album, key) => (
                     <SwiperSlide
+                        key={key}
                         className='d-flex justify-content-center align-items-center'
                     >
                         <Album
+                            key={key}
                             cover={album.cover}
                             artist={artist}
                             name={album.name}
