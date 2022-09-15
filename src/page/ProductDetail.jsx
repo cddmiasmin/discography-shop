@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
+
 import './style.css'
 import Header from './../components/Header'
 import Footer from './../components/Footer'
+
 import { dataArtist } from './../data/dataArtist'
-import { FastAverageColor } from 'fast-average-color';
+import { useGetColor } from '../data/hook/useGetColor'
+
 import { Link } from 'react-router-dom'
 import { _ } from 'lodash'
 
@@ -12,26 +15,18 @@ import { BsFillShareFill } from 'react-icons/bs'
 import { TbShoppingCart } from 'react-icons/tb'
 
 const ProductDetail = () => {
-  const [color, setColor] = useState('#0000');
-  const [colorIsDarkOrLight, setColorIsDarkOrLight] = useState('light');
   const [coverAlbum, setCoverAlbum] = useState(0);
 
   const numAlbum = 2;
 
-  useEffect(() => getColor(), [color, coverAlbum])
+  useEffect(() => getColor(dataArtist[0].album[numAlbum].cover[coverAlbum].cover))
 
-  const getColor = () => {
-    const fac = new FastAverageColor();
-    fac.getColorAsync(dataArtist[0].album[numAlbum].cover[coverAlbum].cover)
-      .then(color => {
-        setColor(color.hex)
-        color.isDark ? setColorIsDarkOrLight('light') : setColorIsDarkOrLight('dark')
-      })
-      .catch(e => {
-        setColorIsDarkOrLight('light');
-        setColor('#000');
-      });
-  }
+  const {
+    color,
+    colorIsDarkOrLight,
+    colorIsWhiteOrBlack,
+    getColor,
+  } = useGetColor();
 
   const ChoseAlbumCoverClick = (key) => setCoverAlbum(key)
 
@@ -44,7 +39,8 @@ const ProductDetail = () => {
   const formatStockAvailable = HowIsTheStockOfFormats(dataArtist[0].album[numAlbum].cover[coverAlbum].format);
 
   return (
-    <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-star position-absolute text-${colorIsDarkOrLight}`}
+    <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-star text-${colorIsDarkOrLight}`}
+      style={{backgroundColor: '#020202'}}
     >
       <Header colorIsDarkOrLight={colorIsDarkOrLight} color={color}/>
       <div
@@ -136,6 +132,10 @@ const ProductDetail = () => {
         </div>
 
       </div>
+      <br />
+      <br />
+      <br />
+      <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color}/>
     </div>
 
   )
