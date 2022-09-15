@@ -2,21 +2,17 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Logo = (props) => {
-    const sizeLogo = {
-        width: (props.size+10)+'px',
-        height: props.size+'px',
-        cursor: 'pointer'
-    }
-
     return (
-        <div 
-            style={sizeLogo} 
-           >
-            <img 
-                style={sizeLogo}
-                src={`src/assets/images/logo-${props.color}.png`}
-                alt="" 
-            />
+        <div
+            style={{height: `${props.size}px`, width: `${props.size + 10}px`, cursor: 'pointer'}}
+        >
+            <Link to='/'>
+                <img
+                    style={{height: `${props.size}px`, width: `${props.size + 10}px`}}
+                    src={`src/assets/images/logo-${props.color}.png`}
+                    alt='Logo Cassandra'
+                />
+            </Link>
         </div>
     )
 }
