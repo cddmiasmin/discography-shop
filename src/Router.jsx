@@ -10,7 +10,7 @@ import Artists from './page/Artists'
 import ArtistProfile from './page/ArtistProfile'
 import Formats from './page/Formats'
 import PreOrder from './page/PreOrder'
-import Cart from './page/Cart'
+import Releases from './page/Releases'
 import NotFound from './page/NotFound'
 
 
@@ -26,7 +26,7 @@ const Router = () => {
             <Route path="/perfil" element={<ArtistProfile />}/>
             <Route path="/formato" element={<Formats />}/>
             <Route path="/prevenda" element={<PreOrder />}/>
-            <Route path="/carrinho" element={<Cart />}/>
+            <Route path="/lancamento" element={<Releases />}/>
             <Route path="*" element={<NotFound />}/>
         </Routes>
     )
