@@ -24,13 +24,13 @@ export const dataArtist = [
         album: [
             {
                 id: 1,
-                cover: "src/assets/images/dataArtist/album/Lungs.jpg",
+                cover: [{id: 1, cover: "src/assets/images/dataArtist/album/Lungs.jpg"}],
                 name:  "Lungs",
                 year:"2009"
             }, 
             {
                 id: 2,
-                cover: "src/assets/images/dataArtist/album/Ceremonials.jpg",
+                cover: [{id: 1, cover: "src/assets/images/dataArtist/album/Ceremonials.jpg"}],
                 name:  "Ceremonials",
                 year:"2011"
             }, 
@@ -46,7 +46,7 @@ export const dataArtist = [
             }, 
             {
                 id: 4,
-                cover: "src/assets/images/dataArtist/album/High As Hope.jpg",
+                cover: [{id: 1, cover: "src/assets/images/dataArtist/album/High As Hope.jpg"}],
                 name:  "High As Hope",
                 year:"2018"
             }, 
@@ -74,7 +74,7 @@ export const dataArtist = [
     {
         id: 2,
         name: 'Taylor Swift',
-        icon: 'https://styles.redditmedia.com/t5_2rlwe/styles/communityIcon_c94var5z5wk91.png',
+        icon: 'src/assets/images/dataArtist/taylorswift.jpg',
         banner: 'https://asset-a.grid.id/crop/60x612:1068x1080/x/photo/2022/08/29/fbtnzmrxgai50lsjpg-20220829043409.jpg',
         album : [
             {
