@@ -10,14 +10,14 @@ import { MdOutlineMailOutline } from 'react-icons/md'
 const Footer = (props) => {
     return (
         <div
-            className='container-fluid flex-wrap w-100 bg-dark d-flex flex-column justify-content-star align-items-star pt-4 ps-5'
-            style={{ height: '350px' }}
+            className={`container-fluid flex-wrap w-100 text-${props.colorIsDarkOrLight} d-flex flex-column justify-content-star align-items-star pt-4 ps-5`}
+            style={{ height: '350px', backgroundColor: `${props.color}` }}
         >
             <div className='d-flex flex-column justify-content-center align-items-star gap-3'>
                 <div
                     className='d-flex flex-row align-items-end gap-2'
                 >
-                    <Logo size={50} color={props.color}/>
+                    <Logo size={50} color={props.colorIsDarkOrLight}/>
                     <h4>Cassandra</h4>
                 </div>
 
