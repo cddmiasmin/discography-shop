@@ -7,6 +7,14 @@
         display: none !important;
     }
 
+    #footer-mobile {
+        display: flex !important;
+    }
+
+    #footer-desktop {
+        display: none !important;
+    }
+
     #filter-from-products {
         height: auto !important;
         width: auto !important;
@@ -21,6 +29,14 @@
     }
 
     #header-desktop {
+        display: none !important;
+    }
+
+    #footer-mobile {
+        display: flex !important;
+    }
+
+    #footer-desktop {
         display: none !important;
     }
 
@@ -41,6 +57,14 @@
         display: none !important;
     }
 
+    #footer-mobile {
+        display: flex !important;
+    }
+
+    #footer-desktop {
+        display: none !important;
+    }
+
     #filter-from-products {
         height: 5vh !important;
         width: 40vh !important;
@@ -56,6 +80,14 @@
     #header-desktop {
         display: flex;
     }
+
+    #footer-mobile {
+        display: none;
+    }
+
+    #footer-desktop {
+        display: flex;
+    }
 }
 
 @media only screen and (max-width: 1400px) {
@@ -64,6 +96,14 @@
     }
 
     #header-desktop {
+        display: flex;
+    }
+
+    #footer-mobile {
+        display: none;
+    }
+
+    #footer-desktop {
         display: flex;
     }
 }

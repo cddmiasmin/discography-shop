@@ -135,7 +135,7 @@ const ProductDetail = () => {
       <br />
       <br />
       <br />
-      <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color}/>
+      <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack}/>
     </div>
 
   )
