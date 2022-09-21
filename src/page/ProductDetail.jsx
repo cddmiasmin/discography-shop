@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import './style.css'
-import Header from './../components/Header'
+import Header from './../components/Header/Header'
 import Footer from './../components/Footer'
 
 import { dataArtist } from './../data/dataArtist'

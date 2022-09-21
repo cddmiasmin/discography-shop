@@ -107,3 +107,41 @@
         display: flex;
     }
 }
+
+
+@media screen and (max-height: 1400px) {
+    #SwiperListCartItem {
+        max-height: 75vh !important;
+    }
+}
+
+@media screen and (max-height: 1200px) {
+    #SwiperListCartItem {
+        max-height: 74vh !important;
+    }
+}
+
+@media screen and (max-height: 992px) {
+    #SwiperListCartItem {
+        max-height: 70vh !important;
+    }
+}
+
+@media screen and (max-height: 850px){
+    #SwiperListCartItem {
+        max-height: 67vh !important;
+    }
+}
+
+@media screen and (max-height: 750px){
+    #SwiperListCartItem {
+        max-height: 64vh !important;
+    }
+}
+
+@media screen and (max-height: 600px){
+    #SwiperListCartItem {
+        max-height: 62.5vh !important;
+    }
+}
+

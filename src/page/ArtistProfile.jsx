@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import Header from './../components/Header'
+import Header from './../components/Header/Header'
 import Footer from './../components/Footer'
 import ListAlbunsSearch from './../components/ListAlbunsSearch'
 
