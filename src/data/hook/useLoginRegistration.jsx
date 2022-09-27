@@ -11,12 +11,18 @@ export function useLoginRegistration() {
         SetBannerInPortraitOrLandscapeMode
     ] = useState(data.portrait);
 
-    const WhatOrientationIsTheScreenInNow = () => {
+    const WhatOrientationIsTheScreenInNow = (itIsForLoginOrRegistration) => {
         var screenWidth = window.screen.width;
 
-        screenWidth < 992
-            ? SetBannerInPortraitOrLandscapeMode(data.landscape)
-            : SetBannerInPortraitOrLandscapeMode(data.portrait);
+        itIsForLoginOrRegistration === 0
+            ? 
+            screenWidth < 992
+                ? SetBannerInPortraitOrLandscapeMode(data.landscape)
+                : SetBannerInPortraitOrLandscapeMode(data.portrait)
+            :
+            screenWidth > 992
+                ? SetBannerInPortraitOrLandscapeMode(data.landscape)
+                : SetBannerInPortraitOrLandscapeMode(data.portrait);
     }
 
     const getRandomInt = (maxValue) => Math.floor(Math.random() * maxValue)

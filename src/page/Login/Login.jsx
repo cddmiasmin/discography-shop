@@ -29,7 +29,7 @@ const Login = () => {
   } = useLoginRegistration();
 
   useEffect(() => {
-    WhatOrientationIsTheScreenInNow()
+    WhatOrientationIsTheScreenInNow(0)
     ChooseImageForTheBanner();
   }, [])
 
