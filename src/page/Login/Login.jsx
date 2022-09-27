@@ -1,4 +1,4 @@
-import { dataBannerLoginRegistration } from '../../data/dataBannerLoginRegistration';
+import { useLoginRegistration } from '../../data/hook/useLoginRegistration';
 import { useGetColor } from '../../data/hook/useGetColor';
 
 import React, { useEffect, useState } from 'react'
@@ -11,19 +11,22 @@ import './login.css'
 
 const Login = () => {
 
-  const data = dataBannerLoginRegistration[0];
-  const [imageNumber, SetImageNumber] = useState(0);
-  const [
-    bannerInPortraitOrLandscapeMode,
-    SetBannerInPortraitOrLandscapeMode
-  ] = useState(data.portrait);
-
   const {
     color,
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
     getColor,
   } = useGetColor();
+
+  const {
+    data,
+    imageNumber,
+    SetImageNumber,
+    bannerInPortraitOrLandscapeMode,
+    SetBannerInPortraitOrLandscapeMode,
+    WhatOrientationIsTheScreenInNow,
+    ChooseImageForTheBanner,
+  } = useLoginRegistration();
 
   useEffect(() => {
     WhatOrientationIsTheScreenInNow()
@@ -36,22 +39,6 @@ const Login = () => {
     document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
     document.body.style.setProperty('--color', `${color}`);
   }, [color])
-
-  const WhatOrientationIsTheScreenInNow = () => {
-    var screenWidth = window.screen.width;
-
-    screenWidth < 992
-      ? SetBannerInPortraitOrLandscapeMode(data.landscape)
-      : SetBannerInPortraitOrLandscapeMode(data.portrait);
-  }
-
-  const getRandomInt = (maxValue) => Math.floor(Math.random() * maxValue)
-
-  const ChooseImageForTheBanner = () => {
-    var numberOfImagesAvailable = bannerInPortraitOrLandscapeMode.length;
-
-    SetImageNumber(getRandomInt(numberOfImagesAvailable));
-  }
 
   return (
     <div
