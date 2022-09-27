@@ -1,4 +1,4 @@
-export const dataBannerLogin = [
+export const dataBannerLoginRegistration = [
     {
         portrait: [
             {imgUrl: 'src/assets/backgrounds/portrait/portrait-banner-1.jpg'},

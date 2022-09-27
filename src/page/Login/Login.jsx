@@ -1,4 +1,4 @@
-import { dataBannerLogin } from '../../data/dataBannerLogin';
+import { dataBannerLoginRegistration } from '../../data/dataBannerLoginRegistration';
 import { useGetColor } from '../../data/hook/useGetColor';
 
 import React, { useEffect, useState } from 'react'
@@ -11,7 +11,7 @@ import './login.css'
 
 const Login = () => {
 
-  const data = dataBannerLogin[0];
+  const data = dataBannerLoginRegistration[0];
   const [imageNumber, SetImageNumber] = useState(0);
   const [
     bannerInPortraitOrLandscapeMode,
@@ -53,7 +53,6 @@ const Login = () => {
     SetImageNumber(getRandomInt(numberOfImagesAvailable));
   }
 
-  console.log(color)
   return (
     <div
       className='d-flex flex-wrap position-absolute w-100 h-100 justify-content-center align-items-center'

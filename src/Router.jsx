@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import Showcase from './page/Showcase'
 import Login from './page/Login/Login'
-import Registration from './page/Registration'
+import Registration from './page/Registration/Registration'
 import ProductDetail from './page/ProductDetail'
 import ProductSearch from './page/ProductSearch'
 import Artists from './page/Artists'
