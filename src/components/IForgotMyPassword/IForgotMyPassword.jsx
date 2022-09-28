@@ -34,14 +34,14 @@ const IForgotMyPassword = (props) => {
         >
             <div id='card-forgot-password'>
                 <div id='card-bg'/>
-                <div className='w-100 d-flex flex-column justify-content-center align-items-center p-5'>
+                <div className='w-100 d-flex flex-column justify-content-center align-items-center'>
                     <div
                         id='sub-card'
                         className='w-100 d-flex flex-column justify-content-center align-items-center'
                     >
                         <GiKey className='m-2' style={{ fontSize: 'xxx-large' }} />
                         <h1>ESQUECEU A SENHA?</h1>
-                        <h6>Não se preocupe, enviaremos instruções de redefinição.</h6>
+                        <h6 className='text-center'>Não se preocupe, enviaremos instruções de redefinição.</h6>
                     </div>
                     <div className={`bg-${props.colorIsDarkOrLight} rounded `} style={{ height: '0.3vh', width: '75%' }} />
                     <form action="" id='form-forgot-password'

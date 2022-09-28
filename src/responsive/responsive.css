@@ -20,7 +20,6 @@
         width: auto !important;
         gap: 2vh !important;
     }
-
 }
 
 @media only screen and (max-width: 768px) {
@@ -80,6 +79,11 @@
     #card-login {
         width: 100% !important;
         height: 65% !important;
+    }
+
+    #card-forgot-password {
+        width: 80% !important;
+        padding: 1rem !important;
     }
 }
 
