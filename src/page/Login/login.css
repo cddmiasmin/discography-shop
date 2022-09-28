@@ -1,8 +1,3 @@
-body {
-    --colorIsWhiteOrBlack: black;
-    --color: #000;
-}
-
 #form-login input {
     width: 55%;
     height: 5vh;

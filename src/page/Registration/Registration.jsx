@@ -13,6 +13,7 @@ const Registration = () => {
 
   const {
     color,
+    colorRGBA,
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
     getColor,
@@ -38,6 +39,7 @@ const Registration = () => {
   useEffect(() => {
     document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
     document.body.style.setProperty('--color', `${color}`);
+    document.body.style.setProperty('--color-rgba', `${colorRGBA}`);
   }, [color])
 
 
@@ -58,7 +60,7 @@ const Registration = () => {
       <div
         id='card-registration'
         className='d-flex justify-content-center align-items-center'
-        style={{ backgroundColor: `${color}`, borderRadius: '12px', border: `1px solid ${colorIsWhiteOrBlack}`, width: '35%', height: '80%' }}
+        style={{width: '35%', height: '80%' }}
       >
         <div className='h-100 w-100 d-flex flex-column flex-wrap justify-content-center align-items-center gap-3'>
           <Logo size={70} color={colorIsDarkOrLight} />
