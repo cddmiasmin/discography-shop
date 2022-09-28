@@ -4,6 +4,7 @@ import { FastAverageColor } from 'fast-average-color';
 
 export function useGetColor() {
     const [color, setColor] = useState('#0000');
+    const [colorRGBA, setColorRGBA] = useState('rgba(0,0,0,1)');
     const [colorIsDarkOrLight, setColorIsDarkOrLight] = useState('light');
     const [colorIsWhiteOrBlack, setColorIsWhiteOrBlack] = useState('black');
 
@@ -13,9 +14,10 @@ export function useGetColor() {
         const fac = new FastAverageColor();
         fac.getColorAsync(Img)
             .then(color => {
-                setColor(color.hex)
-                color.isDark ? setColorIsDarkOrLight('light') : setColorIsDarkOrLight('dark')
-                color.isDark ? setColorIsWhiteOrBlack('white') : setColorIsWhiteOrBlack('black')
+                setColor(color.hex);
+                setColorRGBA(color.rgba);
+                color.isDark ? setColorIsDarkOrLight('light') : setColorIsDarkOrLight('dark');
+                color.isDark ? setColorIsWhiteOrBlack('white') : setColorIsWhiteOrBlack('black');
             })
             .catch(e => {
                 setColorIsDarkOrLight('light');
@@ -25,6 +27,7 @@ export function useGetColor() {
 
     return {
         color,
+        colorRGBA,
         colorIsDarkOrLight,
         colorIsWhiteOrBlack,
         getColor,
