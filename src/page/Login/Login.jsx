@@ -8,8 +8,11 @@ import Logo from './../../components/Logo'
 import { Link } from 'react-router-dom'
 
 import './login.css'
+import IForgotMyPassword from '../../components/IForgotMyPassword/IForgotMyPassword';
 
 const Login = () => {
+
+  const [passwordModalIsOpen, SetPasswordModalIsOpen] = useState(false);
 
   const {
     color,
@@ -19,11 +22,8 @@ const Login = () => {
   } = useGetColor();
 
   const {
-    data,
     imageNumber,
-    SetImageNumber,
     bannerInPortraitOrLandscapeMode,
-    SetBannerInPortraitOrLandscapeMode,
     WhatOrientationIsTheScreenInNow,
     ChooseImageForTheBanner,
   } = useLoginRegistration();
@@ -80,7 +80,7 @@ const Login = () => {
             >
               <input
                 className='rounded'
-                type="email" name="fieldEmail" id="field-email" placeholder='E-mail' required="required" 
+                type="email" name="fieldEmail" id="field-email" placeholder='E-mail' required="required"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
               />
               <input
@@ -93,15 +93,22 @@ const Login = () => {
                 className='d-flex justify-content-end m-0'
                 style={{ width: '55%', fontSize: 'small' }}
               >
-                <button 
-                  className={`text-${colorIsDarkOrLight} bg-transparent`} 
+                <button
+                  className={`text-${colorIsDarkOrLight} bg-transparent`}
                   type='button'
+                  onClick={() => SetPasswordModalIsOpen(true)}
                 > ESQUECI MINHA SENHA</button>
+                <IForgotMyPassword
+                  passwordModalIsOpen={passwordModalIsOpen}
+                  SetPasswordModalIsOpen={SetPasswordModalIsOpen}
+                  color={color}
+                  colorIsDarkOrLight={colorIsDarkOrLight}
+                />
               </div>
               <div className={`bg-${colorIsDarkOrLight} rounded `} style={{ height: '0.3vh', width: '55%' }} />
               <button
                 className='d-flex justify-content-center align-items-center rounded m-1'
-                style={{ width: '55%', height: '5vh', fontSize: 'larger'}}
+                style={{ width: '55%', height: '5vh', fontSize: 'larger' }}
                 type="submit"
               >
                 ENTRAR

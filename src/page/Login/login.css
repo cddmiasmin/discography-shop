@@ -26,7 +26,6 @@
     color: var(--color);
 }
 
-
 #form-login button[type=submit]:hover {
     background-color: transparent;
     border: 1px solid var(--colorIsWhiteOrBlack);
