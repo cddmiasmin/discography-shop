@@ -1,6 +1,48 @@
 #card-registration{
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 12px;
     border: 1.5px solid var(--color);
 }
+
+#form-registration .element-width{
+    width: 65%;
+}
+
+#form-registration input {
+    height: 5vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: var(--colorIsWhiteOrBlack);
+    background-color: transparent;
+    border: 1px solid var(--colorIsWhiteOrBlack);
+    box-sizing: none;
+}
+
+#form-registration input::placeholder {
+    color: var(--colorIsWhiteOrBlack);
+}
+
+#form-registration input:focus {
+    color: var(--color);
+    background-color: var(--colorIsWhiteOrBlack);
+    border: 2px solid var(--color);
+}
+
+#form-registration input:focus::placeholder{
+    color: var(--color);
+}
+
+#form-registration button[type=submit] {
+    color: var(--color);
+}
+
+#form-registration button[type=submit]:hover {
+    background-color: var(--color);
+    border: 1px solid var(--colorIsWhiteOrBlack);
+    color: var(--colorIsWhiteOrBlack);
+}
+
+
+
