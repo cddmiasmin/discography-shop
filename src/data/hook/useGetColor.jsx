@@ -16,6 +16,7 @@ export function useGetColor() {
             .then(color => {
                 setColor(color.hex);
                 setColorRGBA(color.rgba);
+                console.log(colorRGBA)
                 color.isDark ? setColorIsDarkOrLight('light') : setColorIsDarkOrLight('dark');
                 color.isDark ? setColorIsWhiteOrBlack('white') : setColorIsWhiteOrBlack('black');
             })
@@ -27,7 +28,6 @@ export function useGetColor() {
 
     return {
         color,
-        colorRGBA,
         colorIsDarkOrLight,
         colorIsWhiteOrBlack,
         getColor,

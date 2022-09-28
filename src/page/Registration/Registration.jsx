@@ -13,7 +13,6 @@ const Registration = () => {
 
   const {
     color,
-    colorRGBA,
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
     getColor,
@@ -39,8 +38,7 @@ const Registration = () => {
   useEffect(() => {
     document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
     document.body.style.setProperty('--color', `${color}`);
-    document.body.style.setProperty('--color-rgba', `${colorRGBA}`);
-  }, [color])
+  }, [color, colorRGBA])
 
 
   return (
