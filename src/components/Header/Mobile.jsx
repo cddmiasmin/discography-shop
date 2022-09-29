@@ -197,8 +197,7 @@ const Mobile = (props) => {
 
                 <Tooltip
                     id='IconButtonMyProfileMobile'
-                    title="Menu"
-                    onClick={() => setIsDrawerMenuOpen(true)}
+                    title="Perfil"
                 >
                     <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><IoPerson className='fs-5' /></button>
                 </Tooltip>
