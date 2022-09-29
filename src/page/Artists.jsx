@@ -11,17 +11,14 @@ import { BsFillArrowUpCircleFill } from 'react-icons/bs'
 
 const Artists = () => {
 
-  const alphabetAndNumbers = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z", "123"];
+  const alphabetAndNumbers = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S","T", "U", "V", "W", "X", "Y", "Z", "123"];
 
   const SortingArtistNamesInAlphabeticalOrder = (data) => {
     const artistNamesAux = _.groupBy(data, (artist) => artist.name[0])
-    console.log(artistNamesAux)
     return artistNamesAux;
   }
 
   const artistNames = SortingArtistNamesInAlphabeticalOrder(dataArtist);
-
-  console.log(artistNames[`${'A'}`] === undefined)
 
   return (
     <div
@@ -53,7 +50,7 @@ const Artists = () => {
 
         {alphabetAndNumbers.map((character, key) => (
           (artistNames[`${character}`] !== undefined &&
-            <div section
+            <section
               key={key}
               id={character}
               className='d-flex w-100 flex-column flex-wrap justify-content-star align-items-center gap-2'
@@ -71,14 +68,14 @@ const Artists = () => {
                 style={{ width: '85%' }}
               >
                 {artistNames[`${character}`].map((artist, key) => (
-                <div className='d-flex flex-column justify-content-center align-items-center gap-2 p-2'>
-                  <img style={{ height: '20vh', width: '20vh', borderRadius: '6vh' }}
-                    src={artist.icon} alt={`${artist.name} icon`} />
+                <div key={key} className='d-flex flex-column justify-content-center align-items-center gap-2 p-2'>
+                  <img style={{ height: '20vh', width: '20vh',  border: '1px solid white' }}
+                    src={artist.icon} alt={`${artist.name} icon`} className="rounded-circle"/>
                   <h6 className='m-0'>{artist.name}</h6>
                 </div>
                 ))}
               </div>
-            </div>
+            </section>
           )
         ))}
 
