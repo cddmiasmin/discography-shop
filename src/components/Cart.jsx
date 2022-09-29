@@ -55,7 +55,7 @@ const Cart = (props) => {
                                 style={{ minHeight: 'auto', maxHeight: '60vh' }}
                             >
                                 {dataArtist[0].album[numAlbum].cover.map ((cover, key) => (
-                                    <SwiperSlide style={{ height: '34vh' }}>
+                                    <SwiperSlide style={{ height: '34vh' }} key={key}>
                                         <div
                                             key={key}
                                             id='CartItem'
