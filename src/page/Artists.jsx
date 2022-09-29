@@ -3,11 +3,23 @@ import React from 'react'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer'
 
+import { dataArtist } from './../data/dataArtist'
+
+import { _ } from 'lodash'
+
 import { BsFillArrowUpCircleFill } from 'react-icons/bs'
 
 const Artists = () => {
 
   const alphabetAndNumbers = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z", "123"];
+
+  const SortingArtistNamesInAlphabeticalOrder = (data) => {
+    const artistNamesAux = _.groupBy(data, (artist) => artist.name[0])
+    console.log(artistNamesAux)
+    return artistNamesAux;
+  }
+
+  const artistNames = SortingArtistNamesInAlphabeticalOrder(dataArtist);
 
   return (
     <div
