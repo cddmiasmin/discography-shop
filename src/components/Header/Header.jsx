@@ -27,6 +27,7 @@ import Mobile from './Mobile'
 
 const Header = (props) => {
   const [isDrawerCartOpen, setIsDrawerCartOpen] = useState(false);
+  const [isPopoverProfileOpen, setIsPopoverProfileOpen] = useState(false);
 
   return (
     <header
@@ -38,6 +39,7 @@ const Header = (props) => {
         <Mobile
           colorIsDarkOrLight={props.colorIsDarkOrLight} color={props.color} colorIsWhiteOrBlack={props.colorIsWhiteOrBlack}
           isDrawerCartOpen={isDrawerCartOpen} setIsDrawerCartOpen={setIsDrawerCartOpen}
+          isPopoverProfileOpen={isPopoverProfileOpen} setIsPopoverProfileOpen={setIsPopoverProfileOpen}
         />
       </div>
 
@@ -45,6 +47,7 @@ const Header = (props) => {
         <Desktop
           colorIsDarkOrLight={props.colorIsDarkOrLight} color={props.color} colorIsWhiteOrBlack={props.colorIsWhiteOrBlack}
           isDrawerCartOpen={isDrawerCartOpen} setIsDrawerCartOpen={setIsDrawerCartOpen}
+          isPopoverProfileOpen={isPopoverProfileOpen} setIsPopoverProfileOpen={setIsPopoverProfileOpen}
         />
       </div>
 

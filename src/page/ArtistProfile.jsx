@@ -63,30 +63,30 @@ const ArtistProfile = () => {
             className='d-flex rounded flex-wrap justify-content-center align-items-center gap-5'
             style={{ backgroundColor: 'none', height: '7vh', width: '70vh', border: `1px solid ${color}` }}
           >
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <h5 class="form-check-h5 m-0" for="flexCheckDefault">
+            <div className="form-check">
+              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+              <h5 className="form-check-h5 m-0" for="flexCheckDefault">
                 CD
               </h5>
             </div>
 
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <h5 class="form-check-h5 m-0" for="flexCheckDefault">
+            <div className="form-check">
+              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+              <h5 className="form-check-h5 m-0" for="flexCheckDefault">
                 VINIL
               </h5>
             </div>
 
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <h5 class="form-check-h5 m-0" for="flexCheckDefault">
+            <div className="form-check">
+              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+              <h5 className="form-check-h5 m-0" for="flexCheckDefault">
                 CASSETE
               </h5>
             </div>
 
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <h5 class="form-check-label m-0" for="flexCheckDefault">
+            <div className="form-check">
+              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+              <h5 className="form-check-label m-0" for="flexCheckDefault">
                 BOX
               </h5>
             </div>

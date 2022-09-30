@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 
 import Logo from '../Logo'
 import Cart from '../Cart'
+import Profile from '../Profile'
 
 import { Link } from 'react-router-dom'
 
@@ -11,7 +12,6 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import { Drawer, Box, Typography } from '@mui/material';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-
 
 import { BiMenu } from 'react-icons/bi';
 import { FaTrash } from 'react-icons/fa';
@@ -198,9 +198,12 @@ const Mobile = (props) => {
                 <Tooltip
                     id='IconButtonMyProfileMobile'
                     title="Perfil"
+                    onClick={() => props.setIsPopoverProfileOpen(true)}
                 >
                     <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><IoPerson className='fs-5' /></button>
                 </Tooltip>
+                <Profile isPopoverProfileOpen={props.isPopoverProfileOpen} setIsPopoverProfileOpen={props.setIsPopoverProfileOpen}/>
+
             </div>
 
 
