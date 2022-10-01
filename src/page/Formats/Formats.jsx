@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './formats.css'
 
@@ -11,7 +11,7 @@ import { dataArtist } from '../../data/dataArtist'
 import { useGetColor } from './../../data/hook/useGetColor'
 
 import { Tooltip } from '@mui/material';
-import { useState } from 'react';
+
 
 const Formats = () => {
 
@@ -67,7 +67,7 @@ const Formats = () => {
             style={{ width: '55%', height: '15vh' }}
           >
             <div id='cassette-mother' className='option-format-button selected-option d-flex justify-content-center align-items-center h-100'
-              onClick={() => FormatOptionSelected('CassetteImg', 'cassete', 'cassette-mother')}
+              onClick={() => FormatOptionSelected('CassetteImg', 'CASSETE', 'cassette-mother')}
               style={{ width: '15vh', height: '100%' }}
             >
               <Tooltip id='CassetteFormatsButton' title="Cassete">
@@ -79,7 +79,7 @@ const Formats = () => {
             </div>
 
             <div id='cd-mother' className='option-format-button  d-flex justify-content-center align-items-center h-100'
-              onClick={() => FormatOptionSelected('CDImg', 'cd', 'cd-mother')}
+              onClick={() => FormatOptionSelected('CDImg', 'CD', 'cd-mother')}
               style={{ width: '15vh', height: '100%' }}
             >
               <Tooltip id='CDFormatsButton' title="CD">
@@ -91,7 +91,7 @@ const Formats = () => {
             </div>
 
             <div id='dvd-mother' className='option-format-button  d-flex justify-content-center align-items-center h-100'
-              onClick={() => FormatOptionSelected('DVDImg', 'dvd', 'dvd-mother')}
+              onClick={() => FormatOptionSelected('DVDImg', 'DVD', 'dvd-mother')}
               style={{ width: '15vh', height: '100%' }}
             >
               <Tooltip id='DVDFormatsButton' title="DVD">
@@ -103,7 +103,7 @@ const Formats = () => {
             </div>
 
             <div id='vinyl-mother' className='option-format-button  d-flex justify-content-center align-items-center h-100'
-              onClick={() => FormatOptionSelected('VinylImg', 'vinyl', 'vinyl-mother')}
+              onClick={() => FormatOptionSelected('VinylImg', 'VINIL', 'vinyl-mother')}
               style={{ width: '15vh', height: '100%' }}
             >
               <Tooltip id='VinylFormatsButton' title="Vinil">
@@ -115,7 +115,7 @@ const Formats = () => {
             </div>
           </div>
         </div>
-        <div className='p-5 rounded' style={{width: '80%', border: `2px solid var(--color)`, color: `${colorIsWhiteOrBlack}`}}>
+        <div className='p-5 rounded' style={{ width: '80%', border: `2px solid var(--color)`, color: `${colorIsWhiteOrBlack}` }}>
           <ListAlbunsSearch data={dataArtist[0]} />
         </div>
         <br />

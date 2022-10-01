@@ -24,22 +24,31 @@ export const dataArtist = [
         album: [
             {
                 id: 1,
-                cover: [{id: 1, cover: "src/assets/images/dataArtist/album/Lungs.jpg"}],
+                cover: [
+                    {id: 1, cover: "src/assets/images/dataArtist/album/Lungs.jpg", shortDescription: 'CAPA PRINCIPAL',
+                    format: [{type:'CD', situation: '0'},{type:'VINIL', situation: '1'},{type:'CASSETE', situation: '0'}]}
+                ],
                 name:  "Lungs",
                 year:"2009"
             }, 
             {
                 id: 2,
-                cover: [{id: 1, cover: "src/assets/images/dataArtist/album/Ceremonials.jpg"}],
+                cover: [
+                    {id: 1, cover: "src/assets/images/dataArtist/album/Ceremonials.jpg", shortDescription: 'CAPA PRINCIPAL',
+                    format: [{type:'VINIL', situation: '1'}]}
+                ],
                 name:  "Ceremonials",
                 year:"2011"
             }, 
             {
                 id: 3,
                 cover: [
-                    { id: 1, cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful 1.jpg"},
-                    { id: 2, cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful 2.jpg"},
-                    { id: 3, cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful 3.jpg"}
+                    { id: 1, cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful 1.jpg", shortDescription: 'CAPA PRINCIPAL | DELUXE',
+                        format: [{type:'CD', situation: '1'},{type:'VINIL', situation: '1'},{type:'CASSETE', situation: '0'}, {type:'BOX', situation: '1'}]},
+                    { id: 2, cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful 2.jpg", shortDescription: 'CAPA ALTERNATIVA 1',
+                        format: [{type:'VINIL', situation: '1'}]},
+                    { id: 3, cover: "src/assets/images/dataArtist/album/How Big How Blue How Beautiful 3.jpg", shortDescription: 'CAPA ALTERNATIVA 2',
+                        format: [{type:'VINIL', situation: '0'}]}
                 ],
                 name:  "How Big, How Blue, How Beautiful",
                 year: "2015"
@@ -59,7 +68,7 @@ export const dataArtist = [
                     },
                     {  
                         id: 2, cover:'src/assets/images/dataArtist/album/Dance Fever 1.jpg', shortDescription: 'CAPA ALTERNATIVA',
-                        format: [{type:'CD', situation: '0'}]
+                        format: [{type:'CD', situation: '1'}]
                     },
                     {   
                         id: 3, cover:'src/assets/images/dataArtist/album/Dance Fever 2.jpg', shortDescription: 'VERSÃO DELUXE',
