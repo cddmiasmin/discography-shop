@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-import Showcase from './page/Showcase'
+import Showcase from './page/Showcase/Showcase'
 import Login from './page/Login/Login'
 import Registration from './page/Registration/Registration'
 import ProductDetail from './page/ProductDetail'

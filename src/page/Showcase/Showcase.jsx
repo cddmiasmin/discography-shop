@@ -1,13 +1,13 @@
 import React from 'react'
 
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer'
-import PromotionalBanner from '../components/PromotionalBanner'
-import ListAlbunsShowcase from '../components/ListAlbunsShowcase'
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer'
+import PromotionalBanner from '../../components/PromotionalBanner'
+import ListAlbunsShowcase from '../../components/ListAlbunsShowcase/ListAlbunsShowcase'
 
-import { dataArtist } from './../data/dataArtist'
+import { dataArtist } from '../../data/dataArtist'
 
-import './styles/showcase.css'
+import './showcase.css'
 
 const Showcase = () => {
   return (
@@ -47,7 +47,7 @@ const Showcase = () => {
           </div>
         </div>
         <br />
-        <Footer colorIsDarkOrLight={'light'} color={'black'} colorIsWhiteOrBlack={'white'}/>
+        <Footer colorIsDarkOrLight={'dark'} color={'white'} colorIsWhiteOrBlack={'black'}/>
       </div>
     </div>
   )
