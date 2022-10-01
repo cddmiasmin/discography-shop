@@ -1,10 +1,10 @@
-import { dataBannerLoginRegistration } from '../../data/dataBannerLoginRegistration';
+import { dataBackgrounds } from '../../data/dataBackgrounds';
 
 import React, { useEffect, useState } from 'react'
 
 export function useLoginRegistration() {
 
-    const data = dataBannerLoginRegistration[0];
+    const data = dataBackgrounds[0];
     const [imageNumber, SetImageNumber] = useState(0);
     const [
         bannerInPortraitOrLandscapeMode,
