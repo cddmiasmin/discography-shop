@@ -37,7 +37,7 @@ const PromotionalBanner = () => {
         >
           <img
             className='h-100 w-100'
-            src="src\assets\images\bp-dance-fever-fatm.jpg"
+            src="src\assets\images\PromotionalBanner\bp-dance-fever-fatm.jpg"
             alt=""
           />
         </SwiperSlide>
@@ -48,7 +48,7 @@ const PromotionalBanner = () => {
         >
           <img
             className='h-100 w-100'
-            src="src\assets\images\bt-midnights-ts.jpg"
+            src="src\assets\images\PromotionalBanner\bt-midnights-ts.jpg"
             alt=""
           />
         </SwiperSlide>
@@ -59,7 +59,7 @@ const PromotionalBanner = () => {
         >
           <img
             className='h-100 w-100'
-            src="src\assets\images\bp-holyfvck-dm.jpg"
+            src="src\assets\images\PromotionalBanner\bp-holyfvck-dm.jpg"
             alt=""
           />
         </SwiperSlide>
@@ -70,7 +70,7 @@ const PromotionalBanner = () => {
         >
           <img
             className='h-100 w-100'
-            src="src\assets\images\bp-renaissance-b.jpg"
+            src="src\assets\images\PromotionalBanner\bp-renaissance-b.jpg"
             alt=""
           />
         </SwiperSlide>
@@ -81,7 +81,7 @@ const PromotionalBanner = () => {
         >
           <img
             className='h-100 w-100'
-            src="src\assets\images\bt-lana-del-rey.jpg"
+            src="src\assets\images\PromotionalBanner\bt-lana-del-rey.jpg"
             alt=""
           />
         </SwiperSlide>

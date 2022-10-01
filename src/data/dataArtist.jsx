@@ -19,7 +19,7 @@ export const dataArtist = [
     {
         id: 1,
         name: 'Florence And The Machine',
-        icon: 'src/assets/images/dataArtist/florenceandthemachine.jpg',
+        icon: 'src/assets/images/dataArtist/icon/florenceandthemachine.jpg',
         banner: 'https://premiojovem.com.br/wp-content/uploads/2022/03/FNb8NmQWUAYMn47-scaled-e1648495272736.jpeg',
         album: [
             {
