@@ -4,7 +4,7 @@ import Header from './../components/Header/Header'
 import Footer from './../components/Footer'
 import ListAlbunsSearch from './../components/ListAlbunsSearch'
 
-import { useGetColor } from './../data/hook/useGetColor'
+import { useGetColor } from './../functions/useGetColor'
 import { dataArtist } from './../data/dataArtist'
 
 import './../responsive/responsive.css'

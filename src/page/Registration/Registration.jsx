@@ -4,8 +4,9 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 import { Link } from 'react-router-dom'
 
-import { useGetColor } from '../../data/hook/useGetColor';
-import { useLoginRegistration } from '../../data/hook/useLoginRegistration';
+import { useGetColor } from './../../functions/useGetColor';
+import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
+import { useShowPassword } from '../../functions/useShowPassword';
 
 import Logo from './../../components/Logo'
 
@@ -25,18 +26,19 @@ const Registration = () => {
     bannerInPortraitOrLandscapeMode,
     WhatOrientationIsTheScreenInNow,
     ChooseImageForTheBanner,
-    ShowPassword,
-  } = useLoginRegistration();
+  } = useChooseBackgroundImage();
+
+  const ShowPassword = useShowPassword();
 
   useEffect(() => {
-    WhatOrientationIsTheScreenInNow(1)
+    WhatOrientationIsTheScreenInNow('landscape')
     ChooseImageForTheBanner();
   }, [])
 
   useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl))
 
   useEffect(() => {
-    document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
+    document.body.style.setProperty('--colorIsWhiteOrBlack', 'white');
     document.body.style.setProperty('--color', `${color}`);
   }, [color])
 
@@ -60,7 +62,7 @@ const Registration = () => {
         style={{ width: '35%', height: '85%' }}
       >
         <div className='h-100 w-100 d-flex flex-column flex-wrap justify-content-center align-items-center gap-3'>
-          <Logo size={70} color={colorIsDarkOrLight} />
+          <Logo size={70} color={'light'} />
 
           <div
             className='d-flex w-100 flex-column justify-content-center align-items-center gap-4'

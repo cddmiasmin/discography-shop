@@ -1,14 +1,15 @@
-import { useLoginRegistration } from '../../data/hook/useLoginRegistration';
-import { useGetColor } from '../../data/hook/useGetColor';
-
 import React, { useEffect, useState } from 'react'
-
-import Logo from './../../components/Logo'
 
 import { Link } from 'react-router-dom'
 
-import './login.css'
+import { useChooseBackgroundImage } from '../../functions/useChooseBackgroundImage';
+import { useGetColor } from '../../functions/useGetColor';
+import { useShowPassword } from '../../functions/useShowPassword';
+
+import Logo from './../../components/Logo'
 import IForgotMyPassword from '../../components/IForgotMyPassword/IForgotMyPassword';
+
+import './login.css'
 
 const Login = () => {
 
@@ -26,10 +27,12 @@ const Login = () => {
     bannerInPortraitOrLandscapeMode,
     WhatOrientationIsTheScreenInNow,
     ChooseImageForTheBanner,
-  } = useLoginRegistration();
+  } = useChooseBackgroundImage();
+
+  const ShowPassword = useShowPassword();
 
   useEffect(() => {
-    WhatOrientationIsTheScreenInNow(0)
+    WhatOrientationIsTheScreenInNow('portrait')
     ChooseImageForTheBanner();
   }, [])
 

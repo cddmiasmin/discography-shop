@@ -5,7 +5,7 @@ import Header from './../components/Header/Header'
 import Footer from './../components/Footer'
 
 import { dataArtist } from './../data/dataArtist'
-import { useGetColor } from '../data/hook/useGetColor'
+import { useGetColor } from './../functions/useGetColor'
 
 import { Link } from 'react-router-dom'
 import { _ } from 'lodash'

@@ -8,7 +8,7 @@ import Footer from './../../components/Footer'
 
 import { dataArtist } from '../../data/dataArtist'
 
-import { useGetColor } from './../../data/hook/useGetColor'
+import { useGetColor } from './../../functions/useGetColor'
 
 import { Tooltip } from '@mui/material';
 
