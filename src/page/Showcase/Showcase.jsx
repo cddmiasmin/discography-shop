@@ -2,7 +2,7 @@ import React from 'react'
 
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer'
-import PromotionalBanner from '../../components/PromotionalBanner'
+import PromotionalBanner from '../../components/PromotionalBanner/PromotionalBanner'
 import ListAlbunsShowcase from '../../components/ListAlbunsShowcase/ListAlbunsShowcase'
 
 import { dataArtist } from '../../data/dataArtist'

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Album from './Album'
+import Album from './Album/Album'
 
 const ListAlbunsSearch = (props) => {
 
