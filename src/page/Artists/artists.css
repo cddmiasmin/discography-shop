@@ -1,0 +1,36 @@
+.option-character {
+    transition: all;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+}
+
+.option-character:hover {
+    color: var(--colorIsWhiteOrBlack) !important;
+    background-color: var(--color) !important;
+    border: 0.5px solid white;
+    -moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.artist-option {
+    transition: all;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+}
+
+.artist-option:hover {
+    -moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+#bg-artist {
+    
+    width: 100%;
+    height: 45vh;
+    background-position: center;
+    background-size: cover;
+    opacity: 35%;
+    border-radius: 0px 0px 15px 15px;
+}

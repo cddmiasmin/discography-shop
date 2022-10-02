@@ -1,3 +1,9 @@
+@media only screen and (max-width: 400px) {
+    #container-artists-options {
+        height: 50vh !important;
+    }
+}
+
 @media only screen and (max-width: 576px) {
     #header-mobile {
         display: flex !important;
@@ -48,6 +54,10 @@
         width: auto !important;
         gap: 2vh !important;
     }
+
+    #container-artists-options {
+        height: 40vh !important;
+    }
 }
 
 @media only screen and (max-width: 992px) {
@@ -94,7 +104,7 @@
         width: 87% !important;
     }
 
-    #customer-password-field{
+    #customer-password-field {
         flex-direction: column !important;
         height: 11.5vh !important;
         gap: 0.5rem !important;
@@ -106,6 +116,14 @@
 
     #customer-password-field #confirm-password-container {
         width: 99% !important;
+    }
+
+    #container-artists-options {
+        height: 47vh !important;
+    }
+
+    #container-artists-options section {
+        width: 95% !important;
     }
 }
 
@@ -164,21 +182,20 @@
     }
 }
 
-@media screen and (max-height: 850px){
+@media screen and (max-height: 850px) {
     #SwiperListCartItem {
         max-height: 67vh !important;
     }
 }
 
-@media screen and (max-height: 750px){
+@media screen and (max-height: 750px) {
     #SwiperListCartItem {
         max-height: 64vh !important;
     }
 }
 
-@media screen and (max-height: 600px){
+@media screen and (max-height: 600px) {
     #SwiperListCartItem {
         max-height: 62.5vh !important;
     }
 }
-
