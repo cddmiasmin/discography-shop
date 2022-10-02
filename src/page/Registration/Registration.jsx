@@ -117,7 +117,7 @@ const Registration = () => {
                 className='element-width overflow-hidden d-flex flex-row justify-content-center align-items-center gap-1'
                 style={{ height: '5.5vh' }}
               >
-                <div className='position-relative d-flex flex-row align-items-center' style={{ width: '49%' }}>
+                <div id='password-container' className='position-relative d-flex flex-row align-items-center' style={{ width: '49%' }}>
                   <input
                     className='element-width rounded w-100'
                     type="password" name="r-password" id="r-password" placeholder='Senha' required
@@ -130,12 +130,12 @@ const Registration = () => {
                     onClick={() => ShowPassword('r-password', 'show-password-visible', 'show-password-invisible')}
                   >
                     <AiFillEye id='show-password-visible'
-                      className={`text-${colorIsDarkOrLight}`} style={{ display: 'flex' }} />
+                      style={{ display: 'flex' }} />
                     <AiFillEyeInvisible id='show-password-invisible'
-                      className={`text-${colorIsDarkOrLight}`} style={{ display: 'none' }} />
+                      style={{ display: 'none' }} />
                   </button>
                 </div>
-                <div className='position-relative d-flex flex-row align-items-center' style={{ width: '49%' }}>
+                <div id='confirm-password-container' className='position-relative d-flex flex-row align-items-center' style={{ width: '49%' }}>
                   <input
                     className='element-width rounded w-100'
                     type="password" name="r-confirm-password" id="r-confirm-password" placeholder='CONFIRME SUA SENHA' required
@@ -147,9 +147,9 @@ const Registration = () => {
                     onClick={() => ShowPassword('r-confirm-password', 'show-confirm-password-visible', 'show-confirm-password-invisible')}
                   >
                     <AiFillEye id='show-confirm-password-visible'
-                      className={`text-${colorIsDarkOrLight}`} style={{ display: 'flex' }} />
+                      style={{ display: 'flex' }} />
                     <AiFillEyeInvisible id='show-confirm-password-invisible'
-                      className={`text-${colorIsDarkOrLight}`} style={{ display: 'none' }} />
+                      style={{ display: 'none' }} />
                   </button>
                 </div>
               </div>
