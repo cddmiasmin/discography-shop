@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+
 import { Link } from 'react-router-dom'
 
 import { useChooseBackgroundImage } from '../../functions/useChooseBackgroundImage';
@@ -84,14 +86,25 @@ const Login = () => {
               <input
                 className='rounded'
                 type="email" name="fieldEmail" id="field-email" placeholder='E-mail' required="required"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                pattern="[a-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
               />
-              <input
-                className='rounded'
-                type="password" name="fieldPassword" id="field-password" placeholder='Senha' required="required"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}"
-                title='Sua senha deve conter 4 ou mais caracteres com pelo menos um número, uma letra maiúscula e uma minúscula'
-              />
+              <div id='l-password-container' className='position-relative d-flex flex-row align-items-center' style={{ width: '55%' }}>
+                <input
+                  className='element-width rounded w-100'
+                  type="password" name="l-password" id="l-password" placeholder='Senha' required
+                  title='Informe sua senha cadastrada'
+                />
+                <button
+                  type='button' className='position-absolute'
+                  style={{ right: '1.5vh', backgroundColor: 'transparent' }}
+                  onClick={() => ShowPassword('l-password', 'l-show-password-visible', 'l-show-password-invisible')}
+                >
+                  <AiFillEye id='l-show-password-visible'
+                    style={{ display: 'flex' }} />
+                  <AiFillEyeInvisible id='l-show-password-invisible'
+                    style={{ display: 'none' }} />
+                </button>
+              </div>
               <div
                 className='d-flex justify-content-end m-0'
                 style={{ width: '55%', fontSize: 'small' }}

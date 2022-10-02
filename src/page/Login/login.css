@@ -6,10 +6,14 @@
     color: var(--colorIsWhiteOrBlack);
     background-color: transparent;
     border: 1px solid var(--colorIsWhiteOrBlack);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
 }
 
 #form-login input::placeholder {
+    font-family: 'Bebas Neue', cursive;
     color: var(--colorIsWhiteOrBlack);
+    font-size: 1rem;
 }
 
 #form-login input:focus {
@@ -19,6 +23,14 @@
 }
 
 #form-login input:focus::placeholder{
+    color: var(--color);
+}
+
+#l-password-container button[type=button]{
+    color: var(--colorIsWhiteOrBlack);
+}
+
+#l-password-container input:focus+button[type=button]{
     color: var(--color);
 }
 
