@@ -51,7 +51,7 @@ const IForgotMyPassword = (props) => {
                         <input
                             className='rounded m-2'
                             type="email" name="fieldEmail" id="field-email" placeholder='Digite seu e-mail' required="required"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                            pattern="[a-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                         />
                         <button
                             className='d-flex justify-content-center align-items-center rounded m-1'
