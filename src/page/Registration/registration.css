@@ -12,16 +12,19 @@
 
 #form-registration input {
     height: 5vh;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0px 10px 2px 10px;
     color: var(--colorIsWhiteOrBlack);
     background-color: transparent;
     border: 1px solid var(--colorIsWhiteOrBlack);
     box-sizing: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
 }
 
 #form-registration input::placeholder {
+    font-family: 'Bebas Neue', cursive;
     color: var(--colorIsWhiteOrBlack);
+    font-size: 1rem;
 }
 
 #form-registration input:focus {
