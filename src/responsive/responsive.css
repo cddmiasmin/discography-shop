@@ -20,6 +20,10 @@
         width: auto !important;
         gap: 2vh !important;
     }
+
+    #card-registration {
+        height: 88% !important;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -84,6 +88,24 @@
     #card-forgot-password {
         width: 80% !important;
         padding: 1rem !important;
+    }
+
+    #card-registration {
+        width: 87% !important;
+    }
+
+    #customer-password-field{
+        flex-direction: column !important;
+        height: 11.5vh !important;
+        gap: 0.5rem !important;
+    }
+
+    #customer-password-field #password-container {
+        width: 99% !important;
+    }
+
+    #customer-password-field #confirm-password-container {
+        width: 99% !important;
     }
 }
 

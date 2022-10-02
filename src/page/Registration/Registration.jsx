@@ -64,14 +64,14 @@ const Registration = () => {
           <Logo size={70} color={'light'} />
 
           <div
-            className='d-flex w-100 flex-column justify-content-center align-items-center gap-4'
+            className='d-flex w-100 flex-column justify-content-center align-items-center gap-2'
           >
             <div className='d-flex w-100 flex-column justify-content-center align-items-center gap-1'>
               <h1 className='m-0'>CRIAR UMA CONTA</h1>
               <div className='d-flex flex-row justify-content-center align-items-center gap-1'>
                 <p className='m-0' style={{ fontSize: 'medium' }}>Já tem uma conta?</p>
                 <Link to='/login'
-                  className={`d-flex justify-content-center text-decoration-none text-${colorIsDarkOrLight}`}
+                  className={`d-flex justify-content-center text-decoration-none text-light`}
                   style={{ fontSize: 'medium' }}
                 ><u>ENTRE</u></Link>
               </div>
@@ -166,7 +166,7 @@ const Registration = () => {
                   >Termos de Serviço</a>
                 </label>
               </div>
-              <div className={`bg-${colorIsDarkOrLight} rounded element-width`} style={{ height: '0.3vh' }} />
+              <div className={`bg-light rounded element-width`} style={{ height: '0.3vh' }} />
               <button
                 className='element-width d-flex justify-content-center align-items-center rounded m-1'
                 style={{ height: '5vh', fontSize: 'larger' }}
