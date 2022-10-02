@@ -17,7 +17,6 @@ const Registration = () => {
   const {
     color,
     colorIsDarkOrLight,
-    colorIsWhiteOrBlack,
     getColor,
   } = useGetColor();
 
@@ -154,15 +153,18 @@ const Registration = () => {
                 </div>
               </div>
               <div id='terms-of-use'
-                className='element-width d-flex flex-row justify-content-star align-items-center gap-1 m-1'
+                className='element-width flex-row d-flex justify-content-star gap-1 m-1'
                 style={{ cursor: 'pointer', fontSize: 'small' }}
               >
                 <input type="checkbox" name="cb-terms-of-use" id="cb-terms-of-use" style={{ width: 'auto', height: 'auto' }} />
-                <span className='m-0 p-0'>Eu li e concordo com os</span>
-                <a
-                  href="https://pbs.twimg.com/media/FCWcK8FWUAY4PaP?format=jpg&name=small"
-                  style={{ color: `${color}` }}
-                >Termos de Serviço</a>
+                <label for='cb-terms-of-use'>
+                  <span className='ms-1 p-0'>Eu li e concordo com os</span>
+                  <a
+                    className='ms-1'
+                    href="https://pbs.twimg.com/media/FCWcK8FWUAY4PaP?format=jpg&name=small"
+                    style={{ color: `${color}` }}
+                  >Termos de Serviço</a>
+                </label>
               </div>
               <div className={`bg-${colorIsDarkOrLight} rounded element-width`} style={{ height: '0.3vh' }} />
               <button
