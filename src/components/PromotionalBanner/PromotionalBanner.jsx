@@ -35,7 +35,8 @@ const PromotionalBanner = () => {
           disableOnInteraction: false,
         }}
         pagination={{
-          clickable: true
+          clickable: true,
+          dynamicBullets: true
         }}
         modules={[Autoplay, Pagination]}
         className="MySwiper"
