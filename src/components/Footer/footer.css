@@ -1,0 +1,16 @@
+.facebook:hover {
+    color: #3b5998;
+}
+
+.instagram:hover {
+    background-image: linear-gradient(19deg, rgba(165,2,205,1) 0%, rgba(243,116,9,1) 89%, rgba(245,141,10,1) 100%);
+    border-radius: 10px;
+}
+
+.twitter:hover {
+    color: #1DA1F2;
+}
+
+.youtube:hover {
+    color: #FF0000;
+}

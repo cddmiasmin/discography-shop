@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import Header from './../components/Header/Header'
 import Album from './../components/Album/Album'
-import Footer from './../components/Footer'
+import Footer from './../components/Footer/Footer'
 
 import { useGetColor } from './../functions/useGetColor'
 import { useChooseBackgroundImage } from './../functions/useChooseBackgroundImage'

@@ -4,7 +4,7 @@ import './formats.css'
 
 import Header from './../../components/Header/Header'
 import ListAlbunsSearch from './../../components/ListAlbunsSearch'
-import Footer from './../../components/Footer'
+import Footer from './../../components/Footer/Footer'
 
 import { dataArtist } from '../../data/dataArtist'
 

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './artists.css'
 
 import Header from '../../components/Header/Header'
-import Footer from '../../components/Footer'
+import Footer from '../../components/Footer/Footer'
 
 import { FastAverageColor } from 'fast-average-color';
 

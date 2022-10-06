@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import Header from './../components/Header/Header'
-import Footer from './../components/Footer'
+import Footer from './../components/Footer/Footer'
 import ListAlbunsSearch from './../components/ListAlbunsSearch'
 
 import { useGetColor } from './../functions/useGetColor'
