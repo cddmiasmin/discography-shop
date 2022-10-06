@@ -16,7 +16,12 @@ import { TbShoppingCart } from 'react-icons/tb'
 
 const ProductDetail = () => {
   const [coverAlbum, setCoverAlbum] = useState(0);
-
+  const [cartItems, SetCardItems] = useState([
+    {
+      id: 1, cover: "/src/assets/images/dataArtist/album/Lungs.jpg", shortDescription: 'CAPA PRINCIPAL',
+      format: [{ type: 'CD', situation: '0' }, { type: 'VINIL', situation: '1' }, { type: 'CASSETE', situation: '0' }]
+    }
+  ])
   const numAlbum = 2;
 
   useEffect(() => getColor(dataArtist[0].album[numAlbum].cover[coverAlbum].cover))
@@ -42,7 +47,7 @@ const ProductDetail = () => {
     <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-star text-${colorIsDarkOrLight}`}
       style={{backgroundColor: '#020202'}}
     >
-      <Header colorIsDarkOrLight={colorIsDarkOrLight} color={color}/>
+      <Header colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
       <div
         className='d-flex flex-column justify-content-center align-items-center text-center w-100 h-25 '
         style={{ backgroundColor: `${color}`, 'paddingTop': '10vh' }}
