@@ -122,6 +122,10 @@
         height: 47vh !important;
     }
 
+    #container-artists-options #artists-options {
+        margin-bottom: 3vh !important;
+    }
+
     #container-artists-options section {
         width: 95% !important;
     }

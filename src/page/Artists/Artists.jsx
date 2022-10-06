@@ -90,14 +90,14 @@ const Artists = () => {
     <div
       className='d-flex flex-column w-100 h-100 justify-content-center align-items-center bg-black'
     >
-      <div id='bg-artist' style={{ backgroundImage: `url(${bannerInPortraitOrLandscapeMode[imageNumber].imgUrl})`}} />
+      <div id='bg-artist' style={{ backgroundImage: `url(${bannerInPortraitOrLandscapeMode[imageNumber].imgUrl})` }} />
       <div id='container-artists-options' className='d-flex w-100 flex-column justify-content-end align-items-center position-absolute'
-        style={{ color: 'white', height: '45vh',top: 0}}
+        style={{ color: 'white', height: '45vh', top: 0 }}
       >
-        <Header colorIsDarkOrLight={'light'} color={color} colorIsWhiteOrBlack={'white'} />
-        <div 
+        <div
+          id='artists-options'
           className='d-flex w-100 h-100 flex-column justify-content-end align-items-center'
-          style={{marginBottom: '6vh', top: 0}}
+          style={{ marginBottom: '6vh', top: 0 }}
         >
           <h1 className='m-0 p-2'>ARTISTAS</h1>
           <div className='rounded' style={{ width: '55%', height: '0.2vh', backgroundColor: 'white' }} />
@@ -119,6 +119,7 @@ const Artists = () => {
           </section>
         </div>
       </div>
+      <Header colorIsDarkOrLight={'light'} color={color} colorIsWhiteOrBlack={'white'} />
       <div className='d-flex w-100 flex-column justify-content-end align-items-center'>
         {alphabetAndNumbers.map((character, key) => (
           (artistNames[`${character}`] !== undefined &&
@@ -153,10 +154,10 @@ const Artists = () => {
           )
         ))}
 
-        <a href="#" 
-          className='d-flex position-fixed bottom-0 end-0 pointer m-4 text-white' 
-          style={{backgroundColor: `${color}`, width: '7vh', height: '7vh', borderRadius: '50%'}}>
-          <BsFillArrowUpCircleFill id='back-to-top' className='w-100 h-100'/>
+        <a href="#"
+          className='d-flex position-fixed bottom-0 end-0 pointer m-4 text-white'
+          style={{ backgroundColor: `${color}`, width: '7vh', height: '7vh', borderRadius: '50%' }}>
+          <BsFillArrowUpCircleFill id='back-to-top' className='w-100 h-100' />
         </a>
         <br />
         <br />
