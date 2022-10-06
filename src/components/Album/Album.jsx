@@ -1,9 +1,13 @@
 import React from 'react'
+import { useGoToProduct } from '../../functions/useGoToProduct'
 import './album.css'
 
 const Album = (props) => {
+
+    const {GoToProduct} = useGoToProduct();
     return (
         <div
+            onClick={() => GoToProduct()}
             className='position-relative album'
             style={{ width: '220px', height: '220px', cursor: 'pointer' }}
         >

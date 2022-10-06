@@ -11,9 +11,14 @@ import { RiCloseCircleFill } from 'react-icons/ri';
 
 import { dataArtist } from './../data/dataArtist'
 
+import {useGoToProduct} from './../functions/useGoToProduct'
+
 import { Drawer, Box, Tooltip } from '@mui/material';
 
 const Cart = (props) => {
+    const {
+        GoToProduct
+    } = useGoToProduct();
     const numAlbum = 2, coverAlbum = 1;
     return (
         <div>
@@ -80,9 +85,10 @@ const Cart = (props) => {
                                                 </Tooltip>
 
                                                 <img
+                                                    onClick={() => GoToProduct()}
                                                     id='ItemImgAlbum'
                                                     className=''
-                                                    style={{ height: '12vh', width: '12vh', border: `1px solid ${props.color}` }}
+                                                    style={{ height: '12vh', width: '12vh', border: `1px solid ${props.color}`, cursor: 'pointer' }}
                                                     src={cover.cover}
                                                     alt={`Album ${cover.name}`}
                                                 />

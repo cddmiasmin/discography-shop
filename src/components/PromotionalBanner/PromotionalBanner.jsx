@@ -12,11 +12,16 @@ import { dataPromotionalBanner } from './../../data/dataPromotionalBanner'
 
 import { Autoplay, Pagination } from "swiper";
 import { useState } from 'react';
+import { useGoToProduct } from '../../functions/useGoToProduct';
 
 const PromotionalBanner = () => {
   const [orientation, SetOrientation] = useState('993');
 
   useEffect(() => HowWideIsThisScreen());
+
+  const {
+    GoToProduct
+  } = useGoToProduct();
 
   const HowWideIsThisScreen = () => {
     var screenWidthNow = window.screen.width;
@@ -45,6 +50,7 @@ const PromotionalBanner = () => {
           ?
           dataPromotionalBanner[0].landscape.map((banner, key) =>
             <SwiperSlide
+              onClick={() => GoToProduct()}
               key={key}
               className="MySwiperSlide
                     d-flex justify-content-center align-items-center"
