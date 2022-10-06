@@ -141,7 +141,7 @@ const Artists = () => {
                 style={{ width: '85%' }}
               >
                 {artistNames[`${character}`].map((artist, key) => (
-                  <Link to='/perfil' className="text-decoration-none text-white">
+                  <Link to={`/perfil/${artist.id}`} className="text-decoration-none text-white">
                     <div key={key} className='artist-option d-flex flex-column justify-content-center align-items-center gap-2 p-2'>
                       <img style={{ height: '20vh', width: '20vh', border: `3.5px solid ${artistColor[contBorder++]}` }}
                         src={artist.icon} alt={`${artist.name} icon`} className="rounded-circle" />
