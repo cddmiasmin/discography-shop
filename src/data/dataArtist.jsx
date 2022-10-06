@@ -190,7 +190,7 @@ export const dataArtist = [
     {
         id: 6,
         name: 'Selena Gomez',
-        icon: '//src/assets/images/dataArtist/icon/selena-gomez.jpg',
+        icon: '/src/assets/images/dataArtist/icon/selena-gomez.jpg',
         album: [],
     },
     {

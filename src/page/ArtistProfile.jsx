@@ -16,7 +16,11 @@ const ArtistProfile = () => {
 
   var artistId = (dataArtist.find(artist => artist.id == id))
   console.log(artistId)
-  useEffect(() => getColor(artistId.icon))
+
+  useEffect(() => {
+    window.scrollTo(0,0)
+    getColor(artistId.icon)
+  })
 
   const {
     color,
