@@ -43,14 +43,14 @@ const LetMeKnowWhenItArrives = (props) => {
                         <h6 className='text-center'>Para ser avisado da disponibilidade deste Produto, basta preencher os campos abaixo.</h6>
                     </div>
                     <div className='rounded' style={{ height: '0.3vh', width: '85%', backgroundColor: 'var(--colorIsWhiteOrBlack)' }} />
-                    <form action="" id='form-arrives'
+                    <form action="." id='form-arrives'
                         className='w-100 d-flex flex-column justify-content-center align-items-center m-1'
                         style={{ lineHeight: 1.5 }}
                     >
                         <input
                             className='rounded m-2'
                             type="email" name="name-arrives" id="name-arrives" placeholder='Informe seu nome' required="required"
-                            pattern="[a-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                            pattern="[A-Za-z]{2,}$"
                         />
                         <input
                             className='rounded m-2'
