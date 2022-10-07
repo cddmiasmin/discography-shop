@@ -46,7 +46,6 @@ const Desktop = (props) => {
         SetOpenSnackbar(false);
     };
 
-
     return (
         <div
             className={`flex-row container-fluid d-flex position-absolute top-0 start-0
