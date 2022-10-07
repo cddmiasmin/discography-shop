@@ -100,7 +100,7 @@ const Registration = () => {
               <input
                 className='element-width rounded'
                 type="tel" id="phone" name="phone" placeholder='Telefone Celular'
-                maxLength="15" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$"
+                maxLength="15" pattern="\([0-9]{2}\)\s[0-9]{4,6}-[0-9]{3,4}$"
               />
               <input
                 className='element-width rounded'

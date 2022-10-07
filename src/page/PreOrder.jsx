@@ -42,11 +42,6 @@ const PreOrder = () => {
 
   useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl))
 
-  useEffect(() => {
-    document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
-    document.body.style.setProperty('--color', `${color}`);
-  }, [color])
-
   return (
     <div className='position-absolute w-100 h-100 d-flex justify-content-center align-items-center flex-column'>
       <Header colorIsDarkOrLight={'light'} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />

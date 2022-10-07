@@ -6,6 +6,7 @@ import './artists.css'
 
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import ArtistIcon from '../../components/ArtistIcon';
 
 import { FastAverageColor } from 'fast-average-color';
 
@@ -79,7 +80,7 @@ const Artists = () => {
     return artistColorAux;
   }
 
-  var contBorder = 0, contName = 0;
+  var cont= 0;
 
   return (
     <div
@@ -136,13 +137,7 @@ const Artists = () => {
                 style={{ width: '85%' }}
               >
                 {artistNames[`${character}`].map((artist, key) => (
-                  <Link to={`/perfil/${artist.id}`} className="text-decoration-none text-white">
-                    <div key={key} className='artist-option d-flex flex-column justify-content-center align-items-center gap-2 p-2'>
-                      <img style={{ height: '20vh', width: '20vh', border: `3.5px solid ${artistColor[contBorder++]}` }}
-                        src={artist.icon} alt={`${artist.name} icon`} className="rounded-circle" />
-                      <h6 className='m-0' style={{ color: `${artistColor[contName++]}` }}>{artist.name}</h6>
-                    </div>
-                  </Link>
+                  <ArtistIcon key={key} id={artist.id} color={artistColor[cont++]} name={artist.name} icon={artist.icon}/>
                 ))}
               </div>
             </section>
