@@ -36,11 +36,6 @@ const Registration = () => {
 
   useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl))
 
-  useEffect(() => {
-    document.body.style.setProperty('--colorIsWhiteOrBlack', 'white');
-    document.body.style.setProperty('--color', `${color}`);
-  }, [color])
-
   return (
     <div className='position-absolute flex-wrap w-100 h-100 d-flex justify-content-center align-items-center'>
       <div

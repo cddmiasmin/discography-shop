@@ -26,11 +26,6 @@ const Formats = () => {
 
   useEffect(() => getColor(selectedOption), [color, selectedOption])
 
-  useEffect(() => {
-    document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
-    document.body.style.setProperty('--color', `${color}`);
-  }, [color])
-
   const ChangeColors = (newImg) => {
     var newImgIdAux = document.getElementById(newImg).getAttribute('src');
     SetSelectedOption(newImgIdAux);
@@ -74,7 +69,7 @@ const Formats = () => {
                 <img
                   id='CassetteImg'
                   style={{ height: '100%', cursor: 'pointer' }}
-                  src='src\assets\images\Formats\cassette-svgrepo-com.svg' alt="Formato Cassete" />
+                  src='\images\Formats\cassette-svgrepo-com.svg' alt="Formato Cassete" />
               </Tooltip>
             </div>
 
@@ -86,7 +81,7 @@ const Formats = () => {
                 <img
                   id='CDImg'
                   style={{ height: '90%', cursor: 'pointer' }}
-                  src='src\assets\images\Formats\cd-svgrepo-com.svg' alt="Formato CD" />
+                  src='\images\Formats\cd-svgrepo-com.svg' alt="Formato CD" />
               </Tooltip>
             </div>
 
@@ -98,7 +93,7 @@ const Formats = () => {
                 <img
                   id='DVDImg'
                   style={{ height: '80%', cursor: 'pointer' }}
-                  src='src\assets\images\Formats\dvd-svgrepo-com.svg' alt="Formato DVD" />
+                  src='\images\Formats\dvd-svgrepo-com.svg' alt="Formato DVD" />
               </Tooltip>
             </div>
 
@@ -110,7 +105,7 @@ const Formats = () => {
                 <img
                   id='VinylImg'
                   style={{ height: '80%', cursor: 'pointer' }}
-                  src='src\assets\images\Formats\vinyl-svgrepo-com.svg' alt="Formato Vinil" />
+                  src='\images\Formats\vinyl-svgrepo-com.svg' alt="Formato Vinil" />
               </Tooltip>
             </div>
           </div>

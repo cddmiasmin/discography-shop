@@ -1,39 +1,51 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { Link } from 'react-router-dom'
+import './header.css'
+
+import { Link, useNavigate } from 'react-router-dom'
 
 import Logo from '../Logo'
 import Cart from '../Cart'
 
-import { Popover } from '@mui/material';
-import { Tooltip } from '@mui/material';
+import { Alert, Snackbar, Tooltip } from '@mui/material';
 
 import { HiSearch } from 'react-icons/hi';
 import { IoPerson } from 'react-icons/io5';
-import { RiSearch2Fill } from 'react-icons/ri'
 import { BsFillBagFill } from 'react-icons/bs';
+import { useState } from 'react'
 
 
 const Desktop = (props) => {
+    const [openSnackBar, SetOpenSnackbar] = useState(false);
+    const navigateDesk = useNavigate();
 
-    const [anchorDesk, SetAnchorDesk] = useState(null);
+    const searchInput = document.getElementById('input-search-desk');
+    const searchDiv = document.getElementById('div-search-desk');
 
-    
-    const openSeachButtonIcon = document.getElementById('open-search');
-    const seachButtonIcon = document.getElementById('search');
+    const OpenSearchOption = () => {
+        searchInput.style.display = 'flex';
+        searchDiv.classList.add('style-search')
+    }
 
-    const handleClick = (event) => {
-        openSeachButtonIcon.style.display = 'none'
-        seachButtonIcon.style.display = 'flex'
+    const CloseSearchOption = () => {
+        searchInput.style.display = 'none';
+        searchDiv.classList.remove('style-search')
+    }
 
-        SetAnchorDesk((event.currentTarget))
+    const SearchOption = () => {
+        if (searchInput.style.display === 'none') OpenSearchOption();
+        else if (searchInput.value.length === 0) CloseSearchOption();
+        else if (searchInput.value.length < 3) {
+            SetOpenSnackbar(true);
+            searchInput.focus();
+        } else navigateDesk('/busca');
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') return;
+        SetOpenSnackbar(false);
     };
 
-    const handleClose = () => {
-        openSeachButtonIcon.style.display = 'flex'
-        seachButtonIcon.style.display = 'none'
-        SetAnchorDesk(null)
-    }
 
     return (
         <div
@@ -54,36 +66,25 @@ const Desktop = (props) => {
 
             <div id='IconOption' className='col d-flex justify-content-end align-items-center me-4 gap-4'>
                 <Tooltip title="Buscar">
-                    <div>
-                        <button type='button' id='open-search' 
-                            onClick={handleClick} style={{display: 'flex'}}
+                    <form id='div-search-desk' className='d-flex flex-row gap-1 justify-content-center align-items-center'>
+                        <input type="text" id='input-search-desk' className='style animated' pattern='[A-Za-z]' minLength='3'
+                            placeholder='Busque por um artista ou albúm' style={{ width: '30vh', display: 'none' }}
+                        />
+                        <button type='button' id='button-search-desk'
+                            style={{ display: 'flex' }} onClick={() => SearchOption()}
                             className={`bg-transparent text-${props.colorIsDarkOrLight}`}><HiSearch className='fs-5 ' /></button>
-                        <button type='submit' id='search' 
-                            onClick={handleClick} style={{display: 'none'}}
-                            className={`bg-transparent text-${props.colorIsDarkOrLight}`}><RiSearch2Fill className='fs-5 ' /></button>
-                    </div>
+                    </form>
                 </Tooltip>
+
+                <Snackbar open={openSnackBar} autoHideDuration={6000} onClose={handleClose} s>
+                    <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
+                        Por favor, digite pelo menos 3 caracteres para pesquisar!
+                    </Alert>
+                </Snackbar>
 
                 <Tooltip title="Perfil">
                     <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><IoPerson className='fs-5 ' /></button>
                 </Tooltip>
-
-                <Popover
-                    id='popover-profile-desktop'
-                    open={Boolean(anchorDesk)}
-                    anchorEl={anchorDesk}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                        vertical: 'center',
-                        horizontal: 'left',
-                    }}
-                    transformOrigin={{
-                        vertical: 'center',
-                        horizontal: 'right',
-                    }}
-                >
-                    <input type="text" name="search-desk" id="search-desk" pattern='[a-Z]{3,}' />
-                </Popover>
 
 
                 <Tooltip

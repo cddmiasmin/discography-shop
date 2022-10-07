@@ -7,7 +7,10 @@ export function useGetColor() {
     const [colorIsDarkOrLight, setColorIsDarkOrLight] = useState('light');
     const [colorIsWhiteOrBlack, setColorIsWhiteOrBlack] = useState('black');
 
-    useEffect(() => getColor(), [color])
+    useEffect(() => {
+        document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
+        document.body.style.setProperty('--color', `${color}`);
+    }, [color])
 
     const getColor = (Img) => {
         const fac = new FastAverageColor();

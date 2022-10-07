@@ -40,10 +40,6 @@ const Login = () => {
 
   useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl))
 
-  useEffect(() => {
-    document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
-    document.body.style.setProperty('--color', `${color}`);
-  }, [color])
 
   return (
     <div
