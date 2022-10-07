@@ -38,8 +38,10 @@ const Login = () => {
     ChooseImageForTheBanner();
   }, [])
 
-  useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl))
-
+  useEffect(() => {
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl)
+    document.body.style.setProperty('--colorIsWhiteOrBlack', 'white');
+  })
 
   return (
     <div
@@ -76,13 +78,13 @@ const Login = () => {
 
             <form
               id='form-login'
-              action=""
+              action='.'
               className='d-flex w-100 flex-column justify-content-center align-items-center gap-2'
             >
               <input
                 className='rounded'
                 type="email" name="fieldEmail" id="field-email" placeholder='E-mail' required="required"
-                pattern="[a-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                pattern="[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,}$"
               />
               <div id='l-password-container' className='position-relative d-flex flex-row align-items-center' style={{ width: '55%' }}>
                 <input
@@ -132,6 +134,7 @@ const Login = () => {
                 NÃO TEM UMA CONTA? CADASTRE-SE
               </Link>
             </form>
+
           </div>
 
         </div>
