@@ -137,7 +137,7 @@ const Artists = () => {
                 style={{ width: '85%' }}
               >
                 {artistNames[`${character}`].map((artist, key) => (
-                  <ArtistIcon key={key} id={artist.id} color={artistColor[cont++]} name={artist.name} icon={artist.icon}/>
+                  <ArtistIcon size={'20vh'} key={key} id={artist.id} color={artistColor[cont++]} name={artist.name} icon={artist.icon}/>
                 ))}
               </div>
             </section>
