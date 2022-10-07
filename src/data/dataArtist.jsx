@@ -20,13 +20,13 @@ export const dataArtist = [
     {
         id: 1,
         name: 'Florence And The Machine',
-        icon: '/src/assets/images/dataArtist/icon/florence-and-the-machine.jpg',
+        icon: '/images/dataArtist/icon/florence-and-the-machine.jpg',
         album: [
             {
                 id: 1,
                 cover: [
                     {
-                        id: 1, cover: "/src/assets/images/dataArtist/album/Lungs.jpg", shortDescription: 'CAPA PRINCIPAL',
+                        id: 1, cover: "/images/dataArtist/album/Lungs.jpg", shortDescription: 'CAPA PRINCIPAL',
                         format: [{ type: 'CD', situation: '0' }, { type: 'VINIL', situation: '1' }, { type: 'CASSETE', situation: '0' }]
                     }
                 ],
@@ -37,7 +37,7 @@ export const dataArtist = [
                 id: 2,
                 cover: [
                     {
-                        id: 1, cover: "/src/assets/images/dataArtist/album/Ceremonials.jpg", shortDescription: 'CAPA PRINCIPAL',
+                        id: 1, cover: "/images/dataArtist/album/Ceremonials.jpg", shortDescription: 'CAPA PRINCIPAL',
                         format: [{ type: 'VINIL', situation: '1' }]
                     }
                 ],
@@ -48,15 +48,15 @@ export const dataArtist = [
                 id: 3,
                 cover: [
                     {
-                        id: 1, cover: "/src/assets/images/dataArtist/album/How Big How Blue How Beautiful 1.jpg", shortDescription: 'CAPA PRINCIPAL | DELUXE',
+                        id: 1, cover: "/images/dataArtist/album/How Big How Blue How Beautiful 1.jpg", shortDescription: 'CAPA PRINCIPAL | DELUXE',
                         format: [{ type: 'CD', situation: '1' }, { type: 'VINIL', situation: '1' }, { type: 'CASSETE', situation: '0' }, { type: 'BOX', situation: '1' }]
                     },
                     {
-                        id: 2, cover: "/src/assets/images/dataArtist/album/How Big How Blue How Beautiful 2.jpg", shortDescription: 'CAPA ALTERNATIVA 1',
+                        id: 2, cover: "/images/dataArtist/album/How Big How Blue How Beautiful 2.jpg", shortDescription: 'CAPA ALTERNATIVA 1',
                         format: [{ type: 'VINIL', situation: '1' }]
                     },
                     {
-                        id: 3, cover: "/src/assets/images/dataArtist/album/How Big How Blue How Beautiful 3.jpg", shortDescription: 'CAPA ALTERNATIVA 2',
+                        id: 3, cover: "/images/dataArtist/album/How Big How Blue How Beautiful 3.jpg", shortDescription: 'CAPA ALTERNATIVA 2',
                         format: [{ type: 'VINIL', situation: '0' }]
                     }
                 ],
@@ -65,7 +65,7 @@ export const dataArtist = [
             },
             {
                 id: 4,
-                cover: [{ id: 1, cover: "/src/assets/images/dataArtist/album/High As Hope.jpg" }],
+                cover: [{ id: 1, cover: "/images/dataArtist/album/High As Hope.jpg" }],
                 name: "High As Hope",
                 year: "2018"
             },
@@ -73,15 +73,15 @@ export const dataArtist = [
                 id: 5,
                 cover: [
                     {
-                        id: 1, cover: '/src/assets/images/dataArtist/album/Dance Fever.jpg', shortDescription: 'CAPA PRINCIPAL',
+                        id: 1, cover: '/images/dataArtist/album/Dance Fever.jpg', shortDescription: 'CAPA PRINCIPAL',
                         format: [{ type: 'CD', situation: '1' }, { type: 'VINIL', situation: '0' }, { type: 'CASSETE', situation: '0' }, { type: 'BOX', situation: '1' }]
                     },
                     {
-                        id: 2, cover: '/src/assets/images/dataArtist/album/Dance Fever 1.jpg', shortDescription: 'CAPA ALTERNATIVA',
+                        id: 2, cover: '/images/dataArtist/album/Dance Fever 1.jpg', shortDescription: 'CAPA ALTERNATIVA',
                         format: [{ type: 'CD', situation: '1' }]
                     },
                     {
-                        id: 3, cover: '/src/assets/images/dataArtist/album/Dance Fever 2.jpg', shortDescription: 'VERSÃO DELUXE',
+                        id: 3, cover: '/images/dataArtist/album/Dance Fever 2.jpg', shortDescription: 'VERSÃO DELUXE',
                         format: [{ type: 'VINIL', situation: '1' }]
                     }
                 ],
@@ -93,7 +93,7 @@ export const dataArtist = [
     {
         id: 2,
         name: 'Taylor Swift',
-        icon: '/src/assets/images/dataArtist/icon/taylor-swift.jpg',
+        icon: '/images/dataArtist/icon/taylor-swift.jpg',
         album: [
             {
                 id: 1,
@@ -172,241 +172,241 @@ export const dataArtist = [
     {
         id: 3,
         name: 'Demi Lovato',
-        icon: '/src/assets/images/dataArtist/icon/demi-lovato.jpg',
+        icon: '/images/dataArtist/icon/demi-lovato.jpg',
         album: [],
     },
     {
         id: 4,
         name: 'Lady Gaga',
-        icon: '/src/assets/images/dataArtist/icon/lady-gaga.jpg',
+        icon: '/images/dataArtist/icon/lady-gaga.jpg',
         album: [],
     },
     {
         id: 5,
         name: 'Beyoncé',
-        icon: '/src/assets/images/dataArtist/icon/beyonce.jpg',
+        icon: '/images/dataArtist/icon/beyonce.jpg',
         album: [],
     },
     {
         id: 6,
         name: 'Selena Gomez',
-        icon: '/src/assets/images/dataArtist/icon/selena-gomez.jpg',
+        icon: '/images/dataArtist/icon/selena-gomez.jpg',
         album: [],
     },
     {
         id: 7,
         name: 'Miley Cyrus',
-        icon: '/src/assets/images/dataArtist/icon/miley-cyrus.jpg',
+        icon: '/images/dataArtist/icon/miley-cyrus.jpg',
         album: [],
     },
     {
         id: 8,
         name: 'Lana Del Rey',
-        icon: '/src/assets/images/dataArtist/icon/lana-del-rey.jpg',
+        icon: '/images/dataArtist/icon/lana-del-rey.jpg',
         album: [],
     },
     {
         id: 9,
         name: 'Ariana Grande',
-        icon: '/src/assets/images/dataArtist/icon/ariana-grande.jpg',
+        icon: '/images/dataArtist/icon/ariana-grande.jpg',
         album: [],
     },
     {
         id: 10,
         name: 'Adele',
-        icon: '/src/assets/images/dataArtist/icon/adele.jpg',
+        icon: '/images/dataArtist/icon/adele.jpg',
         album: [],
     },
     {
         id: 11,
         name: 'Britney Spears',
-        icon: '/src/assets/images/dataArtist/icon/britney-spears.jpg',
+        icon: '/images/dataArtist/icon/britney-spears.jpg',
         album: [],
     },
     {
         id: 12,
         name: 'Katy Perry',
-        icon: '/src/assets/images/dataArtist/icon/katy-perry.jpg',
+        icon: '/images/dataArtist/icon/katy-perry.jpg',
         album: [],
     },
     {
         id: 13,
         name: 'Isabella Summers',
-        icon: '/src/assets/images/dataArtist/icon/isabella-summers.jpg',
+        icon: '/images/dataArtist/icon/isabella-summers.jpg',
         album: [],
     },
     {
         id: 14,
         name: 'Madonna',
-        icon: '/src/assets/images/dataArtist/icon/madonna.jpg',
+        icon: '/images/dataArtist/icon/madonna.jpg',
         album: [],
     },
     {
         id: 15,
         name: 'Rihanna',
-        icon: '/src/assets/images/dataArtist/icon/rihanna.jpg',
+        icon: '/images/dataArtist/icon/rihanna.jpg',
         album: [],
     },
     {
         id: 16,
         name: 'Winona Oak',
-        icon: '/src/assets/images/dataArtist/icon/winona-oak.jpg',
+        icon: '/images/dataArtist/icon/winona-oak.jpg',
         album: [],
     },
     {
         id: 17,
         name: 'Rosalía',
-        icon: '/src/assets/images/dataArtist/icon/rosalia.jpg',
+        icon: '/images/dataArtist/icon/rosalia.jpg',
         album: [],
     },
     {
         id: 18,
         name: 'Calcinha Preta',
-        icon: '/src/assets/images/dataArtist/icon/calcinha-preta.jpg',
+        icon: '/images/dataArtist/icon/calcinha-preta.jpg',
         album: [],
     },
     {
         id: 19,
         name: 'Abba',
-        icon: '/src/assets/images/dataArtist/icon/abba.jpg',
+        icon: '/images/dataArtist/icon/abba.jpg',
         album: [],
     },
     {
         id: 20,
         name: 'Carly Rae Jepsen',
-        icon: '/src/assets/images/dataArtist/icon/carly-rae-jepsen.jpg',
+        icon: '/images/dataArtist/icon/carly-rae-jepsen.jpg',
         album: [],
     },
     {
         id: 21,
         name: 'Cher',
-        icon: '/src/assets/images/dataArtist/icon/cher.jpg',
+        icon: '/images/dataArtist/icon/cher.jpg',
         album: [],
     },
     {
         id: 22,
         name: 'Dove Cameron',
-        icon: '/src/assets/images/dataArtist/icon/dove-cameron.jpg',
+        icon: '/images/dataArtist/icon/dove-cameron.jpg',
         album: [],
     },
     {
         id: 23,
         name: 'Marina',
-        icon: '/src/assets/images/dataArtist/icon/marina.jpg',
+        icon: '/images/dataArtist/icon/marina.jpg',
         album: [],
     },
     {
         id: 24,
         name: 'Maite Perroni',
-        icon: '/src/assets/images/dataArtist/icon/maite-perroni.jpg',
+        icon: '/images/dataArtist/icon/maite-perroni.jpg',
         album: [],
     },
     {
         id: 25,
         name: 'Billie Eilish',
-        icon: '/src/assets/images/dataArtist/icon/billie-eilish.jpg',
+        icon: '/images/dataArtist/icon/billie-eilish.jpg',
         album: [],
     },
     {
         id: 26,
         name: 'Melanie Martinez',
-        icon: '/src/assets/images/dataArtist/icon/melanie-martinez.jpg',
+        icon: '/images/dataArtist/icon/melanie-martinez.jpg',
         album: [],
     },
     {
         id: 27,
         name: 'Pitty',
-        icon: '/src/assets/images/dataArtist/icon/pitty.jpg',
+        icon: '/images/dataArtist/icon/pitty.jpg',
         album: [],
     },
     {
         id: 28,
         name: 'Pablo Vittar',
-        icon: '/src/assets/images/dataArtist/icon/pablo-vittar.jpg',
+        icon: '/images/dataArtist/icon/pablo-vittar.jpg',
         album: [],
     },
     {
         id: 29,
         name: 'Rita Lee',
-        icon: '/src/assets/images/dataArtist/icon/rita-lee.jpg',
+        icon: '/images/dataArtist/icon/rita-lee.jpg',
         album: [],
     },
     {
         id: 30,
         name: 'The Weeknd',
-        icon: '/src/assets/images/dataArtist/icon/the-weeknd.jpg',
+        icon: '/images/dataArtist/icon/the-weeknd.jpg',
         album: [],
     },
     {
         id: 31,
         name: 'Paramore',
-        icon: '/src/assets/images/dataArtist/icon/paramore.jpg',
+        icon: '/images/dataArtist/icon/paramore.jpg',
         album: [],
     },
     {
         id: 32,
         name: 'Stevie Nicks',
-        icon: '/src/assets/images/dataArtist/icon/stevie-nicks.jpg',
+        icon: '/images/dataArtist/icon/stevie-nicks.jpg',
         album: [],
     },
     {
         id: 33,
         name: 'Mariah Carey',
-        icon: '/src/assets/images/dataArtist/icon/mariah-carey.jpg',
+        icon: '/images/dataArtist/icon/mariah-carey.jpg',
         album: [],
     },
     {
         id: 34,
         name: 'Kailee Morgue',
-        icon: '/src/assets/images/dataArtist/icon/kailee-morgue.jpg',
+        icon: '/images/dataArtist/icon/kailee-morgue.jpg',
         album: [],
     },
     {
         id: 35,
         name: 'Maysa',
-        icon: '/src/assets/images/dataArtist/icon/maysa.jpg',
+        icon: '/images/dataArtist/icon/maysa.jpg',
         album: [],
     },
     {
         id: 36,
         name: 'Avril Lavigne',
-        icon: '/src/assets/images/dataArtist/icon/avril-lavigne.jpg',
+        icon: '/images/dataArtist/icon/avril-lavigne.jpg',
         album: [],
     },
     {
         id: 37,
         name: 'Sia',
-        icon: '/src/assets/images/dataArtist/icon/sia.jpg',
+        icon: '/images/dataArtist/icon/sia.jpg',
         album: [],
     },
     {
         id: 38,
         name: 'Harry Styles',
-        icon: '/src/assets/images/dataArtist/icon/harry-styles.jpg',
+        icon: '/images/dataArtist/icon/harry-styles.jpg',
         album: [],
     },
     {
         id: 39,
         name: "Guns N' Roses",
-        icon: '/src/assets/images/dataArtist/icon/guns-n-roses.jpg',
+        icon: '/images/dataArtist/icon/guns-n-roses.jpg',
         album: [],
     },
     {
         id: 40,
         name: 'Jessie J',
-        icon: '/src/assets/images/dataArtist/icon/jessie-j.jpg',
+        icon: '/images/dataArtist/icon/jessie-j.jpg',
         album: [],
     },
     {
         id: 41,
         name: 'Nirvana',
-        icon: '/src/assets/images/dataArtist/icon/nirvana.jpg',
+        icon: '/images/dataArtist/icon/nirvana.jpg',
         album: [],
     },
     {
         id: 42,
         name: 'Zendaya',
-        icon: '/src/assets/images/dataArtist/icon/zendaya.jpg',
+        icon: '/images/dataArtist/icon/zendaya.jpg',
         album: [],
     },
 ]

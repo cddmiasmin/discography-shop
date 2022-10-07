@@ -9,7 +9,7 @@ const Logo = (props) => {
             <Link to='/'>
                 <img
                     style={{height: `${props.size}px`, width: `${props.size + 10}px`}}
-                    src={`Logo/logo-${props.color}.png`}
+                    src={`/images/Logo/logo-${props.color}.png`}
                     alt='Logo Cassandra'
                 />
             </Link>
