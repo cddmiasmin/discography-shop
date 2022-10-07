@@ -16,7 +16,7 @@ body {
     background-color: black;
     color: whitesmoke;
 
-    --colorIsWhiteOrBlack: black;
-    --color: #000;
+    --colorIsWhiteOrBlack: white;
+    --color: #fff;
 }
 

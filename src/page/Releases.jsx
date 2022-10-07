@@ -69,7 +69,7 @@ const Realeses = () => {
           }}
           modules={[Grid, Pagination]}
           className="mySwiper d-flex justify-content-center align-items-center"
-          style={{ width: '95%', height: '78vh' }}
+          style={{ width: '95%', height: '80vh' }}
         >
           {dataArtist[1].album.map((album, key) => (
             <SwiperSlide

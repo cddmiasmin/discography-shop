@@ -51,6 +51,7 @@ const PromotionalBanner = () => {
           dataPromotionalBanner[0].landscape.map((banner, key) =>
             <SwiperSlide
               onClick={() => GoToProduct()}
+              style={{cursor: 'pointer'}}
               key={key}
               className="MySwiperSlide
                     d-flex justify-content-center align-items-center"

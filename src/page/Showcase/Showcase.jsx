@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
@@ -10,6 +10,11 @@ import { dataArtist } from '../../data/dataArtist'
 import './showcase.css'
 
 const Showcase = () => {
+  useEffect(() => { 
+    document.body.style.setProperty('--colorIsWhiteOrBlack', 'white')
+    document.body.style.setProperty('--color', 'black')
+  });
+  
   return (
     <div
       className='container-showcase

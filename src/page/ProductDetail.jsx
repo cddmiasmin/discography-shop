@@ -175,14 +175,14 @@ const ProductDetail = () => {
           </div>
         }
 
-        <div
-          className='d-flex gap-5 flex-column justify-content-center align-items-center'
-          style={{ color: 'white', width: '35vh', marginBottom: '2vh' }}
-        >
-          {formatStockAvailable['1'] !== undefined &&
+        {formatStockAvailable['1'] !== undefined &&
+          <div
+            className='d-flex gap-5 flex-column justify-content-center align-items-center'
+            style={{ color: 'white', width: '35vh', marginBottom: '2vh' }}
+          >
             <div className='d-flex flex-column justify-content-center align-items-center'>
               <h1 className='m-2' style={{ fontSize: '10vh' }}>R$44,90</h1>
-              
+
               <div className='d-flex flex-row justify-content-center align-items-center m-1'>
                 <button type='button' style={{
                   backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
@@ -208,8 +208,9 @@ const ProductDetail = () => {
                 }}
               >COMPRAR</button>
             </div>
-          }
-        </div>
+
+          </div>
+        }
       </div>
 
       <div

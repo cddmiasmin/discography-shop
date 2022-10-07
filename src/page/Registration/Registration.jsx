@@ -6,8 +6,6 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 import { Link } from 'react-router-dom'
 
-import { Alert, Snackbar } from '@mui/material';
-
 import { useGetColor } from './../../functions/useGetColor';
 import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
 import { useShowPassword } from '../../functions/useShowPassword';
@@ -18,7 +16,6 @@ import './registration.css'
 
 const Registration = () => {
 
-  const [openSnackBarRegistration, SetOpenSnackbarRegistration] = useState(false);
 
   useEffect(() => {
     WhatOrientationIsTheScreenInNow('landscape')
@@ -28,28 +25,6 @@ const Registration = () => {
   useEffect(() => {
     getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
   })
-
-  
-
-  const RegistrationValidation = () => {
-    const nameLastNameRegex = /^[ a-zA-Z\-\']+$/;
-    const name = document.getElementById('name-registration');
-    const lastName = document.getElementById('lastname-resgistration');
-
-    const phoneRegex = /\([0-9]{2}\)\s[0-9]{4,6}-[0-9]{3,4}$/;
-    const phone = document.getElementById('phone-resgistration');
-
-    const cpfRegex = /[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$/;
-    const cpf = document.getElementById('cpf-resgistration');
-
-    const emailRegex = /[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,}$/;
-    const email = document.getElementById('email-resgistration');
-
-    const passwordRegex = /(?=.*\d)(?=.*[A-z])(?=.*[A-z])/;
-    const password = document.getElementById('password-resgistration');
-
-    const confirmPassword = document.getElementById('confirm-password-resgistration');
-  }
 
   const {
     color,
@@ -183,7 +158,7 @@ const Registration = () => {
                     <input
                       className='element-width rounded w-100'
                       type="password" name="password-resgistration" id="password-resgistration" placeholder='Senha' required
-                      pattern="(?=.*\d)(?=.*[a-Z])(?=.*[a-Z]).{4,}"
+                      pattern="(?=.*\d)(?=.*[a-Z])(?=.*[A-Za-z]){4,}"
                     />
                   </OverlayTrigger>
                   <button
@@ -232,8 +207,7 @@ const Registration = () => {
               <button
                 className='element-width d-flex justify-content-center align-items-center rounded m-1'
                 style={{ height: '5vh', fontSize: 'larger' }}
-                type="button"
-                onClick={() => RegistrationValidation()}
+                type="submit"
               >
                 CADASTRAR-SE
               </button>

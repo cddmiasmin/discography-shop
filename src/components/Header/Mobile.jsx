@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 
+import './header.css'
 import Logo from '../Logo'
 import Cart from '../Cart'
 import Profile from '../Profile'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
+import { Alert, Snackbar } from '@mui/material';
 import { Tooltip } from '@mui/material';
 import { Drawer, Box } from '@mui/material';
 
@@ -17,6 +19,23 @@ import { RiCloseCircleFill } from 'react-icons/ri'
 
 const Mobile = (props) => {
     const [isDrawerMenuOpen, setIsDrawerMenuOpen] = useState(false);
+
+    const [openSnackBarMob, SetOpenSnackbarMob] = useState(false);
+    const navigateMob = useNavigate();
+
+    const searchInputMob = document.getElementById('input-search-mob');
+
+    const SearchOptionMob = () => {
+        if (searchInputMob.value.length < 3) {
+            SetOpenSnackbar(true);
+            searchInputMob.focus();
+        } else navigateMob('/busca');
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') return;
+        SetOpenSnackbarMob(false);
+    };
 
     return (
         <div className={`flex-row container-fluid d-flex justify-content-center align-items-center text-${props.colorIsDarkOrLight}`}>
@@ -66,9 +85,9 @@ const Mobile = (props) => {
                                 PRÉ-VENDA
                             </Link>
 
-                            <Link to='/lancamento' 
-                                className={`bg-${props.colorIsDarkOrLight} text-decoration-none fs-5 d-flex justify-content-center align-items-center`} 
-                                style={{height: '6vh', borderRadius: '10px', color: `${props.color}`}}
+                            <Link to='/lancamento'
+                                className={`bg-${props.colorIsDarkOrLight} text-decoration-none fs-5 d-flex justify-content-center align-items-center`}
+                                style={{ height: '6vh', borderRadius: '10px', color: `${props.color}` }}
                             >
                                 LANÇAMENTOS
                             </Link>
@@ -81,21 +100,34 @@ const Mobile = (props) => {
                     title="Perfil"
                     onClick={() => props.setIsPopoverProfileOpen(true)}
                 >
-                    <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><IoPerson className='fs-5' /></button>
+                    <Link to={'/login'} className={`bg-transparent text-${props.colorIsDarkOrLight}`}><IoPerson className='fs-5' /></Link>
                 </Tooltip>
                 <Profile isPopoverProfileOpen={props.isPopoverProfileOpen} setIsPopoverProfileOpen={props.setIsPopoverProfileOpen} />
 
             </div>
 
 
-            <div id='LogoMobile' className='col-7 d-flex justify-content-center align-items-center'>
+            <div id='LogoMobile' className='col d-flex justify-content-center align-items-center'>
                 <Logo size={55} color={props.colorIsDarkOrLight} />
             </div>
 
-            <div id='RightOptionMobile' className={`col d-flex justify-content-end align-items-center gap-3 text-${props.colorIsDarkOrLight}`}>
+            <div id='RightOptionMobile' className={`col d-flex justify-content-end align-items-center gap-2 text-${props.colorIsDarkOrLight}`}>
                 <Tooltip id='ROM-TooltipIconButttonSearch' title="Buscar">
-                    <button id='IconButtonSearch' className={`bg-transparent text-${props.colorIsDarkOrLight}`}><HiSearch className='fs-5 ' /></button>
+                    <div id='div-search-mob' className='d-flex flex-row gap-1 justify-content-center align-items-center'>
+                        <input type="text" id='input-search-mob' className='style' pattern='[A-Za-z]' minLength='3'
+                            placeholder='Busque' title='Busque artista ou albúm' style={{ width: '9vh' }}
+                        />
+                        <button type='button' id='button-search-mob'
+                            onClick={() => SearchOptionMob()}
+                            className={`bg-transparent text-${props.colorIsDarkOrLight}`}><HiSearch className='fs-5 ' /></button>
+                    </div>
                 </Tooltip>
+
+                <Snackbar open={openSnackBarMob} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
+                        Por favor, digite pelo menos 3 caracteres para pesquisar!
+                    </Alert>
+                </Snackbar>
 
                 <Tooltip
                     id='ROM-TooltipIconButttonCart'
