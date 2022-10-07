@@ -102,7 +102,7 @@ const Desktop = (props) => {
             <div style={{ height: '10vh' }} className='d-flex flex-column justify-content-center align-items-center text-white gap-2'>
 
                 <div style={{ height: '6vh' }} className='d-flex justify-content-center align-items-center w-100'>
-                    <img style={{ height: '100%' }} src="src\assets\images\payment-card-flag.png" alt="" />
+                    <img style={{ height: '100%' }} src="\images\payment-card-flag.png" alt="" />
                 </div>
 
                 <p className={`d-flex justify-content-center align-items-center gap-1 text-${props.colorIsDarkOrLight}`}>

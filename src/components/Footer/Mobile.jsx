@@ -246,7 +246,7 @@ const Mobile = (props) => {
             </Accordion>
 
             <div style={{ height: '6vh' }} className='d-flex justify-content-center align-items-center w-100'>
-                <img style={{ height: '100%' }} src="src\assets\images\payment-card-flag.png" alt="" />
+                <img style={{ height: '100%' }} src="\images\payment-card-flag.png" alt="" />
             </div>
 
             <p className='m-0'>Copyright ©2022 | Cassandra</p>
