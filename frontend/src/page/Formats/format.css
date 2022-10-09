@@ -1,8 +1,10 @@
-#bg-format {
-    width: 100%;
-    height: 45vh;
-    background-position: center;
-    background-size: cover;
-    opacity: 35%;
-    border-radius: 0px 0px 15px 15px;
+.selected {
+    color: var(--colorIsWhiteOrBlack);
+    background-color: var(--color);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.format-option:hover:not(.selected){
+    background-color: rgb(10, 10, 10);
+    border-radius: 10px 10px 0px 0px;
 }
