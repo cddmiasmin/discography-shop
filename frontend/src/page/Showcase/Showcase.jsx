@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react'
 
 import Header from '../../components/Header/Header'
-import Footer from '../../components/Footer/Footer'
 import PromotionalBanner from '../../components/PromotionalBanner/PromotionalBanner'
 import ListAlbunsShowcase from '../../components/ListAlbunsShowcase/ListAlbunsShowcase'
+import ReleasesShowcase from '../../components/ReleasesShowcase'
+import Footer from '../../components/Footer/Footer'
 
 import { dataArtist } from '../../data/dataArtist'
+import { dataPromotionalBanner } from '../../data/dataPromotionalBanner'
 
 import './showcase.css'
 
@@ -36,7 +38,7 @@ const Showcase = () => {
 
           <div className='d-flex flex-column justify-content-center align-items-center w-100 m-2'>
             <h1>LANÇAMENTOS</h1>
-            <ListAlbunsShowcase data={dataArtist[1]} />
+            <ReleasesShowcase data={dataPromotionalBanner[1]}/>
           </div>
           <br />
 
