@@ -8,9 +8,10 @@ import ProductDetail from './page/ProductDetail'
 import ProductSearch from './page/ProductSearch'
 import Artists from './page/Artists/Artists'
 import ArtistProfile from './page/ArtistProfile'
+import Formats from './page/Formats'
 import PreOrder from './page/PreOrder'
 import Releases from './page/Releases'
-
+import NotFound from './page/NotFound'
 
 const Router = () => {
     return (
@@ -22,9 +23,10 @@ const Router = () => {
             <Route path="/busca" element={<ProductSearch />}/>
             <Route path="/artista" element={<Artists />}/>
             <Route path='/perfil/:id' element={<ArtistProfile/>}/>
+            <Route path="/formato" element={<Formats />}/>
             <Route path="/prevenda" element={<PreOrder />}/>
             <Route path="/lancamento" element={<Releases />}/>
-            <Route path="*" element={<Showcase />}/>
+            <Route path="*" element={<NotFound />}/>
         </Routes>
     )
 }

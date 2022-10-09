@@ -71,6 +71,13 @@ const Mobile = (props) => {
                                 ARTISTAS
                             </Link>
 
+                            <Link to='/formato'
+                                className={`bg-${props.colorIsDarkOrLight} text-decoration-none fs-5 d-flex justify-content-center align-items-center`}
+                                style={{ height: '6vh', borderRadius: '10px', color: `${props.color}` }}
+                            >
+                                FORMATOS
+                            </Link>
+
                             <Link to='/prevenda'
                                 className={`bg-${props.colorIsDarkOrLight} text-decoration-none fs-5 d-flex justify-content-center align-items-center`}
                                 style={{ height: '6vh', borderRadius: '10px', color: `${props.color}` }}
