@@ -1,9 +1,9 @@
 const db = require('../db')
 
 module.exports = {
-    ShowArtist: (slug) => {
+    ShowAlbum: (slug) => {
         return new Promise ((accepted, rejected) => {
-            db.query('SELECT * FROM tb_cassandra_artist WHERE slug_artist = ?', [slug], 
+            db.query('SELECT * FROM tb_cassandra_album WHERE slug_album = ?', [slug], 
                 (error, result) =>{
                     if(error) {
                         rejected(error); 
@@ -16,9 +16,9 @@ module.exports = {
         });
     },
 
-    ListArtists: () => {
+    ListAlbums: () => {
         return new Promise((accepted, rejected)=>{
-            db.query('SELECT * FROM tb_cassandra_artist', (error, results)=>{
+            db.query('SELECT * FROM tb_cassandra_album', (error, results)=>{
                 if(error) { rejected(error); return; }
                 accepted(results);
             });
