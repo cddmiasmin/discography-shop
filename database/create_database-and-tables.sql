@@ -25,7 +25,7 @@ create table tb_cassandra_format(
 create table tb_cassandra_version(
 	cd_version bigint primary key auto_increment,
     fk_album bigint,
-    desc_sm_version varchar(20) not null,
+    desc_sm_version varchar(30) not null,
     img_cover varchar(200) not null,
     foreign key (fk_album) references tb_cassandra_album(cd_album)
 );
@@ -34,8 +34,9 @@ create table tb_cassandra_version_aux(
 	cd_version_aux bigint primary key auto_increment,
     fk_version bigint,
     fk_format bigint,
-	vl_price varchar(1) not null,
+	vl_price decimal(5,2) not null,
     st_version_format boolean not null,
+    dt_version_aux varchar(80),
     foreign key (fk_version) references tb_cassandra_version(cd_version),
     foreign key (fk_format) references tb_cassandra_format(cd_format)
 );
@@ -43,8 +44,6 @@ create table tb_cassandra_version_aux(
 create table tb_cassandra_img_prod(
 	cd_img_prod bigint primary key auto_increment,
     fk_version_aux bigint,
-    end_img_prod varchar(100) not null,
+    end_img_prod varchar(200) not null,
      foreign key (fk_version_aux) references tb_cassandra_version_aux(cd_version_aux)
 );
-
-drop table tb_cassandra_version_format;
