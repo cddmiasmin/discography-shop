@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import Header from './../components/Header/Header'
@@ -8,25 +8,30 @@ import ListAlbunsSearch from './../components/ListAlbunsSearch'
 import { useGetColor } from './../functions/useGetColor'
 import { dataArtist } from './../data/dataArtist'
 
+import Axios from 'axios'
+
 import './../responsive/responsive.css'
 
 const ArtistProfile = () => {
-
-  let {id} = useParams();
-
-  var artistId = (dataArtist.find(artist => artist.id == id))
-  console.log(artistId)
-
-  useEffect(() => {
-    window.scrollTo(0,0)
-    getColor(artistId.icon)
-  })
 
   const {
     color,
     colorIsDarkOrLight,
     getColor,
   } = useGetColor();
+
+  const { slug } = useParams();
+
+  const [artist, SetArtist] = useState();
+
+  useEffect(() => {
+    Axios.get(`http://localhost:3000/api/artist/${slug}`).then((response) => {
+      SetArtist(response.data.result);
+      console.log(response);
+    });
+    getColor(artist.icon);
+  },[])
+
 
   return (
     <div
@@ -55,10 +60,9 @@ const ArtistProfile = () => {
             id='icon'
             className='rounded-circle'
             style={{ height: '32vh', width: '32vh', border: `5px solid ${color}` }}
-            src={artistId.icon} alt={artistId.name} />
-          <h1 id='name' style={{ color: `${color}` }}>{artistId.name}</h1>
+            src={artist.icon} alt={artist.name} />
+          <h1 id='name' style={{ color: `${color}` }}>{artist.name}</h1>
         </div>
-
 
         <div
           id='list-album-artist'
@@ -104,7 +108,7 @@ const ArtistProfile = () => {
         </div>
         <br />
         <br />
-        <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color}/>
+        <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} />
       </div>
     </div>
   )

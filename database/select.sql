@@ -22,3 +22,4 @@ ORDER BY dt_album asc;
 SELECT *
 FROM tb_cassandra_version
 WHERE fk_album = (SELECT cd_album FROM tb_cassandra_album WHERE nm_album = 'Lungs');
+

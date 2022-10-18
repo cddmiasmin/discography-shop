@@ -10,7 +10,7 @@ import ArtistIcon from '../../components/ArtistIcon';
 
 import { FastAverageColor } from 'fast-average-color';
 
-import { dataArtist } from './../../data/dataArtist'
+import Axios from 'axios';
 
 import { useGetColor } from '../../functions/useGetColor';
 import { useChooseBackgroundImage } from '../../functions/useChooseBackgroundImage';
@@ -36,11 +36,15 @@ const Artists = () => {
     ChooseImageForTheBanner,
   } = useChooseBackgroundImage();
 
+  const [listArtists, SetListArtists] = useState();
   const [artistColor, SetArtistColor] = useState([])
 
   const alphabetAndNumbers = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "123"];
 
   useEffect(() => {
+    Axios.get("http://localhost:3000/api/artists").then((response) =>  {
+      SetListArtists(response.data.result)
+    });
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
   }, [])
@@ -56,7 +60,7 @@ const Artists = () => {
     return groupArtistByLetter;
   }
 
-  const artistNames = SortingArtistNamesInAlphabeticalOrder(dataArtist);
+  const artistNames = SortingArtistNamesInAlphabeticalOrder(listArtists);
 
   useEffect(() => SetArtistColor(CollectIcons()), [artistNames]);
 
@@ -137,7 +141,8 @@ const Artists = () => {
                 style={{ width: '85%' }}
               >
                 {artistNames[`${character}`].map((artist, key) => (
-                  <ArtistIcon size={'20vh'} key={key} id={artist.id} color={artistColor[cont++]} name={artist.name} icon={artist.icon}/>
+                  <ArtistIcon size={'20vh'} key={key} code={artist.code} slug={artist.slug}
+                    color={artistColor[cont++]} name={artist.name} icon={artist.icon}/>
                 ))}
               </div>
             </section>

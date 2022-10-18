@@ -22,7 +22,7 @@ const Router = () => {
             <Route path="/produto" element={<ProductDetail />}/>
             <Route path="/busca" element={<ProductSearch />}/>
             <Route path="/artista" element={<Artists />}/>
-            <Route path='/perfil/:id' element={<ArtistProfile/>}/>
+            <Route path='/perfil/:slug' element={<ArtistProfile/>}/>
             <Route path="/formato" element={<Formats />}/>
             <Route path="/prevenda" element={<PreOrder />}/>
             <Route path="/lancamento" element={<Releases />}/>

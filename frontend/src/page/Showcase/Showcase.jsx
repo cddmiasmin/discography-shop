@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import Header from '../../components/Header/Header'
 import PromotionalBanner from '../../components/PromotionalBanner/PromotionalBanner'
@@ -6,17 +6,24 @@ import ListAlbunsShowcase from '../../components/ListAlbunsShowcase/ListAlbunsSh
 import ReleasesShowcase from '../../components/ReleasesShowcase'
 import Footer from '../../components/Footer/Footer'
 
+import Axios from 'axios'
 import { dataArtist } from '../../data/dataArtist'
 import { dataPromotionalBanner } from '../../data/dataPromotionalBanner'
 
 import './showcase.css'
 
 const Showcase = () => {
+
+  const [listAlbums, SetListAlbums] = useState();
+
   useEffect(() => { 
-    document.body.style.setProperty('--colorIsWhiteOrBlack', 'white')
-    document.body.style.setProperty('--color', 'black')
+    Axios.get("http://localhost:3000/api/albums").then((response) =>  {
+      SetListAlbums(response.data.result)
+    });
+    document.body.style.setProperty('--colorIsWhiteOrBlack', 'white');
+    document.body.style.setProperty('--color', 'black');
   });
-  
+
   return (
     <div
       className='container-showcase
