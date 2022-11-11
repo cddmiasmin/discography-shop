@@ -108,7 +108,7 @@ const ArtistProfile = () => {
             </div>
           </div>
 
-          <ListAlbunsSearch data={dataArtist[0]} />
+          <ListAlbunsSearch artistName={artist.name} slug={slug}/>
         </div>
         <br />
         <br />

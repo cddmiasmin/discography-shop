@@ -1,24 +1,24 @@
 const db = require('../db')
 
 module.exports = {
-    ShowAlbum: (slug) => {
+    ListVersionsByArtist: (artist) => {
         return new Promise ((accepted, rejected) => {
-            db.query("SELECT cd_album, fk_artist, nm_album, slug_album, year(dt_album) as 'dt_album' FROM tb_cassandra_album WHERE slug_album = ?", [slug], 
+            db.query('SELECT * FROM tb_cassandra_version WHERE fk_album in (SELECT cd_album FROM tb_cassandra_album WHERE fk_artist = (SELECT cd_artist FROM tb_cassandra_artist WHERE slug_artist = ?))', [artist], 
                 (error, result) =>{
                     if(error) {
                         rejected(error); 
                         return;
                     } 
 
-                    if(result.length > 0) accepted(result[0]);
+                    if(result.length > 0) accepted(result);
                     else accepted(false);
                 });
         });
     },
 
-    ListAlbums: (artist) => {
+    ListVersionsByAlbum: (album) => {
         return new Promise ((accepted, rejected) => {
-            db.query("SELECT cd_album, fk_artist, nm_album, slug_album, year(dt_album) as 'dt_album' FROM tb_cassandra_album WHERE fk_artist = ( SELECT cd_artist FROM tb_cassandra_artist WHERE slug_artist = ?)", [artist], 
+            db.query('SELECT * FROM tb_cassandra_version WHERE fk_album = ( SELECT cd_album FROM tb_cassandra_album WHERE slug_album = ? )', [album], 
                 (error, result) =>{
                     if(error) {
                         rejected(error); 
