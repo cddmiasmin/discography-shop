@@ -11,6 +11,7 @@ import { dataArtist } from './../data/dataArtist'
 import Axios from 'axios'
 
 import './../responsive/responsive.css'
+import Loading from '../components/Loading'
 
 const ArtistProfile = () => {
 
@@ -22,16 +23,19 @@ const ArtistProfile = () => {
 
   const { slug } = useParams();
 
-  const [artist, SetArtist] = useState();
+  const [artist, SetArtist] = useState([]);
 
   useEffect(() => {
     Axios.get(`http://localhost:3000/api/artist/${slug}`).then((response) => {
       SetArtist(response.data.result);
-      console.log(response);
     });
-    getColor(artist.icon);
-  },[])
+  }, [])
 
+  useEffect(() => getColor(artist.icon), [artist]);
+
+  if (artist.length === 0) {
+    return (<Loading />)
+  }
 
   return (
     <div

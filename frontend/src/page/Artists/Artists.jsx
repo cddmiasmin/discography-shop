@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import { Link } from 'react-router-dom';
-
 import './artists.css'
 
 import Header from '../../components/Header/Header'
@@ -18,6 +16,7 @@ import { useChooseBackgroundImage } from '../../functions/useChooseBackgroundIma
 import { _ } from 'lodash'
 
 import { BsFillArrowUpCircleFill } from 'react-icons/bs'
+import Loading from '../../components/Loading';
 
 const Artists = () => {
 
@@ -36,8 +35,8 @@ const Artists = () => {
     ChooseImageForTheBanner,
   } = useChooseBackgroundImage();
 
-  const [listArtists, SetListArtists] = useState();
-  const [artistColor, SetArtistColor] = useState([])
+  const [listArtists, SetListArtists] = useState([]);
+  const [artistColor, SetArtistColor] = useState([]);
 
   const alphabetAndNumbers = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "123"];
 
@@ -49,7 +48,7 @@ const Artists = () => {
     ChooseImageForTheBanner();
   }, [])
 
-  useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl))
+  useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl),[])
 
   const SortingArtistNamesInAlphabeticalOrder = (data) => {
     const sortingArtistInAlphabeticalOrder = _.orderBy(data, ['name'], ['asc'])
@@ -85,6 +84,10 @@ const Artists = () => {
   }
 
   var cont= 0;
+
+  if (listArtists.length === 0) {
+    return (<Loading/>)
+  }
 
   return (
     <div
