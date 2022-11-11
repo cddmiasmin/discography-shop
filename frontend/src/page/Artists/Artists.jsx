@@ -8,7 +8,7 @@ import ArtistIcon from '../../components/ArtistIcon';
 
 import { FastAverageColor } from 'fast-average-color';
 
-import Axios from 'axios';
+import api from './../../services/api'
 
 import { useGetColor } from '../../functions/useGetColor';
 import { useChooseBackgroundImage } from '../../functions/useChooseBackgroundImage';
@@ -41,7 +41,7 @@ const Artists = () => {
   const alphabetAndNumbers = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "123"];
 
   useEffect(() => {
-    Axios.get("http://localhost:3000/api/artists").then((response) =>  {
+    api.get("/artists").then((response) =>  {
       SetListArtists(response.data.result)
     });
     SetBannerInPortraitOrLandscapeMode(data.landscape);

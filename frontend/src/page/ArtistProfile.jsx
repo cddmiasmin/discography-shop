@@ -8,7 +8,7 @@ import ListAlbunsSearch from './../components/ListAlbunsSearch'
 import { useGetColor } from './../functions/useGetColor'
 import { dataArtist } from './../data/dataArtist'
 
-import Axios from 'axios'
+import api from './../services/api'
 
 import './../responsive/responsive.css'
 import Loading from '../components/Loading'
@@ -26,7 +26,7 @@ const ArtistProfile = () => {
   const [artist, SetArtist] = useState([]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3000/api/artist/${slug}`).then((response) => {
+    api.get(`/artist/${slug}`).then((response) => {
       SetArtist(response.data.result);
     });
   }, [])
