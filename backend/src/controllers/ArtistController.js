@@ -2,7 +2,7 @@ const ArtistService = require('./../services/ArtistService');
 
 module.exports = {
     ShowArtist: async (req, res) => {
-        let json = {result:[]}
+        let json = {error: '', result: []};
 
         let slug = req.params.slug;
         let artist = await ArtistService.ShowArtist(slug);
@@ -18,7 +18,7 @@ module.exports = {
     },
 
     ListArtists: async (req, res) => {
-        let json = {result:[]};
+        let json = {error: '', result: []};
 
         let artists = await ArtistService.ListArtists();
 

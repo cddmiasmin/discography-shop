@@ -15,12 +15,13 @@ module.exports = {
     ListAlbums: async (req, res) => {
         let json = {error:'', result:[]};
 
-        let albums = await AlbumService.ListAlbums();
+        let artist = req.params.artist;
+        let albums = await AlbumService.ListAlbums(artist);
 
         for(let i in albums){
             json.result.push({
                 code: albums[i].cd_album,
-                artist: albums[i].fk_album,
+                artist: albums[i].fk_artist,
                 slug: albums[i].slug_album,
                 name: albums[i].nm_album,
                 releaseDate: albums[i].dt_album

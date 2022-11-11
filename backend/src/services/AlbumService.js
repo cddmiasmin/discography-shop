@@ -3,7 +3,7 @@ const db = require('../db')
 module.exports = {
     ShowAlbum: (slug) => {
         return new Promise ((accepted, rejected) => {
-            db.query('SELECT * FROM tb_cassandra_album WHERE slug_album = ?', [slug], 
+            db.query('SELECT cd_album, fk_artist, nm_album, slug_album, dt_album FROM tb_cassandra_album WHERE slug_album = ?', [slug], 
                 (error, result) =>{
                     if(error) {
                         rejected(error); 
@@ -16,12 +16,18 @@ module.exports = {
         });
     },
 
-    ListAlbums: () => {
-        return new Promise((accepted, rejected)=>{
-            db.query('SELECT * FROM tb_cassandra_album', (error, results)=>{
-                if(error) { rejected(error); return; }
-                accepted(results);
-            });
+    ListAlbums: (artist) => {
+        return new Promise ((accepted, rejected) => {
+            db.query('SELECT cd_album, fk_artist, nm_album, slug_album, dt_album FROM tb_cassandra_album WHERE fk_artist = ( SELECT cd_artist FROM tb_cassandra_artist WHERE slug_artist = ?)', [artist], 
+                (error, result) =>{
+                    if(error) {
+                        rejected(error); 
+                        return;
+                    } 
+
+                    if(result.length > 0) accepted(result);
+                    else accepted(false);
+                });
         });
     }
 };
