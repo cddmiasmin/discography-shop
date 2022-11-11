@@ -29,6 +29,7 @@ insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
 				('2',"Red (Taylor's Version)",'red-taylors-version','2021-11-12'),
 				('2','Midnights','midnights','2022-10-21');
 
+
 insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 		values  ('1','PRINCIPAL','/images/data/florence-and-the-machine/lungs/main/main.jpg'),
 				('1','BETWEEN TWO LUNGS','/images/data/florence-and-the-machine/lungs/between-two-lungs/between-two-lungs.jpg'),
@@ -41,11 +42,11 @@ insert into tb_cassandra_version_aux(fk_version, fk_format, vl_price, st_version
                 ('3','3','254.90','1','Vinil + LP + Cartões postais e encartes');
                 
 insert into tb_cassandra_img_prod(fk_version_aux, end_img_prod)
-		values	 ('5','/images/data/florence-and-the-machine/lungs/main/cassette01_01.jpg'),
-				 ('5','/images/data/florence-and-the-machine/lungs/main/cassette01_02.jpg'),
-                 ('6','/images/data/florence-and-the-machine/lungs/main/vinyl01_01.jpg'),
-                 ('6','/images/data/florence-and-the-machine/lungs/main/vinyl01_02.jpg'),
-                 ('7','/images/data/florence-and-the-machine/lungs/between-two-lungs/cd01_01.jpg'),
-                 ('7','/images/data/florence-and-the-machine/lungs/between-two-lungs/cd01_02.jpg'),
-                 ('7','/images/data/florence-and-the-machine/lungs/between-two-lungs/cd01_03.jpg'),
-                 ('8', '/images/data/florence-and-the-machine/lungs/10th-Anniversary-Edition/10th-Anniversary-Edition/box01_01.jpg');
+	values	 ('5','/images/data/florence-and-the-machine/lungs/main/cassette01_01.jpg'),
+			('5','/images/data/florence-and-the-machine/lungs/main/cassette01_02.jpg'),
+			('6','/images/data/florence-and-the-machine/lungs/main/vinyl01_01.jpg'),
+			('6','/images/data/florence-and-the-machine/lungs/main/vinyl01_02.jpg'),
+			('7','/images/data/florence-and-the-machine/lungs/between-two-lungs/cd01_01.jpg'),
+			('7','/images/data/florence-and-the-machine/lungs/between-two-lungs/cd01_02.jpg'),
+			('7','/images/data/florence-and-the-machine/lungs/between-two-lungs/cd01_03.jpg'),
+			('8', '/images/data/florence-and-the-machine/lungs/10th-Anniversary-Edition/10th-Anniversary-Edition/box01_01.jpg');

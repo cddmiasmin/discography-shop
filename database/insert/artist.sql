@@ -40,9 +40,6 @@ insert into tb_cassandra_artist(nm_artist, slug_artist, img_icon)
             ('Stevie Nicks','stevie-nicks','https://i.ibb.co/pnTzHxH/stevie-nicks.jpg'),
             ('The Weeknd','the-weeknd','https://i.ibb.co/MsM9TQS/the-weeknd.jpg'),
             ('Winona Oak','winona-oak','https://i.ibb.co/BLHVRvz/winona-oak.jpg'),
-            ('Zendaya','zendaya','https://i.ibb.co/0fT3ycX/zendaya.jpg');
-
-
-
-
+            ('Zendaya','zendaya','https://i.ibb.co/0fT3ycX/zendaya.jpg'),
+			('Meghan Trainor','meghan-trainor','https://i.ibb.co/Nr9fvhM/ab6775700000ee85dbaa3e0a217f0d0c7fd59edb.jpg');
 

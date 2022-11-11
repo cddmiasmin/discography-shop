@@ -83,7 +83,7 @@ export const dataArtist = [
                         ]
                     },
                     {
-                        id: 2, cover: "https://i.ibb.co/M2tGj68/How-Big-How-Blue-How-Beautiful-1.jpg", shortDescription: 'DELUXE',
+                        id: 2, cover: "https://i.ibb.co/DCkKDKZ/shopping.webp", shortDescription: 'DELUXE',
                         format: [{ type: 'VINIL', situation: '0', images: [] }]
                     },
                     {

@@ -51,8 +51,7 @@ const Artists = () => {
   useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl),[])
 
   const SortingArtistNamesInAlphabeticalOrder = (data) => {
-    const sortingArtistInAlphabeticalOrder = _.orderBy(data, ['name'], ['asc'])
-    const groupArtistByLetter = _.groupBy(sortingArtistInAlphabeticalOrder, (artist) => {
+    const groupArtistByLetter = _.groupBy(data, (artist) => {
       return artist.name[0]
     })
 

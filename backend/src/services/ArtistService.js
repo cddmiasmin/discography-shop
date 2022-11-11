@@ -18,7 +18,7 @@ module.exports = {
 
     ListArtists: () => {
         return new Promise((accepted, rejected)=>{
-            db.query('SELECT * FROM tb_cassandra_artist', (error, results)=>{
+            db.query('SELECT * FROM tb_cassandra_artist ORDER BY slug_artist asc', (error, results)=>{
                 if(error) { rejected(error); return; }
                 accepted(results);
             });
