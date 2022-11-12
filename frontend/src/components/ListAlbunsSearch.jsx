@@ -9,10 +9,9 @@ import Album from './Album/Album';
 
 const ListAlbunsSearch = (props) => {
 
-    const [versionsAlbums, SetVersionsAlbums] = useState([]);
-    const [artistAlbums, SetArtistAlbums] = useState([{isEmpty: 'true'}]);
+    const [versionsAlbums, SetVersionsAlbums] = useState(1);
+    const [artistAlbums, SetArtistAlbums] = useState(1);
 
-    
     useEffect(() => {
         api.get(`/albums/${props.slug}`).then((response) => {
             SetArtistAlbums(response.data.result);
@@ -21,24 +20,26 @@ const ListAlbunsSearch = (props) => {
             SetVersionsAlbums(response.data.result);
         });
     }, []);
-    
+
     const GroupAlbumVersions = (data) => {
         const groupVersionsByAlbum = _.groupBy(data, (album) => {
             return album.album
         })
-        
+
         return groupVersionsByAlbum;
     }
-    
+
     const versionsAlbumsGrouped = GroupAlbumVersions(versionsAlbums);
 
-    if (artistAlbums.isEmpty !== undefined) return (<Loading />);
-    if (versionsAlbums.isEmpty !== undefined) return (<Loading />);
-    if (versionsAlbums.length === 0) 
-        return (
-            <h5 style={{marginTop: '4vh'}}>EM BREVE! 😉</h5>
-        );
-
+    if (artistAlbums === 1 ) return (<Loading />);
+    else 
+        if(versionsAlbums === 1) return (<Loading />);
+        else
+            if (versionsAlbums.length === 0)
+                return (
+                    <h5 style={{ marginTop: '4vh' }}>EM BREVE! 😉</h5>
+                );
+                
     return (
         <div
             id='container-albuns'
@@ -47,7 +48,7 @@ const ListAlbunsSearch = (props) => {
             {artistAlbums.map((album, key) => (
                 <Album
                     key={key}
-                    cover={versionsAlbumsGrouped[`${key + 1}`][0].cover}
+                    cover={versionsAlbumsGrouped[`${album.code}`][0].cover}
                     artist={props.artistName}
                     name={album.name}
                     year={album.releaseDate}

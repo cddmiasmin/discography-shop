@@ -29,3 +29,22 @@ insert into tb_cassandra_version(fk_album, slug_version, desc_sm_version, img_co
 		('5','CAPA ALTERNATIVA','https://i.ibb.co/CWVVYt7/Dance-Fever-1.jpg'),
 		('5','DELUXE','https://i.ibb.co/G5Cb4sd/Dance-Fever-2.jpg'),
 		('5','AO VIVO','https://i.ibb.co/QHB6z3N/ab67616d0000b27320bdd2559b75be3f3fb498b8.jpg');
+
+/*ABBA*/
+	insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('6','PRINCIPAL','https://i.ibb.co/tpmYrKn/71-Y-geh-MSLL-AC-SX522.jpg'),
+		('7','PRINCIPAL','https://i.ibb.co/M7WtxLn/ABBA-Waterloo-CD.jpg'),
+		('8','PRINCIPAL','https://i.ibb.co/QDg50V7/71-Dqcgo-J8m-L-AC-SX522.jpg'),
+		('9','PRINCIPAL','https://i.ibb.co/gM4LvXn/Voyage-ABBA.png');
+
+/*SELENA GOMEZ*/
+	insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('10','PRINCIPAL','https://i.ibb.co/8M8xq17/Selena-Gomez-Stars-Dance.jpg'),
+		('11','PRINCIPAL','https://i.ibb.co/MMLRKJc/513f2hn1-U-L-AC.jpg'),
+		('12','PRINCIPAL','https://i.ibb.co/9pCrcKK/71v-X94-MBGIL-AC-SX522.jpg'),
+		('13','PRINCIPAL','https://i.ibb.co/XFBDqtr/Selena-Gomez-Rare.png'),
+		('13','CAPA ALTERNATIVA','https://i.ibb.co/J2JvVMJ/cd-deluxe-selena-gomez-rare-cd-deluxe-selena-gomez-rare-universa-00602508561726-26060250856172.webp'),
+		('14','PRINCIPAL','https://i.ibb.co/9rKYZKt/Revelaci-n-Selena-Gomez.png'),
+		('14','CAPA ALTERNATIVA','https://i.ibb.co/Th5L317/51-Ns2byhsf-L-AC-SY355.jpg');
