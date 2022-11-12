@@ -1,3 +1,15 @@
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('',''),
+        ('',''),
+        ('',''),
+        ('',''),
+        ('',''),
+        ('',''),
+        ('',''),
+        ('',''),
+        ('','');
+
 /* LUNGS */
 insert into tb_cassandra_img_product(fk_product, url_img_product)
     values 
@@ -66,3 +78,51 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
         ('42','https://i.ibb.co/Zxk96j9/SG-box-1024x1024.png'),
         ('43','https://i.ibb.co/sWpgfWK/Selena-Gomez-Revelacion-Vinil-importado.png'),
         ('44','https://i.ibb.co/FzX3398/Selena-Gomez-Revelacion-Vinil-exclusive-importado.png');
+
+/*MARIAH CAREY*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values
+        ('54','https://i.ibb.co/zXsJvkR/vinil-duplo-mariah-carey-charmbracelet-2lp-importado-vinil-duplo-mariah-carey-charmbracelet-00602435.webp'),
+        ('54','https://i.ibb.co/10gSgWP/vinil-duplo-mariah-carey-charmbracelet-2lp-importado-vinil-duplo-mariah-carey-charmbracelet-00602435.jpg'),
+        ('55','https://i.ibb.co/f9rHF9V/vinil-duplo-mariah-carey-emc2-2lp-importado-vinil-duplo-mariah-carey-emc2-2lp-00602435176314-0006024.webp'),
+        ('55','https://i.ibb.co/PNqTh63/vinil-duplo-mariah-carey-emc2-2lp-importado-vinil-duplo-mariah-carey-emc2-2lp-00602435176314-0006024.webp'),
+        ('56','https://i.ibb.co/BL0WY4r/vinil-duplo-mariah-carey-memoirs-of-an-imperfect-angel-2lp-importado-vinil-duplo-mariah-carey-memoir.webp'),
+        ('56','https://i.ibb.co/CWzsyDS/vinil-duplo-mariah-carey-memoirs-of-an-imperfect-angel-2lp-importado-vinil-duplo-mariah-carey-memoir.webp');
+
+/*BILLIE EILISH*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values
+        ('65','https://i.ibb.co/S32QG7j/Billie-Eilish-Vinyl-Red-dont-smile-at-me-CD.png'),
+        ('65','https://i.ibb.co/GJNyPv1/cd-billie-eilish-dont-smile-at-me-importado-cd-billie-eilish-dont-smile-at-me-im-00602577992025-0006.webp'),
+        ('66','https://i.ibb.co/SJcm9d7/vinil-billie-eilish-dont-smile-at-me-importado-vermelho-33-rpm-dont-smile-at-me-e-a-estreia-estendid.webp'),
+        ('67','https://i.ibb.co/R9sY83K/Billie-Eilish-CD-frente.png'),
+        ('67','https://i.ibb.co/F3d5qK1/Billie-Eilish-CD-verso.png'),
+        ('68','https://i.ibb.co/dpcCzqZ/BILLIE-EILISH-When-We-All-Fall-Asleep-Cassette-Green.webp'),
+        ('69','https://i.ibb.co/tZqrSYD/vinil-importado-billie-eilish-when-we-all-fall-asleep-where-do-we-go-vinil-importado-billie-eilish-w.webp'),
+        ('70','https://i.ibb.co/9sgQ23F/Billie-Eilish-HTE-CD-Photobook-new.png'),
+        ('71','https://i.ibb.co/YdHtjMr/602438241392.png'),
+        ('72','https://i.ibb.co/5MtV3cd/Shared-Image-122600.png');
+
+/*KATY PERRY*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('73','https://i.ibb.co/p3ybzmx/one-800x.webp'),
+        ('74','https://i.ibb.co/QjLkDWz/cd-katy-perry-teenage-dream-the-complete-confection-katy-perry-teenage-dream-the-complete-0509997296.webp'),
+        ('74','https://i.ibb.co/5Y21tVb/cd-katy-perry-teenage-dream-the-complete-confection-katy-perry-teenage-dream-the-complete-0509997296.webp'),
+        ('75','https://i.ibb.co/dL54TsJ/katy-perry-teenage-dream-gatefold-double-black-vinyl-885-1-d982d510f5168bf868108565db863dee.jpg'),
+        ('76','https://i.ibb.co/1db7Z1z/ghows-OH-4fde5992-1845-063e-e053-0100007f06ed-dfc7f4f8.webp'),
+        ('77','https://i.ibb.co/pRhh2Sn/ac3760-67f12599a3bc46cbb942bd98c8bd92e4-mv2.png'),
+        ('78','https://i.ibb.co/5sJCY2V/D-NQ-NP-707533-MLA43299047005-082020-O.jpg'),
+        ('79','https://i.ibb.co/qJm5h80/4d706ec92b25e71996c7d9ee23614feb.jpg'),
+        ('80','https://i.ibb.co/wrvbr8j/vinil-katy-perry-smile-standard-vinil-katy-perry-smile-standard-00602508901041-00060250890104.webp'),
+        ('80','https://i.ibb.co/98F5rkB/vinil-katy-perry-smile-standard-vinil-katy-perry-smile-standard-00602508901041-00060250890104.webp'),
+        ('81','https://i.ibb.co/H7nXdLb/vinil-katy-perry-smile-d2c-exclusive-picture-disc-vinil-katy-perry-smile-d2c-exclusive-p-00602508915.webp'),
+        ('81','https://i.ibb.co/48fBHvq/vinil-katy-perry-smile-d2c-exclusive-picture-disc-vinil-katy-perry-smile-d2c-exclusive-p-00602508915.webp'),
+        ('81','https://i.ibb.co/4P5fMsw/vinil-katy-perry-smile-d2c-exclusive-picture-disc-vinil-katy-perry-smile-d2c-exclusive-p-00602508915.webp');
+
+
+/*KAILEE MORGUE*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('82','https://i.ibb.co/Sdn39WP/imagem-2022-11-11-233211100.png'),
+        ('83','https://i.ibb.co/FKvDnSs/imagem-2022-11-11-233333205.png');

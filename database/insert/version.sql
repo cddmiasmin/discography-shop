@@ -1,3 +1,17 @@
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('','',''),
+		('','',''),
+		('','',''),
+		('','',''),
+		('','',''),
+		('','',''),
+		('','',''),
+		('','',''),
+		('','',''),
+		('','',''),
+		('','','');
+
 /* LUNGS */
 insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover, slug_version)
 	values  
@@ -48,3 +62,31 @@ insert into tb_cassandra_version(fk_album, slug_version, desc_sm_version, img_co
 		('13','CAPA ALTERNATIVA','https://i.ibb.co/J2JvVMJ/cd-deluxe-selena-gomez-rare-cd-deluxe-selena-gomez-rare-universa-00602508561726-26060250856172.webp'),
 		('14','PRINCIPAL','https://i.ibb.co/9rKYZKt/Revelaci-n-Selena-Gomez.png'),
 		('14','CAPA ALTERNATIVA','https://i.ibb.co/Th5L317/51-Ns2byhsf-L-AC-SY355.jpg');
+
+/*MARIAH CAREY*/
+	insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('15','PRINCIPAL','https://i.ibb.co/GHR0mYs/Mariah-Carey-Charmbracelet.jpg'),
+		('16','PRINCIPAL','https://i.ibb.co/MMzrvHc/Mariahcarey-e-mc2.jpg'),
+		('17','PRINCIPAL','https://i.ibb.co/hXV087n/Mariahcarey-memoirsofanimperfectangel.png');
+
+/*BILLIE EILISH*/
+	insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('18','PRINCIPAL','https://i.ibb.co/WPSyCLt/Billie-Eilish-Don-t-Smile-at-Me.png'),
+		('19','PRINCIPAL','https://i.ibb.co/RbqsSXv/When-We-Fall-Asleep-Where-Do-We-Go.png'),
+		('20','PRINCIPAL','https://i.ibb.co/Pcj5X4Q/ab67616d0000b2732a038d3bf875d23e4aeaa84e.jpg');
+
+/*KATY PERRY*/
+	insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('21','PRINCIPAL','https://i.ibb.co/C0JPdzV/220px-Katy-Perry-One-of-the-Boys.jpg'),
+		('22','PRINCIPAL','https://i.ibb.co/jVRY3gc/Katy-Perry-Teenage-Dream.jpg'),
+		('23','PRINCIPAL','https://i.ibb.co/zZy3vNz/71wv-FIXFm-BL-AC-SL1400.jpg'),
+		('24','PRINCIPAL','https://i.ibb.co/6YkdX6J/71-HHkn-WPul-L.jpg'),
+		('24','CAPA ALTERNATIVA','https://i.ibb.co/kJBCHLs/Katy-Perry-Smile-Single-1024x1024.png');
+
+/* KAILEE MORGUE */
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('25','PRINCIPAL','https://i.ibb.co/XWFVP9D/ujiwu5eorbl91.jpg');

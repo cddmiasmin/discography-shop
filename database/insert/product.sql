@@ -1,3 +1,16 @@
+insert into tb_cassandra_product(fk_version, fk_format, vl_price, st_product, dt_added)
+	values
+        ('','','','1',''),
+        ('','','','1',''),
+        ('','','','1',''),
+        ('','','','1',''),
+        ('','','','1',''),
+        ('','','','1',''),
+        ('','','','1',''),
+        ('','','','1',''),
+        ('','','','1',''),
+        ('','','','1','');
+
 /* LUNGS */
 insert into tb_cassandra_product(fk_version, fk_format, vl_price, st_product, dt_added)
     values  
@@ -65,6 +78,39 @@ insert into tb_cassandra_product(fk_version, fk_format, vl_price, st_product, dt
         ('23','5','258.91','1','2022-11-24'),
         ('24','5','258.91','1','2022-11-24');
 
+/*MARIAH CAREY*/
+	insert into tb_cassandra_product(fk_version, fk_format, vl_price, st_product, dt_added)
+	values
+        ('25','5','413.91','1','2020-11-24'),
+        ('26','5','341.01','1','2020-11-24'),
+        ('27','5','258.91','1','2020-11-24');
 
+/*BILLIE EILISH*/
+	insert into tb_cassandra_product(fk_version, fk_format, vl_price, st_product, dt_added)
+	values
+        ('28','1','42.42','1','2020-10-21'),
+        ('28','5','251.91','1','2020-10-21'),
+        ('29','1','42.42','1','2020-07-22'),
+        ('29','2','75.00','1','2020-07-22'),
+        ('29','5','251.91','1','2020-07-22'),
+        ('30','1','42.42','1','2020-12-02'),
+        ('30','2','75.00','1','2020-12-02'),
+        ('30','5','251.91','1','2020-12-02');
 
+/* KATY PERRY*/
+insert into tb_cassandra_product(fk_version, fk_format, vl_price, st_product, dt_added)
+	values
+        ('31','1','27.00','1','2022-01-21'),
+        ('32','1','27.00','1','2022-05-03'),
+        ('32','5','251.91','1','2022-05-03'),
+        ('33','1','27.00','1','2022-05-03'),
+        ('33','5','251.91','1','2022-05-03'),
+        ('34','1','27.00','1','2021-01-19'),
+        ('34','2','110.87','1','2021-01-19'),
+        ('34','5','251.91','1','2021-01-19'),
+        ('35','5','251.91','1','2021-01-19');
 
+insert into tb_cassandra_product(fk_version, fk_format, vl_price, st_product, dt_added)
+	values
+        ('36','1','53.25','1','2022-11-11'),
+        ('36','5','133.13','1','2022-11-11');
