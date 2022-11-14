@@ -29,17 +29,19 @@ const ListAlbunsSearch = (props) => {
         return groupVersionsByAlbum;
     }
 
+    console.log(artistAlbums)
+
     const versionsAlbumsGrouped = GroupAlbumVersions(versionsAlbums);
 
-    if (artistAlbums === 1 ) return (<Loading />);
-    else 
-        if(versionsAlbums === 1) return (<Loading />);
+    if (artistAlbums === 1) return (<Loading />);
+    else
+        if (versionsAlbums === 1) return (<Loading />);
         else
             if (versionsAlbums.length === 0)
                 return (
                     <h5 style={{ marginTop: '4vh' }}>EM BREVE! 😉</h5>
                 );
-                
+
     return (
         <div
             id='container-albuns'
@@ -52,6 +54,8 @@ const ListAlbunsSearch = (props) => {
                     artist={props.artistName}
                     name={album.name}
                     year={album.releaseDate}
+                    slugAlbum={album.slug}
+                    slugArtist={props.slug}
                 />
             ))}
         </div>

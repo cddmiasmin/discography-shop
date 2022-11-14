@@ -4,10 +4,11 @@ import './album.css'
 
 const Album = (props) => {
 
-    const {GoToProduct} = useGoToProduct();
+    const { GoToProduct } = useGoToProduct();
+
     return (
         <div
-            onClick={() => GoToProduct()}
+            onClick={() => GoToProduct(props.slugAlbum, props.slugArtist)}
             className='position-relative album'
             style={{ width: '220px', height: '220px', cursor: 'pointer' }}
         >

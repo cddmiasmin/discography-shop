@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 export function useGoToProduct() {
     const navigate = useNavigate();
 
-    const GoToProduct = () => {
-        navigate('/produto');
+    const GoToProduct = (slugAlbum, slugArtist) => {
+        navigate(`/produto/${slugArtist}/${slugAlbum}`);
     }
 
     return {
