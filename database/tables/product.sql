@@ -5,11 +5,11 @@ create table tb_cassandra_product(
     st_product boolean not null,
     vl_price decimal(5, 2) not null,
     dt_added timestamp not null,
-    vl_height decimal(3, 3) not null,
-    vl_width decimal(3, 3) not null,
-    vl_length decimal(3, 3) not null,
-    vl_weight decimal(3, 3) not null,
-    description_product varchar(1024),
+    vl_height decimal(5, 2) not null,
+    vl_width decimal(5, 2) not null,
+    vl_length decimal(5, 2) not null,
+    vl_weight decimal(5, 2) not null,
+    description_product varchar(4500) not null,
     foreign key (fk_version) references tb_cassandra_version(cd_version),
     foreign key (fk_format) references tb_cassandra_format(cd_format)
 );

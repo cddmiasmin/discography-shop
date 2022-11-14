@@ -37,6 +37,7 @@ const ArtistProfile = () => {
     return (<Loading />)
   }
 
+  console.log(artist)
   return (
     <div
       id='container-artist'
