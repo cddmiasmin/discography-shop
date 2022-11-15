@@ -132,9 +132,6 @@ export const dataArtist = [
         ]
     },
     {
-        text: "<p>CD Florence + The Machine &ndash; Dance Fever</p><p>Mintpack Standard CD (Mint pack digi sleeve and CD Poster)</p><p>Repert&oacute;rio do CD:</p><p>1. King</p><p>2. Free</p><p>3. Choreomania</p><p>4. Back In Town</p><p>5. Girls Against God</p><p>6. Dream Girl Evil</p><p>7. Prayer Factory</p><p>8. Cassandra</p><p>9. Heaven Is Here</p><p>10. Daffodil</p><p>11. My Love</p><p>12. Restraint</p><p>13. The Bomb</p><p>14. Morning Elvis</p>"
-    },
-    {
         id: 2,
         name: 'Taylor Swift',
         icon: '/images/dataArtist/icon/taylor-swift.jpg',

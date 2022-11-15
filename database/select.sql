@@ -18,16 +18,22 @@ select * from tb_cassandra_img_product;
 /* ---------------------- ARTIST */
 SELECT * 
 FROM tb_cassandra_artist 
-WHERE slug_artist = 'florence-and-the-machine';
+WHERE slug_artist = 'katy-perry';
 
 SELECT * 
 FROM tb_cassandra_artist 
-WHERE cd_artist = 1;
+WHERE cd_artist = 119;
 
 /* ---------------------- ARTISTS */
 SELECT *
 FROM tb_cassandra_artist
 ORDER BY slug_artist asc;
+
+/* ********************** ALBUMS BY ARTIST*/
+
+SELECT * 
+FROM tb_cassandra_album 
+WHERE fk_artist = 119;
 
 /* --------------------- VERSÃO POR ALBUM */
 SELECT *
@@ -36,7 +42,12 @@ WHERE fk_album = (SELECT cd_album FROM tb_cassandra_album WHERE nm_album = 'CERE
 
 SELECT *
 FROM tb_cassandra_version
-WHERE fk_album = 5;
+WHERE fk_album = 30;
+
+/* --------------------- PRODUTO POR VERSÃO */
+SELECT *
+FROM tb_cassandra_product
+WHERE fk_version = 35;
 
 
 
