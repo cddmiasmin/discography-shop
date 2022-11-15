@@ -18,11 +18,11 @@ select * from tb_cassandra_img_product;
 /* ---------------------- ARTIST */
 SELECT * 
 FROM tb_cassandra_artist 
-WHERE slug_artist = 'katy-perry';
+WHERE slug_artist = 'madonna';
 
 SELECT * 
 FROM tb_cassandra_artist 
-WHERE cd_artist = 119;
+WHERE cd_artist = 123;
 
 /* ---------------------- ARTISTS */
 SELECT *
@@ -33,7 +33,7 @@ ORDER BY slug_artist asc;
 
 SELECT * 
 FROM tb_cassandra_album 
-WHERE fk_artist = 119;
+WHERE fk_artist = 123;
 
 /* --------------------- VERSÃO POR ALBUM */
 SELECT *
@@ -42,16 +42,14 @@ WHERE fk_album = (SELECT cd_album FROM tb_cassandra_album WHERE nm_album = 'CERE
 
 SELECT *
 FROM tb_cassandra_version
-WHERE fk_album = 30;
+WHERE fk_album = 40;
 
 /* --------------------- PRODUTO POR VERSÃO */
-SELECT *
-FROM tb_cassandra_product
-WHERE fk_version = 35;
+SELECT * FROM tb_cassandra_product WHERE fk_version in (SELECT cd_version FROM tb_cassandra_version WHERE fk_album = 40);
+
+SELECT * FROM tb_cassandra_product WHERE fk_version in ( SELECT cd_version FROM tb_cassandra_version WHERE fk_album = 10 );
 
 
-
-ALTER TABLE tb_cassandra_product ADD description_product varchar(4000) not null;
 
 ALTER TABLE tb_cassandra_product ADD vl_height decimal(5, 2) not null; 
 ALTER TABLE tb_cassandra_product ADD vl_width decimal(5, 2) not null;

@@ -90,3 +90,50 @@ insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 	values
 		('30','CAPA PRINCIPAL','https://i.ibb.co/XWFVP9D/ujiwu5eorbl91.jpg');
+
+
+/*LADY GAGA*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('31','CAPA PRINCIPAL','https://i.ibb.co/pKhdSMh/LG-The-Fame.jpg');
+
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('32','CAPA PRINCIPAL','https://i.ibb.co/L9L57js/71-Is-Asyc-Hj-L-AC-SX569.jpg');
+
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('33','CAPA PRINCIPAL','https://i.ibb.co/BTjFdtL/Born-This-Way.jpg'),
+		('33','CAPA ALTERNATIVA','https://i.ibb.co/H2Z1SVd/1200x1200bf-60.jpg'),
+		('33','THE REMIX','https://i.ibb.co/9qmm9gJ/born-this-waythe-remix-cd-lady-gaga-00602527870007-262787000.webp');
+
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('34','CAPA PRINCIPAL','https://i.ibb.co/Q6Fm0vZ/The-Fame-Monster-Standard.jpg'),
+		('34','PRESENTS THE MONSTER BALL TOUR','https://i.ibb.co/R20Qcmt/aa9637cc313f414c8cc95b71f7447e93.webp');
+
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('35','CAPA PRINCIPAL','https://i.ibb.co/PNTzzNj/cd-lady-gaga-artpop-cd-lady-gaga-artpop-00602537543045-2660253754304.webp');
+
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('36','CAPA PRINCIPAL','https://i.ibb.co/dBrR0J5/cd-lady-gaga-joanne-cd-deluxe-cd-lady-gaga-joanne-cd-deluxe-00602557186444-26060255718644.webp');
+
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('37','CAPA PRINCIPAL','https://i.ibb.co/hmzQXNj/Lady-Gaga-Chromatica.png'),
+		('37','DAWN OF CHROMATICA','https://i.ibb.co/fXKYcsX/E-DUx-e-WQAMppa7.jpg');
+
+/*MADONNA*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('38','CAPA PRINCIPAL','https://i.ibb.co/HK43s4p/Capa-Standard-de-MDNA.jpg');
+
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('39','CAPA PRINCIPAL','https://i.ibb.co/cL5XL6f/Madonna-Rebel-Heart-Tour-lbum.png');
+
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('40','CAPA PRINCIPAL','https://i.ibb.co/HdfZskZ/Madame-X-Standard.jpg');

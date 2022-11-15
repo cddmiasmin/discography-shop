@@ -54,3 +54,20 @@ insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
 insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
     values
 		('119','Girl Next Door','girl-next-door','2022-10-28');
+
+/*LADY GAGA*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('121','The Fame','the-fame','2008-08-19'),
+		('121','The Remix','the-remix','2010-03-03'),
+		('121','Born This Way','born-this-way','2011-05-23'),
+		('121','The Fame Monster','the-fame-monster','2009-11-18'),
+		('121','ARTPOP','artpop','2013-11-06'),
+		('121','Joanne','joanne','2016-10-21'),
+		('121','Chromatica','chromatica','2020-05-29');
+
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('123','MDNA','mdna','2012-03-23'),
+		('123','Rebel Heart Tour','rebel-heart-tour','2017-09-29'),
+		('123','Madame X','madame-x','2019-06-14');

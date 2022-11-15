@@ -125,3 +125,63 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
     values 
         ('58','https://i.ibb.co/Sdn39WP/imagem-2022-11-11-233211100.png'),
         ('59','https://i.ibb.co/FKvDnSs/imagem-2022-11-11-233333205.png');
+
+/*LADY GAGA*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('61','https://i.ibb.co/bN4bMKV/Lady-Gaga-The-Fame.png'),
+        ('62','https://i.ibb.co/4KZLg5q/shopping.webp'),
+        ('62','https://i.ibb.co/cLq5pmK/shopping.webp');
+
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values
+        ('60','https://i.ibb.co/FxvZVv3/Lady-Gaga-The-Remix.png');
+
+
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values
+        ('63','https://i.ibb.co/9pbz1QL/Lady-Gaga-Born-this-way.png'),       
+        ('64','https://i.ibb.co/L6Z0rjf/65113938-001-b1-27b17c866b5f0ee37216406248457204-640-0.png'),
+        ('65','https://i.ibb.co/GC9GF2D/Lady-Gaga-Born-this-way-deluxe.png'),
+        ('66','https://i.ibb.co/ZB6Lqc6/lady-gaga-born-this-way-vinil-duplo-vermelho-edicao-limitada-421-1-20201123154413.webp'),
+        ('67','https://i.ibb.co/T2zmV1T/Lady-Gaga-Born-this-way-the-remix.png');
+
+
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values
+        ('69','https://i.ibb.co/nc6d3V9/s-l1600.jpg');
+
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values       
+        ('70','https://i.ibb.co/1nd5fH0/Lady-Gaga-Artpop.png'),
+        ('71','https://i.ibb.co/rFwYj5v/lady-gaga-artpop-edicao-limitada-vinil-duplo-azul-799-1-49b0457933c3c5676ddb5e5797cab221.webp');
+
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values
+        ('72','https://i.ibb.co/SKhCshL/Lady-Gaga-Joanne-Deluxe-1-CD.webp'),
+        ('73','https://i.ibb.co/jbv9xyq/D-NQ-NP-947631-MLB47605217088-092021-W.jpg');
+
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values
+        ('74','https://i.ibb.co/YLDMqZf/CD-Lady-Gaga-Chromatica-Standard.png'),
+        ('74','https://i.ibb.co/2YTMpKj/CD-Lady-Gaga-Chromatica-Standard2.png'),
+        ('76','https://i.ibb.co/bJPRJWH/716y1-SCWDm-L-AC-SL1500.jpg'),
+        ('77','https://i.ibb.co/6ZF2FW3/lady-gaga-dawn-of-chromatica-cd-frente.png'),
+        ('77','https://i.ibb.co/Zhnddn5/Dawn-Chromatica-CD-1024x1024.png'),
+        ('77','https://i.ibb.co/Zhnddn5/Dawn-Chromatica-CD-1024x1024.png'),
+        ('78','https://i.ibb.co/TmL1hw4/lady-gaga-dawn-of-chromatica-vinil-frente.png'),
+        ('78','https://i.ibb.co/TmL1hw4/lady-gaga-dawn-of-chromatica-vinil-frente.png');
+
+/*MADONNA*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('79','https://i.ibb.co/3WY1JNZ/9a7ae3598fb5a5e92bf07281e598cbfc.jpg');
+
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values
+        ('80','https://i.ibb.co/DbvQN5Y/5078113064-1.webp');
+
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values
+        ('81','https://i.ibb.co/PjgWKxq/D-NQ-NP-691784-MLB31268774076-062019-O.jpg'),
+        ('82','https://i.ibb.co/F8pDr0t/vinil-duplo-madonna-madame-x-2lp-main-importado-vinil-duplo-madonna-madame-x-2lp-ma-00602577582776-0.webp');
