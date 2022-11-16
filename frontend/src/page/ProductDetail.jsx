@@ -21,12 +21,15 @@ const ProductDetail = () => {
   const { artist } = useParams();
   const { album } = useParams();
 
+  const nameFormat = ['CD','CASSETE','BOX','DVD','VINIL'];
+
   const [dataArtist, SetDataArtist] = useState([]);
   const [dataAlbum, SetDataAlbum] = useState([]);
   const [dataVersionAlbum, SetDataVersionAlbum] = useState([]);
   const [dataProductAlbum, SetDataProductAlbum] = useState([]);
   const [dataImgProductAlbum, SetDataImgProductAlbum] = useState([]);
   const [dataBundledProductVersions, SetDataBundledProductVersions] = useState([]);
+  const [dataGroupedProductImages, SetDataGroupedProductImages] = useState([]);
 
   const [formatStockAvailable, SetFormatStockAvailable] = useState([]);
 
@@ -54,7 +57,7 @@ const ProductDetail = () => {
   }, [dataVersionAlbum, optionVersionAlbum]);
 
   useEffect(() => {
-    if (dataAlbum.length !== 0){
+    if (dataAlbum.length !== 0) {
       api.get(`/products/${dataAlbum.cd_album}`).then((response) => {
         SetDataProductAlbum(response.data.result);
       });
@@ -69,6 +72,13 @@ const ProductDetail = () => {
       return product.version
     })
     return dataProductAlbumAux;
+  }
+
+  const GroupingImagesProductByProduct = () => {
+    const groupedProductImagesAux = _.groupBy(dataImgProductAlbum, (product) => {
+      return product.product
+    })
+    SetDataGroupedProductImages(groupedProductImagesAux);
   }
 
   const HowIsTheStockOfFormats = () => {
@@ -89,7 +99,9 @@ const ProductDetail = () => {
 
   useEffect(() => HowIsTheStockOfFormats(), [idOptionVersion]);
 
-  //useEffect(() => if(dataImgProductAlbum.length !== 0) SetProductPhoto())
+  useEffect(() => {
+    if (dataImgProductAlbum.length !== 0) GroupingImagesProductByProduct()
+  }, [dataImgProductAlbum])
 
   const {
     color,
@@ -100,7 +112,7 @@ const ProductDetail = () => {
 
   if (dataArtist.length === 0 || dataAlbum.length === 0 || dataBundledProductVersions.length === 0
     || dataVersionAlbum.length === 0 || dataProductAlbum.length === 0 || idOptionVersion === 0 ||
-    formatStockAvailable === {} || dataImgProductAlbum.length === 0) {
+    formatStockAvailable === {} || dataImgProductAlbum.length === 0 || dataGroupedProductImages.length === 0) {
     return (<Loading />)
   }
 
@@ -108,17 +120,28 @@ const ProductDetail = () => {
     SetOptionVersionAlbum(keyOption);
     SetIdOptionVersion(codeVersion);
     SetProductFormat(0);
+    SetProductPhoto(0);
   }
 
-  console.log(dataProductAlbum);
-  console.log(dataImgProductAlbum);
-  //console.log(dataBundledProductVersions[idOptionVersion])
+  const ChoseProductFormatClick = (key) => {
+    SetProductFormat(key);
+    SetProductPhoto(0);
+  }
+  //console.log(dataProductAlbum);
+  //console.log(dataImgProductAlbum);
+  //console.log(dataGroupedProductImages);
+  //console.log(dataBundledProductVersions[idOptionVersion][productFormat]);
+  //console.log(dataBundledProductVersions);
+  //console.log(dataGroupedProductImages[formatStockAvailable[1][productFormat].code][productPhoto].image)
   //console.log(dataAlbum);
   //console.log(dataVersionAlbum)
   //console.log(dataArtist);
-  //console.log(formatStockAvailable)
-  //console.log(idOptionVersion)
-  //console.log(productFormat);
+  //console.log(formatStockAvailable[1][productFormat])
+  console.log(idOptionVersion)
+  console.log(productFormat);
+  console.log(productPhoto);
+  //console.log(dataGroupedProductImages[formatStockAvailable[1][productFormat].code])
+  //console.log(dataGroupedProductImages[dataBundledProductVersions[idOptionVersion][productFormat].code])
 
   return (
     <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-center text-${colorIsDarkOrLight}`}
@@ -175,11 +198,11 @@ const ProductDetail = () => {
                 {formatStockAvailable['1'].map((format, key) => (
                   <button
                     key={key}
-                    onClick={() => SetProductFormat(key)}
+                    onClick={() => ChoseProductFormatClick(key)}
                     className={`bg-${colorIsDarkOrLight} fs-4 rounded d-flex justify-content-center align-items-center`}
                     style={{ color: `${color}`, height: '6vh', width: '12vh', cursor: 'point' }}
                   >
-                    {format.format}
+                    {nameFormat[format.format - 1]}
                   </button>
                 ))}
               </div>
@@ -216,41 +239,70 @@ const ProductDetail = () => {
           }
         </div>
 
-        {formatStockAvailable['1'] !== undefined &&
-          <div
-            className='d-flex gap-5 flex-column justify-content-center align-items-center'
-            style={{ color: 'white', width: '35vh', marginBottom: '2vh' }}
-          >
-            <div className='d-flex flex-column justify-content-center align-items-center'>
-              <h1 className='m-2' style={{ fontSize: '10vh' }}>{dataBundledProductVersions[idOptionVersion][productFormat].price}</h1>
 
-              <div className='d-flex flex-row justify-content-center align-items-center m-1'>
-                <button type='button' style={{
-                  backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
-                  fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
-                }}
-                >
-                  -
-                </button>
-                <p className="m-1">1</p>
-                <button type='button' style={{
-                  backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
-                  fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
-                }}
-                >
-                  +
-                </button>
+        {formatStockAvailable['1'] !== undefined &&
+          <>
+            <div
+              className='d-flex gap-2 flex-column justify-content-center align-items-center rounded p-2'
+              style={{ color: `${color}`, width: '45vh', border: `1px solid ${color}`,minHeight: '52.5vh' }}
+            >
+              <ReactImageMagnify {...{
+                smallImage: {
+                  alt: '',
+                  isFluidWidth: true,
+                  sizes: '1220x1220',
+                  src: dataGroupedProductImages[formatStockAvailable[1][productFormat].code][productPhoto].image
+                },
+                largeImage: {
+                  src: dataGroupedProductImages[formatStockAvailable[1][productFormat].code][productPhoto].image,
+                  width: 1200,
+                  height: 1200
+                },
+              }} />
+              <div className='d-flex gap-2 flex-row justify-content-center align-items-center'>
+                {dataGroupedProductImages[formatStockAvailable[1][productFormat].code].map((image, key) =>
+                  <img
+                    onClick={() => SetProductPhoto(key)}
+                    key={key} src={image.image} alt=''
+                    className='rounded' style={{ width: '5.5vh', height: '5.5vh', cursor: 'pointer',border: `1px solid ${color}` }} />
+                )}
               </div>
-              <button type='button'
-                className='rounded m-2 fs-5'
-                style={{
-                  backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)',
-                  width: '35vh', height: '7vh'
-                }}
-              >COMPRAR</button>
             </div>
 
-          </div>
+            <div
+              className='d-flex gap-5 flex-column justify-content-center align-items-center'
+              style={{ color: 'white', width: '35vh', marginBottom: '2vh' }}
+            >
+              <div className='d-flex flex-column justify-content-center align-items-center'>
+                <h1 className='m-2' style={{ fontSize: '10vh' }}>{dataBundledProductVersions[idOptionVersion][productFormat].price}</h1>
+
+                <div className='d-flex flex-row justify-content-center align-items-center m-1'>
+                  <button type='button' style={{
+                    backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
+                    fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
+                  }}
+                  >
+                    -
+                  </button>
+                  <p className="m-1">1</p>
+                  <button type='button' style={{
+                    backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
+                    fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
+                  }}
+                  >
+                    +
+                  </button>
+                </div>
+                <button type='button'
+                  className='rounded m-2 fs-5'
+                  style={{
+                    backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)',
+                    width: '35vh', height: '7vh'
+                  }}
+                >COMPRAR</button>
+              </div>
+            </div>
+          </>
         }
       </div>
 
