@@ -16,12 +16,16 @@ import { Link } from 'react-router-dom'
 import { _ } from 'lodash'
 import api from '../services/api';
 
+import {
+  BsFacebook, BsInstagram, BsTwitter, BsWhatsapp,
+} from 'react-icons/bs'
+
 const ProductDetail = () => {
 
   const { artist } = useParams();
   const { album } = useParams();
 
-  const nameFormat = ['CD','CASSETE','BOX','DVD','VINIL'];
+  const nameFormat = ['CD', 'CASSETE', 'BOX', 'DVD', 'VINIL'];
 
   const [dataArtist, SetDataArtist] = useState([]);
   const [dataAlbum, SetDataAlbum] = useState([]);
@@ -75,9 +79,9 @@ const ProductDetail = () => {
   }
 
   const GroupingImagesProductByProduct = () => {
-    let groupedProductImagesAux; 
-    
-    if(dataImgProductAlbum.length !== 0)
+    let groupedProductImagesAux;
+
+    if (dataImgProductAlbum.length !== 0)
       groupedProductImagesAux = _.groupBy(dataImgProductAlbum, (product) => {
         return product.product
       })
@@ -115,7 +119,7 @@ const ProductDetail = () => {
     getColor,
   } = useGetColor();
 
-  
+
   const ChoseAlbumCoverClick = (keyOption, codeVersion) => {
     SetOptionVersionAlbum(keyOption);
     SetIdOptionVersion(codeVersion);
@@ -143,11 +147,11 @@ const ProductDetail = () => {
   //console.log(productPhoto);
   //console.log(dataGroupedProductImages[formatStockAvailable[1][productFormat].code])
   //console.log(dataGroupedProductImages[dataBundledProductVersions[idOptionVersion][productFormat].code])
-  
+
   if (dataArtist.length === 0 || dataAlbum.length === 0 || dataBundledProductVersions.length === 0
     || dataVersionAlbum.length === 0 || dataProductAlbum.length === 0 || idOptionVersion === 0 ||
     formatStockAvailable === {} || dataImgProductAlbum === 1 || dataGroupedProductImages === 1) {
-      return (<Loading />)
+    return (<Loading />)
   }
 
   return (
@@ -163,8 +167,41 @@ const ProductDetail = () => {
         <Link to={`/perfil/${dataArtist.slug}`} className={`text-decoration-none text-${colorIsDarkOrLight}`}>{dataArtist.name}</Link>
       </div>
 
+      <div
+        className='d-flex gap-4 flex-row justify-content-center align-items-center'
+        style={{ width: '85%', margin: '3.5vh' }}
+      >
+        <a
+          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsDarkOrLight} rounded-circle`}
+          style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
+          href="https://www.facebook.com">
+          <BsFacebook style={{ width: '60%', height: '60%' }} />
+        </a>
+
+        <a
+          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsDarkOrLight} rounded-circle`}
+          style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
+          href="https://www.instagram.com">
+          <BsInstagram style={{ width: '60%', height: '60%' }} />
+        </a>
+
+        <a
+          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsDarkOrLight} rounded-circle`}
+          style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
+          href="https://twitter.com/home">
+          <BsTwitter style={{ width: '60%', height: '60%' }} />
+        </a>
+
+        <a
+          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsDarkOrLight} rounded-circle`}
+          style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
+          href="https://www.youtube.com">
+          <BsWhatsapp style={{ width: '60%', height: '60%' }} />
+        </a>
+      </div>
+
       <div className='container-fluid d-flex gap-4 flex-wrap h-75 w-100 justify-content-center align-items-center'
-        style={{ marginTop: '5vh', marginBottom: '5vh' }}>
+        style={{ marginTop: '2.5vh', marginBottom: '5vh' }}>
 
         <div
           className='d-flex gap-1 flex-column justify-content-center align-items-center rounded'
@@ -251,7 +288,7 @@ const ProductDetail = () => {
           <>
             <div
               className='d-flex gap-2 flex-column justify-content-center align-items-center rounded p-2'
-              style={{ color: `${color}`, width: '45vh', border: `1px solid ${color}`,minHeight: '52.5vh' }}
+              style={{ color: `${color}`, width: '45vh', border: `1px solid ${color}`, minHeight: '52.5vh' }}
             >
               <ReactImageMagnify {...{
                 smallImage: {
@@ -271,7 +308,7 @@ const ProductDetail = () => {
                   <img
                     onClick={() => SetProductPhoto(key)}
                     key={key} src={image.image} alt=''
-                    className='rounded' style={{ width: '5.5vh', height: '5.5vh', cursor: 'pointer',border: `1px solid ${color}` }} />
+                    className='rounded' style={{ width: '5.5vh', height: '5.5vh', cursor: 'pointer', border: `1px solid ${color}` }} />
                 )}
               </div>
             </div>

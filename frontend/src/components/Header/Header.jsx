@@ -31,7 +31,7 @@ const Header = (props) => {
 
   return (
     <header
-      className={`flex-row container-fluid d-flex position-absolute top-0 start-0
+      className={`flex-row container-fluid d-flex position-absolute top-0 start-0 m-0 p-0
                   justify-content-center align-items-center text-${props.colorIsDarkOrLight}`}
       style={{ height: '10%', width: '100%' }}>
 

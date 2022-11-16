@@ -19,13 +19,9 @@ const Desktop = (props) => {
     const [openSnackBar, SetOpenSnackbar] = useState(false);
     const navigateDesk = useNavigate();
 
-    const searchInput = document.getElementById('input-search-desk');
-
     const SearchOption = () => {
-        if (searchInput.value.length < 3) {
-            SetOpenSnackbar(true);
-            searchInput.focus();
-        } else navigateDesk('/busca');
+        const searchInput = document.querySelector(".search-field");
+        if (searchInput.value.length < 3) SetOpenSnackbar(true);
     }
 
     const handleClose = (event, reason) => {
@@ -35,55 +31,67 @@ const Desktop = (props) => {
 
     return (
         <div
-            className={`flex-row container-fluid d-flex position-absolute top-0 start-0
+            className={`row container-fluid d-flex position-absolute top-0 start-0 m-0 p-0
             justify-content-center align-items-center text-${props.colorIsDarkOrLight}`}
         >
+            <div
+                className={`w-100 d-flex  justify-content-center align-items-center text-${props.colorIsDarkOrLight}`}
+            >
+                <nav id='LinksHeader' className='col d-flex justify-content-star align-items-center ms-4 gap-4'>
+                    <Link to='/artista' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>ARTISTAS</Link>
+                    <Link to='/formato' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>FORMATOS</Link>
+                    <Link to='/prevenda' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>PRÉ-VENDA</Link>
+                    <Link to='/lancamento' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>LANÇAMENTOS</Link>
+                </nav>
 
-            <nav id='LinksHeader' className='col d-flex justify-content-star align-items-center ms-4 gap-4'>
-                <Link to='/artista' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>ARTISTAS</Link>
-                <Link to='/formato' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>FORMATOS</Link>
-                <Link to='/prevenda' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>PRÉ-VENDA</Link>
-                <Link to='/lancamento' className={`text-decoration-none text-${props.colorIsDarkOrLight}`}>LANÇAMENTOS</Link>
-            </nav>
+                <div id='Cart' className='col d-flex justify-content-center align-items-center'>
+                    <Logo size={55} color={props.colorIsDarkOrLight} />
+                </div>
 
-            <div id='Cart' className='col d-flex justify-content-center align-items-center'>
-                <Logo size={55} color={props.colorIsDarkOrLight} />
-            </div>
-
-            <div id='IconOption' className='col d-flex justify-content-end align-items-center me-4 gap-4'>
-                <Tooltip title="Buscar">
-                    <div id='div-search-desk' className='d-flex flex-row gap-1 justify-content-center align-items-center'>
-                        <input type="text" id='input-search-desk' className='style' pattern='[A-Za-z]' minLength='3'
-                            placeholder='Busque por um artista ou albúm' style={{ width: '30vh' }}
-                        />
+                <div id='IconOption' className='col d-flex justify-content-end align-items-center me-4 gap-4'>
+                    <Tooltip title="Buscar">
                         <button type='button' id='button-search-desk'
                             style={{ display: 'flex' }} onClick={() => SearchOption()}
-                            className={`bg-transparent text-${props.colorIsDarkOrLight}`}><HiSearch className='fs-5 ' /></button>
-                    </div>
-                </Tooltip>
+                            className={`bg-transparent text-${props.colorIsDarkOrLight}`}>
+                            <HiSearch className='fs-5' />
+                        </button>
+                    </Tooltip>
 
-                <Snackbar open={openSnackBar} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
-                        Por favor, digite pelo menos 3 caracteres para pesquisar!
-                    </Alert>
-                </Snackbar>
+                    <Snackbar open={openSnackBar} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
+                            Por favor, digite pelo menos 3 caracteres para pesquisar!
+                        </Alert>
+                    </Snackbar>
 
-                <Tooltip title="Perfil">
-                    <Link to={'/login'} className={`bg-transparent text-${props.colorIsDarkOrLight}`}><IoPerson className='fs-5 ' /></Link>
-                </Tooltip>
+                    <Tooltip title="Perfil">
+                        <Link to={'/login'} className={`bg-transparent text-${props.colorIsDarkOrLight}`}><IoPerson className='fs-5 ' /></Link>
+                    </Tooltip>
 
+                    <Tooltip
+                        title="Carrinho"
+                        onClick={() => props.setIsDrawerCartOpen(true)}
+                    >
+                        <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><BsFillBagFill className='fs-5 ' /></button>
+                    </Tooltip>
 
-                <Tooltip
-                    title="Carrinho"
-                    onClick={() => props.setIsDrawerCartOpen(true)}
+                    <Cart
+                        colorIsDarkOrLight={props.colorIsDarkOrLight} color={props.color} colorIsWhiteOrBlack={props.colorIsWhiteOrBlack}
+                        isDrawerCartOpen={props.isDrawerCartOpen} setIsDrawerCartOpen={props.setIsDrawerCartOpen}
+                    />
+                </div>
+            </div>
+
+            <div
+                className='d-none justify-content-center align-items-center m-2 p-0 w-100 overflow-hidden'
+                style={{ height: '15vh', border: '5px solid var(--color)', borderRadius: '0px 0px 10px 10px' }}
+            >
+                <form
+                    
+                    id='form'
+                    className='search-form w-100 h-100 d-flex justify-content-center align-items-center p-0'
                 >
-                    <button className={`bg-transparent text-${props.colorIsDarkOrLight}`}><BsFillBagFill className='fs-5 ' /></button>
-                </Tooltip>
-
-                <Cart
-                    colorIsDarkOrLight={props.colorIsDarkOrLight} color={props.color} colorIsWhiteOrBlack={props.colorIsWhiteOrBlack}
-                    isDrawerCartOpen={props.isDrawerCartOpen} setIsDrawerCartOpen={props.setIsDrawerCartOpen}
-                />
+                    <input placeholder='O QUE VOCÊ PROCURA?' className='search-field w-100 h-100' type="text" />
+                </form>
             </div>
         </div>
     )
