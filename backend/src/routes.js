@@ -5,6 +5,7 @@ const ArtistController = require('./controllers/ArtistController');
 const AlbumController = require('./controllers/AlbumController');
 const VersionController = require('./controllers/VersionController');
 const ProductController = require('./controllers/ProductController');
+const ImgProductController = require('./controllers/ImgProductController');
 
 router.get('/artists', ArtistController.ListArtists);
 router.get('/artist/:slug', ArtistController.ShowArtist);
@@ -17,6 +18,7 @@ router.get('/versions/:album', VersionController.ListVersionsByAlbum);
 
 router.get('/products/:album', ProductController.ListProductsByAlbum);
 
+router.get('/images/products/:album', ImgProductController.ListImgProductsByAlbum);
 
 module.exports = router;
 

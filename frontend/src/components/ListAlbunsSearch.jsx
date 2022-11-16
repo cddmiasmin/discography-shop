@@ -29,8 +29,6 @@ const ListAlbunsSearch = (props) => {
         return groupVersionsByAlbum;
     }
 
-    console.log(artistAlbums)
-
     const versionsAlbumsGrouped = GroupAlbumVersions(versionsAlbums);
 
     if (artistAlbums === 1) return (<Loading />);

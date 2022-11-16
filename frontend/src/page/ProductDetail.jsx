@@ -25,12 +25,16 @@ const ProductDetail = () => {
   const [dataAlbum, SetDataAlbum] = useState([]);
   const [dataVersionAlbum, SetDataVersionAlbum] = useState([]);
   const [dataProductAlbum, SetDataProductAlbum] = useState([]);
+  const [dataImgProductAlbum, SetDataImgProductAlbum] = useState([]);
   const [dataBundledProductVersions, SetDataBundledProductVersions] = useState([]);
 
   const [formatStockAvailable, SetFormatStockAvailable] = useState([]);
+
+  const [productPhoto, SetProductPhoto] = useState(0);
+  const [productFormat, SetProductFormat] = useState(0);
   const [optionVersionAlbum, SetOptionVersionAlbum] = useState(0);
   const [idOptionVersion, SetIdOptionVersion] = useState(0);
-  const [productPhoto, SetProductPhoto] = useState(0);
+
   const [letMeKnowWhenItArrivesModalIsOpen, SetLetMeKnowWhenItArrivesModalIsOpen] = useState(false);
 
   useEffect(() => {
@@ -46,17 +50,18 @@ const ProductDetail = () => {
   }, []);
 
   useEffect(() => {
-    if (dataVersionAlbum.length !== 0) {
-      getColor(dataVersionAlbum[optionVersionAlbum].cover);
-      SetIdOptionVersion(dataVersionAlbum[0].code);
-    }
+    if (dataVersionAlbum.length !== 0) getColor(dataVersionAlbum[optionVersionAlbum].cover);
   }, [dataVersionAlbum, optionVersionAlbum]);
 
   useEffect(() => {
-    if (dataAlbum.length !== 0)
+    if (dataAlbum.length !== 0){
       api.get(`/products/${dataAlbum.cd_album}`).then((response) => {
         SetDataProductAlbum(response.data.result);
       });
+      api.get(`/images/products/${dataAlbum.cd_album}`).then((response) => {
+        SetDataImgProductAlbum(response.data.result);
+      });
+    }
   }, [dataAlbum]);
 
   const GroupingProductVersions = (data) => {
@@ -66,24 +71,25 @@ const ProductDetail = () => {
     return dataProductAlbumAux;
   }
 
-  const HowIsTheStockOfFormats = (data) => _.groupBy(data, (format) => format.situation);
+  const HowIsTheStockOfFormats = () => {
+    const formatStockAvailableAux = _.groupBy(dataBundledProductVersions[idOptionVersion], (format) => {
+      return format.situation
+    })
+
+    SetFormatStockAvailable(formatStockAvailableAux);
+  }
 
   useEffect(() => {
     if (dataProductAlbum.length !== 0) {
       SetDataBundledProductVersions(GroupingProductVersions(dataProductAlbum));
-      SetFormatStockAvailable(HowIsTheStockOfFormats(dataBundledProductVersions[idOptionVersion]));
+      SetIdOptionVersion(dataVersionAlbum[0].code);
+      HowIsTheStockOfFormats();
     }
   }, [dataProductAlbum]);
 
-  //console.log(dataProductAlbum);
-  //console.log(dataBundledProductVersions)
-  //console.log(dataAlbum);
-  //console.log(dataVersionAlbum)
-  //console.log(dataArtist);
-  console.log(formatStockAvailable)
+  useEffect(() => HowIsTheStockOfFormats(), [idOptionVersion]);
 
-  const [productFormat, SetProductFormat] = useState(0);
-  
+  //useEffect(() => if(dataImgProductAlbum.length !== 0) SetProductPhoto())
 
   const {
     color,
@@ -94,15 +100,25 @@ const ProductDetail = () => {
 
   if (dataArtist.length === 0 || dataAlbum.length === 0 || dataBundledProductVersions.length === 0
     || dataVersionAlbum.length === 0 || dataProductAlbum.length === 0 || idOptionVersion === 0 ||
-    formatStockAvailable.length === 0
-    ) {
+    formatStockAvailable === {} || dataImgProductAlbum.length === 0) {
     return (<Loading />)
   }
 
   const ChoseAlbumCoverClick = (keyOption, codeVersion) => {
     SetOptionVersionAlbum(keyOption);
     SetIdOptionVersion(codeVersion);
+    SetProductFormat(0);
   }
+
+  console.log(dataProductAlbum);
+  console.log(dataImgProductAlbum);
+  //console.log(dataBundledProductVersions[idOptionVersion])
+  //console.log(dataAlbum);
+  //console.log(dataVersionAlbum)
+  //console.log(dataArtist);
+  //console.log(formatStockAvailable)
+  //console.log(idOptionVersion)
+  //console.log(productFormat);
 
   return (
     <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-center text-${colorIsDarkOrLight}`}
@@ -122,7 +138,7 @@ const ProductDetail = () => {
 
         <div
           className='d-flex gap-1 flex-column justify-content-center align-items-center rounded'
-          style={{ backgroundColor: `${color}`, height: '50vh', width: '37vh' }}
+          style={{ backgroundColor: `${color}`, minHeight: '52.5vh', width: '37vh' }}
         >
           <h6 className='m-0'>Escolha a versão ou capa</h6>
           <div className='d-flex w-100 flex-row gap-2 justify-content-center align-items-center' >
@@ -144,7 +160,7 @@ const ProductDetail = () => {
             src={dataVersionAlbum[optionVersionAlbum].cover} alt='Imagem do album'
           />
 
-          <h4 className='m-0'>{dataVersionAlbum[optionVersionAlbum].description}</h4>
+          <h4 align="center" className='m-0'>{dataVersionAlbum[optionVersionAlbum].description}</h4>
         </div>
 
         <div
@@ -169,28 +185,113 @@ const ProductDetail = () => {
               </div>
             </div>
           }
+
+          {formatStockAvailable['0'] !== undefined &&
+            <div className='d-flex flex-column justify-content-center align-items-center w-100'>
+              <h2 className='m-0'>SEM ESTOQUE</h2>
+              <div style={{ backgroundColor: `${color}`, height: '1vh', width: '35vh', marginBottom: '2vh' }} />
+              <div className='d-flex flex-wrap gap-1 justify-content-center align-items-center'>
+                {formatStockAvailable['0'].map((format, key) => (
+                  <button
+                    key={key}
+                    className={`bg-${colorIsDarkOrLight} fs-4 rounded d-flex justify-content-center align-items-center`}
+                    style={{ color: `${color}`, height: '6vh', width: '12vh', cursor: 'default' }}
+                  >
+                    {format.format}
+                  </button>
+                ))}
+                <button
+                  className={`text-${colorIsDarkOrLight} fs-5 rounded d-flex justify-content-center align-items-center m-1`}
+                  style={{ backgroundColor: `${color}`, height: '6vh', width: '30vh', cursor: 'point' }}
+                  onClick={() => SetLetMeKnowWhenItArrivesModalIsOpen(true)}
+                >
+                  AVISE-ME QUANDO CHEGAR
+                </button>
+                <LetMeKnowWhenItArrives
+                  letMeKnowWhenItArrivesModalIsOpen={letMeKnowWhenItArrivesModalIsOpen}
+                  SetLetMeKnowWhenItArrivesModalIsOpen={SetLetMeKnowWhenItArrivesModalIsOpen}
+                  formatStockAvailable={formatStockAvailable['0']} />
+              </div>
+            </div>
+          }
         </div>
+
+        {formatStockAvailable['1'] !== undefined &&
+          <div
+            className='d-flex gap-5 flex-column justify-content-center align-items-center'
+            style={{ color: 'white', width: '35vh', marginBottom: '2vh' }}
+          >
+            <div className='d-flex flex-column justify-content-center align-items-center'>
+              <h1 className='m-2' style={{ fontSize: '10vh' }}>{dataBundledProductVersions[idOptionVersion][productFormat].price}</h1>
+
+              <div className='d-flex flex-row justify-content-center align-items-center m-1'>
+                <button type='button' style={{
+                  backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
+                  fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
+                }}
+                >
+                  -
+                </button>
+                <p className="m-1">1</p>
+                <button type='button' style={{
+                  backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
+                  fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
+                }}
+                >
+                  +
+                </button>
+              </div>
+              <button type='button'
+                className='rounded m-2 fs-5'
+                style={{
+                  backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)',
+                  width: '35vh', height: '7vh'
+                }}
+              >COMPRAR</button>
+            </div>
+
+          </div>
+        }
       </div>
 
+      {formatStockAvailable['1'] !== undefined &&
+        <div
+          className='d-flex flex-column justify-content-center align-items-star'
+          style={{ marginTop: '5vh', marginBottom: '5vh', width: '85%', color: 'white' }}
+        >
+          <h1 className='d-flex justify-content-center align-items-center' style={{ color: 'var(--color)' }}>CONHEÇA ESSE PRODUTO</h1>
+          <div className='rounded w-100' style={{ height: '0.5vh', backgroundColor: 'var(--color)' }} />
+          <div className='p-4 d-flex flex-column justify-content-center align-items-center gap-2' >
+            <p dangerouslySetInnerHTML={{ __html: dataBundledProductVersions[idOptionVersion][productFormat].description }} className="w-100 text-decoration-none" align="justify" />
 
-      <div
-        className='d-flex flex-column justify-content-center align-items-star'
-        style={{ marginTop: '5vh', marginBottom: '5vh', width: '85%', color: 'white' }}
-      >
-        <h1 className='d-flex justify-content-center align-items-center' style={{ color: 'var(--color)' }}>CONHEÇA ESSE PRODUTO</h1>
-        <div className='rounded w-100' style={{ height: '0.5vh', backgroundColor: 'var(--color)' }} />
-        <div className='p-4 d-flex flex-column justify-content-center align-items-center gap-2' >
-          <p dangerouslySetInnerHTML={{ __html: dataBundledProductVersions[idOptionVersion][productFormat].description }} className="w-100 text-decoration-none" align="justify" />
-
-          <div className='d-flex flex-column justify-content-center align-items-star w-100'>
-            <h4 style={{ color: 'var(--color)' }}>ESPECIFICAÇÕES</h4>
-            <p className='m-0'><b>Altura:</b> x centímetros</p>
-            <p className='m-0'><b>Largura:</b> x centímetros</p>
-            <p className='m-0'><b>Comprimento:</b> x centímetros</p>
-            <p className='m-0'><b>Peso:</b> x gramas</p>
+            <div className='d-flex flex-column justify-content-center align-items-star w-100'>
+              <h4 style={{ color: 'var(--color)' }}>ESPECIFICAÇÕES</h4>
+              <div className='d-flex flex-row justify-content-star align-items-star gap-1'>
+                <p className='m-0' style={{ color: `${color}` }}>Altura:</p>
+                <p className='m-0'>{dataBundledProductVersions[idOptionVersion][productFormat].height}</p>
+                <p className='m-0'>cm</p>
+              </div>
+              <div className='d-flex flex-row justify-content-star align-items-star gap-1'>
+                <p className='m-0' style={{ color: `${color}` }}>Largura:</p>
+                <p className='m-0'>{dataBundledProductVersions[idOptionVersion][productFormat].width}</p>
+                <p className='m-0'>cm</p>
+              </div>
+              <div className='d-flex flex-row justify-content-star align-items-star gap-1'>
+                <p className='m-0' style={{ color: `${color}` }}>Comprimento:</p>
+                <p className='m-0'>{dataBundledProductVersions[idOptionVersion][productFormat].length}</p>
+                <p className='m-0'>cm</p>
+              </div>
+              <div className='d-flex flex-row justify-content-star align-items-star gap-1'>
+                <p className='m-0' style={{ color: `${color}` }}>Peso:</p>
+                <p className='m-0'>{dataBundledProductVersions[idOptionVersion][productFormat].weight}</p>
+                <p className='m-0'>g</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      }
+
+      <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
     </div >
   )
 }
