@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './format.css'
 
@@ -6,14 +6,77 @@ import Header from './../../components/Header/Header'
 import Album from './../../components/Album/Album'
 import Footer from './../../components/Footer/Footer'
 
+import api from '../../services/api'
+
 import { useGetColor } from './../../functions/useGetColor'
 import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage'
 
-import { dataArtist } from '../../data/dataArtist'
+import { _ } from 'lodash';
+import Loading from '../../components/Loading'
 
 const Formats = () => {
 
-  const formats = ['BOX', 'CASSETE', 'CD', 'DVD', 'VINIL'];
+  const [dataFormats, SetDataFormats] = useState([]);
+  const [dataAlbumByFormat, SetDataAlbumByFormat] = useState([]);
+  const [dataVersionsByFormat, SetDataVersionsByFormat] = useState([]);
+  const [dataArtistsByFormat, SetDataArtistsByFormat] = useState([]);
+
+  const [versionsAlbumsGrouped, SetVersionsAlbumsGrouped] = useState(1);
+  const [artistsGrouped, SetArtistsGrouped] = useState(1);
+  const [optionFormatSelected, SetOptionFormatSelected] = useState(1);
+
+  const GroupAlbumVersions = (data) => {
+    const groupVersionsByAlbum = _.groupBy(data, (album) => {
+      return album.album
+    })
+    SetVersionsAlbumsGrouped(groupVersionsByAlbum);
+  }
+
+  const GroupArtists = (data) => {
+    const groupArtistsAux = _.groupBy(data, (artist) => {
+      return artist.code
+    })
+
+    SetArtistsGrouped(groupArtistsAux);
+  }
+
+  useEffect(() => {
+    api.get(`/formats`).then((response) => {
+      SetDataFormats(response.data.result);
+    });
+
+    SetBannerInPortraitOrLandscapeMode(data.landscape);
+    ChooseImageForTheBanner();
+    //document.getElementById('#format-option-0').classList.add('selected');
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
+  }, []);
+
+  useEffect(() => {
+    if (dataFormats.length !== 0) SetOptionFormatSelected(dataFormats[0].code);
+  }, [dataFormats]);
+
+  useEffect(() => {
+    api.get(`/format/albums/${optionFormatSelected}`).then((response) => {
+      SetDataAlbumByFormat(response.data.result);
+    });
+
+    api.get(`/format/versions/${optionFormatSelected}`).then((response) => {
+      SetDataVersionsByFormat(response.data.result);
+    });
+
+    api.get(`/format/artists/${optionFormatSelected}`).then((response) => {
+      SetDataArtistsByFormat(response.data.result);
+    });
+  }, [optionFormatSelected]);
+
+  useEffect(() => {
+    if (dataVersionsByFormat.length !== 0) GroupAlbumVersions(dataVersionsByFormat);
+  }, [dataVersionsByFormat]);
+
+  useEffect(() => {
+    if (dataArtistsByFormat.length !== 0) GroupArtists(dataArtistsByFormat);
+  }, [dataArtistsByFormat]);
+
   const {
     color,
     colorIsDarkOrLight,
@@ -29,17 +92,32 @@ const Formats = () => {
     ChooseImageForTheBanner,
   } = useChooseBackgroundImage();
 
-  useEffect(() => {
-    SetBannerInPortraitOrLandscapeMode(data.landscape);
-    ChooseImageForTheBanner();
-    document.getElementById('format-option-0').classList.add('selected');
-  }, [])
+  const ChooseFormatOption = (key, code) => {
+    if(code === optionFormatSelected) return;
+    else {
+      //document.querySelector('.selected').classList.remove('selected');
+      //document.getElementById(`format-option-${key}`).classList.add('selected');
+      SetVersionsAlbumsGrouped(1);
+      SetArtistsGrouped(1);
+      SetOptionFormatSelected(code);
+    }
+  }
 
-  useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl))
+  //console.log(dataFormats);
+  //console.log(dataAlbumByFormat);
+  //console.log(dataVersionsByFormat);
+  //console.log(dataArtistsByFormat);
+  //console.log(versionsAlbumsGrouped);
+  //console.log(versionsAlbumsGrouped[6][0].cover);
+  //console.log(artistsGrouped[101][0].name);
+  //console.log(optionFormatSelected)
+  //console.log(artistsGrouped);
 
-  const ChooseFormatOption = (key) => {
-    document.querySelector('.selected').classList.remove('selected');
-    document.getElementById(`format-option-${key}`).classList.add('selected');
+  if ( dataFormats.length === 0
+    || dataAlbumByFormat.length === 0 || versionsAlbumsGrouped === 1
+    || dataArtistsByFormat.length === 0 || artistsGrouped === 1
+    || dataVersionsByFormat.length === 0) {
+    return (<Loading />)
   }
 
   return (
@@ -58,26 +136,28 @@ const Formats = () => {
         style={{ color: 'white', top: '15vh', zIndex: '2' }}
       > FORMATOS </div>
       <div className='w-100 d-flex flex-wrap flex-row gap-2 justify-content-center align-items-center'>
-        {formats.map((format, key) => (
+        {dataFormats.map((format, key) => (
           <div
             key={key}
             id={`format-option-${key}`}
-            onClick={() => ChooseFormatOption(key)}
+            onClick={() => ChooseFormatOption(key, format.code)}
             className='format-option fs-4 d-flex gap-3 justify-content-center align-items-center'
-            style={{color: 'white', width: '15vh', cursor: 'pointer'}}>
-            {format}
+            style={{ color: 'white', width: '15vh', cursor: 'pointer' }}>
+            {format.format}
           </div>
         ))}
       </div>
       <div className={`rounded `} style={{ backgroundColor: 'var(--color)', height: '0.5vh', width: '85%' }} />
-      <div className='d-flex flex-wrap justify-content-center align-items-end gap-5' style={{ marginTop: '4vh', marginBottom: '4vh', width: '85%' }}>
-        {dataArtist[1].album.map((album, key) =>
+      <div className='d-flex flex-wrap justify-content-center align-items-end gap-4' style={{ marginTop: '4vh', marginBottom: '4vh', width: '85%' }}>
+        {dataAlbumByFormat.map((album, key) =>
           <Album
             key={key}
-            cover={album.cover}
-            artist={dataArtist[1].name}
+            cover={versionsAlbumsGrouped[album.code][0].cover}
+            artist={artistsGrouped[album.artist][0].name}
             name={album.name}
-            year={album.year}
+            year={album.releaseDate}
+            slugArtist={artistsGrouped[album.artist][0].slug}
+            slugAlbum={album.slug}
           />
         )}
       </div>
