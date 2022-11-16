@@ -167,10 +167,10 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
         ('74','https://i.ibb.co/2YTMpKj/CD-Lady-Gaga-Chromatica-Standard2.png'),
         ('76','https://i.ibb.co/bJPRJWH/716y1-SCWDm-L-AC-SL1500.jpg'),
         ('77','https://i.ibb.co/6ZF2FW3/lady-gaga-dawn-of-chromatica-cd-frente.png'),
-        ('77','https://i.ibb.co/Zhnddn5/Dawn-Chromatica-CD-1024x1024.png'),
+        ('77','https://i.ibb.co/gJZGRBG/Dawn-Chromatica-CD-Detail-1024x1024.png'),
         ('77','https://i.ibb.co/Zhnddn5/Dawn-Chromatica-CD-1024x1024.png'),
         ('78','https://i.ibb.co/TmL1hw4/lady-gaga-dawn-of-chromatica-vinil-frente.png'),
-        ('78','https://i.ibb.co/TmL1hw4/lady-gaga-dawn-of-chromatica-vinil-frente.png');
+        ('78','https://i.ibb.co/jRWY1cd/Dawn-Chromatica-LP-64ea8bed-aa28-4ab1-b2e9-259b4d385db2-1024x1024.png');
 
 /*MADONNA*/
 insert into tb_cassandra_img_product(fk_product, url_img_product)

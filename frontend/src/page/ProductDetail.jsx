@@ -27,9 +27,9 @@ const ProductDetail = () => {
   const [dataAlbum, SetDataAlbum] = useState([]);
   const [dataVersionAlbum, SetDataVersionAlbum] = useState([]);
   const [dataProductAlbum, SetDataProductAlbum] = useState([]);
-  const [dataImgProductAlbum, SetDataImgProductAlbum] = useState([]);
+  const [dataImgProductAlbum, SetDataImgProductAlbum] = useState(1);
   const [dataBundledProductVersions, SetDataBundledProductVersions] = useState([]);
-  const [dataGroupedProductImages, SetDataGroupedProductImages] = useState([]);
+  const [dataGroupedProductImages, SetDataGroupedProductImages] = useState(1);
 
   const [formatStockAvailable, SetFormatStockAvailable] = useState([]);
 
@@ -75,9 +75,14 @@ const ProductDetail = () => {
   }
 
   const GroupingImagesProductByProduct = () => {
-    const groupedProductImagesAux = _.groupBy(dataImgProductAlbum, (product) => {
-      return product.product
-    })
+    let groupedProductImagesAux; 
+    
+    if(dataImgProductAlbum.length !== 0)
+      groupedProductImagesAux = _.groupBy(dataImgProductAlbum, (product) => {
+        return product.product
+      })
+    else groupedProductImagesAux = 0;
+
     SetDataGroupedProductImages(groupedProductImagesAux);
   }
 
@@ -110,12 +115,7 @@ const ProductDetail = () => {
     getColor,
   } = useGetColor();
 
-  if (dataArtist.length === 0 || dataAlbum.length === 0 || dataBundledProductVersions.length === 0
-    || dataVersionAlbum.length === 0 || dataProductAlbum.length === 0 || idOptionVersion === 0 ||
-    formatStockAvailable === {} || dataImgProductAlbum.length === 0 || dataGroupedProductImages.length === 0) {
-    return (<Loading />)
-  }
-
+  
   const ChoseAlbumCoverClick = (keyOption, codeVersion) => {
     SetOptionVersionAlbum(keyOption);
     SetIdOptionVersion(codeVersion);
@@ -127,9 +127,10 @@ const ProductDetail = () => {
     SetProductFormat(key);
     SetProductPhoto(0);
   }
+
   //console.log(dataProductAlbum);
   //console.log(dataImgProductAlbum);
-  //console.log(dataGroupedProductImages);
+  //console.log(dataGroupedProductImages !== 1);
   //console.log(dataBundledProductVersions[idOptionVersion][productFormat]);
   //console.log(dataBundledProductVersions);
   //console.log(dataGroupedProductImages[formatStockAvailable[1][productFormat].code][productPhoto].image)
@@ -137,11 +138,17 @@ const ProductDetail = () => {
   //console.log(dataVersionAlbum)
   //console.log(dataArtist);
   //console.log(formatStockAvailable[1][productFormat])
-  console.log(idOptionVersion)
-  console.log(productFormat);
-  console.log(productPhoto);
+  //console.log(idOptionVersion)
+  //console.log(productFormat);
+  //console.log(productPhoto);
   //console.log(dataGroupedProductImages[formatStockAvailable[1][productFormat].code])
   //console.log(dataGroupedProductImages[dataBundledProductVersions[idOptionVersion][productFormat].code])
+  
+  if (dataArtist.length === 0 || dataAlbum.length === 0 || dataBundledProductVersions.length === 0
+    || dataVersionAlbum.length === 0 || dataProductAlbum.length === 0 || idOptionVersion === 0 ||
+    formatStockAvailable === {} || dataImgProductAlbum === 1 || dataGroupedProductImages === 1) {
+      return (<Loading />)
+  }
 
   return (
     <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-center text-${colorIsDarkOrLight}`}
@@ -220,7 +227,7 @@ const ProductDetail = () => {
                     className={`bg-${colorIsDarkOrLight} fs-4 rounded d-flex justify-content-center align-items-center`}
                     style={{ color: `${color}`, height: '6vh', width: '12vh', cursor: 'default' }}
                   >
-                    {format.format}
+                    {nameFormat[format.format - 1]}
                   </button>
                 ))}
                 <button
@@ -314,28 +321,28 @@ const ProductDetail = () => {
           <h1 className='d-flex justify-content-center align-items-center' style={{ color: 'var(--color)' }}>CONHEÇA ESSE PRODUTO</h1>
           <div className='rounded w-100' style={{ height: '0.5vh', backgroundColor: 'var(--color)' }} />
           <div className='p-4 d-flex flex-column justify-content-center align-items-center gap-2' >
-            <p dangerouslySetInnerHTML={{ __html: dataBundledProductVersions[idOptionVersion][productFormat].description }} className="w-100 text-decoration-none" align="justify" />
+            <p dangerouslySetInnerHTML={{ __html: formatStockAvailable[1][productFormat].description }} className="w-100 text-decoration-none" align="justify" />
 
             <div className='d-flex flex-column justify-content-center align-items-star w-100'>
               <h4 style={{ color: 'var(--color)' }}>ESPECIFICAÇÕES</h4>
               <div className='d-flex flex-row justify-content-star align-items-star gap-1'>
                 <p className='m-0' style={{ color: `${color}` }}>Altura:</p>
-                <p className='m-0'>{dataBundledProductVersions[idOptionVersion][productFormat].height}</p>
+                <p className='m-0'>{formatStockAvailable[1][productFormat].height}</p>
                 <p className='m-0'>cm</p>
               </div>
               <div className='d-flex flex-row justify-content-star align-items-star gap-1'>
                 <p className='m-0' style={{ color: `${color}` }}>Largura:</p>
-                <p className='m-0'>{dataBundledProductVersions[idOptionVersion][productFormat].width}</p>
+                <p className='m-0'>{formatStockAvailable[1][productFormat].width}</p>
                 <p className='m-0'>cm</p>
               </div>
               <div className='d-flex flex-row justify-content-star align-items-star gap-1'>
                 <p className='m-0' style={{ color: `${color}` }}>Comprimento:</p>
-                <p className='m-0'>{dataBundledProductVersions[idOptionVersion][productFormat].length}</p>
+                <p className='m-0'>{formatStockAvailable[1][productFormat].length}</p>
                 <p className='m-0'>cm</p>
               </div>
               <div className='d-flex flex-row justify-content-star align-items-star gap-1'>
                 <p className='m-0' style={{ color: `${color}` }}>Peso:</p>
-                <p className='m-0'>{dataBundledProductVersions[idOptionVersion][productFormat].weight}</p>
+                <p className='m-0'>{formatStockAvailable[1][productFormat].weight}</p>
                 <p className='m-0'>g</p>
               </div>
             </div>
