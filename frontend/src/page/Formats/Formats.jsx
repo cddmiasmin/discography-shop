@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useLayoutEffect } from 'react'
 
 import './format.css'
 
@@ -16,6 +16,8 @@ import Loading from '../../components/Loading'
 
 const Formats = () => {
 
+  const elementRefOptionFormat = useRef([]);
+
   const [dataFormats, SetDataFormats] = useState([]);
   const [dataAlbumByFormat, SetDataAlbumByFormat] = useState([]);
   const [dataVersionsByFormat, SetDataVersionsByFormat] = useState([]);
@@ -23,7 +25,8 @@ const Formats = () => {
 
   const [versionsAlbumsGrouped, SetVersionsAlbumsGrouped] = useState(1);
   const [artistsGrouped, SetArtistsGrouped] = useState(1);
-  const [optionFormatSelected, SetOptionFormatSelected] = useState(1);
+  const [optionFormatSelected, SetOptionFormatSelected] = useState(0);
+  const [optionFormatSelectedOld, SetOptionFormatSelectedOld] = useState(optionFormatSelected);
 
   const GroupAlbumVersions = (data) => {
     const groupVersionsByAlbum = _.groupBy(data, (album) => {
@@ -40,6 +43,26 @@ const Formats = () => {
     SetArtistsGrouped(groupArtistsAux);
   }
 
+  // useLayoutEffect(() => {
+  //   if (elementRefOptionFormat.current[optionFormatSelectedOld] !== undefined
+  //       && elementRefOptionFormat.current[optionFormatSelectedOld] !== null
+  //     ) {
+  //       elementRefOptionFormat.current[optionFormatSelectedOld].classList.remove('selected');
+  //       console.log('ANTES', optionFormatSelectedOld)
+  //     //console.log(elementRefOptionFormat.current[optionFormatSelected].classList)
+  //   }
+  // }, [optionFormatSelectedOld]);
+
+  useLayoutEffect(() => {
+    //console.log(elementRefOptionFormat.current[optionFormatSelected-1]);
+    // if (elementRefOptionFormat.current[optionFormatSelected-1] !== undefined
+    //   && elementRefOptionFormat.current[optionFormatSelected-1] !== null
+    // ) {
+    //   elementRefOptionFormat.current[optionFormatSelected-1].classList.add('selected');
+    //   console.log('DEPOIS', optionFormatSelected);
+    // }
+  }, [optionFormatSelected])
+
   useEffect(() => {
     api.get(`/formats`).then((response) => {
       SetDataFormats(response.data.result);
@@ -47,8 +70,13 @@ const Formats = () => {
 
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
-    //document.getElementById('#format-option-0').classList.add('selected');
     getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
+
+    console.log(elementRefOptionFormat.current)
+    console.log(elementRefOptionFormat.current[optionFormatSelected-1]);
+
+    if (elementRefOptionFormat.current[optionFormatSelected] !== undefined)
+      elementRefOptionFormat.current[optionFormatSelected].classList.add('selected');
   }, []);
 
   useEffect(() => {
@@ -93,16 +121,17 @@ const Formats = () => {
   } = useChooseBackgroundImage();
 
   const ChooseFormatOption = (key, code) => {
-    if(code === optionFormatSelected) return;
+    if (code === optionFormatSelected) return;
     else {
-      //document.querySelector('.selected').classList.remove('selected');
-      //document.getElementById(`format-option-${key}`).classList.add('selected');
       SetVersionsAlbumsGrouped(1);
       SetArtistsGrouped(1);
+      SetOptionFormatSelectedOld(optionFormatSelected);
       SetOptionFormatSelected(code);
     }
   }
 
+  //console.log(elementRefOptionFormat.current);
+  
   //console.log(dataFormats);
   //console.log(dataAlbumByFormat);
   //console.log(dataVersionsByFormat);
@@ -110,10 +139,10 @@ const Formats = () => {
   //console.log(versionsAlbumsGrouped);
   //console.log(versionsAlbumsGrouped[6][0].cover);
   //console.log(artistsGrouped[101][0].name);
-  //console.log(optionFormatSelected)
+  //console.log(optionFormatSelectedOld)
   //console.log(artistsGrouped);
 
-  if ( dataFormats.length === 0
+  if ( dataFormats.length === 0 
     || dataAlbumByFormat.length === 0 || versionsAlbumsGrouped === 1
     || dataArtistsByFormat.length === 0 || artistsGrouped === 1
     || dataVersionsByFormat.length === 0) {
@@ -140,6 +169,7 @@ const Formats = () => {
           <div
             key={key}
             id={`format-option-${key}`}
+            ref={el => elementRefOptionFormat.current[key] = el}
             onClick={() => ChooseFormatOption(key, format.code)}
             className='format-option fs-4 d-flex gap-3 justify-content-center align-items-center'
             style={{ color: 'white', width: '15vh', cursor: 'pointer' }}>
