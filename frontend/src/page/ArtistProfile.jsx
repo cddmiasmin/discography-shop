@@ -66,7 +66,7 @@ const ArtistProfile = () => {
             className='rounded-circle'
             style={{ height: '32vh', width: '32vh', border: `5px solid ${color}` }}
             src={artist.icon} alt={artist.name} />
-          <h1 id='name' style={{ color: `${color}` }}>{artist.name}</h1>
+          <h1 className='m-2' id='name' style={{ color: `${color}` }}>{artist.name}</h1>
         </div>
 
         <div
@@ -77,38 +77,10 @@ const ArtistProfile = () => {
 
           <div
             id='filter-from-products'
-            className='d-flex rounded flex-wrap justify-content-center align-items-center gap-5'
-            style={{ backgroundColor: 'none', height: '7vh', width: '70vh', border: `1px solid ${color}` }}
-          >
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <h5 className="form-check-h5 m-0" htmlFor="flexCheckDefault">
-                CD
-              </h5>
-            </div>
-
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <h5 className="form-check-h5 m-0" htmlFor="flexCheckDefault">
-                VINIL
-              </h5>
-            </div>
-
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <h5 className="form-check-h5 m-0" htmlFor="flexCheckDefault">
-                CASSETE
-              </h5>
-            </div>
-
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <h5 className="form-check-label m-0" htmlFor="flexCheckDefault">
-                BOX
-              </h5>
-            </div>
-          </div>
-
+            className='w-50 d-flex rounded m-1'
+            style={{ backgroundColor: 'var(--color)', height: '0.5vh' }}
+          />
+  
           <ListAlbunsSearch artistName={artist.name} slug={slug}/>
         </div>
         <br />

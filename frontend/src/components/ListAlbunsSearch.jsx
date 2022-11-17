@@ -44,6 +44,7 @@ const ListAlbunsSearch = (props) => {
         <div
             id='container-albuns'
             className='d-flex flex-wrap justify-content-center align-items-center w-100 gap-4'
+            style={{marginTop: '3vh'}}
         >
             {artistAlbums.map((album, key) => (
                 <Album

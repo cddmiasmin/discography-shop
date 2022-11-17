@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useLayoutEffect } from 'react'
 
 import './header.css'
 
@@ -17,17 +17,46 @@ import { useState } from 'react'
 
 const Desktop = (props) => {
     const [openSnackBar, SetOpenSnackbar] = useState(false);
+    const [openSearch, SetOpenSearch] = useState(false);
+
     const navigateDesk = useNavigate();
 
+    const elementInputRef = useRef();
+    const elementFormRef = useRef();
+    const elementDivRef = useRef();
+
     const SearchOption = () => {
-        const searchInput = document.querySelector(".search-field");
-        if (searchInput.value.length < 3) SetOpenSnackbar(true);
+        if (elementInputRef.current.value.length < 3) SetOpenSnackbar(true);
+        else navigateDesk('/busca');
     }
+
+
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') return;
         SetOpenSnackbar(false);
     };
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        console.log('form submitted ✅');
+        SearchOption();
+    };
+
+
+    const handleClick = () => {
+        console.log(elementDivRef.current.style.display)
+
+        if (elementDivRef.current.style.display === 'flex') {
+
+            elementFormRef.current.submit();
+        }
+
+        if (elementDivRef.current.style.display === 'none')
+            console.log('k')
+    }
+
+
 
     return (
         <div
@@ -51,7 +80,7 @@ const Desktop = (props) => {
                 <div id='IconOption' className='col d-flex justify-content-end align-items-center me-4 gap-4'>
                     <Tooltip title="Buscar">
                         <button type='button' id='button-search-desk'
-                            style={{ display: 'flex' }} onClick={() => SearchOption()}
+                            style={{ display: 'flex' }} onClick={() => handleClick()}
                             className={`bg-transparent text-${props.colorIsDarkOrLight}`}>
                             <HiSearch className='fs-5' />
                         </button>
@@ -84,13 +113,15 @@ const Desktop = (props) => {
             <div
                 className='d-none justify-content-center align-items-center m-2 p-0 w-100 overflow-hidden'
                 style={{ height: '15vh', border: '5px solid var(--color)', borderRadius: '0px 0px 10px 10px' }}
+                ref={elementDivRef}
             >
                 <form
-                    
+                    onSubmit={handleSubmit}
+                    ref={elementFormRef}
                     id='form'
                     className='search-form w-100 h-100 d-flex justify-content-center align-items-center p-0'
                 >
-                    <input placeholder='O QUE VOCÊ PROCURA?' className='search-field w-100 h-100' type="text" />
+                    <input ref={elementInputRef} placeholder='O QUE VOCÊ PROCURA?' className='search-field w-100 h-100' type="text" />
                 </form>
             </div>
         </div>
