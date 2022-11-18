@@ -144,7 +144,8 @@ const Artists = () => {
               >
                 {artistNames[`${character}`].map((artist, key) => (
                   <ArtistIcon size={'20vh'} key={key} code={artist.code} slug={artist.slug}
-                    color={artistColor[cont++]} name={artist.name} icon={artist.icon}/>
+                    color={artistColor[cont++]} name={artist.name} icon={artist.icon}
+                  />
                 ))}
               </div>
             </section>
