@@ -2,21 +2,21 @@ import React from 'react'
 import { useGoToProduct } from '../../functions/useGoToProduct'
 import './album.css'
 
-const Album = (props) => {
+const Album = ({slugAlbum, slugArtist, cover, name, artist, year, price}) => {
 
     const { GoToProduct } = useGoToProduct();
 
     return (
         <div
-            onClick={() => GoToProduct(props.slugAlbum, props.slugArtist)}
+            onClick={() => GoToProduct(slugAlbum, slugArtist)}
             className='position-relative rounded album overflow-hidden'
             style={{ width: '220px', height: '220px', cursor: 'pointer' }}
         >
             <div className='album-cover d-flex flex-column justify-content-center align-items-center w-100 h-100 position-absolute'>
                 <img
                     className=' w-100 h-100'
-                    src={props.cover}
-                    alt=""
+                    src={cover}
+                    alt="Capa do album"
                 />
             </div>
 
@@ -27,13 +27,14 @@ const Album = (props) => {
                     style={{
                         'textAlign': 'center',
                     }}
-                >{props.name}</h3>
+                >{name}</h3>
                 <h6
                     style={{
                         'textAlign': 'center',
                     }}
-                >{props.artist}</h6>
-                <h6>{props.year}</h6>
+                >{artist}</h6>
+                <h6>{year}</h6>
+                <h6>{price ? price : ''}</h6>
             </div>
         </div>
     )

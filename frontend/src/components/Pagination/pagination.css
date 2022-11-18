@@ -1,0 +1,16 @@
+.page{
+    background-color: white;
+    color: var(--color);
+    border: '2px solid var(--color)'
+
+}
+
+.page:hover{
+    -webkit-box-shadow: 0px 0px 6px -1px white; 
+    box-shadow: 0px 0px 6px -1px white;
+}
+
+.page.current_page {
+    background-color: var(--color);
+    color: var(--colorIsWhiteOrBlack);
+}

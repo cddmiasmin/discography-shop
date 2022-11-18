@@ -5,10 +5,12 @@ import './format.css';
 import Loading from '../../components/Loading';
 import Header from './../../components/Header/Header';
 import Album from './../../components/Album/Album';
+import Pagination from '../../components/Pagination/Pagination';
 import Footer from './../../components/Footer/Footer';
 
 import api from '../../services/api';
 
+import { usePagination } from '../../functions/usePagination'
 import { dataOptionsToSortBy } from './../../data/dataOptionsToSortBy'
 import { useGetColor } from './../../functions/useGetColor';
 import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
@@ -91,6 +93,13 @@ const Formats = () => {
     ChooseImageForTheBanner,
   } = useChooseBackgroundImage();
 
+  const {
+    numberOfPages,
+    currentItems,
+    currentPage,
+    SetCurrentPage
+  } = usePagination(dataSortedData);
+
   if (!dataFormats.length  || !dataAlbum.length  || !dataSortedData.length ) {
     return (<Loading />)
   }
@@ -122,17 +131,15 @@ const Formats = () => {
               onChange={(e) => {
                 const code = e.target.value;
                 if (code === optionFormatSelected) return;
-                else SetOptionFormatSelected(code);
+                else {
+                  SetOptionFormatSelected(code);
+                  SetCurrentPage(0);
+                }
               }}
               defaultValue={optionFormatSelected}
             >
               {dataFormats.map((format, key) => (
-                <option
-                  //ref={el => selectOptionRef.current[key] = el}
-                  key={key} value={format.code}
-                >
-                  {format.format}
-                </option>
+                <option key={key} value={format.code}> {format.format} </option>
               ))}
             </select>
           </div>
@@ -146,15 +153,15 @@ const Formats = () => {
               onChange={(e) => {
                 const code = e.target.value;
                 if (code === optionFormatSelected) return;
-                else SetSortingOptionSelected(code);
+                else {
+                  SetSortingOptionSelected(code);
+                  SetCurrentPage(0);
+                }
               }}
               defaultValue={optionFormatSelected}
             >
               {dataOptionsToSortBy.map((option, key) => (
-                <option
-                  //ref={el => selectOptionRef.current[key] = el}
-                  key={key} value={option.value}
-                >
+                <option key={key} value={option.value} >
                   {option.option}
                 </option>
               ))}
@@ -164,18 +171,20 @@ const Formats = () => {
       </div>
       <div className={`rounded `} style={{ backgroundColor: 'var(--color)', height: '0.5vh', width: '80%' }} />
       <div className='d-flex flex-wrap justify-content-center align-items-end gap-4' style={{ marginTop: '4vh', marginBottom: '4vh', width: '85%' }}>
-        {dataSortedData.map((album, key) =>
+        {currentItems.map((album, key) =>
           <Album
             key={key}
             cover={album.cover}
             artist={album.artistName}
             name={album.albumName}
             year={album.releaseDate}
+            price={album.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
             slugArtist={album.artistSlug}
             slugAlbum={album.albumSlug}
           />
         )}
       </div>
+      <Pagination numberOfPages={numberOfPages} currentPage={currentPage} SetCurrentPage={SetCurrentPage}/>
       <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
     </div>
   )
