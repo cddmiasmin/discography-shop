@@ -1,10 +1,54 @@
-.selected {
-    color: var(--colorIsWhiteOrBlack);
-    background-color: var(--color);
-    border-radius: 10px 10px 0px 0px;
+select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance:none;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    background: white;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color: var(--color);
+    cursor: pointer;
+    font-size: xx-smaller;
+    font-family: 'Open Sans', sans-serif; 
+}
+select::-ms-expand {
+    display: none;
+}
+.select {
+    position: relative;
+    display: flex;
+    width: 45vh;
+    height: 5.5vh;
+    line-height: 5.5vh;
+    background: var(--color);
+    overflow: hidden;
+    border-radius: .25em;
+}
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: var(--color);
+    cursor: pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+}
+.select:hover::after {
+    color: white;
 }
 
-.format-option:hover:not(.selected){
-    background-color: rgb(10, 10, 10);
-    border-radius: 10px 10px 0px 0px;
+select option {
+    background: var(--color);
+    color: white;
+}
+
+select option:checked{
+    background: white;
+    color: var(--color);
 }

@@ -9,36 +9,22 @@ import Album from './Album/Album';
 
 const ListAlbunsSearch = (props) => {
 
-    const [versionsAlbums, SetVersionsAlbums] = useState(1);
-    const [artistAlbums, SetArtistAlbums] = useState(1);
+    const [dataArtistAlbums, SetDataArtistAlbums] = useState(1);
 
     useEffect(() => {
         api.get(`/albums/${props.slug}`).then((response) => {
-            SetArtistAlbums(response.data.result);
-        });
-        api.get(`/versions/by/${props.slug}`).then((response) => {
-            SetVersionsAlbums(response.data.result);
+            SetDataArtistAlbums(response.data.result);
         });
     }, []);
 
-    const GroupAlbumVersions = (data) => {
-        const groupVersionsByAlbum = _.groupBy(data, (album) => {
-            return album.album
-        })
+    console.log(dataArtistAlbums)
 
-        return groupVersionsByAlbum;
-    }
-
-    const versionsAlbumsGrouped = GroupAlbumVersions(versionsAlbums);
-
-    if (artistAlbums === 1) return (<Loading />);
+    if (dataArtistAlbums === 1) return (<Loading />);
     else
-        if (versionsAlbums === 1) return (<Loading />);
-        else
-            if (versionsAlbums.length === 0)
-                return (
-                    <h5 style={{ marginTop: '4vh' }}>EM BREVE! 😉</h5>
-                );
+        if (dataArtistAlbums.length === 0)
+            return (
+                <h5 style={{ marginTop: '4vh' }}>EM BREVE! 😉</h5>
+            );
 
     return (
         <div
@@ -46,15 +32,15 @@ const ListAlbunsSearch = (props) => {
             className='d-flex flex-wrap justify-content-center align-items-center w-100 gap-4'
             style={{marginTop: '3vh'}}
         >
-            {artistAlbums.map((album, key) => (
+            {dataArtistAlbums.map((album, key) => (
                 <Album
                     key={key}
-                    cover={versionsAlbumsGrouped[`${album.code}`][0].cover}
-                    artist={props.artistName}
-                    name={album.name}
+                    cover={album.cover}
+                    artist={album.artistName}
+                    name={album.albumName}
                     year={album.releaseDate}
-                    slugAlbum={album.slug}
-                    slugArtist={props.slug}
+                    slugAlbum={album.albumSlug}
+                    slugArtist={album.artistSlug}
                 />
             ))}
         </div>

@@ -81,7 +81,7 @@ const ArtistProfile = () => {
             style={{ backgroundColor: 'var(--color)', height: '0.5vh' }}
           />
   
-          <ListAlbunsSearch artistName={artist.name} slug={slug}/>
+          <ListAlbunsSearch slug={slug}/>
         </div>
         <br />
         <br />

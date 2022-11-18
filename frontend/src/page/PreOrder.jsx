@@ -55,8 +55,6 @@ const PreOrder = () => {
           <option value="DL">Data de Lançamento</option>
           <option value="MnP">Menor Preço</option>
           <option value="MmP">Maior Preço</option>
-          <option value="MV">Mais Vendidos</option>
-          <option value="MD">Melhor Desconto</option>
           <option value="AZ">A - Z</option>
           <option value="ZA">Z - A</option>
         </select>

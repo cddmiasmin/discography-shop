@@ -1,3 +1,8 @@
+.album {
+    -webkit-box-shadow: 0px 0px 23px -3px rgba(255,255,255,0.57); 
+    box-shadow: 0px 0px 5px -3px;
+
+}
 .album-info {
     overflow: hidden;
     transition: 1.5s ease;

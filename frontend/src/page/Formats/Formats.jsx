@@ -1,67 +1,28 @@
-import React, { useRef, useEffect, useState, useLayoutEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react';
 
-import './format.css'
+import './format.css';
 
-import Header from './../../components/Header/Header'
-import Album from './../../components/Album/Album'
-import Footer from './../../components/Footer/Footer'
+import Loading from '../../components/Loading';
+import Header from './../../components/Header/Header';
+import Album from './../../components/Album/Album';
+import Footer from './../../components/Footer/Footer';
 
-import api from '../../services/api'
+import api from '../../services/api';
 
-import { useGetColor } from './../../functions/useGetColor'
-import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage'
+import { dataOptionsToSortBy } from './../../data/dataOptionsToSortBy'
+import { useGetColor } from './../../functions/useGetColor';
+import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
 
 import { _ } from 'lodash';
-import Loading from '../../components/Loading'
 
 const Formats = () => {
 
-  const elementRefOptionFormat = useRef([]);
-
   const [dataFormats, SetDataFormats] = useState([]);
-  const [dataAlbumByFormat, SetDataAlbumByFormat] = useState([]);
-  const [dataVersionsByFormat, SetDataVersionsByFormat] = useState([]);
-  const [dataArtistsByFormat, SetDataArtistsByFormat] = useState([]);
+  const [dataAlbum, SetDataAlbum] = useState([]);
+  const [dataSortedData, SetSortedData] = useState([]);
 
-  const [versionsAlbumsGrouped, SetVersionsAlbumsGrouped] = useState(1);
-  const [artistsGrouped, SetArtistsGrouped] = useState(1);
   const [optionFormatSelected, SetOptionFormatSelected] = useState(0);
-  const [optionFormatSelectedOld, SetOptionFormatSelectedOld] = useState(optionFormatSelected);
-
-  const GroupAlbumVersions = (data) => {
-    const groupVersionsByAlbum = _.groupBy(data, (album) => {
-      return album.album
-    })
-    SetVersionsAlbumsGrouped(groupVersionsByAlbum);
-  }
-
-  const GroupArtists = (data) => {
-    const groupArtistsAux = _.groupBy(data, (artist) => {
-      return artist.code
-    })
-
-    SetArtistsGrouped(groupArtistsAux);
-  }
-
-  // useLayoutEffect(() => {
-  //   if (elementRefOptionFormat.current[optionFormatSelectedOld] !== undefined
-  //       && elementRefOptionFormat.current[optionFormatSelectedOld] !== null
-  //     ) {
-  //       elementRefOptionFormat.current[optionFormatSelectedOld].classList.remove('selected');
-  //       console.log('ANTES', optionFormatSelectedOld)
-  //     //console.log(elementRefOptionFormat.current[optionFormatSelected].classList)
-  //   }
-  // }, [optionFormatSelectedOld]);
-
-  useLayoutEffect(() => {
-    //console.log(elementRefOptionFormat.current[optionFormatSelected-1]);
-    // if (elementRefOptionFormat.current[optionFormatSelected-1] !== undefined
-    //   && elementRefOptionFormat.current[optionFormatSelected-1] !== null
-    // ) {
-    //   elementRefOptionFormat.current[optionFormatSelected-1].classList.add('selected');
-    //   console.log('DEPOIS', optionFormatSelected);
-    // }
-  }, [optionFormatSelected])
+  const [sortingOptionSelected, SetSortingOptionSelected] = useState(dataOptionsToSortBy[0].value);
 
   useEffect(() => {
     api.get(`/formats`).then((response) => {
@@ -72,38 +33,48 @@ const Formats = () => {
     ChooseImageForTheBanner();
     getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
 
-    console.log(elementRefOptionFormat.current)
-    console.log(elementRefOptionFormat.current[optionFormatSelected-1]);
-
-    if (elementRefOptionFormat.current[optionFormatSelected] !== undefined)
-      elementRefOptionFormat.current[optionFormatSelected].classList.add('selected');
   }, []);
 
   useEffect(() => {
-    if (dataFormats.length !== 0) SetOptionFormatSelected(dataFormats[0].code);
+    if (dataFormats.length !== 0) {
+      SetOptionFormatSelected(dataFormats[0].code);
+    }
   }, [dataFormats]);
 
+  const SortAlbumByChoiceSortBy = () => {
+    let sortedDataAux;
+
+    if (sortingOptionSelected === 'date-recent')
+      sortedDataAux = _.orderBy(dataAlbum, ['releaseDate', 'albumName'], ['desc', 'asc']);
+    else if (sortingOptionSelected === 'date-old')
+      sortedDataAux = _.orderBy(dataAlbum, ['releaseDate', 'albumName'], ['asc', 'asc']);
+    else if (sortingOptionSelected === 'biggest-price')
+      sortedDataAux = _.orderBy(dataAlbum, ['price', 'albumName'], ['desc', 'asc']);
+    else if (sortingOptionSelected === 'lowest-price')
+      sortedDataAux = _.orderBy(dataAlbum, ['price', 'albumName'], ['asc', 'asc']);
+    else if (sortingOptionSelected === 'album-a-z')
+      sortedDataAux = _.orderBy(dataAlbum, ['albumName','artistName'], ['asc', 'asc']);
+    else if (sortingOptionSelected === 'album-z-a')
+      sortedDataAux = _.orderBy(dataAlbum, ['albumName','artistName'], ['desc', 'asc']);
+    else if (sortingOptionSelected === 'artist-a-z')
+      sortedDataAux = _.orderBy(dataAlbum, ['artistName','albumName'], ['asc', 'asc']);
+    else
+      sortedDataAux = _.orderBy(dataAlbum, ['artistName','albumName'], ['desc', 'asc']);
+      
+    SetSortedData(sortedDataAux);
+  }
+
   useEffect(() => {
-    api.get(`/format/albums/${optionFormatSelected}`).then((response) => {
-      SetDataAlbumByFormat(response.data.result);
+    if (dataAlbum.length !== 0) SortAlbumByChoiceSortBy()
+  }, [dataAlbum, sortingOptionSelected]);
+
+  useEffect(() => {
+
+    api.get(`/format/${optionFormatSelected}`).then((response) => {
+      SetDataAlbum(response.data.result);
     });
 
-    api.get(`/format/versions/${optionFormatSelected}`).then((response) => {
-      SetDataVersionsByFormat(response.data.result);
-    });
-
-    api.get(`/format/artists/${optionFormatSelected}`).then((response) => {
-      SetDataArtistsByFormat(response.data.result);
-    });
   }, [optionFormatSelected]);
-
-  useEffect(() => {
-    if (dataVersionsByFormat.length !== 0) GroupAlbumVersions(dataVersionsByFormat);
-  }, [dataVersionsByFormat]);
-
-  useEffect(() => {
-    if (dataArtistsByFormat.length !== 0) GroupArtists(dataArtistsByFormat);
-  }, [dataArtistsByFormat]);
 
   const {
     color,
@@ -120,32 +91,7 @@ const Formats = () => {
     ChooseImageForTheBanner,
   } = useChooseBackgroundImage();
 
-  const ChooseFormatOption = (key, code) => {
-    if (code === optionFormatSelected) return;
-    else {
-      SetVersionsAlbumsGrouped(1);
-      SetArtistsGrouped(1);
-      SetOptionFormatSelectedOld(optionFormatSelected);
-      SetOptionFormatSelected(code);
-    }
-  }
-
-  //console.log(elementRefOptionFormat.current);
-  
-  //console.log(dataFormats);
-  //console.log(dataAlbumByFormat);
-  //console.log(dataVersionsByFormat);
-  //console.log(dataArtistsByFormat);
-  //console.log(versionsAlbumsGrouped);
-  //console.log(versionsAlbumsGrouped[6][0].cover);
-  //console.log(artistsGrouped[101][0].name);
-  //console.log(optionFormatSelectedOld)
-  //console.log(artistsGrouped);
-
-  if ( dataFormats.length === 0 
-    || dataAlbumByFormat.length === 0 || versionsAlbumsGrouped === 1
-    || dataArtistsByFormat.length === 0 || artistsGrouped === 1
-    || dataVersionsByFormat.length === 0) {
+  if (!dataFormats.length  || !dataAlbum.length  || !dataSortedData.length ) {
     return (<Loading />)
   }
 
@@ -164,30 +110,69 @@ const Formats = () => {
       <div id='container-formats' className='fs-1 d-flex w-100 flex-column justify-content-end align-items-center position-absolute'
         style={{ color: 'white', top: '15vh', zIndex: '2' }}
       > FORMATOS </div>
-      <div className='w-100 d-flex flex-wrap flex-row gap-2 justify-content-center align-items-center'>
-        {dataFormats.map((format, key) => (
-          <div
-            key={key}
-            id={`format-option-${key}`}
-            ref={el => elementRefOptionFormat.current[key] = el}
-            onClick={() => ChooseFormatOption(key, format.code)}
-            className='format-option fs-4 d-flex gap-3 justify-content-center align-items-center'
-            style={{ color: 'white', width: '15vh', cursor: 'pointer' }}>
-            {format.format}
+      <div
+        className='d-flex flex-wrap justify-content-center align-items-center'
+        style={{ marginBottom: '3vh', width: '70%', gap: '5vh' }}
+      >
+        <div className='d-flex flex-wrap flex-column gap-1 justify-content-center align-items-center'>
+          <h3 className='m-0'>O formato:</h3>
+          <div className="select m-2 d-flex justify-content-center align-items-center">
+            <select
+              className='w-100 h-100' name="format" id="format"
+              onChange={(e) => {
+                const code = e.target.value;
+                if (code === optionFormatSelected) return;
+                else SetOptionFormatSelected(code);
+              }}
+              defaultValue={optionFormatSelected}
+            >
+              {dataFormats.map((format, key) => (
+                <option
+                  //ref={el => selectOptionRef.current[key] = el}
+                  key={key} value={format.code}
+                >
+                  {format.format}
+                </option>
+              ))}
+            </select>
           </div>
-        ))}
+        </div>
+        <p>⚪</p>
+        <div className='d-flex flex-wrap flex-column gap-1 justify-content-center align-items-center'>
+          <h3 className='m-0'>Ordenado por:</h3>
+          <div className="select m-2 d-flex justify-content-center align-items-center">
+            <select
+              className='w-100 h-100' name="format" id="format"
+              onChange={(e) => {
+                const code = e.target.value;
+                if (code === optionFormatSelected) return;
+                else SetSortingOptionSelected(code);
+              }}
+              defaultValue={optionFormatSelected}
+            >
+              {dataOptionsToSortBy.map((option, key) => (
+                <option
+                  //ref={el => selectOptionRef.current[key] = el}
+                  key={key} value={option.value}
+                >
+                  {option.option}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
       </div>
-      <div className={`rounded `} style={{ backgroundColor: 'var(--color)', height: '0.5vh', width: '85%' }} />
+      <div className={`rounded `} style={{ backgroundColor: 'var(--color)', height: '0.5vh', width: '80%' }} />
       <div className='d-flex flex-wrap justify-content-center align-items-end gap-4' style={{ marginTop: '4vh', marginBottom: '4vh', width: '85%' }}>
-        {dataAlbumByFormat.map((album, key) =>
+        {dataSortedData.map((album, key) =>
           <Album
             key={key}
-            cover={versionsAlbumsGrouped[album.code][0].cover}
-            artist={artistsGrouped[album.artist][0].name}
-            name={album.name}
+            cover={album.cover}
+            artist={album.artistName}
+            name={album.albumName}
             year={album.releaseDate}
-            slugArtist={artistsGrouped[album.artist][0].slug}
-            slugAlbum={album.slug}
+            slugArtist={album.artistSlug}
+            slugAlbum={album.albumSlug}
           />
         )}
       </div>

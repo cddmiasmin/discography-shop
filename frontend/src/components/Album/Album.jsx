@@ -9,12 +9,12 @@ const Album = (props) => {
     return (
         <div
             onClick={() => GoToProduct(props.slugAlbum, props.slugArtist)}
-            className='position-relative album'
+            className='position-relative rounded album overflow-hidden'
             style={{ width: '220px', height: '220px', cursor: 'pointer' }}
         >
             <div className='album-cover d-flex flex-column justify-content-center align-items-center w-100 h-100 position-absolute'>
                 <img
-                    className='rounded w-100 h-100'
+                    className=' w-100 h-100'
                     src={props.cover}
                     alt=""
                 />

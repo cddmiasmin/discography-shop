@@ -53,5 +53,20 @@ module.exports = {
                     else accepted(false);
                 });
         });
-    }
+    },
+
+    ListProductsByFormat: (format) => {
+        return new Promise ((accepted, rejected) => {
+            db.query("(SELECT * FROM tb_cassandra_product WHERE fk_format = ?)", [format], 
+                (error, result) =>{
+                    if(error) {
+                        rejected(error); 
+                        return;
+                    } 
+
+                    if(result.length > 0) accepted(result);
+                    else accepted(false);
+                });
+        });
+    },
 }
