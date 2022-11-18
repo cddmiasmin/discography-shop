@@ -1,0 +1,27 @@
+.search-box {
+    display: flex;
+    justify-conent: center;
+    align-items: center;
+    border-radius: 10vh;
+    heigth: 20%;
+    padding: 0;
+    float: right;
+    gap: 1.5vh
+}
+
+.search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: var(--colorIsWhiteOrBlack);
+    font-size: 1rem;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0vh;
+}
+
+.search-txt::placeholder {
+    color: var(--colorIsWhiteOrBlack);
+}
