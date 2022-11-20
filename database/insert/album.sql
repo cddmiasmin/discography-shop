@@ -71,3 +71,18 @@ insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
 		('123','MDNA','mdna','2012-03-23'),
 		('123','Rebel Heart Tour','rebel-heart-tour','2017-09-29'),
 		('123','Madame X','madame-x','2019-06-14');
+
+/*JÃO*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('144','Lobos','lobos','2018-08-17'),
+		('144','Anti-Herói','anti-heroi','2019-10-10'),
+		('144','Pirata','pirata','2021-10-20');
+
+/*SANDY E JUNIOR*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('150','Era Uma Vez... Ao Vivo','era-uma-vez-ao-vivo','1998-09-01'),
+		('150','As Quatro Estações','as-quatro-estacoes','1999-10-24'),
+		('150','Sandy & Junior','sandy-e-junior','2001-10-08'),
+		('150','Nossa História','nossa-historia','2020-06-17');

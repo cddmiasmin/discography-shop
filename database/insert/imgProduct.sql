@@ -185,3 +185,27 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
     values
         ('81','https://i.ibb.co/PjgWKxq/D-NQ-NP-691784-MLB31268774076-062019-O.jpg'),
         ('82','https://i.ibb.co/F8pDr0t/vinil-duplo-madonna-madame-x-2lp-main-importado-vinil-duplo-madonna-madame-x-2lp-ma-00602577582776-0.webp');
+
+/*JÃO*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('84','https://i.ibb.co/CPcqCjH/D-NQ-NP-974396-MLB45598102593-042021-W.jpg'),
+        ('85','https://i.ibb.co/16cnHRx/8165bc0cfe30e21dca1af388327e2b86.jpg'), 
+        ('86','https://i.ibb.co/5WrKsVY/Jao-Pirata-1.png');
+
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('87','https://i.ibb.co/hY2039j/photogrid-15971023577281-9c9e002f36b684e28e15971671745300-1024-1024.jpg'),
+        ('88','https://i.ibb.co/9b3g25C/shopping.webp'),
+        ('88','https://i.ibb.co/bdNtyQC/shopping.webp'),
+        ('89','https://i.ibb.co/C1nvKbQ/vinil-duplo-sandy-e-junior-as-quatro-estacoes-edicao-limitada-33-rpm-doze-anos-apos-o-fim-da-dupla-s.webp'),
+        ('90','https://i.ibb.co/xLmFH2Y/cd-sandy-e-junior-quatro-estacoes-ao-vivo-cd-sandy-e-junior-quatro-estacoes-ao-00731454821124-267314.webp'),
+        ('90','https://i.ibb.co/KF1X9B5/cd-sandy-e-junior-quatro-estacoes-ao-vivo-cd-sandy-e-junior-quatro-estacoes-ao-00731454821124-267314.webp'),
+        ('91','https://i.ibb.co/ZXKCPHs/dvd-sandy-e-junior-quatro-estacoes-o-show-dvd-sandy-e-junior-quatro-estacoes-o-00044005332490-260440.webp'),
+        ('92','https://i.ibb.co/QrBtN5W/9722938.jpg'),
+        ('93','https://i.ibb.co/St6tjsS/vinil-duplo-branco-translucido-sandy-e-junior-sandy-e-junior-edicao-limitada-33-rpm-apos-a-vitoriosa.webp'),
+        ('94','https://i.ibb.co/LNFNmY6/box-sandy-e-junior-nossa-historia-edicao-limitada-16-albuns-a-dupla-de-cantores-pop-mais-iconica-do.webp'),
+        ('94','https://i.ibb.co/D4rp45y/box-sandy-e-junior-nossa-historia-edicao-limitada-16-albuns-a-dupla-de-cantores-pop-mais-iconica-do.webp'),
+        ('94','https://i.ibb.co/JsBw53Z/box-sandy-e-junior-nossa-historia-edicao-limitada-16-albuns-a-dupla-de-cantores-pop-mais-iconica-do.webp'),
+        ('94','https://i.ibb.co/2qXYgcZ/box-sandy-e-junior-nossa-historia-edicao-limitada-16-albuns-a-dupla-de-cantores-pop-mais-iconica-do.webp'),
+        ('94','https://i.ibb.co/NV6yxLD/box-sandy-e-junior-nossa-historia-edicao-limitada-16-albuns-a-dupla-de-cantores-pop-mais-iconica-do.webp');

@@ -137,3 +137,20 @@ insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 	values
 		('40','CAPA PRINCIPAL','https://i.ibb.co/HdfZskZ/Madame-X-Standard.jpg');
+
+/*JÃO*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('42','CAPA PRINCIPAL','https://i.ibb.co/gtDKnpW/71ig-AEi3-FDL-AC-SX425.jpg'),
+		('43','CAPA PRINCIPAL','https://i.ibb.co/Gk2pssv/Jao-Anti-Heroi-60250839718.png'),
+		('44','CAPA PRINCIPAL','https://i.ibb.co/s2F7wwt/Pirata-J-o.png');
+
+/*SANDY E JUNIOR*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('45','CAPA PRINCIPAL','https://i.ibb.co/JQ835c5/era-uma-vez-ao-vivo-cd-era-uma-vez-ao-vivo-00731453802124-265380212.webp'),
+		('46','CAPA PRINCIPAL','https://i.ibb.co/wCQwK3s/As-Quatro-Esta-es.jpg'),
+		('46','AO VIVO','https://i.ibb.co/5KtFXW6/61fjmj-Ko-CML-AC-SX425.jpg'),
+		('46','O SHOW','https://i.ibb.co/sV9LR3z/As4estacoes-oshow.jpg'),
+		('47','CAPA PRINCIPAL','https://i.ibb.co/DV7BW4S/sandy-junior-cd-sandy-junior-sandy-junior-00731458636625-2673145863662.webp'),
+		('48','CAPA PRINCIPAL','https://i.ibb.co/QMD59Rm/download.jpg');
