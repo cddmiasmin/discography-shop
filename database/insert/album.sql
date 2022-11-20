@@ -86,3 +86,13 @@ insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
 		('150','As Quatro Estações','as-quatro-estacoes','1999-10-24'),
 		('150','Sandy & Junior','sandy-e-junior','2001-10-08'),
 		('150','Nossa História','nossa-historia','2020-06-17');
+
+/*ADELE*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('104','30','30','2021-11-19');
+
+/*SAM SMITCH*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('151','Gloria','gloria','2023-01-27');

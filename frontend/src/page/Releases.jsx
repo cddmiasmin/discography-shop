@@ -74,7 +74,6 @@ const Releases = () => {
 
   return (
     <div className='w-100 h-100 d-flex justify-content-center align-items-center flex-column bg-black'>
-
       <div id='bg-releases'
         style={{
           backgroundImage: `url(${bannerInPortraitOrLandscapeMode[imageNumber].imgUrl})`,

@@ -300,3 +300,7 @@ values
         'https://i.ibb.co/25Wxz9G/ab6761610000e5ebc33390a542c2de94703d0899.jpg',
         '2'
     );
+
+insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
+values 
+    ('Sam Smith','sam-smith','https://i.ibb.co/TTZ6v4R/ab6761610000e5eb10ca40ea0b0b5082dba0ff75.jpg','1');

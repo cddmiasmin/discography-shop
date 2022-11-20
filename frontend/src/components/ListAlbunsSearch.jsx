@@ -38,7 +38,7 @@ const ListAlbunsSearch = (props) => {
                     cover={album.cover}
                     artist={album.artistName}
                     name={album.albumName}
-                    year={album.releaseDate}
+                    date={album.releaseDate}
                     slugAlbum={album.albumSlug}
                     slugArtist={album.artistSlug}
                 />

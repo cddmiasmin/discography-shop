@@ -11,6 +11,7 @@ const FormatController = require('./controllers/FormatController');
 router.get('/artists', ArtistController.ListArtists);
 router.get('/artist/:slug', ArtistController.ShowArtist);
 
+router.get('/albums/preorder', AlbumController.ListPreOrderAlbums);
 router.get('/albums/realeses', AlbumController.ListRealesesAlbums);
 router.get('/albums/:artist', AlbumController.ListAlbums);
 router.get('/album/:slug', AlbumController.ShowAlbum);

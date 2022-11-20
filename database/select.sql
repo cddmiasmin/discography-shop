@@ -18,11 +18,11 @@ select * from tb_cassandra_img_product;
 /* ---------------------- ARTIST */
 SELECT * 
 FROM tb_cassandra_artist 
-WHERE slug_artist = 'madonna';
+WHERE slug_artist = 'adele';
 
 SELECT * 
 FROM tb_cassandra_artist 
-WHERE cd_artist = 123;
+WHERE cd_artist = 150;
 
 /* ---------------------- ARTISTS */
 SELECT *
@@ -33,7 +33,7 @@ ORDER BY slug_artist asc;
 
 SELECT * 
 FROM tb_cassandra_album 
-WHERE fk_artist = 123;
+WHERE fk_artist = 150;
 
 /* --------------------- VERSÃO POR ALBUM */
 SELECT *
@@ -42,12 +42,12 @@ WHERE fk_album = (SELECT cd_album FROM tb_cassandra_album WHERE nm_album = 'CERE
 
 SELECT *
 FROM tb_cassandra_version
-WHERE fk_album = 40;
+WHERE fk_album = 48;
 
 /* --------------------- PRODUTO POR VERSÃO */
 SELECT * FROM tb_cassandra_product WHERE fk_version in (SELECT cd_version FROM tb_cassandra_version WHERE fk_album = 40);
 
-SELECT * FROM tb_cassandra_product WHERE fk_version in ( SELECT cd_version FROM tb_cassandra_version WHERE fk_album = 10 );
+SELECT * FROM tb_cassandra_product WHERE fk_version in ( SELECT cd_version FROM tb_cassandra_version WHERE fk_album = (SELECT cd_album FROM tb_cassandra_album WHERE slug_album = 'chromatica') );
 
 
 
@@ -70,4 +70,21 @@ tb_cassandra_artist artist LEFT JOIN tb_cassandra_album album ON artist.cd_artis
                             INNER JOIN tb_cassandra_product product ON versions.cd_version = product.fk_version
                             INNER JOIN tb_cassandra_format formats ON formats.cd_format = product.fk_format
                             INNER JOIN tb_cassandra_img_product img_product ON product.cd_product = img_product.fk_product
-WHERE cd_album = 10;
+WHERE cd_album = 37;
+
+SELECT *
+from tb_cassandra_album
+where dt_album between DATE_SUB(now(), INTERVAL 24 MONTH) and now();
+
+
+SELECT 
+	artist.cd_artist, artist.slug_artist, artist.nm_artist, 
+	album.cd_album, album.nm_album, album.slug_album, DATE_FORMAT(dt_album, '%m/%d/%Y') as 'dt_album',
+    versions.cd_version, versions.img_cover
+ FROM
+tb_cassandra_artist artist LEFT JOIN tb_cassandra_album album ON artist.cd_artist = album.fk_artist
+INNER JOIN tb_cassandra_version versions ON album.cd_album = versions.fk_album
+WHERE
+(album.dt_album BETWEEN DATE_SUB(now(), INTERVAL 24 MONTH) AND now());
+
+SELECT artist.slug_artist, artist.nm_artist, album.cd_album, album.nm_album, album.slug_album, DATE_FORMAT(dt_album, '%Y/%m/%d') as 'dt_album', versions.img_cover FROM tb_cassandra_artist artist LEFT JOIN tb_cassandra_album album ON artist.cd_artist = album.fk_artist INNER JOIN tb_cassandra_version versions ON album.cd_album = versions.fk_album WHERE (album.dt_album BETWEEN DATE_SUB(now(), INTERVAL 24 MONTH) AND now()) AND (versions.desc_sm_version = 'CAPA PRINCIPAL' or versions.desc_sm_version = 'PRINCIPAL')

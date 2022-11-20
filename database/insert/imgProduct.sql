@@ -209,3 +209,18 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
         ('94','https://i.ibb.co/JsBw53Z/box-sandy-e-junior-nossa-historia-edicao-limitada-16-albuns-a-dupla-de-cantores-pop-mais-iconica-do.webp'),
         ('94','https://i.ibb.co/2qXYgcZ/box-sandy-e-junior-nossa-historia-edicao-limitada-16-albuns-a-dupla-de-cantores-pop-mais-iconica-do.webp'),
         ('94','https://i.ibb.co/NV6yxLD/box-sandy-e-junior-nossa-historia-edicao-limitada-16-albuns-a-dupla-de-cantores-pop-mais-iconica-do.webp');
+
+/*ADELE*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('95','https://i.ibb.co/9wskKx5/AA30-CD-750x.webp'),
+        ('96','https://i.ibb.co/XWV5V5p/AA30-Cassette-750x.webp'),
+        ('97','https://i.ibb.co/D1W0wZB/ADE001-BUN-CD-2-LP-MC-1024x1024-2x.webp'),
+        ('98','https://i.ibb.co/jg0sS9j/AA30-LP-750x.webp');
+
+/*SAM SMITH*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('99','https://i.ibb.co/WVTJ03f/cd-sam-smith-gloria-importado-cd-sam-smith-gloria-importado-00602445856718-00060244585671.webp'),
+        ('100','https://i.ibb.co/h1HCsf9/gloria-black-cassete-store-exclusive-importado-gloria-black-cassete-store-exclusive-00602445856688-0.webp'),
+        ('101','https://i.ibb.co/Xshj32w/vinil-sam-smith-gloria-black-vinil-importado-vinil-sam-smith-gloria-black-vinil-00602445856602-00060.webp');

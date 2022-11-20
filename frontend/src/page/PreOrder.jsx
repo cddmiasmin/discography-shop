@@ -1,15 +1,46 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import Header from './../components/Header/Header'
-import Album from './../components/Album/Album'
-import Footer from './../components/Footer/Footer'
+import './../style/selectOptionSortBy.css';
 
-import { useGetColor } from './../functions/useGetColor'
-import { useChooseBackgroundImage } from './../functions/useChooseBackgroundImage'
+import Loading from '../components/Loading';
+import Header from '../components/Header/Header';
+import Album from '../components/Album/Album';
+import Pagination from '../components/Pagination/Pagination';
+import Footer from '../components/Footer/Footer';
 
-import { dataArtist } from '../data/dataArtist'
+import api from './../services/api';
+
+import { dataOptionsToSortBy } from '../data/dataOptionsToSortBy';
+
+import { useChooseBackgroundImage } from '../functions/useChooseBackgroundImage';
+import { useGetColor } from '../functions/useGetColor';
+import { usePagination } from '../functions/usePagination';
+import { useSortBy } from '../functions/userSortBy';
 
 const PreOrder = () => {
+
+  const [pageData, SetpageData] = useState([]);
+
+  useEffect(() => {
+    api.get(`/albums/preorder`).then((response) => {
+      SetpageData(response.data.result);
+    });
+
+    SetBannerInPortraitOrLandscapeMode(data.landscape);
+    ChooseImageForTheBanner();
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl)
+  }, []);
+
+  const {
+    dataSortedData,
+    sortingOptionSelected,
+    SetSortingOptionSelected,
+    SortAlbumByChoiceSortBy
+  } = useSortBy();
+
+  useEffect(() =>{
+    if(pageData.length !== 0) SortAlbumByChoiceSortBy(pageData, sortingOptionSelected);
+  }, [pageData, sortingOptionSelected])
 
   const {
     color,
@@ -26,17 +57,24 @@ const PreOrder = () => {
     ChooseImageForTheBanner,
   } = useChooseBackgroundImage();
 
-  useEffect(() => {
-    SetBannerInPortraitOrLandscapeMode(data.landscape);
-    ChooseImageForTheBanner();
-  }, [])
+  const {
+    numberOfPages,
+    currentItems,
+    currentPage,
+    SetCurrentPage
+  } = usePagination(dataSortedData);
 
-  useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl))
+  console.log('PD', pageData)
+  console.log('CI', currentItems)
+  console.log('DSD', dataSortedData)
+
+  if (!pageData.length ||/*  !currentItems.length ||*/ !dataSortedData.length) {
+    return (<Loading />)
+  }
 
   return (
     <div className='w-100 h-100 d-flex justify-content-center align-items-center flex-column bg-black'>
-
-      <div id='bg-preorder'
+      <div id='bg-releases'
         style={{
           backgroundImage: `url(${bannerInPortraitOrLandscapeMode[imageNumber].imgUrl})`,
           width: '100%', height: '30vh', backgroundPosition: 'center', backgroundSize: 'cover',
@@ -44,33 +82,43 @@ const PreOrder = () => {
         }} />
 
       <Header colorIsDarkOrLight={'light'} color={color} colorIsWhiteOrBlack={'white'} />
-      <div id='container-preorder' className='d-flex w-100 flex-column justify-content-end align-items-center position-absolute'
+      <div id='container-releases' className='d-flex w-100 flex-column justify-content-end align-items-center position-absolute'
         style={{ color: 'white', top: '15vh', zIndex: '2' }}
       >
-        <h1>PRÉ-VENDAS</h1>
+        <h1>PRÉ-VENDA</h1>
       </div>
       <div className='d-flex flex-row gap-2 justify-content-center align-items-center p-4'>
         <h5 className='m-0'>ORDENAR POR:</h5>
-        <select style={{ width: '25vh' }}>
-          <option value="DL">Data de Lançamento</option>
-          <option value="MnP">Menor Preço</option>
-          <option value="MmP">Maior Preço</option>
-          <option value="AZ">A - Z</option>
-          <option value="ZA">Z - A</option>
-        </select>
+        <div className="select m-2 d-flex justify-content-center align-items-center">
+          <select
+            className='w-100 h-100' name="format" id="format"
+            onChange={(e) => SetSortingOptionSelected(e.target.value)}
+            defaultValue={sortingOptionSelected}
+          >
+            {dataOptionsToSortBy.map((option, key) => (
+              <option key={key} value={option.value} >
+                {option.option}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       <div className={`rounded `} style={{ backgroundColor: 'var(--color)', height: '0.5vh', width: '85%' }} />
       <div className='d-flex flex-wrap justify-content-center align-items-end gap-5' style={{ marginTop: '4vh', marginBottom: '4vh', width: '85%' }}>
-        {dataArtist[1].album.map((album, key) =>
+        {currentItems.map((album, key) => 
           <Album
             key={key}
             cover={album.cover}
-            artist={dataArtist[1].name}
-            name={album.name}
-            year={album.year}
+            artist={album.artistName}
+            name={album.albumName}
+            date={album.releaseDateFormated}
+            price={null}
+            slugArtist={album.artistSlug}
+            slugAlbum={album.albumSlug}
           />
         )}
       </div>
+      <Pagination numberOfPages={numberOfPages} currentPage={currentPage} SetCurrentPage={SetCurrentPage} />
       <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
     </div>
   )

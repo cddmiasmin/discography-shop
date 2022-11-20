@@ -68,4 +68,31 @@ module.exports = {
 
         res.json(json);
     },
+
+    ListPreOrderAlbums: async (req, res) => {
+        let json = {error: '', result: []}
+
+        let albums = await AlbumService.ListPreOrderAlbums();
+
+        const months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+
+        for(let i in albums) {
+
+            let dateOriginal = new Date(albums[i].dt_album);
+            let dateFormated = ((dateOriginal.getDate()+"/"+months[(dateOriginal.getMonth())] + "/" + dateOriginal.getFullYear()));
+
+            json.result.push ({
+                artistName: albums[i].nm_artist,
+                artistSlug: albums[i].slug_artist,
+                albumCode: albums[i].cd_album,
+                albumSlug: albums[i].slug_album,
+                albumName: albums[i].nm_album,
+                releaseDate: albums[i].dt_album,
+                releaseDateFormated: dateFormated,
+                cover: albums[i].img_cover,
+            });
+        }
+
+        res.json(json);
+    },
 };

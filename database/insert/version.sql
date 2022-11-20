@@ -154,3 +154,13 @@ insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 		('46','O SHOW','https://i.ibb.co/sV9LR3z/As4estacoes-oshow.jpg'),
 		('47','CAPA PRINCIPAL','https://i.ibb.co/DV7BW4S/sandy-junior-cd-sandy-junior-sandy-junior-00731458636625-2673145863662.webp'),
 		('48','CAPA PRINCIPAL','https://i.ibb.co/QMD59Rm/download.jpg');
+
+/*ADELE*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('49','CAPA PRINCIPAL','https://i.ibb.co/hmRLWZZ/71-llh-Qmne-L-AC-SX466.jpg');
+
+/*SAM SMITH*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('50','CAPA PRINCIPAL','https://i.ibb.co/bmS0bRB/Sam-Smith-Gloria-800x800.webp');
