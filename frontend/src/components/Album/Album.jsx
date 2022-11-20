@@ -2,7 +2,7 @@ import React from 'react'
 import { useGoToProduct } from '../../functions/useGoToProduct'
 import './album.css'
 
-const Album = ({slugAlbum, slugArtist, cover, name, artist, year, price}) => {
+const Album = ({slugAlbum, slugArtist, cover, name, artist, date, price}) => {
 
     const { GoToProduct } = useGoToProduct();
 
@@ -33,7 +33,7 @@ const Album = ({slugAlbum, slugArtist, cover, name, artist, year, price}) => {
                         'textAlign': 'center',
                     }}
                 >{artist}</h6>
-                <h6>{year}</h6>
+                <h6>{date}</h6>
                 <h6>{price ? price : ''}</h6>
             </div>
         </div>

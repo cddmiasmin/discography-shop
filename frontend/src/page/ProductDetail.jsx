@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom'
 
 import ReactImageMagnify from 'react-image-magnify';
 
-import './style.css'
-
 import Header from './../components/Header/Header'
 import Loading from './../components/Loading'
 import Footer from './../components/Footer/Footer'

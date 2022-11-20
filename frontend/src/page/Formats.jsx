@@ -1,30 +1,28 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-import './format.css';
+import './../style/selectOptionSortBy.css';
 
-import Loading from '../../components/Loading';
-import Header from './../../components/Header/Header';
-import Album from './../../components/Album/Album';
-import Pagination from '../../components/Pagination/Pagination';
-import Footer from './../../components/Footer/Footer';
+import Loading from '../components/Loading';
+import Header from '../components/Header/Header';
+import Album from '../components/Album/Album';
+import Pagination from '../components/Pagination/Pagination';
+import Footer from '../components/Footer/Footer';
 
-import api from '../../services/api';
+import api from '../services/api';
 
-import { usePagination } from '../../functions/usePagination'
-import { dataOptionsToSortBy } from './../../data/dataOptionsToSortBy'
-import { useGetColor } from './../../functions/useGetColor';
-import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
+import { dataOptionsToSortBy } from '../data/dataOptionsToSortBy';
 
-import { _ } from 'lodash';
+import { useChooseBackgroundImage } from '../functions/useChooseBackgroundImage';
+import { useGetColor } from '../functions/useGetColor';
+import { usePagination } from '../functions/usePagination';
+import { useSortBy } from '../functions/userSortBy';
 
 const Formats = () => {
 
   const [dataFormats, SetDataFormats] = useState([]);
   const [dataAlbum, SetDataAlbum] = useState([]);
-  const [dataSortedData, SetSortedData] = useState([]);
 
   const [optionFormatSelected, SetOptionFormatSelected] = useState(0);
-  const [sortingOptionSelected, SetSortingOptionSelected] = useState(dataOptionsToSortBy[0].value);
 
   useEffect(() => {
     api.get(`/formats`).then((response) => {
@@ -43,32 +41,9 @@ const Formats = () => {
     }
   }, [dataFormats]);
 
-  const SortAlbumByChoiceSortBy = () => {
-    let sortedDataAux;
-
-    if (sortingOptionSelected === 'date-recent')
-      sortedDataAux = _.orderBy(dataAlbum, ['releaseDate', 'albumName'], ['desc', 'asc']);
-    else if (sortingOptionSelected === 'date-old')
-      sortedDataAux = _.orderBy(dataAlbum, ['releaseDate', 'albumName'], ['asc', 'asc']);
-    else if (sortingOptionSelected === 'biggest-price')
-      sortedDataAux = _.orderBy(dataAlbum, ['price', 'albumName'], ['desc', 'asc']);
-    else if (sortingOptionSelected === 'lowest-price')
-      sortedDataAux = _.orderBy(dataAlbum, ['price', 'albumName'], ['asc', 'asc']);
-    else if (sortingOptionSelected === 'album-a-z')
-      sortedDataAux = _.orderBy(dataAlbum, ['albumName','artistName'], ['asc', 'asc']);
-    else if (sortingOptionSelected === 'album-z-a')
-      sortedDataAux = _.orderBy(dataAlbum, ['albumName','artistName'], ['desc', 'asc']);
-    else if (sortingOptionSelected === 'artist-a-z')
-      sortedDataAux = _.orderBy(dataAlbum, ['artistName','albumName'], ['asc', 'asc']);
-    else
-      sortedDataAux = _.orderBy(dataAlbum, ['artistName','albumName'], ['desc', 'asc']);
-      
-    SetSortedData(sortedDataAux);
-  }
-
   useEffect(() => {
-    if (dataAlbum.length !== 0) SortAlbumByChoiceSortBy()
-  }, [dataAlbum, sortingOptionSelected]);
+    if (dataAlbum.length !== 0) SortAlbumByChoiceSortBy(dataAlbum, sortingOptionSelected);
+  }, [dataAlbum]);
 
   useEffect(() => {
 
@@ -94,13 +69,21 @@ const Formats = () => {
   } = useChooseBackgroundImage();
 
   const {
+    dataSortedData,
+    sortingOptionSelected,
+    SetSortingOptionSelected,
+    SortAlbumByChoiceSortBy
+  } = useSortBy(dataAlbum);
+
+  const {
     numberOfPages,
     currentItems,
     currentPage,
     SetCurrentPage
   } = usePagination(dataSortedData);
 
-  if (!dataFormats.length  || !dataAlbum.length  || !dataSortedData.length ) {
+
+  if (!dataFormats.length || !dataAlbum.length || !dataSortedData.length || !currentItems.length) {
     return (<Loading />)
   }
 
@@ -158,7 +141,7 @@ const Formats = () => {
                   SetCurrentPage(0);
                 }
               }}
-              defaultValue={optionFormatSelected}
+              defaultValue={sortingOptionSelected}
             >
               {dataOptionsToSortBy.map((option, key) => (
                 <option key={key} value={option.value} >
@@ -171,20 +154,20 @@ const Formats = () => {
       </div>
       <div className={`rounded `} style={{ backgroundColor: 'var(--color)', height: '0.5vh', width: '80%' }} />
       <div className='d-flex flex-wrap justify-content-center align-items-end gap-4' style={{ marginTop: '4vh', marginBottom: '4vh', width: '85%' }}>
-        {currentItems.map((album, key) =>
+        {currentItems.map((album, key) => 
           <Album
             key={key}
             cover={album.cover}
             artist={album.artistName}
             name={album.albumName}
-            year={album.releaseDate}
-            price={album.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
+            date={album.releaseDate}
+            price={album.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
             slugArtist={album.artistSlug}
             slugAlbum={album.albumSlug}
           />
         )}
       </div>
-      <Pagination numberOfPages={numberOfPages} currentPage={currentPage} SetCurrentPage={SetCurrentPage}/>
+      <Pagination numberOfPages={numberOfPages} currentPage={currentPage} SetCurrentPage={SetCurrentPage} />
       <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
     </div>
   )
