@@ -1,3 +1,4 @@
+/**/
 insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 	values
 		('','',''),
@@ -164,3 +165,13 @@ insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 	values
 		('50','CAPA PRINCIPAL','https://i.ibb.co/bmS0bRB/Sam-Smith-Gloria-800x800.webp');
+
+/*BEYONCE*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('51','CAPA PRINCIPAL','https://i.ibb.co/HpvGw2F/Renaissance-Beyonc.png');
+
+/*ELLE KING*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('52','CAPA PRINCIPAL','https://i.ibb.co/fXbWNPg/1200x1200bf-60.jpg');

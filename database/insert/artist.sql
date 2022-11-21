@@ -1,3 +1,8 @@
+/**/
+insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
+values 
+    ('','','','');
+
 insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
 values 
     (
@@ -304,3 +309,7 @@ values
 insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
 values 
     ('Sam Smith','sam-smith','https://i.ibb.co/TTZ6v4R/ab6761610000e5eb10ca40ea0b0b5082dba0ff75.jpg','1');
+
+insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
+values 
+    ('Elle King','elle-king','https://i.ibb.co/8dWRZfr/ab67706c0000da84e2b4eba39682678a70013387.jpg','1');

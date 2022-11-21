@@ -25,6 +25,7 @@ const Search = ({colorIsDarkOrLight}) => {
             if (elementInputRef.current.value === '') {
                 elementInputRef.current.style.width = '0';
                 elementDivRef.current.style.background = 'none';
+                elementDivRef.current.style.border = 'none';
                 elementDivRef.current.style.padding = '0vh'
             } else {
                 if (elementInputRef.current.value.length < 1) 
@@ -35,7 +36,8 @@ const Search = ({colorIsDarkOrLight}) => {
         else {
             elementInputRef.current.style.width = '25vh';
             elementDivRef.current.style.background = 'var(--color)';
-            elementDivRef.current.style.padding = '0vh 3vh 0vh 3vh'
+            elementDivRef.current.style.border = '1px solid var(--colorIsWhiteOrBlack)';
+            elementDivRef.current.style.padding = '0vh 3vh 0vh 3vh';
         }
     }, [searchOpen]);
 

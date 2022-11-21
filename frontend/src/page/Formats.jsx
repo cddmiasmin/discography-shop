@@ -24,35 +24,6 @@ const Formats = () => {
 
   const [optionFormatSelected, SetOptionFormatSelected] = useState(0);
 
-  useEffect(() => {
-    api.get(`/formats`).then((response) => {
-      SetDataFormats(response.data.result);
-    });
-
-    SetBannerInPortraitOrLandscapeMode(data.landscape);
-    ChooseImageForTheBanner();
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
-
-  }, []);
-
-  useEffect(() => {
-    if (dataFormats.length !== 0) {
-      SetOptionFormatSelected(dataFormats[0].code);
-    }
-  }, [dataFormats]);
-
-  useEffect(() => {
-    if (dataAlbum.length !== 0) SortAlbumByChoiceSortBy(dataAlbum, sortingOptionSelected);
-  }, [dataAlbum]);
-
-  useEffect(() => {
-
-    api.get(`/format/${optionFormatSelected}`).then((response) => {
-      SetDataAlbum(response.data.result);
-    });
-
-  }, [optionFormatSelected]);
-
   const {
     color,
     colorIsDarkOrLight,
@@ -81,6 +52,35 @@ const Formats = () => {
     currentPage,
     SetCurrentPage
   } = usePagination(dataSortedData);
+
+  useEffect(() => {
+    api.get(`/formats`).then((response) => {
+      SetDataFormats(response.data.result);
+    });
+
+    SetBannerInPortraitOrLandscapeMode(data.landscape);
+    ChooseImageForTheBanner();
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
+
+  }, []);
+
+  useEffect(() => {
+    if (dataFormats.length !== 0) {
+      SetOptionFormatSelected(dataFormats[0].code);
+    }
+  }, [dataFormats]);
+
+  useEffect(() => {
+    if (dataAlbum.length !== 0) SortAlbumByChoiceSortBy(dataAlbum, sortingOptionSelected);
+  }, [dataAlbum, sortingOptionSelected]);
+
+  useEffect(() => {
+
+    api.get(`/format/${optionFormatSelected}`).then((response) => {
+      SetDataAlbum(response.data.result);
+    });
+
+  }, [optionFormatSelected]);
 
 
   if (!dataFormats.length || !dataAlbum.length || !dataSortedData.length || !currentItems.length) {
@@ -154,7 +154,7 @@ const Formats = () => {
       </div>
       <div className={`rounded `} style={{ backgroundColor: 'var(--color)', height: '0.5vh', width: '80%' }} />
       <div className='d-flex flex-wrap justify-content-center align-items-end gap-4' style={{ marginTop: '4vh', marginBottom: '4vh', width: '85%' }}>
-        {currentItems.map((album, key) => 
+        {currentItems.map((album, key) =>
           <Album
             key={key}
             cover={album.cover}

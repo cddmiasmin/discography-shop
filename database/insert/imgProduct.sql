@@ -1,3 +1,4 @@
+/**/
 insert into tb_cassandra_img_product(fk_product, url_img_product)
     values 
         ('',''),
@@ -224,3 +225,14 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
         ('99','https://i.ibb.co/WVTJ03f/cd-sam-smith-gloria-importado-cd-sam-smith-gloria-importado-00602445856718-00060244585671.webp'),
         ('100','https://i.ibb.co/h1HCsf9/gloria-black-cassete-store-exclusive-importado-gloria-black-cassete-store-exclusive-00602445856688-0.webp'),
         ('101','https://i.ibb.co/Xshj32w/vinil-sam-smith-gloria-black-vinil-importado-vinil-sam-smith-gloria-black-vinil-00602445856602-00060.webp');
+
+/*BEYONCE*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('102','https://i.ibb.co/KK85PGw/imagem-2022-11-21-075143415.png');
+
+/*ELLE KING*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('104','https://i.ibb.co/g6JbN1c/Y4CDEK02.jpg'),
+        ('105','https://i.ibb.co/SNfR63L/Y4LPEK02.jpg');

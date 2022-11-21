@@ -1,3 +1,4 @@
+/**/
 insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
     values
 		('','','','');
@@ -96,3 +97,13 @@ insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
 insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
     values
 		('151','Gloria','gloria','2023-01-27');
+
+/*BEYONCE*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('107','RENAISSANCE','renaissance','2022-07-29');
+
+/*ELLE KING*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('152','Come Get Your Wife','come-get-your-wife','2023-01-27');
