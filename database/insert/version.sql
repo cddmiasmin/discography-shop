@@ -187,3 +187,6 @@ insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 		('54','CAPA PRINCIPAL','https://i.ibb.co/gvmyNyt/maneskin-rush-album-2023-1024x1024.jpg');
 
 /*Gabrielle Aplin*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('55','CAPA PRINCIPAL','https://i.ibb.co/SVL4mKp/Untitled-15.jpg');

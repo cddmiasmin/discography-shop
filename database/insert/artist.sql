@@ -314,7 +314,14 @@ insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
 values 
     ('Elle King','elle-king','https://i.ibb.co/8dWRZfr/ab67706c0000da84e2b4eba39682678a70013387.jpg','1');
     
-/*Ava Max*/
 insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
 values 
     ('Ava Max','ava-max','https://i.ibb.co/gyXg3SK/ab6761610000e5eb2548518a8ec0cbf94867febf.jpg','1');
+    
+insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
+values 
+    ('Måneskin','maneskin','https://i.ibb.co/xFH5Mcr/ab6761610000e5ebae9d3f8db5842d33786cab87.jpg','1');
+    
+insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
+values 
+    ('Gabrielle Aplin','gabrielle-aplin','https://i.ibb.co/MpCF0sb/ab6761610000e5ebaac010f3b621faf4d8346ada.jpg','1');

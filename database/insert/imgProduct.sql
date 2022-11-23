@@ -253,3 +253,9 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
         ('132','https://i.ibb.co/ccd7KfG/LP-PICTUREDISCVINYL-2-6217bf43-4d63-4bed-a267-8409d587088f-1024x1024-2x.webp');
 
 /*Gabrielle Aplin*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('133','https://i.ibb.co/JtjgVhx/CD-Gabrielle-Aplin-Phosphorescent-STRD-000000-0f043e90-14f8-4b3e-8d70-c3d7711c6e2b.webp'),
+        ('134','https://i.ibb.co/XFYLs5Q/Cassette-Gabrielle-Aplin-Phosphorescent-000000.webp'),
+        ('135','https://i.ibb.co/Df0WKWC/Bundle1-Gabrielle-Aplin-Phosphorescent-D2-C-000000.webp'),
+        ('136','https://i.ibb.co/VD52j4M/GAstandardlp.webp');
