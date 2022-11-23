@@ -3,7 +3,7 @@ create table tb_cassandra_product(
     fk_version bigint,
     fk_format bigint,
     st_product boolean not null,
-    vl_price decimal(5, 2) not null,
+    vl_price decimal(13, 2) not null,
     dt_added timestamp not null,
     vl_height decimal(5, 2) not null,
     vl_width decimal(5, 2) not null,

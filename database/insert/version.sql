@@ -175,3 +175,15 @@ insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 	values
 		('52','CAPA PRINCIPAL','https://i.ibb.co/fXbWNPg/1200x1200bf-60.jpg');
+
+/*AVA MAX*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('53','CAPA PRINCIPAL','https://i.ibb.co/FxpkKcB/61w-Sm-Efdm-L-SY580.jpg');
+
+/*Måneskin*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('54','CAPA PRINCIPAL','https://i.ibb.co/gvmyNyt/maneskin-rush-album-2023-1024x1024.jpg');
+
+/*Gabrielle Aplin*/

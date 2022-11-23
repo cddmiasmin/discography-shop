@@ -4,13 +4,13 @@ select * from tb_cassandra_format;
 
 select * from tb_cassandra_category;
 
-select * from tb_cassandra_artist;
+select * from tb_cassandra_artist order by cd_artist desc;
 
-select * from tb_cassandra_version;
+select * from tb_cassandra_version order by cd_version desc;
 
-select * from tb_cassandra_album;
+select * from tb_cassandra_album order by cd_album desc;
 
-select * from tb_cassandra_product;
+select * from tb_cassandra_product order by cd_product desc;
 
 select * from tb_cassandra_img_product;
 
@@ -45,16 +45,17 @@ FROM tb_cassandra_version
 WHERE fk_album = 48;
 
 /* --------------------- PRODUTO POR VERSÃO */
-SELECT * FROM tb_cassandra_product WHERE fk_version in (SELECT cd_version FROM tb_cassandra_version WHERE fk_album = 40);
+SELECT * FROM tb_cassandra_product WHERE fk_version in (SELECT cd_version FROM tb_cassandra_version WHERE fk_album = 50);
 
 SELECT * FROM tb_cassandra_product WHERE fk_version in ( SELECT cd_version FROM tb_cassandra_version WHERE fk_album = (SELECT cd_album FROM tb_cassandra_album WHERE slug_album = 'chromatica') );
 
 
 
+/* ALTER TABLE tb_cassandra_product MODIFY COLUMN vl_price decimal(13,2);
 ALTER TABLE tb_cassandra_product ADD vl_height decimal(5, 2) not null; 
 ALTER TABLE tb_cassandra_product ADD vl_width decimal(5, 2) not null;
 ALTER TABLE tb_cassandra_product ADD vl_length decimal(5, 2) not null; 	
-ALTER TABLE tb_cassandra_product ADD vl_weight decimal(5, 2) not null;
+ALTER TABLE tb_cassandra_product ADD vl_weight decimal(5, 2) not null;*/
 
 
 SELECT 

@@ -107,3 +107,18 @@ insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
 insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
     values
 		('152','Come Get Your Wife','come-get-your-wife','2023-01-27');
+
+/*AVA MAX*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('153','Diamonds & Dancefloors','diamonds-e-dancefloors','2023-01-27');
+
+/*Måneskin*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('154','RUSH!','rush','2023-01-20');
+
+/*Gabrielle Aplin*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('155','Phosphorescent','phosphorescent','2023-01-13');

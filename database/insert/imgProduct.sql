@@ -236,3 +236,20 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
     values 
         ('104','https://i.ibb.co/g6JbN1c/Y4CDEK02.jpg'),
         ('105','https://i.ibb.co/SNfR63L/Y4LPEK02.jpg');
+
+/*AVA MAX*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('106','https://i.ibb.co/c6ppnMH/052722-Ava-Max-Da-D-Product-Pics-CD-1100x.webp'),
+        ('107','https://i.ibb.co/6yN1Wxd/052722-Ava-Max-Da-D-Product-Pics-Cassette-Purple-1-1100x.webp'),
+        ('108','https://i.ibb.co/SXfvRj4/052722-Ava-Max-Da-D-Product-Pics-Vinyl-Black-Ice-5-1100x.webp');
+
+/*Måneskin*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('129','https://i.ibb.co/VHHxn2m/MAN101-A-CDBOOK-b1be1334-f998-44c1-8b79-d060f9377d4a-1024x1024-2x.webp'),
+        ('130','https://i.ibb.co/17sZtd5/MAN101-A-MCALB-905288ee-c279-42f2-9aed-963e9a13da36-1024x1024-2x.webp'),
+        ('131','https://i.ibb.co/R4pL4B6/SPECIALBOXSET-PHOTOBOOK-7-VINYL-LP-CD-CASSETTE-POSTER-2-1024x1024-2x.webp'),
+        ('132','https://i.ibb.co/ccd7KfG/LP-PICTUREDISCVINYL-2-6217bf43-4d63-4bed-a267-8409d587088f-1024x1024-2x.webp');
+
+/*Gabrielle Aplin*/
