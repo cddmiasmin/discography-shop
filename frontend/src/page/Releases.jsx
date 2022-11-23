@@ -35,11 +35,11 @@ const Releases = () => {
     dataSortedData,
     sortingOptionSelected,
     SetSortingOptionSelected,
-    SortAlbumByChoiceSortBy
+    SortAlbumByChoiceSortByForReleases
   } = useSortBy();
 
   useEffect(() =>{
-    if(pageData.length !== 0) SortAlbumByChoiceSortBy(pageData, sortingOptionSelected);
+    if(pageData.length !== 0) SortAlbumByChoiceSortByForReleases(pageData, sortingOptionSelected);
   }, [pageData, sortingOptionSelected])
 
   const {
@@ -95,7 +95,7 @@ const Releases = () => {
             onChange={(e) => SetSortingOptionSelected(e.target.value)}
             defaultValue={sortingOptionSelected}
           >
-            {dataOptionsToSortBy.map((option, key) => (
+            {dataOptionsToSortBy[0].optiontwo.map((option, key) => (
               <option key={key} value={option.value} >
                 {option.option}
               </option>

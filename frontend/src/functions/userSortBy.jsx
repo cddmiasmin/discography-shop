@@ -7,9 +7,9 @@ import { _ } from 'lodash';
 export function useSortBy() {
 
     const [dataSortedData, SetSortedData] = useState([]);
-    const [sortingOptionSelected, SetSortingOptionSelected] = useState(dataOptionsToSortBy[0].value);
+    const [sortingOptionSelected, SetSortingOptionSelected] = useState('date-recent');
 
-    const SortAlbumByChoiceSortBy = (data, choice) => {
+    const SortAlbumByChoiceSortByForFormat = (data, choice) => {
         let sortedDataAux;
 
         if (choice === 'date-recent')
@@ -32,11 +32,51 @@ export function useSortBy() {
         SetSortedData(sortedDataAux);
     }
 
+    const SortAlbumByChoiceSortByForPreOrder = (data, choice) => {
+        let sortedDataAux;
+
+        if (choice === 'date-recent')
+            sortedDataAux = _.orderBy(data, ['releaseDate', 'albumName'], ['asc', 'asc']);
+        else if (choice === 'date-old')
+            sortedDataAux = _.orderBy(data, ['releaseDate', 'albumName'], ['desc', 'desc']);
+        else if (choice === 'album-a-z')
+            sortedDataAux = _.orderBy(data, ['albumName', 'artistName'], ['asc', 'asc']);
+        else if (choice === 'album-z-a')
+            sortedDataAux = _.orderBy(data, ['albumName', 'artistName'], ['desc', 'asc']);
+        else if (choice === 'artist-a-z')
+            sortedDataAux = _.orderBy(data, ['artistName', 'albumName'], ['asc', 'asc']);
+        else
+            sortedDataAux = _.orderBy(data, ['artistName', 'albumName'], ['desc', 'asc']);
+
+        SetSortedData(sortedDataAux);
+    }
+
+    const SortAlbumByChoiceSortByForReleases = (data, choice) => {
+        let sortedDataAux;
+
+        if (choice === 'date-recent')
+            sortedDataAux = _.orderBy(data, ['releaseDate', 'albumName'], ['desc', 'asc']);
+        else if (choice === 'date-old')
+            sortedDataAux = _.orderBy(data, ['releaseDate', 'albumName'], ['asc', 'asc']);
+        else if (choice === 'album-a-z')
+            sortedDataAux = _.orderBy(data, ['albumName', 'artistName'], ['asc', 'asc']);
+        else if (choice === 'album-z-a')
+            sortedDataAux = _.orderBy(data, ['albumName', 'artistName'], ['desc', 'asc']);
+        else if (choice === 'artist-a-z')
+            sortedDataAux = _.orderBy(data, ['artistName', 'albumName'], ['asc', 'asc']);
+        else
+            sortedDataAux = _.orderBy(data, ['artistName', 'albumName'], ['desc', 'asc']);
+
+        SetSortedData(sortedDataAux);
+    }
+
     return {
         dataSortedData,
         sortingOptionSelected,
         SetSortingOptionSelected,
-        SortAlbumByChoiceSortBy
+        SortAlbumByChoiceSortByForFormat,
+        SortAlbumByChoiceSortByForPreOrder,
+        SortAlbumByChoiceSortByForReleases
     }
 
 }

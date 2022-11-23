@@ -43,7 +43,7 @@ const Formats = () => {
     dataSortedData,
     sortingOptionSelected,
     SetSortingOptionSelected,
-    SortAlbumByChoiceSortBy
+    SortAlbumByChoiceSortByForFormat
   } = useSortBy(dataAlbum);
 
   const {
@@ -71,7 +71,7 @@ const Formats = () => {
   }, [dataFormats]);
 
   useEffect(() => {
-    if (dataAlbum.length !== 0) SortAlbumByChoiceSortBy(dataAlbum, sortingOptionSelected);
+    if (dataAlbum.length !== 0) SortAlbumByChoiceSortByForFormat(dataAlbum, sortingOptionSelected);
   }, [dataAlbum, sortingOptionSelected]);
 
   useEffect(() => {
@@ -143,7 +143,7 @@ const Formats = () => {
               }}
               defaultValue={sortingOptionSelected}
             >
-              {dataOptionsToSortBy.map((option, key) => (
+              {dataOptionsToSortBy[0].optionone.map((option, key) => (
                 <option key={key} value={option.value} >
                   {option.option}
                 </option>

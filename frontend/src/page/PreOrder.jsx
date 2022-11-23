@@ -35,11 +35,11 @@ const PreOrder = () => {
     dataSortedData,
     sortingOptionSelected,
     SetSortingOptionSelected,
-    SortAlbumByChoiceSortBy
+    SortAlbumByChoiceSortByForPreOrder
   } = useSortBy();
 
   useEffect(() =>{
-    if(pageData.length !== 0) SortAlbumByChoiceSortBy(pageData, sortingOptionSelected);
+    if(pageData.length !== 0) SortAlbumByChoiceSortByForPreOrder(pageData, sortingOptionSelected);
   }, [pageData, sortingOptionSelected])
 
   const {
@@ -95,7 +95,7 @@ const PreOrder = () => {
             onChange={(e) => SetSortingOptionSelected(e.target.value)}
             defaultValue={sortingOptionSelected}
           >
-            {dataOptionsToSortBy.map((option, key) => (
+            {dataOptionsToSortBy[0].optionthree.map((option, key) => (
               <option key={key} value={option.value} >
                 {option.option}
               </option>
