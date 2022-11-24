@@ -1,37 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import { useGetColor } from './../../functions/useGetColor';
 import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
+import { useGetColor } from './../../functions/useGetColor';
 import { useShowPassword } from '../../functions/useShowPassword';
+import { useValidationRegistration } from '../../functions/useValidateRegistration';
 
-import Logo from './../../components/Logo'
+import Logo from './../../components/Logo';
 
-import './registration.css'
+import './registration.css';
 
 const Registration = () => {
 
-
-  useEffect(() => {
-    WhatOrientationIsTheScreenInNow('landscape')
-    ChooseImageForTheBanner();
-  }, [])
-
-  useEffect(() => {
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
-  })
+  const nameRef = useRef();
+  const lastNameRef = useRef();
+  const cpfRef = useRef();
+  const telephoneRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef()
+  const checkboxRef = useRef();
 
   const {
     color,
     getColor,
   } = useGetColor();
-
-  useEffect(() => document.body.style.setProperty('--colorIsWhiteOrBlack', 'white'), [color])
 
   const {
     imageNumber,
@@ -40,7 +38,23 @@ const Registration = () => {
     ChooseImageForTheBanner,
   } = useChooseBackgroundImage();
 
+  const {
+    Validate,
+  } = useValidationRegistration(
+    nameRef, lastNameRef, cpfRef, telephoneRef, emailRef, passwordRef, confirmPasswordRef
+  );
+
   const ShowPassword = useShowPassword();
+
+  useEffect(() => {
+    WhatOrientationIsTheScreenInNow('landscape')
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
+    ChooseImageForTheBanner();
+  }, [])
+
+  const handleClickButton = () => {
+    Validate()  
+  }
 
   const popoverCPFFocus = (
     <Popover id="popover-trigger-focus" title="Popover bottom"
@@ -73,6 +87,13 @@ const Registration = () => {
       </ul>
     </Popover>
   );
+
+  // console.log('name', nameRef);
+  // console.log('last', lastNameRef);
+  // console.log('cpf', cpfRef);
+  // console.log('tele', telephoneRef);
+  // console.log('email', emailRef);
+  // console.log('senha', passwordRef);
 
   return (
     <div className='position-absolute flex-wrap w-100 h-100 d-flex justify-content-center align-items-center'>
@@ -114,6 +135,11 @@ const Registration = () => {
               id='form-registration'
               action="."
               className='d-flex w-100 flex-column justify-content-center align-items-center gap-2'
+              onSubmit={(e) => {
+                e.preventDefault();
+                console.log('form break');
+                handleClickButton();
+              }}
             >
               <div id='customer-name-field'
                 className='element-width overflow-hidden d-flex flex-row justify-content-center align-items-center gap-1'
@@ -123,31 +149,33 @@ const Registration = () => {
                   className='rounded'
                   type="text" id='name-registration' required minLength={3} placeholder='NOME'
                   style={{ width: '39%' }}
+                  ref={nameRef}
                 />
                 <input
                   className='rounded'
                   type="text" id='lastname-resgistration' required minLength={3} placeholder='SOBRENOME'
                   style={{ width: '59%' }}
+                  ref={lastNameRef}
                 />
               </div>
               <OverlayTrigger trigger="focus" placement="top" overlay={popoverCPFFocus}>
                 <input
                   className='element-width rounded'
                   type="text" name="cpf-resgistration" id="cpf-resgistration" placeholder='CPF' required
-                  pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$"
+                  ref={cpfRef} maxLength="20"
                 />
               </OverlayTrigger>
               <OverlayTrigger trigger="focus" placement="top" overlay={popoverTelephoneFocus}>
                 <input
-                  className='element-width rounded'
+                  className='element-width rounded' required
                   type="tel" id="phone-resgistration" name="phone-resgistration" placeholder='Telefone Celular'
-                  maxLength="15" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$"
+                  maxLength="15" ref={telephoneRef}
                 />
               </OverlayTrigger>
               <input
                 className='element-width rounded'
                 type="email" name="email-resgistration" id="email-resgistration" placeholder='E-mail' required
-                pattern="[A-z0-9._%+-]+@[A-z0-9.-]+\.[a-Z]{2,}$"
+                ref={emailRef}
               />
               <div id='customer-password-field'
                 className='element-width overflow-hidden d-flex flex-row justify-content-center align-items-center gap-1'
@@ -158,7 +186,7 @@ const Registration = () => {
                     <input
                       className='element-width rounded w-100'
                       type="password" name="password-resgistration" id="password-resgistration" placeholder='Senha' required
-                      pattern="(?=.*\d)(?=.*[a-Z])(?=.*[A-Za-z]){4,}"
+                      ref={passwordRef}
                     />
                   </OverlayTrigger>
                   <button
@@ -176,6 +204,7 @@ const Registration = () => {
                   <input
                     className='element-width rounded w-100'
                     type="password" name="confirm-password-resgistration" id="confirm-password-resgistration" placeholder='CONFIRME SUA SENHA' required
+                    ref={confirmPasswordRef}
                   />
                   <button
                     type='button' className='position-absolute'
@@ -211,7 +240,6 @@ const Registration = () => {
               >
                 CADASTRAR-SE
               </button>
-
             </form>
           </div>
         </div>
