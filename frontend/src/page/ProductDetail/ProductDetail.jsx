@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import ReactImageMagnify from 'react-image-magnify';
 
-import Header from './../components/Header/Header'
-import Loading from './../components/Loading'
-import Footer from './../components/Footer/Footer'
-import LetMeKnowWhenItArrives from '../components/LetMeKnowWhenItArrives/LetMeKnowWhenItArrives'
+import './productDetail.css';
 
-import { useGetColor } from './../functions/useGetColor'
+import Header from './../../components/Header/Header'
+import Loading from './../../components/Loading'
+import Footer from './../../components/Footer/Footer'
+import LetMeKnowWhenItArrives from '../../components/LetMeKnowWhenItArrives/LetMeKnowWhenItArrives'
+
+import { useGetColor } from './../../functions/useGetColor'
 
 import { Link } from 'react-router-dom'
 import { _ } from 'lodash'
-import api from '../services/api';
+import api from '../../services/api';
 
 import {
   BsFacebook, BsInstagram, BsTwitter, BsWhatsapp,
@@ -23,64 +25,53 @@ const ProductDetail = () => {
   const { artist } = useParams();
   const { album } = useParams();
 
-  const nameFormat = ['CD', 'CASSETE', 'BOX', 'DVD', 'VINIL'];
+  const optionVersionAlbumRef = useRef([]);
+  const optionFormatRef = useRef([]);
 
-  const [dataArtist, SetDataArtist] = useState([]);
-  const [dataAlbum, SetDataAlbum] = useState([]);
-  const [dataVersionAlbum, SetDataVersionAlbum] = useState([]);
-  const [dataProductAlbum, SetDataProductAlbum] = useState([]);
-  const [dataImgProductAlbum, SetDataImgProductAlbum] = useState(1);
-  const [dataBundledProductVersions, SetDataBundledProductVersions] = useState([]);
+  const [pageData, SetPageData] = useState([]);
+  const [dataProductsGroupedByVersion, SetDataProductsGroupedByVersion] = useState([]);
   const [dataGroupedProductImages, SetDataGroupedProductImages] = useState(1);
 
   const [formatStockAvailable, SetFormatStockAvailable] = useState([]);
 
-  const [productPhoto, SetProductPhoto] = useState(0);
-  const [productFormat, SetProductFormat] = useState(0);
   const [optionVersionAlbum, SetOptionVersionAlbum] = useState(0);
   const [idOptionVersion, SetIdOptionVersion] = useState(0);
-
+  const [productPhoto, SetProductPhoto] = useState(0);
+  const [productFormat, SetProductFormat] = useState(0);
+  const [releaseDateAlbum, SetReleaseDateAlbum] = useState(0);
   const [letMeKnowWhenItArrivesModalIsOpen, SetLetMeKnowWhenItArrivesModalIsOpen] = useState(false);
 
-  useEffect(() => {
-    api.get(`/versions/${album}`).then((response) => {
-      SetDataVersionAlbum(response.data.result);
-    })
-    api.get(`/album/${album}`).then((response) => {
-      SetDataAlbum(response.data.result);
-    })
-    api.get(`/artist/${artist}`).then((response) => {
-      SetDataArtist(response.data.result);
-    });
-  }, []);
+  const nameFormat = ['CD', 'CASSETE', 'BOX', 'DVD', 'VINIL'];
+  const today = new Date(Date.now());
 
-  useEffect(() => {
-    if (dataVersionAlbum.length !== 0) getColor(dataVersionAlbum[optionVersionAlbum].cover);
-  }, [dataVersionAlbum, optionVersionAlbum]);
+  const {
+    color,
+    colorIsDarkOrLight,
+    colorIsWhiteOrBlack,
+    getColor
+  } = useGetColor();
 
-  useEffect(() => {
-    if (dataAlbum.length !== 0) {
-      api.get(`/products/${dataAlbum.cd_album}`).then((response) => {
-        SetDataProductAlbum(response.data.result);
-      });
-      api.get(`/images/products/${dataAlbum.cd_album}`).then((response) => {
-        SetDataImgProductAlbum(response.data.result);
-      });
-    }
-  }, [dataAlbum]);
+  const HowIsTheStockOfFormats = (data) => {
+    const formatStockAvailableAux = _.groupBy(data, (format) => {
+      return format.situation
+    })
+
+    SetFormatStockAvailable(formatStockAvailableAux);
+  }
 
   const GroupingProductVersions = (data) => {
     const dataProductAlbumAux = _.groupBy(data, (product) => {
       return product.version
     })
-    return dataProductAlbumAux;
+
+    SetDataProductsGroupedByVersion(dataProductAlbumAux);
   }
 
-  const GroupingImagesProductByProduct = () => {
+  const GroupingImagesProductByProduct = (data) => {
     let groupedProductImagesAux;
 
-    if (dataImgProductAlbum.length !== 0)
-      groupedProductImagesAux = _.groupBy(dataImgProductAlbum, (product) => {
+    if (data.length !== 0)
+      groupedProductImagesAux = _.groupBy(data, (product) => {
         return product.product
       })
     else groupedProductImagesAux = 0;
@@ -88,131 +79,146 @@ const ProductDetail = () => {
     SetDataGroupedProductImages(groupedProductImagesAux);
   }
 
-  const HowIsTheStockOfFormats = () => {
-    const formatStockAvailableAux = _.groupBy(dataBundledProductVersions[idOptionVersion], (format) => {
-      return format.situation
-    })
+  const StyleChangeOptionVersion = () => {
+    getColor(pageData.versions[optionVersionAlbum].cover);
+    optionVersionAlbumRef.current[optionVersionAlbum].classList.add('optionVersionAlbumSelected');
+  }
 
-    SetFormatStockAvailable(formatStockAvailableAux);
+  const StyleChangeOptionFormat = () => {
+    optionFormatRef.current[productFormat].classList.add('productFormatSelected');
   }
 
   useEffect(() => {
-    if (dataProductAlbum.length !== 0) {
-      SetDataBundledProductVersions(GroupingProductVersions(dataProductAlbum));
-      SetIdOptionVersion(dataVersionAlbum[0].code);
-      HowIsTheStockOfFormats();
+    api.get(`/product/detail/${artist}/${album}`).then((response) => {
+      SetPageData(response.data.result);
+    });
+    if (optionFormatRef.current[productFormat] !== undefined)
+    StyleChangeOptionFormat();
+  }, []);
+
+  useEffect(() => HowIsTheStockOfFormats(dataProductsGroupedByVersion[idOptionVersion]), [idOptionVersion]);
+
+  useEffect(() => {
+    if (pageData.length !== 0) StyleChangeOptionVersion();
+  }, [optionVersionAlbum])
+
+  useEffect(() => {
+    if (optionFormatRef.current[productFormat] !== undefined)
+    StyleChangeOptionFormat();
+  }, [productFormat]);
+
+  useEffect(() => {
+    if (pageData.length !== 0) {
+
+      let releaseDateAux = new Date(pageData.album.releaseDate);
+      SetReleaseDateAlbum(releaseDateAux);
+
+      StyleChangeOptionVersion();
+      GroupingProductVersions(pageData.products);
+      GroupingImagesProductByProduct(pageData.images);
+      SetIdOptionVersion(pageData.versions[0].code);
+      HowIsTheStockOfFormats(dataProductsGroupedByVersion[idOptionVersion]);
     }
-  }, [dataProductAlbum]);
-
-  useEffect(() => HowIsTheStockOfFormats(), [idOptionVersion]);
-
-  useEffect(() => {
-    if (dataImgProductAlbum.length !== 0) GroupingImagesProductByProduct()
-  }, [dataImgProductAlbum])
-
-  const {
-    color,
-    colorIsDarkOrLight,
-    colorIsWhiteOrBlack,
-    getColor,
-  } = useGetColor();
+  }, [pageData]);
 
 
-  const ChoseAlbumCoverClick = (keyOption, codeVersion) => {
-    SetOptionVersionAlbum(keyOption);
-    SetIdOptionVersion(codeVersion);
-    SetProductFormat(0);
-    SetProductPhoto(0);
+  if (pageData.length === 0 ) {
+    return (<Loading />);
   }
 
-  const ChoseProductFormatClick = (key) => {
-    SetProductFormat(key);
-    SetProductPhoto(0);
-  }
-
-  //console.log(dataProductAlbum);
-  //console.log(dataImgProductAlbum);
-  //console.log(dataGroupedProductImages !== 1);
-  //console.log(dataBundledProductVersions[idOptionVersion][productFormat]);
-  //console.log(dataBundledProductVersions);
-  //console.log(dataGroupedProductImages[formatStockAvailable[1][productFormat].code][productPhoto].image)
-  //console.log(dataAlbum);
-  //console.log(dataVersionAlbum)
-  //console.log(dataArtist);
-  //console.log(formatStockAvailable[1][productFormat])
-  //console.log(idOptionVersion)
+  //console.log(pageData.album);
+  //console.log(pageData);
+  //console.log(stockDate);
+  //console.log(formatStockAvailable);
+  //console.log(pageData.versions[1]);
+  //console.log(optionVersionAlbumRef);
+  //console.log(dataProductsGroupedByVersion[idOptionVersion][productFormat])
   //console.log(productFormat);
-  //console.log(productPhoto);
-  //console.log(dataGroupedProductImages[formatStockAvailable[1][productFormat].code])
-  //console.log(dataGroupedProductImages[dataBundledProductVersions[idOptionVersion][productFormat].code])
-
-  if (dataArtist.length === 0 || dataAlbum.length === 0 || dataBundledProductVersions.length === 0
-    || dataVersionAlbum.length === 0 || dataProductAlbum.length === 0 || idOptionVersion === 0 ||
-    formatStockAvailable === {} || dataImgProductAlbum === 1 || dataGroupedProductImages === 1) {
-    return (<Loading />)
-  }
+  //console.log(optionFormatRef.current[productFormat])
 
   return (
-    <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-center text-${colorIsDarkOrLight}`}
-      style={{ backgroundColor: '#020202' }}
+    <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-center text-${colorIsWhiteOrBlack}`}
+      style={{ backgroundColor: '#020202'}}
     >
       <Header colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
       <div
         className='d-flex flex-column justify-content-center align-items-center text-center w-100 h-25 '
         style={{ backgroundColor: `${color}`, 'paddingTop': '10vh' }}
       >
-        <h1 className='fs-1'>{dataAlbum.nm_album}</h1>
-        <Link to={`/perfil/${dataArtist.slug}`} className={`text-decoration-none text-${colorIsDarkOrLight}`}>{dataArtist.name}</Link>
+        <h1 className='fs-1 m-0'>{pageData.album.albumName}</h1>
+        {releaseDateAlbum > today &&
+          <Link to={`/prevenda`} className={`fs-3 text-decoration-none text-${colorIsWhiteOrBlack}`}>PRÉ-VENDA</Link>
+        }
+        <Link to={`/perfil/${pageData.artist.artistSlug}`} className={`text-decoration-none text-${colorIsWhiteOrBlack}`}>{pageData.artist.artistName}</Link>
       </div>
+
+      {releaseDateAlbum > today &&
+        <div className='d-flex justify-content-center align-items-center w-100'
+          style={{ borderBottom: '2px solid var(--color)' }}
+        >
+          <h5 style={{ color: 'var(--color)', marginTop: '1.5vh' }}>
+            LANÇAMENTO EM {pageData.album.releaseDateFormated}
+          </h5>
+        </div>
+      }
 
       <div
         className='d-flex gap-4 flex-row justify-content-center align-items-center'
-        style={{ width: '85%', margin: '3.5vh' }}
+        style={{ width: '85%', margin: '2.7vh' }}
       >
         <a
-          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsDarkOrLight} rounded-circle`}
+          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsWhiteOrBlack} rounded-circle`}
           style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
           href="https://www.facebook.com">
           <BsFacebook style={{ width: '60%', height: '60%' }} />
         </a>
 
         <a
-          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsDarkOrLight} rounded-circle`}
+          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsWhiteOrBlack} rounded-circle`}
           style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
           href="https://www.instagram.com">
           <BsInstagram style={{ width: '60%', height: '60%' }} />
         </a>
 
         <a
-          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsDarkOrLight} rounded-circle`}
+          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsWhiteOrBlack} rounded-circle`}
           style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
           href="https://twitter.com/home">
           <BsTwitter style={{ width: '60%', height: '60%' }} />
         </a>
 
         <a
-          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsDarkOrLight} rounded-circle`}
+          className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsWhiteOrBlack} rounded-circle`}
           style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
           href="https://www.youtube.com">
           <BsWhatsapp style={{ width: '60%', height: '60%' }} />
         </a>
       </div>
 
-      <div className='container-fluid d-flex gap-4 flex-wrap h-75 w-100 justify-content-center align-items-center'
-        style={{ marginTop: '2.5vh', marginBottom: '5vh' }}>
-
+      <div
+        className='container-fluid d-flex gap-4 flex-wrap h-75 w-100 justify-content-center align-items-center'
+        style={{ marginBottom: '5vh' }}
+      >
         <div
           className='d-flex gap-1 flex-column justify-content-center align-items-center rounded'
           style={{ backgroundColor: `${color}`, minHeight: '52.5vh', width: '37vh' }}
         >
           <h6 className='m-0'>Escolha a versão ou capa</h6>
           <div className='d-flex w-100 flex-row gap-2 justify-content-center align-items-center' >
-            {dataVersionAlbum.map((option, key) => (
+            {pageData.versions.map((option, key) => (
               <button
                 key={key}
-                className={`bg-${colorIsDarkOrLight} rounded-circle d-flex justify-content-center align-items-center`}
-                style={{ color: `${color}`, height: '4vh', width: '4vh', cursor: 'point' }}
-                onClick={() => ChoseAlbumCoverClick(key, option.code)}
+                className={`rounded-circle d-flex justify-content-center align-items-center`}
+                style={{ color: `${color}`, backgroundColor: `${colorIsWhiteOrBlack}`, height: '4vh', width: '4vh', cursor: 'point' }}
+                ref={b => optionVersionAlbumRef.current[key] = b}
+                onClick={() => {
+                  if (option.code === idOptionVersion) return;
+                  optionVersionAlbumRef.current[optionVersionAlbum].classList.remove('optionVersionAlbumSelected');
+                  SetOptionVersionAlbum(key);
+                  SetIdOptionVersion(option.code);
+                  SetProductFormat(0);
+                  SetProductPhoto(0);
+                }}
               >
                 {key + 1}
               </button>
@@ -222,10 +228,10 @@ const ProductDetail = () => {
           <img
             className='rounded'
             style={{ height: '35vh', width: '35vh' }}
-            src={dataVersionAlbum[optionVersionAlbum].cover} alt='Imagem do album'
+            src={pageData.versions[optionVersionAlbum].cover} alt='Imagem do album'
           />
 
-          <h4 align="center" className='m-0'>{dataVersionAlbum[optionVersionAlbum].description}</h4>
+          <h4 align="center" className='m-0'>{pageData.versions[optionVersionAlbum].description}</h4>
         </div>
 
         <div
@@ -234,15 +240,22 @@ const ProductDetail = () => {
         >
           {formatStockAvailable['1'] !== undefined &&
             <div className='d-flex flex-column justify-content-center align-items-center'>
-              <h2 className='m-0'>COM ESTOQUE</h2>
+              <h2 className='m-0' align='center'>{releaseDateAlbum > today ? 'DISPONÍVEL' : 'COM ESTOQUE'}</h2>
               <div style={{ backgroundColor: `${color}`, height: '1vh', width: '35vh', marginBottom: '2vh' }} />
               <div className='d-flex flex-wrap gap-1 justify-content-center align-items-center'>
                 {formatStockAvailable['1'].map((format, key) => (
                   <button
                     key={key}
-                    onClick={() => ChoseProductFormatClick(key)}
-                    className={`bg-${colorIsDarkOrLight} fs-4 rounded d-flex justify-content-center align-items-center`}
-                    style={{ color: `${color}`, height: '6vh', width: '12vh', cursor: 'point' }}
+                    onClick={() => {
+                      if(productFormat === key) return;
+                      optionFormatRef.current[productFormat].classList.remove('productFormatSelected');
+                      SetProductFormat(key);
+                      SetProductPhoto(0);
+                    }}
+                    ref={b => optionFormatRef.current[key] = b}
+                    className={`fs-4 rounded d-flex justify-content-center align-items-center`}
+                    style={{ color: 'var(--color)', backgroundColor: 'transparent',
+                            border: '2px solid var(--color)',  height: '6vh', width: '12vh', cursor: 'point' }}
                   >
                     {nameFormat[format.format - 1]}
                   </button>
@@ -253,14 +266,15 @@ const ProductDetail = () => {
 
           {formatStockAvailable['0'] !== undefined &&
             <div className='d-flex flex-column justify-content-center align-items-center w-100'>
-              <h2 className='m-0'>SEM ESTOQUE</h2>
+              <h2 className='m-0' align='center'>{releaseDateAlbum > today ? 'EM BREVE' : 'SEM ESTOQUE'}</h2>
               <div style={{ backgroundColor: `${color}`, height: '1vh', width: '35vh', marginBottom: '2vh' }} />
               <div className='d-flex flex-wrap gap-1 justify-content-center align-items-center'>
                 {formatStockAvailable['0'].map((format, key) => (
                   <button
                     key={key}
-                    className={`bg-${colorIsDarkOrLight} fs-4 rounded d-flex justify-content-center align-items-center`}
-                    style={{ color: `${color}`, height: '6vh', width: '12vh', cursor: 'default' }}
+                    className={`fs-4 rounded d-flex justify-content-center align-items-center`}
+                    style={{ color: 'var(--color)', backgroundColor: 'transparent',
+                    border: '2px solid var(--color)',  height: '6vh', width: '12vh', cursor: 'default' }}
                   >
                     {nameFormat[format.format - 1]}
                   </button>
@@ -280,7 +294,6 @@ const ProductDetail = () => {
             </div>
           }
         </div>
-
 
         {formatStockAvailable['1'] !== undefined &&
           <>
@@ -316,7 +329,8 @@ const ProductDetail = () => {
               style={{ color: 'white', width: '35vh', marginBottom: '2vh' }}
             >
               <div className='d-flex flex-column justify-content-center align-items-center'>
-                <h1 className='m-2' style={{ fontSize: '10vh' }}>{dataBundledProductVersions[idOptionVersion][productFormat].price}</h1>
+                {releaseDateAlbum > today && <h5 align='center'>PREVISÃO DE ESTOQUE <br /> {dataProductsGroupedByVersion[idOptionVersion][productFormat].addedFormated}</h5>}
+                <h1 className='m-3' style={{ fontSize: '10vh' }}>{dataProductsGroupedByVersion[idOptionVersion][productFormat].price}</h1>
 
                 <div className='d-flex flex-row justify-content-center align-items-center m-1'>
                   <button type='button' style={{
@@ -351,7 +365,7 @@ const ProductDetail = () => {
       {formatStockAvailable['1'] !== undefined &&
         <div
           className='d-flex flex-column justify-content-center align-items-star'
-          style={{ marginTop: '5vh', marginBottom: '5vh', width: '85%', color: 'white' }}
+          style={{ marginTop: '1vh', marginBottom: '5vh', width: '85%', color: 'white' }}
         >
           <h1 className='d-flex justify-content-center align-items-center' style={{ color: 'var(--color)' }}>CONHEÇA ESSE PRODUTO</h1>
           <div className='rounded w-100' style={{ height: '0.5vh', backgroundColor: 'var(--color)' }} />
@@ -384,7 +398,6 @@ const ProductDetail = () => {
           </div>
         </div>
       }
-
       <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
     </div >
   )

@@ -3,7 +3,7 @@ const db = require('../db')
 module.exports = {
     ShowAlbum: (slug) => {
         return new Promise ((accepted, rejected) => {
-            db.query("SELECT cd_album, fk_artist, nm_album, slug_album, year(dt_album) as 'dt_album' FROM tb_cassandra_album WHERE slug_album = ?", [slug], 
+            db.query("SELECT cd_album, fk_artist, nm_album, slug_album, DATE_FORMAT(dt_album, '%Y/%m/%d') as 'dt_album' FROM tb_cassandra_album WHERE slug_album = ?", [slug], 
                 (error, result) =>{
                     if(error) {
                         rejected(error); 

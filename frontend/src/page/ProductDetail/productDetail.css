@@ -1,0 +1,11 @@
+.optionVersionAlbumSelected {
+    background-color: var(--color) !important;
+    color: var(--colorIsWhiteOrBlack) !important;
+    border: 2px solid var(--colorIsWhiteOrBlack) !important;
+}
+
+.productFormatSelected {
+    background-color: var(--color) !important;
+    color: #020202 !important;
+    border: none !important;
+}

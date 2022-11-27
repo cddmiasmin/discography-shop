@@ -26,5 +26,9 @@ router.get('/images/products/:album', ImgProductController.ListImgProductsByAlbu
 router.get('/formats', FormatController.ListFormats);
 router.get('/format/:format', FormatController.ListFormat);
 
+
+
+router.get('/product/detail/:artist/:album', ProductController.ListProductsDetails);
+
 module.exports = router;
 
