@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
 import Header from './../components/Header/Header'
@@ -12,14 +12,16 @@ import api from './../services/api'
 
 import './../responsive/responsive.css'
 import Loading from '../components/Loading'
+import { ColorContext } from '../contexts/ColorContext'
 
 const ArtistProfile = () => {
 
-  const {
+  const {                
     color,
     colorIsDarkOrLight,
-    getColor,
-  } = useGetColor();
+    colorIsWhiteOrBlack,
+    getColor
+  } = useContext(ColorContext);
 
   const { slug } = useParams();
 
@@ -49,7 +51,7 @@ const ArtistProfile = () => {
         className='w-100 d-flex'
         style={{ height: '30vh', backgroundColor: `${color}` }}
       >
-        <Header colorIsDarkOrLight={colorIsDarkOrLight} color={color} />
+        <Header />
       </div>
 
       <div

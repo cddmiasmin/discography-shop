@@ -32,20 +32,19 @@ const Header = (props) => {
   return (
     <header
       className={`flex-row container-fluid d-flex position-absolute top-0 start-0 m-0 p-0
-                  justify-content-center align-items-center text-${props.colorIsDarkOrLight}`}
+                  justify-content-center align-items-center `}
       style={{ height: '10%', width: '100%' }}>
 
-      <div id='header-mobile' className='d-none w-100'>
+      {/* <div id='header-mobile' className='d-none w-100'>
         <Mobile
           colorIsDarkOrLight={props.colorIsDarkOrLight} color={props.color} colorIsWhiteOrBlack={props.colorIsWhiteOrBlack}
           isDrawerCartOpen={isDrawerCartOpen} setIsDrawerCartOpen={setIsDrawerCartOpen}
           isPopoverProfileOpen={isPopoverProfileOpen} setIsPopoverProfileOpen={setIsPopoverProfileOpen}
         />
-      </div>
+      </div> */}
 
       <div id='header-desktop' className='d-flex w-100'>
         <Desktop
-          colorIsDarkOrLight={props.colorIsDarkOrLight} color={props.color} colorIsWhiteOrBlack={props.colorIsWhiteOrBlack}
           isDrawerCartOpen={isDrawerCartOpen} setIsDrawerCartOpen={setIsDrawerCartOpen}
           isPopoverProfileOpen={isPopoverProfileOpen} setIsPopoverProfileOpen={setIsPopoverProfileOpen}
         />
