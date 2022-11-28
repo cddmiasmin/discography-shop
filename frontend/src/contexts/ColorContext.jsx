@@ -7,12 +7,12 @@ export function ColorContextProvider({ children }) {
 
     const [color, setColor] = useState('#0000');
     const [colorIsDarkOrLight, setColorIsDarkOrLight] = useState('light');
-    const [colorIsWhiteOrBlack, setColorIsWhiteOrBlack] = useState('black');
+    const [colorIsWhiteOrBlack, setColorIsWhiteOrBlack] = useState('white');
 
     useEffect(() => {
         document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
         document.body.style.setProperty('--color', `${color}`);
-    }, [color, colorIsWhiteOrBlack]);
+    }, [color]);
 
     const getColor = (Img) => {
         const fac = new FastAverageColor();
@@ -37,6 +37,7 @@ export function ColorContextProvider({ children }) {
         <ColorContext.Provider
             value={{
                 color,
+                setColor,
                 colorIsDarkOrLight,
                 colorIsWhiteOrBlack,
                 getColor,

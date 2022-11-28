@@ -40,7 +40,7 @@ const Cart = ({ isDrawerCartOpen, setIsDrawerCartOpen}) => {
                     id='ROM-BoxCart'
                     className='d-flex flex-column'
                     p={1.5} width='40vh' height='100%' role='presentation' textAlign='center'
-                    style={{ backgroundColor: `${color}`, color: `${colorIsDarkOrLight}` }}>
+                    style={{ backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)' }}>
 
                     <div id='ROM-BoxCart-Div' className={`w-100 d-flex flex-column justify-content-center align-items-center gap-2 text-${colorIsDarkOrLight}`}>
                         <Tooltip

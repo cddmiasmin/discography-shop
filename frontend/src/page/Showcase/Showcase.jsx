@@ -18,6 +18,7 @@ const Showcase = () => {
   const [listAlbums, SetListAlbums] = useState();
 
   const {
+    setColor,
     fixColor
 } = useContext(ColorContext);
 
@@ -26,6 +27,7 @@ const Showcase = () => {
     //   SetListAlbums(response.data.result)
     // });
     fixColor('white');
+    setColor('black');
   });
 
   return (
