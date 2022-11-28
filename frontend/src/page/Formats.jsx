@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import './../style/selectOptionSortBy.css';
 
@@ -13,7 +13,7 @@ import api from '../services/api';
 import { dataOptionsToSortBy } from '../data/dataOptionsToSortBy';
 
 import { useChooseBackgroundImage } from '../functions/useChooseBackgroundImage';
-import { useGetColor } from '../functions/useGetColor';
+import { ColorContext } from '../contexts/ColorContext';
 import { usePagination } from '../functions/usePagination';
 import { useSortBy } from '../functions/userSortBy';
 
@@ -25,11 +25,9 @@ const Formats = () => {
   const [optionFormatSelected, SetOptionFormatSelected] = useState(0);
 
   const {
-    color,
-    colorIsDarkOrLight,
-    colorIsWhiteOrBlack,
     getColor,
-  } = useGetColor();
+    fixColor
+} = useContext(ColorContext);
 
   const {
     data,
@@ -61,7 +59,7 @@ const Formats = () => {
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
     getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
-
+    fixColor('white');
   }, []);
 
   useEffect(() => {
@@ -98,7 +96,7 @@ const Formats = () => {
           marginBottom: '4vh'
         }} />
 
-      <Header colorIsDarkOrLight={'light'} color={color} colorIsWhiteOrBlack={'white'} />
+      <Header />
       <div id='container-formats' className='fs-1 d-flex w-100 flex-column justify-content-end align-items-center position-absolute'
         style={{ color: 'white', top: '15vh', zIndex: '2' }}
       > FORMATOS </div>
@@ -168,7 +166,7 @@ const Formats = () => {
         )}
       </div>
       <Pagination numberOfPages={numberOfPages} currentPage={currentPage} SetCurrentPage={SetCurrentPage} />
-      <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
+      <Footer />
     </div>
   )
 }

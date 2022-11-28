@@ -16,7 +16,7 @@ import { ColorContext } from '../../contexts/ColorContext'
 
 const Desktop = ({ isDrawerCartOpen, setIsDrawerCartOpen }) => {
 
-    const { colorIsDarkOrLight } = useContext(ColorContext);
+    const { colorIsDarkOrLight, colorIsWhiteOrBlack } = useContext(ColorContext);
 
     return (
         <div
@@ -27,28 +27,28 @@ const Desktop = ({ isDrawerCartOpen, setIsDrawerCartOpen }) => {
                 className={`w-100 d-flex  justify-content-center align-items-center text-${colorIsDarkOrLight}`}
             >
                 <nav id='LinksHeader' className='col d-flex justify-content-star align-items-center ms-4 gap-4'>
-                    <Link to='/artista' className={`text-decoration-none text-${colorIsDarkOrLight}`}>ARTISTAS</Link>
-                    <Link to='/formato' className={`text-decoration-none text-${colorIsDarkOrLight}`}>FORMATOS</Link>
-                    <Link to='/prevenda' className={`text-decoration-none text-${colorIsDarkOrLight}`}>PRÉ-VENDA</Link>
-                    <Link to='/lancamento' className={`text-decoration-none text-${colorIsDarkOrLight}`}>LANÇAMENTOS</Link>
+                    <Link to='/artista' className={`text-decoration-none text-${colorIsWhiteOrBlack}`}>ARTISTAS</Link>
+                    <Link to='/formato' className={`text-decoration-none text-${colorIsWhiteOrBlack}`}>FORMATOS</Link>
+                    <Link to='/prevenda' className={`text-decoration-none text-${colorIsWhiteOrBlack}`}>PRÉ-VENDA</Link>
+                    <Link to='/lancamento' className={`text-decoration-none text-${colorIsWhiteOrBlack}`}>LANÇAMENTOS</Link>
                 </nav>
 
                 <div id='Cart' className='col d-flex justify-content-center align-items-center'>
-                    <Logo size={55} color={colorIsDarkOrLight} />
+                    <Logo size={55} />
                 </div>
 
                 <div id='IconOption' className='col d-flex justify-content-end align-items-center me-4 gap-4'>
-                    <Search colorIsDarkOrLight={colorIsDarkOrLight} />
+                    <Search />
 
                     <Tooltip title="Perfil">
-                        <Link to={'/login'} className={`bg-transparent text-${colorIsDarkOrLight}`}><IoPerson className='fs-5 ' /></Link>
+                        <Link to={'/login'} className={`bg-transparent text-${colorIsWhiteOrBlack}`}><IoPerson className='fs-5 ' /></Link>
                     </Tooltip>
 
                     <Tooltip
                         title="Carrinho"
                         onClick={() => setIsDrawerCartOpen(true)}
                     >
-                        <button className={`bg-transparent text-${colorIsDarkOrLight}`}><BsFillBagFill className='fs-5 ' /></button>
+                        <button className={`bg-transparent text-${colorIsWhiteOrBlack}`}><BsFillBagFill className='fs-5 ' /></button>
                     </Tooltip>
 
                     <Cart

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 import { Link } from 'react-router-dom'
 
 import { useChooseBackgroundImage } from '../../functions/useChooseBackgroundImage';
-import { useGetColor } from '../../functions/useGetColor';
+import { ColorContext } from '../../contexts/ColorContext'; 
 import { useShowPassword } from '../../functions/useShowPassword';
 
 import Logo from './../../components/Logo'
@@ -21,8 +21,8 @@ const Login = () => {
     color,
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
-    getColor,
-  } = useGetColor();
+    getColor
+} = useContext(ColorContext);
 
   const {
     imageNumber,

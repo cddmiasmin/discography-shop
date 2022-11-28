@@ -7,7 +7,7 @@ import Footer from './../components/Footer/Footer'
 import ArtistIcon from '../components/ArtistIcon'
 import Album from '../components/Album/Album';
 
-import { useGetColor } from './../functions/useGetColor'
+import { ColorContext } from '../contexts/ColorContext'; 
 import { useChooseBackgroundImage } from './../functions/useChooseBackgroundImage'
 
 import { dataArtist } from '../data/dataArtist'
@@ -21,7 +21,7 @@ const ProductSearch = () => {
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
     getColor,
-  } = useGetColor();
+} = useContext(ColorContext);
 
   const {
     imageNumber,

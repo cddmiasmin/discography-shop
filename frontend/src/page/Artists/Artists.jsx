@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import './artists.css'
 
@@ -10,7 +10,7 @@ import { FastAverageColor } from 'fast-average-color';
 
 import api from './../../services/api'
 
-import { useGetColor } from '../../functions/useGetColor';
+import { ColorContext } from '../../contexts/ColorContext'; 
 import { useChooseBackgroundImage } from '../../functions/useChooseBackgroundImage';
 
 import { _ } from 'lodash'
@@ -25,7 +25,8 @@ const Artists = () => {
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
     getColor,
-  } = useGetColor();
+    fixColor
+} = useContext(ColorContext);
 
   const {
     data,
@@ -46,9 +47,10 @@ const Artists = () => {
     });
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
+    fixColor('white');
   }, [])
 
-  useEffect(() => getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl),[])
 
   const SortingArtistNamesInAlphabeticalOrder = (data) => {
     const groupArtistByLetter = _.groupBy(data, (artist) => {
@@ -121,7 +123,7 @@ const Artists = () => {
           </section>
         </div>
       </div>
-      <Header colorIsDarkOrLight={'light'} color={color} colorIsWhiteOrBlack={'white'} />
+      <Header />
       <div className='d-flex w-100 flex-column justify-content-end align-items-center'>
         {alphabetAndNumbers.map((character, key) => (
           (artistNames[`${character}`] !== undefined &&
@@ -160,7 +162,7 @@ const Artists = () => {
         <br />
         <br />
         <br />
-        <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
+        <Footer />
       </div>
     </div >
   )

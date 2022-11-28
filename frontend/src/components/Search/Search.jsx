@@ -7,7 +7,7 @@ import { HiSearch } from 'react-icons/hi';
 
 import './search.css'
 
-const Search = ({colorIsDarkOrLight}) => {
+const Search = () => {
 
     const navigateDesk = useNavigate();
 
@@ -45,10 +45,10 @@ const Search = ({colorIsDarkOrLight}) => {
         <Tooltip title="Buscar">
             <div className='search-box' ref={elementDivRef}>
                 <input ref={elementInputRef} className='search-txt' type="text" placeholder="O que você procura?"  />
-                <button type='button' id='button-search-desk' onClick={(e) => {
+                <button type='button' id='button-search-desk' onClick={() => {
                     searchOpen ? SetSearchOpen(false) : SetSearchOpen(true);
                 }}
-                    className={`bg-transparent text-${colorIsDarkOrLight}`}>
+                    className={`bg-transparent`} style={{color: 'var(--colorIsWhiteOrBlack)'}}>
                     <HiSearch className='fs-5' />
                 </button>
             </div>

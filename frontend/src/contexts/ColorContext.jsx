@@ -12,7 +12,7 @@ export function ColorContextProvider({ children }) {
     useEffect(() => {
         document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
         document.body.style.setProperty('--color', `${color}`);
-    }, [color]);
+    }, [color, colorIsWhiteOrBlack]);
 
     const getColor = (Img) => {
         const fac = new FastAverageColor();
@@ -28,13 +28,19 @@ export function ColorContextProvider({ children }) {
             });
     }
 
+    const fixColor = (color) => {
+        color === 'white' ? setColorIsDarkOrLight('light') : setColorIsDarkOrLight('dark');
+        color === 'white' ? setColorIsWhiteOrBlack('white') : setColorIsWhiteOrBlack('black');
+    }
+
     return (
         <ColorContext.Provider
             value={{
                 color,
                 colorIsDarkOrLight,
                 colorIsWhiteOrBlack,
-                getColor
+                getColor,
+                fixColor
             }}
         >
             {children}

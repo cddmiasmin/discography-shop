@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 
 import Header from '../../components/Header/Header'
 import PromotionalBanner from '../../components/PromotionalBanner/PromotionalBanner'
@@ -6,9 +6,10 @@ import ListAlbunsShowcase from '../../components/ListAlbunsShowcase/ListAlbunsSh
 import ReleasesShowcase from '../../components/ReleasesShowcase'
 import Footer from '../../components/Footer/Footer'
 
-import Axios from 'axios'
+import Axios from 'axios';
 import { dataArtist } from '../../data/dataArtist'
 import { dataPromotionalBanner } from '../../data/dataPromotionalBanner'
+import { ColorContext } from '../../contexts/ColorContext'
 
 import './showcase.css'
 
@@ -16,12 +17,15 @@ const Showcase = () => {
 
   const [listAlbums, SetListAlbums] = useState();
 
+  const {
+    fixColor
+} = useContext(ColorContext);
+
   useEffect(() => { 
-    Axios.get("http://localhost:3000/api/albums").then((response) =>  {
-      SetListAlbums(response.data.result)
-    });
-    document.body.style.setProperty('--colorIsWhiteOrBlack', 'white');
-    document.body.style.setProperty('--color', 'black');
+    // Axios.get("http://localhost:3000/api/albums").then((response) =>  {
+    //   SetListAlbums(response.data.result)
+    // });
+    fixColor('white');
   });
 
   return (
@@ -31,7 +35,7 @@ const Showcase = () => {
     >
       <div className='d-flex justify-content-center align-items-center w-100 h-100 position-absolute'>
         <PromotionalBanner />
-        <Header colorIsDarkOrLight={'light'} color={'black'} colorIsWhiteOrBlack={'white'}/>
+        <Header/>
       </div>
 
       <div className='d-flex flex-column justify-content-center align-items-center w-100 top-100 position-absolute m-5'>
@@ -61,7 +65,7 @@ const Showcase = () => {
           </div>
         </div>
         <br />
-        <Footer colorIsDarkOrLight={'dark'} color={'white'} colorIsWhiteOrBlack={'black'}/>
+        <Footer/>
       </div>
     </div>
   )

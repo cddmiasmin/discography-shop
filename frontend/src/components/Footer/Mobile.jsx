@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import './footer.css'
 
 import Logo from '../Logo'
+
+import { ColorContext } from '../../contexts/ColorContext';
 
 import { withStyles } from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
@@ -16,7 +18,7 @@ import {
 import { MdOutlineMailOutline } from 'react-icons/md'
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
-const Mobile = (props) => {
+const Mobile = () => {
     const [expandedPanel, setExpandedPanel] = useState(false);
 
     const handleAccordionChange = (panel) => (event, isExpanded) => {
@@ -24,12 +26,18 @@ const Mobile = (props) => {
         setExpandedPanel(isExpanded ? panel : false);
     };
 
+    const {
+        color,
+        colorIsDarkOrLight,
+        colorIsWhiteOrBlack,
+    } = useContext(ColorContext);
+
     const Accordion = withStyles({
         root: {
             boxShadow: 'none',
             borderRadius: '15px',
             width: '40vh',
-            backgroundColor: `${props.colorIsWhiteOrBlack}`,
+            backgroundColor: `${colorIsWhiteOrBlack}`,
             '&:last-child': {
                 borderRadius: '15px',
             },
@@ -45,10 +53,10 @@ const Mobile = (props) => {
 
     const AccordionSummary = withStyles({
         root: {
-            backgroundColor: `${props.colorIsWhiteOrBlack}`,
-            borderBottom: `2px solid ${props.color}`,
+            backgroundColor: `${colorIsWhiteOrBlack}`,
+            borderBottom: `2px solid ${color}`,
             marginBottom: -1,
-            color: `${props.color}`,
+            color: `${color}`,
             borderRadius: '10px',
             minHeight: '8vh',
             '&$expanded': {
@@ -67,7 +75,7 @@ const Mobile = (props) => {
     const AccordionDetails = withStyles((theme) => ({
         root: {
             marginBottom: -1,
-            color: `${props.color}`,
+            color: `${color}`,
             fontWeight: 'bolder',
             borderRadius: '5px',
             minHeight: 56,
@@ -79,12 +87,12 @@ const Mobile = (props) => {
 
     return (
         <footer
-            className={`container-fluid w-100 text-${props.colorIsDarkOrLight} d-flex flex-column justify-content-star align-items-center gap-3`}
+            className={`container-fluid w-100 text-${colorIsDarkOrLight} d-flex flex-column justify-content-star align-items-center gap-3`}
             style={{ paddingTop: '2vh' }}
         >
             <div className='d-flex flex-column justify-content-center align-items-center gap-2'>
                 <div className='d-flex flex-row align-items-end gap-2'>
-                    <Logo size={50} color={props.colorIsDarkOrLight} />
+                    <Logo size={50} color={colorIsDarkOrLight} />
                     <h4>Cassandra</h4>
                 </div>
 
@@ -92,28 +100,28 @@ const Mobile = (props) => {
 
                 <div className='d-flex grid gap-2'>
                     <a
-                        className={`text-decoration-none text-${props.colorIsDarkOrLight}`}
+                        className={`text-decoration-none text-${colorIsDarkOrLight}`}
                         style={{ width: '25px', height: '25px' }}
                         href="https://www.facebook.com">
                         <BsFacebook className='w-100 h-100 facebook' />
                     </a>
 
                     <a
-                        className={`text-decoration-none text-${props.colorIsDarkOrLight} instagram`}
+                        className={`text-decoration-none text-${colorIsDarkOrLight} instagram`}
                         style={{ width: '25px', height: '25px' }}
                         href="https://www.instagram.com">
                         <BsInstagram className='w-100 h-100' />
                     </a>
 
                     <a
-                        className={`text-decoration-none text-${props.colorIsDarkOrLight}`}
+                        className={`text-decoration-none text-${colorIsDarkOrLight}`}
                         style={{ width: '25px', height: '25px' }}
                         href="https://twitter.com/home">
                         <BsTwitter className='w-100 h-100 twitter' />
                     </a>
 
                     <a
-                        className={`text-decoration-none text-${props.colorIsDarkOrLight}`}
+                        className={`text-decoration-none text-${colorIsDarkOrLight}`}
                         style={{ width: '25px', height: '25px' }}
                         href="https://www.youtube.com">
                         <BsYoutube className='w-100 h-100 youtube' />
@@ -124,7 +132,7 @@ const Mobile = (props) => {
 
             <Accordion expanded={expandedPanel === 'FooterAccordion1'} onChange={handleAccordionChange('FooterAccordion1')}>
                 <AccordionSummary
-                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${color}` }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
@@ -144,15 +152,15 @@ const Mobile = (props) => {
                     }}>
                         <div className='d-flex flex-row gap-2 align-items-center'>
                             <BsFillTelephoneForwardFill style={{ width: '15px', height: '15px' }} />
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">(XX) XXXX-XXXX</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">(XX) XXXX-XXXX</a>
                         </div>
                         <div className='d-flex flex-row gap-2 align-items-center'>
                             <BsFillTelephoneForwardFill style={{ width: '15px', height: '15px' }} />
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">XXXX XXX XXXX</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">XXXX XXX XXXX</a>
                         </div>
                         <div className='d-flex flex-row gap-2 align-items-center'>
                             <MdOutlineMailOutline style={{ width: '15px', height: '15px' }} />
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">contato@cassandra.com</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">contato@cassandra.com</a>
                         </div>
                         <p>De segunda à sexta das <br />9h às 17h (exceto feriados)</p>
                     </h6>
@@ -161,7 +169,7 @@ const Mobile = (props) => {
 
             <Accordion expanded={expandedPanel === 'FooterAccordion2'} onChange={handleAccordionChange('FooterAccordion2')}>
                 <AccordionSummary
-                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${color}` }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
@@ -180,13 +188,13 @@ const Mobile = (props) => {
                         ].join(',')
                     }}>
                         <div className='d-flex flex-column justify-content-star align-items-star  gap-1'>
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Dúvidas frequentes</a>
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Termos de uso</a>
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Política e privacidade</a>
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Direito de Arrependimento</a>
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Trocas e Devoluções</a>
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Seja um Revendedor</a>
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Fale conosco</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Dúvidas frequentes</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Termos de uso</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Política e privacidade</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Direito de Arrependimento</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Trocas e Devoluções</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Seja um Revendedor</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Fale conosco</a>
                         </div>
                     </h6>
                 </AccordionDetails>
@@ -194,7 +202,7 @@ const Mobile = (props) => {
 
             <Accordion expanded={expandedPanel === 'FooterAccordion3'} onChange={handleAccordionChange('FooterAccordion3')}>
                 <AccordionSummary
-                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${color}` }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
@@ -213,8 +221,8 @@ const Mobile = (props) => {
                         ].join(',')
                     }}>
                         <div className='d-flex flex-column justify-content-star align-items-star gap-1'>
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Minha conta</a>
-                            <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Meus pedidos</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Minha conta</a>
+                            <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Meus pedidos</a>
                         </div>
                     </h6>
                 </AccordionDetails>
@@ -222,7 +230,7 @@ const Mobile = (props) => {
 
             <Accordion expanded={expandedPanel === 'LeftOptions1'} onChange={handleAccordionChange('LeftOptions1')}>
                 <AccordionSummary
-                    expandIcon={<MdKeyboardArrowDown style={{ color: `${props.color}` }} />}
+                    expandIcon={<MdKeyboardArrowDown style={{ color: `${color}` }} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
@@ -240,7 +248,7 @@ const Mobile = (props) => {
                             'cursive',
                         ].join(',')
                     }}>
-                        <a className={`text-decoration-none`} style={{ color: `${props.color}` }} href="">Sobre Cassandra</a>
+                        <a className={`text-decoration-none`} style={{ color: `${color}` }} href="">Sobre Cassandra</a>
                     </h6>
                 </AccordionDetails>
             </Accordion>
@@ -250,9 +258,9 @@ const Mobile = (props) => {
             </div>
 
             <p className='m-0'>Copyright ©2022 | Cassandra</p>
-            <p className={`d-flex justify-content-center align-items-center gap-1 text-${props.colorIsDarkOrLight}`}>
+            <p className={`d-flex justify-content-center align-items-center gap-1 text-${colorIsDarkOrLight}`}>
                 Desenvolvido por
-                <a className={`text-${props.colorIsDarkOrLight}`} href="https://github.com/cddmiasmin">Iasmin Dias</a>
+                <a className={`text-${colorIsDarkOrLight}`} href="https://github.com/cddmiasmin">Iasmin Dias</a>
             </p>
         </footer>
     )

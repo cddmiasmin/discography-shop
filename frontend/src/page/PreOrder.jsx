@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import './../style/selectOptionSortBy.css';
 
@@ -13,7 +13,7 @@ import api from './../services/api';
 import { dataOptionsToSortBy } from '../data/dataOptionsToSortBy';
 
 import { useChooseBackgroundImage } from '../functions/useChooseBackgroundImage';
-import { useGetColor } from '../functions/useGetColor';
+import { ColorContext } from '../contexts/ColorContext'; 
 import { usePagination } from '../functions/usePagination';
 import { useSortBy } from '../functions/userSortBy';
 
@@ -28,7 +28,8 @@ const PreOrder = () => {
 
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl)
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
+    fixColor('white');
   }, []);
 
   const {
@@ -43,11 +44,9 @@ const PreOrder = () => {
   }, [pageData, sortingOptionSelected])
 
   const {
-    color,
-    colorIsDarkOrLight,
-    colorIsWhiteOrBlack,
     getColor,
-  } = useGetColor();
+    fixColor
+} = useContext(ColorContext);
 
   const {
     data,
@@ -64,11 +63,11 @@ const PreOrder = () => {
     SetCurrentPage
   } = usePagination(dataSortedData);
 
-  console.log('PD', pageData)
-  console.log('CI', currentItems)
-  console.log('DSD', dataSortedData)
+  // console.log('PD', pageData)
+  // console.log('CI', currentItems)
+  // console.log('DSD', dataSortedData)
 
-  if (!pageData.length ||/*  !currentItems.length ||*/ !dataSortedData.length) {
+  if (!pageData.length ||  !currentItems.length || !dataSortedData.length) {
     return (<Loading />)
   }
 
@@ -81,7 +80,7 @@ const PreOrder = () => {
           opacity: '28%', borderRadius: '0px 0px 15px 15px', borderBottom: '3px solid var(--color)'
         }} />
 
-      <Header colorIsDarkOrLight={'light'} color={color} colorIsWhiteOrBlack={'white'} />
+      <Header />
       <div id='container-releases' className='d-flex w-100 flex-column justify-content-end align-items-center position-absolute'
         style={{ color: 'white', top: '15vh', zIndex: '2' }}
       >
@@ -119,7 +118,7 @@ const PreOrder = () => {
         )}
       </div>
       <Pagination numberOfPages={numberOfPages} currentPage={currentPage} SetCurrentPage={SetCurrentPage} />
-      <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
+      <Footer />
     </div>
   )
 }

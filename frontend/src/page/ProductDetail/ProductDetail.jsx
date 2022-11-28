@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
 import ReactImageMagnify from 'react-image-magnify';
@@ -10,7 +10,7 @@ import Loading from './../../components/Loading'
 import Footer from './../../components/Footer/Footer'
 import LetMeKnowWhenItArrives from '../../components/LetMeKnowWhenItArrives/LetMeKnowWhenItArrives'
 
-import { useGetColor } from './../../functions/useGetColor'
+import { ColorContext } from '../../contexts/ColorContext';
 
 import { Link } from 'react-router-dom'
 import { _ } from 'lodash'
@@ -49,7 +49,7 @@ const ProductDetail = () => {
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
     getColor
-  } = useGetColor();
+} = useContext(ColorContext);
 
   const HowIsTheStockOfFormats = (data) => {
     const formatStockAvailableAux = _.groupBy(data, (format) => {
@@ -398,7 +398,7 @@ const ProductDetail = () => {
           </div>
         </div>
       }
-      <Footer colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
+      <Footer />
     </div >
   )
 }

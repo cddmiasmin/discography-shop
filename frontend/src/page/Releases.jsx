@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import './../style/selectOptionSortBy.css';
 
@@ -13,7 +13,7 @@ import api from './../services/api';
 import { dataOptionsToSortBy } from '../data/dataOptionsToSortBy';
 
 import { useChooseBackgroundImage } from '../functions/useChooseBackgroundImage';
-import { useGetColor } from '../functions/useGetColor';
+import { ColorContext } from '../contexts/ColorContext';
 import { usePagination } from '../functions/usePagination';
 import { useSortBy } from '../functions/userSortBy';
 
@@ -28,7 +28,8 @@ const Releases = () => {
 
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl)
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
+    fixColor('white');
   }, []);
 
   const {
@@ -38,8 +39,8 @@ const Releases = () => {
     SortAlbumByChoiceSortByForReleases
   } = useSortBy();
 
-  useEffect(() =>{
-    if(pageData.length !== 0) SortAlbumByChoiceSortByForReleases(pageData, sortingOptionSelected);
+  useEffect(() => {
+    if (pageData.length !== 0) SortAlbumByChoiceSortByForReleases(pageData, sortingOptionSelected);
   }, [pageData, sortingOptionSelected])
 
   const {
@@ -47,7 +48,8 @@ const Releases = () => {
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
     getColor,
-  } = useGetColor();
+    fixColor
+  } = useContext(ColorContext);
 
   const {
     data,
@@ -64,11 +66,8 @@ const Releases = () => {
     SetCurrentPage
   } = usePagination(dataSortedData);
 
-  console.log('PD', pageData)
-  console.log('CI', currentItems)
-  console.log('DSD', dataSortedData)
 
-  if (!pageData.length ||/*  !currentItems.length ||*/ !dataSortedData.length) {
+  if (!pageData.length || !currentItems.length || !dataSortedData.length) {
     return (<Loading />)
   }
 
@@ -105,7 +104,7 @@ const Releases = () => {
       </div>
       <div className={`rounded `} style={{ backgroundColor: 'var(--color)', height: '0.5vh', width: '85%' }} />
       <div className='d-flex flex-wrap justify-content-center align-items-end gap-5' style={{ marginTop: '4vh', marginBottom: '4vh', width: '85%' }}>
-        {currentItems.map((album, key) => 
+        {currentItems.map((album, key) =>
           <Album
             key={key}
             cover={album.cover}

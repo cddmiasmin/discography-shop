@@ -1,15 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { ColorContext } from '../contexts/ColorContext';
 
-const Logo = (props) => {
+const Logo = ({ size }) => {
+
+    const { colorIsDarkOrLight } = useContext(ColorContext);
+
     return (
         <div
-            style={{height: `${props.size}px`, width: `${props.size + 10}px`, cursor: 'pointer'}}
+            style={{ height: `${size}px`, width: `${size + 10}px`, cursor: 'pointer' }}
         >
             <Link to='/'>
                 <img
-                    style={{height: `${props.size}px`, width: `${props.size + 10}px`}}
-                    src={`/images/Logo/logo-${props.color}.png`}
+                    style={{ height: `${size}px`, width: `${size + 10}px` }}
+                    src={`/images/Logo/logo-${colorIsDarkOrLight}.png`}
                     alt='Logo Cassandra'
                 />
             </Link>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useContext } from 'react'
 
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
@@ -7,7 +7,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
-import { useGetColor } from './../../functions/useGetColor';
+import { ColorContext } from '../../contexts/ColorContext'; 
 import { useShowPassword } from '../../functions/useShowPassword';
 import { useValidationRegistration } from '../../functions/useValidateRegistration';
 
@@ -29,7 +29,7 @@ const Registration = () => {
   const {
     color,
     getColor,
-  } = useGetColor();
+} = useContext(ColorContext);
 
   const {
     imageNumber,
