@@ -11,21 +11,12 @@ import Alert from '@mui/material/Alert';
 import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
 import { ColorContext } from '../../contexts/ColorContext';
 import { useShowPassword } from '../../functions/useShowPassword';
-import { useValidationRegistration } from '../../functions/useValidateRegistration';
 
 import Logo from './../../components/Logo';
 import InputMask from '../../components/InputMask';
 
 import './registration.css';
 
-import {
-  validateName,
-  validateLastName,
-  validateCPF,
-  validateTelephone,
-  validateEmail,
-  validatePassword
-} from './../../utils/regex';
 
 const Registration = () => {
 

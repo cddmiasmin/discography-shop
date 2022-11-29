@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const ClientController = require('./controllers/ClientController');
 const ArtistController = require('./controllers/ArtistController');
 const AlbumController = require('./controllers/AlbumController');
 const VersionController = require('./controllers/VersionController');
@@ -26,9 +27,10 @@ router.get('/images/products/:album', ImgProductController.ListImgProductsByAlbu
 router.get('/formats', FormatController.ListFormats);
 router.get('/format/:format', FormatController.ListFormat);
 
-
-
 router.get('/product/detail/:artist/:album', ProductController.ListProductsDetails);
+
+router.get('/user/:email', ClientController.LoginUser);
+router.post('/user', ClientController.RegisterUser);
 
 module.exports = router;
 
