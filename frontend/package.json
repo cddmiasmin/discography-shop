@@ -25,6 +25,7 @@
     "react-icons": "^4.4.0",
     "react-image-magnify": "^2.7.4",
     "react-router-dom": "^6.3.0",
+    "remask": "^0.1.0-alpha.5",
     "swiper": "^8.3.2"
   },
   "devDependencies": {

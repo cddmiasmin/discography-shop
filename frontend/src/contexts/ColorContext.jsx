@@ -33,6 +33,8 @@ export function ColorContextProvider({ children }) {
         color === 'white' ? setColorIsWhiteOrBlack('white') : setColorIsWhiteOrBlack('black');
     }
 
+    console.log(colorIsDarkOrLight);
+    
     return (
         <ColorContext.Provider
             value={{

@@ -1,35 +1,56 @@
-import React, { useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 import { Link } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
-import { ColorContext } from '../../contexts/ColorContext'; 
+import { ColorContext } from '../../contexts/ColorContext';
 import { useShowPassword } from '../../functions/useShowPassword';
 import { useValidationRegistration } from '../../functions/useValidateRegistration';
 
 import Logo from './../../components/Logo';
+import InputMask from '../../components/InputMask';
 
 import './registration.css';
 
+import {
+  validateName,
+  validateLastName,
+  validateCPF,
+  validateTelephone,
+  validateEmail,
+  validatePassword
+} from './../../utils/regex';
+
 const Registration = () => {
 
-  const nameRef = useRef();
-  const lastNameRef = useRef();
-  const cpfRef = useRef();
-  const telephoneRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef()
+  const [nameValue, SetNameValue] = useState('');
+  const [lastNameValue, SetLastNameValue] = useState('');
+  const [birthDateValue, SetBirthDateValue] = useState('');
+  const [cpfValue, SetCPFValue] = useState('');
+  const [telephoneValue, SetTelephoneValue] = useState('');
+  const [emailValue, SetEmailValue] = useState('');
+  const [password, SetPassword] = useState('');
+  const [confirmPassword, SetConfirmPassword] = useState('');
+
+  const [isSnackbarOpen, SetIsSnackbarOpen] = useState(false);
+  const [severity, SetSeverity] = useState('');
+  const [message, SetMessage] = useState(''); 
+
+
+  const confirmPasswordRef = useRef();
   const checkboxRef = useRef();
 
   const {
     color,
     getColor,
-} = useContext(ColorContext);
+    fixColor
+  } = useContext(ColorContext);
 
   const {
     imageNumber,
@@ -38,41 +59,20 @@ const Registration = () => {
     ChooseImageForTheBanner,
   } = useChooseBackgroundImage();
 
-  const {
-    Validate,
-  } = useValidationRegistration(
-    nameRef, lastNameRef, cpfRef, telephoneRef, emailRef, passwordRef, confirmPasswordRef
-  );
-
   const ShowPassword = useShowPassword();
 
   useEffect(() => {
     WhatOrientationIsTheScreenInNow('landscape')
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
     ChooseImageForTheBanner();
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
+    fixColor('white');
   }, [])
 
-  const handleClickButton = () => {
-    Validate()  
-  }
-
-  const popoverCPFFocus = (
-    <Popover id="popover-trigger-focus" title="Popover bottom"
-      style={{ background: 'var(--color)', width: '40vh', height: '5vh', border: '2px solid white' }}
-      className='d-flex flex-row gap-1 justify-content-center align-items-center'>
-      <strong>FORMATO:</strong>
-      <span>xxx.xxx.xxx-xx</span>
-    </Popover>
-  );
-
-  const popoverTelephoneFocus = (
-    <Popover id="popover-trigger-focus" title="Popover bottom"
-      style={{ background: 'var(--color)', width: '40vh', height: '5vh', border: '2px solid white' }}
-      className='d-flex flex-row gap-1 justify-content-center align-items-center'>
-      <strong>FORMATO:</strong>
-      <span>(xx) xxxxx-xxxx</span>
-    </Popover>
-  );
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') return;
+    
+    SetIsSnackbarOpen(false);
+  };
 
   const popoverPasswordFocus = (
     <Popover id="popover-trigger-focus" title="Popover bottom"
@@ -87,13 +87,6 @@ const Registration = () => {
       </ul>
     </Popover>
   );
-
-  // console.log('name', nameRef);
-  // console.log('last', lastNameRef);
-  // console.log('cpf', cpfRef);
-  // console.log('tele', telephoneRef);
-  // console.log('email', emailRef);
-  // console.log('senha', passwordRef);
 
   return (
     <div className='position-absolute flex-wrap w-100 h-100 d-flex justify-content-center align-items-center'>
@@ -115,7 +108,7 @@ const Registration = () => {
         style={{ width: '35%', height: '85%' }}
       >
         <div className='h-100 w-100 d-flex flex-column flex-wrap justify-content-center align-items-center gap-3'>
-          <Logo size={70} color={'light'} />
+          <Logo size={70} />
 
           <div
             className='d-flex w-100 flex-column justify-content-center align-items-center gap-2'
@@ -137,11 +130,16 @@ const Registration = () => {
               className='d-flex w-100 flex-column justify-content-center align-items-center gap-2'
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log('form break');
-                handleClickButton();
+                if(!checkboxRef.current.checked){
+                  SetSeverity('warning');
+                  SetMessage('É necessário aceitar os termos de uso para continuar!');
+                  SetIsSnackbarOpen(true);
+                }
+                else console.log('ok')
               }}
             >
-              <div id='customer-name-field'
+              <div
+                id='customer-name-field'
                 className='element-width overflow-hidden d-flex flex-row justify-content-center align-items-center gap-1'
                 style={{ height: '5.5vh' }}
               >
@@ -149,34 +147,46 @@ const Registration = () => {
                   className='rounded'
                   type="text" id='name-registration' required minLength={3} placeholder='NOME'
                   style={{ width: '39%' }}
-                  ref={nameRef}
+                  pattern="[A-Za-z ]{3,}" value={nameValue}
+                  onChange={(e) => SetNameValue(e.target.value)}
                 />
                 <input
                   className='rounded'
                   type="text" id='lastname-resgistration' required minLength={3} placeholder='SOBRENOME'
                   style={{ width: '59%' }}
-                  ref={lastNameRef}
+                  pattern="[A-Za-z ]{3,}" value={lastNameValue}
+                  onChange={(e) => SetLastNameValue(e.target.value)}
                 />
               </div>
-              <OverlayTrigger trigger="focus" placement="top" overlay={popoverCPFFocus}>
-                <input
-                  className='element-width rounded'
-                  type="text" name="cpf-resgistration" id="cpf-resgistration" placeholder='CPF' required
-                  ref={cpfRef} maxLength="20"
-                />
-              </OverlayTrigger>
-              <OverlayTrigger trigger="focus" placement="top" overlay={popoverTelephoneFocus}>
-                <input
-                  className='element-width rounded' required
-                  type="tel" id="phone-resgistration" name="phone-resgistration" placeholder='Telefone Celular'
-                  maxLength="15" ref={telephoneRef}
-                />
-              </OverlayTrigger>
-              <input
-                className='element-width rounded'
-                type="email" name="email-resgistration" id="email-resgistration" placeholder='E-mail' required
-                ref={emailRef}
+
+              <InputMask
+                type={'birth-date'} value={birthDateValue} SetValue={SetBirthDateValue}
+                pattern={['99/99/9999']}
+                placeholder={'Data de nascimento'}
+                number={10}
               />
+
+              <InputMask
+                type={'cpf'} value={cpfValue} SetValue={SetCPFValue}
+                pattern={['999.999.999-99']}
+                placeholder={'CPF'}
+                number={14}
+              />
+
+              <InputMask
+                type={'telephone'} value={telephoneValue} SetValue={SetTelephoneValue}
+                pattern={['(99) 99999-9999']}
+                placeholder={'Telefone celular'}
+                number={15}
+              />
+
+              <input
+                className='element-width rounded' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                type="email" name="email-resgistration" id="email-resgistration"
+                placeholder='E-mail' required
+                value={emailValue} onChange={(e) => SetEmailValue(e.target.value)}
+              />
+
               <div id='customer-password-field'
                 className='element-width overflow-hidden d-flex flex-row justify-content-center align-items-center gap-1'
                 style={{ height: '5.5vh' }}
@@ -186,7 +196,8 @@ const Registration = () => {
                     <input
                       className='element-width rounded w-100'
                       type="password" name="password-resgistration" id="password-resgistration" placeholder='Senha' required
-                      ref={passwordRef}
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}"
+                      value={password} onChange={(e) => SetPassword(e.target.value)}
                     />
                   </OverlayTrigger>
                   <button
@@ -202,9 +213,11 @@ const Registration = () => {
                 </div>
                 <div id='confirm-password-container' className='position-relative d-flex flex-row align-items-center' style={{ width: '49%' }}>
                   <input
-                    className='element-width rounded w-100'
+                    className='element-width rounded w-100' ref={confirmPasswordRef}
                     type="password" name="confirm-password-resgistration" id="confirm-password-resgistration" placeholder='CONFIRME SUA SENHA' required
-                    ref={confirmPasswordRef}
+                    value={confirmPassword}
+                    onChange={(e) => SetConfirmPassword(e.target.value)}
+                    pattern={password}
                   />
                   <button
                     type='button' className='position-absolute'
@@ -218,11 +231,12 @@ const Registration = () => {
                   </button>
                 </div>
               </div>
+
               <div id='terms-of-use'
                 className='element-width flex-row d-flex justify-content-star gap-1 m-1'
                 style={{ cursor: 'pointer', fontSize: 'small' }}
               >
-                <input type="checkbox" name="cb-terms-of-use" id="cb-terms-of-use" style={{ width: 'auto', height: 'auto' }} />
+                <input ref={checkboxRef} type="checkbox" name="cb-terms-of-use" id="cb-terms-of-use" style={{ width: 'auto', height: 'auto' }} />
                 <label htmlFor='cb-terms-of-use'>
                   <span className='ms-1 p-0'>Eu li e concordo com os</span>
                   <a
@@ -232,7 +246,9 @@ const Registration = () => {
                   >Termos de Serviço</a>
                 </label>
               </div>
+
               <div className={`bg-light rounded element-width`} style={{ height: '0.3vh' }} />
+
               <button
                 className='element-width d-flex justify-content-center align-items-center rounded m-1'
                 style={{ height: '5vh', fontSize: 'larger' }}
@@ -241,6 +257,7 @@ const Registration = () => {
                 CADASTRAR-SE
               </button>
             </form>
+
           </div>
         </div>
 
@@ -251,6 +268,16 @@ const Registration = () => {
           © Cassandra 2022
         </p>
       </div>
+              <Snackbar 
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} 
+                open={isSnackbarOpen} 
+                autoHideDuration={6000} 
+                onClose={handleCloseSnackbar}
+              >
+                <Alert onClose={handleCloseSnackbar} severity={severity} sx={{ width: '100%' }}>
+                  {message}
+                </Alert>
+              </Snackbar>
     </div>
   )
 }
