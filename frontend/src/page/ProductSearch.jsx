@@ -71,7 +71,7 @@ const ProductSearch = () => {
         >
           <h2 className='m-0 p-2'>VOCÊ PESQUISOU POR:</h2>
           <h1>{`"${search}"`}</h1>
-          <h6>Encontramos {length} resultados</h6>
+          <h6>Encontramos {length} resultado(s)</h6>
         </div>
       </div>
       <Header />

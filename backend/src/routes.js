@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const ClientController = require('./controllers/ClientController');
+const CartController = require('./controllers/CartController');
 const ArtistController = require('./controllers/ArtistController');
 const AlbumController = require('./controllers/AlbumController');
 const VersionController = require('./controllers/VersionController');
@@ -34,5 +35,7 @@ router.get('/user/:email', ClientController.LoginUser);
 router.post('/user', ClientController.RegisterUser);
 
 router.get('/search/:search', SearchController.ProductSearch);
+
+router.get('/cart/:user', CartController.SearchItems);
 module.exports = router;
 

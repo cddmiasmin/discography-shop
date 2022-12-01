@@ -73,6 +73,7 @@ const Desktop = ({ isDrawerCartOpen, setIsDrawerCartOpen }) => {
                                     onClick={() => {
                                         localStorage.clear();
                                         SetUser(localStorage.getItem('user'));
+                                        window.location.reload();
                                     }}
                                 >
                                     SAIR

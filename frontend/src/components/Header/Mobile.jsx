@@ -3,7 +3,6 @@ import React, { useState, useContext } from 'react'
 import './header.css'
 import Logo from '../Logo'
 import Cart from '../Cart'
-import Profile from '../Profile'
 
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -93,7 +92,7 @@ const Mobile = ({ isDrawerCartOpen, setIsDrawerCartOpen, isPopoverProfileOpen, s
                 >
                     <Link to={'/login'} className={`bg-transparent text-${colorIsDarkOrLight}`}><IoPerson className='fs-5' /></Link>
                 </Tooltip>
-                <Profile isPopoverProfileOpen={isPopoverProfileOpen} setIsPopoverProfileOpen={setIsPopoverProfileOpen} />
+                
 
             </div>
 

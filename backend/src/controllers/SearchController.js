@@ -1,5 +1,4 @@
 const AlbumService = require('./../services/AlbumService');
-const VersionService = require('./../services/VersionService');
 const ArtistService = require('./../services/ArtistService');
 
 module.exports = {
