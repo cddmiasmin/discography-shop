@@ -4,7 +4,7 @@ import Showcase from './page/Showcase/Showcase'
 import Login from './page/Login/Login'
 import Registration from './page/Registration/Registration'
 import ProductDetail from './page/ProductDetail/ProductDetail'
-import ProductSearch from './page/ProductSearch'
+import ProductSearch from './page/ProductSearch/ProductSearch'
 import Artists from './page/Artists/Artists'
 import ArtistProfile from './page/ArtistProfile'
 import Formats from './page/Formats'
@@ -24,7 +24,7 @@ const Router = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/cadastro" element={<Registration />} />
                     <Route path="/produto/:artist/:album" element={<ProductDetail />} />
-                    <Route path="/busca" element={<ProductSearch />} />
+                    <Route path="/busca/:search" element={<ProductSearch />} />
                     <Route path="/artista" element={<Artists />} />
                     <Route path='/perfil/:slug' element={<ArtistProfile />} />
                     <Route path="/formato" element={<Formats />} />

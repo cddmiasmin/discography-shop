@@ -80,7 +80,7 @@ const Artists = () => {
     return artistColorAux;
   }
 
-  var cont= 0;
+  var cont = 0;
 
   if (listArtists.length === 0) {
     return (<Loading/>)

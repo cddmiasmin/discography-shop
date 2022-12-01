@@ -29,7 +29,6 @@ const Releases = () => {
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
     getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl, true);
-    fixColor('white');
   }, []);
 
   const {
@@ -47,8 +46,7 @@ const Releases = () => {
     color,
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
-    getColor,
-    fixColor
+    getColor
   } = useContext(ColorContext);
 
   const {

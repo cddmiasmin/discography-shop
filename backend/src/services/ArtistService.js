@@ -23,5 +23,19 @@ module.exports = {
                 accepted(results);
             });
         });
+    },
+
+    LookForArtists: (search) => {
+        return new Promise((accepted, rejected)=>{
+            db.query("SELECT * FROM tb_cassandra_artist WHERE nm_artist like ?", ['%' + search + '%'], 
+            
+            (error, results)=> {
+                if(error) { 
+                    rejected(error); 
+                    return; 
+                }
+                accepted(results);
+            });
+        });
     }
 };

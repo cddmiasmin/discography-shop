@@ -30,7 +30,14 @@ const Search = () => {
             } else {
                 if (elementInputRef.current.value.length < 1)
                     SetOpenSnackbar(true);
-                else navigateDesk('/busca');
+                else {
+                    elementInputRef.current.style.width = '0';
+                    elementFormRef.current.style.background = 'none';
+                    elementFormRef.current.style.border = 'none';
+                    elementFormRef.current.style.padding = '0vh';
+                    navigateDesk(`/busca/${elementInputRef.current.value}`);
+                    elementInputRef.current.value = '';
+                } 
             }
         }
         else {

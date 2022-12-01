@@ -63,7 +63,7 @@ const Login = () => {
   
   useEffect(() => {
     getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl, false);
-  }, [imageNumber])
+  }, [imageNumber]);
 
   useEffect(() => {
     if(pageData !== 1){

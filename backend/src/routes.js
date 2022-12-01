@@ -8,6 +8,7 @@ const VersionController = require('./controllers/VersionController');
 const ProductController = require('./controllers/ProductController');
 const ImgProductController = require('./controllers/ImgProductController');
 const FormatController = require('./controllers/FormatController');
+const SearchController = require('./controllers/SearchController');
 
 router.get('/artists', ArtistController.ListArtists);
 router.get('/artist/:slug', ArtistController.ShowArtist);
@@ -32,5 +33,6 @@ router.get('/product/detail/:artist/:album', ProductController.ListProductsDetai
 router.get('/user/:email', ClientController.LoginUser);
 router.post('/user', ClientController.RegisterUser);
 
+router.get('/search/:search', SearchController.ProductSearch);
 module.exports = router;
 

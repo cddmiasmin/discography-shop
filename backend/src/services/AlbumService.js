@@ -60,4 +60,19 @@ module.exports = {
                 });
         });
     },
+
+    LookForAlbums: (search) => {
+        return new Promise ((accepted, rejected) => {
+            db.query("SELECT artist.slug_artist, artist.nm_artist, album.cd_album, album.nm_album, album.slug_album, year(dt_album) as 'dt_album', versions.img_cover FROM tb_cassandra_artist artist LEFT JOIN tb_cassandra_album album ON artist.cd_artist = album.fk_artist INNER JOIN tb_cassandra_version versions ON album.cd_album = versions.fk_album WHERE (versions.desc_sm_version = 'CAPA PRINCIPAL' or versions.desc_sm_version = 'PRINCIPAL') AND (album.nm_album like ?)", ['%' + search + '%'], 
+                (error, result) =>{
+                    if(error) {
+                        rejected(error); 
+                        return;
+                    } 
+
+                    if(result.length > 0) accepted(result);
+                    else accepted(false);
+                });
+        });
+    },
 };
