@@ -34,8 +34,6 @@ export function ColorContextProvider({ children }) {
                 setColor('#000');
             });
     }
-
-    console.log(colorIsDarkOrLight);
     
     return (
         <ColorContext.Provider

@@ -18,18 +18,17 @@ const Showcase = () => {
   const [listAlbums, SetListAlbums] = useState();
 
   const {
-    setColor,
-    fixColor
+    getColor
 } = useContext(ColorContext);
 
   useEffect(() => { 
     // Axios.get("http://localhost:3000/api/albums").then((response) =>  {
     //   SetListAlbums(response.data.result)
     // });
-    fixColor('white');
-    setColor('black');
+    getColor('', true);
   });
 
+  console.log(JSON.parse(localStorage.getItem('user')))
   return (
     <div
       className='container-showcase

@@ -13,24 +13,27 @@ import Releases from './page/Releases'
 import NotFound from './page/NotFound'
 
 import { ColorContextProvider } from './contexts/ColorContext'
+import { UserContextProvider } from './contexts/UserContext'
 
 const Router = () => {
     return (
-        <ColorContextProvider>
-            <Routes>
-                <Route index path="/" element={ <Showcase /> }/>
-                <Route path="/login" element={<Login />} />
-                <Route path="/cadastro" element={<Registration />} />
-                <Route path="/produto/:artist/:album" element={<ProductDetail />} />
-                <Route path="/busca" element={<ProductSearch />} />
-                <Route path="/artista" element={<Artists />} />
-                <Route path='/perfil/:slug' element={<ArtistProfile />} />
-                <Route path="/formato" element={<Formats />} />
-                <Route path="/prevenda" element={<PreOrder />} />
-                <Route path="/lancamento" element={<Releases />} />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </ColorContextProvider>
+        <UserContextProvider>
+            <ColorContextProvider>
+                <Routes>
+                    <Route index path="/" element={<Showcase />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/cadastro" element={<Registration />} />
+                    <Route path="/produto/:artist/:album" element={<ProductDetail />} />
+                    <Route path="/busca" element={<ProductSearch />} />
+                    <Route path="/artista" element={<Artists />} />
+                    <Route path='/perfil/:slug' element={<ArtistProfile />} />
+                    <Route path="/formato" element={<Formats />} />
+                    <Route path="/prevenda" element={<PreOrder />} />
+                    <Route path="/lancamento" element={<Releases />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </ColorContextProvider>
+        </UserContextProvider>
     )
 }
 

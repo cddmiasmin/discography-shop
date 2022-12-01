@@ -3,7 +3,7 @@ const db = require('../db');
 module.exports = {
     LoginUser: (email) => {
         return new Promise ((accepted, rejected) => {
-            db.query('SELECT email, password FROM tb_cassandra_client WHERE email = ?', [email], 
+            db.query("SELECT cd_client as 'code', email, password FROM tb_cassandra_client WHERE email = ?", [email], 
                 (error, result) =>{
                     if(error) {
                         rejected(error); 

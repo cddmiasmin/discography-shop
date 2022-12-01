@@ -318,6 +318,7 @@ const Registration = () => {
           © Cassandra 2022
         </p>
       </div>
+      
       <Snackbar
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         open={isSnackbarOpen}
