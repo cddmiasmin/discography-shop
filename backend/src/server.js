@@ -13,6 +13,7 @@ server.use(cors());
 server.use(bodyParser.urlencoded ({
     extend: false
 }))
+server.use(express.json());
 
 server.use('/api', routes);
 

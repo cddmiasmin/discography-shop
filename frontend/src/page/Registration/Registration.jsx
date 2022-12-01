@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react';
 
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
@@ -7,6 +7,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
 import { useChooseBackgroundImage } from './../../functions/useChooseBackgroundImage';
 import { ColorContext } from '../../contexts/ColorContext';
@@ -16,6 +17,7 @@ import Logo from './../../components/Logo';
 import InputMask from '../../components/InputMask';
 
 import './registration.css';
+import api from '../../services/api';
 
 
 const Registration = () => {
@@ -31,16 +33,16 @@ const Registration = () => {
 
   const [isSnackbarOpen, SetIsSnackbarOpen] = useState(false);
   const [severity, SetSeverity] = useState('');
-  const [message, SetMessage] = useState(''); 
+  const [message, SetMessage] = useState('');
 
 
-  const confirmPasswordRef = useRef();
+  const DivFormRef = useRef();
+  const DivSucessRef = useRef();
   const checkboxRef = useRef();
 
   const {
     color,
     getColor,
-    fixColor
   } = useContext(ColorContext);
 
   const {
@@ -55,13 +57,12 @@ const Registration = () => {
   useEffect(() => {
     WhatOrientationIsTheScreenInNow('landscape')
     ChooseImageForTheBanner();
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
-    fixColor('white');
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl, true);
   }, [])
 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === 'clickaway') return;
-    
+
     SetIsSnackbarOpen(false);
   };
 
@@ -78,6 +79,12 @@ const Registration = () => {
       </ul>
     </Popover>
   );
+
+  
+  console.log(
+    'OF', DivFormRef.current.style.display,
+    'OS', DivSucessRef.current.style.display
+  )
 
   return (
     <div className='position-absolute flex-wrap w-100 h-100 d-flex justify-content-center align-items-center'>
@@ -102,12 +109,13 @@ const Registration = () => {
           <Logo size={70} />
 
           <div
-            className='d-flex w-100 flex-column justify-content-center align-items-center gap-2'
+            className='w-100 flex-column justify-content-center align-items-center gap-2'
+            ref={DivFormRef} style={{display: 'flex'}}
           >
             <div className='d-flex w-100 flex-column justify-content-center align-items-center gap-1'>
               <h1 className='m-0'>CRIAR UMA CONTA</h1>
               <div className='d-flex flex-row justify-content-center align-items-center gap-1'>
-                <p className='m-0' style={{ fontSize: 'medium' }}>Já tem uma conta?</p>
+                <p className='m-0' style={{ fontSize: 'medium' }} >Já tem uma conta?</p>
                 <Link to='/login'
                   className={`d-flex justify-content-center text-decoration-none text-light`}
                   style={{ fontSize: 'medium' }}
@@ -121,12 +129,48 @@ const Registration = () => {
               className='d-flex w-100 flex-column justify-content-center align-items-center gap-2'
               onSubmit={(e) => {
                 e.preventDefault();
-                if(!checkboxRef.current.checked){
+
+                if (!checkboxRef.current.checked) {
                   SetSeverity('warning');
                   SetMessage('É necessário aceitar os termos de uso para continuar!');
                   SetIsSnackbarOpen(true);
                 }
-                else console.log('ok')
+                else {
+
+                  let americanDateFormat = birthDateValue.split('/').reverse().join('-');
+
+                  api.post('/user', {
+                    firstName: nameValue,
+                    lastName: lastNameValue,
+                    birthDate: americanDateFormat,
+                    cpf: cpfValue,
+                    telephone: telephoneValue,
+                    email: emailValue,
+                    password: password
+                  })
+                    .then(function (response) {
+
+                      console.log(response.data);
+                      if (response.data.error) {
+                        SetSeverity("error");
+                        SetMessage(response.data.error);
+                        SetIsSnackbarOpen(true);
+                      }
+                      
+                      if(response.data.result){
+                        console.log('result')
+                        DivFormRef.current.style.display = 'none';
+                        DivSucessRef.current.style.display = 'flex';
+                      }
+
+                      console.log('end response')
+
+                    })
+                    .catch(function (error) {
+                      console.log(error.data);
+                    });
+
+                }
               }}
             >
               <div
@@ -204,7 +248,7 @@ const Registration = () => {
                 </div>
                 <div id='confirm-password-container' className='position-relative d-flex flex-row align-items-center' style={{ width: '49%' }}>
                   <input
-                    className='element-width rounded w-100' ref={confirmPasswordRef}
+                    className='element-width rounded w-100'
                     type="password" name="confirm-password-resgistration" id="confirm-password-resgistration" placeholder='CONFIRME SUA SENHA' required
                     value={confirmPassword}
                     onChange={(e) => SetConfirmPassword(e.target.value)}
@@ -231,9 +275,9 @@ const Registration = () => {
                 <label htmlFor='cb-terms-of-use'>
                   <span className='ms-1 p-0'>Eu li e concordo com os</span>
                   <a
-                    className='ms-1'
+                    className='ms-1 rounded'
                     href="https://pbs.twimg.com/media/FCWcK8FWUAY4PaP?format=jpg&name=small"
-                    style={{ color: `${color}` }}
+                    style={{ color: `${color}`, backgroundColor: 'var(--colorIsWhiteOrBlack)' }}
                   >Termos de Serviço</a>
                 </label>
               </div>
@@ -250,6 +294,21 @@ const Registration = () => {
             </form>
 
           </div>
+
+          <div
+            className='w-100 flex-column justify-content-center align-items-center'
+            ref={DivSucessRef} style={{display: 'none'}}
+          >
+            <h1 className='m-4' align='center'>CADASTRO REALIZADO <br /> COM SUCESSO!</h1>
+            <Link to='/login'
+              className={`d-flex gap-2 justify-content-center align-items-center text-decoration-none rounded`}
+              style={{ fontSize: 'medium', backgroundColor: 'var(--colorIsWhiteOrBlack)', 
+                    width: '30vh', height: '5vh', color: 'var(--color)'}}
+            >
+              <BsFillArrowRightSquareFill/> IR PARA O LOGIN
+            </Link>
+          </div>
+
         </div>
 
         <p
@@ -259,16 +318,16 @@ const Registration = () => {
           © Cassandra 2022
         </p>
       </div>
-              <Snackbar 
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} 
-                open={isSnackbarOpen} 
-                autoHideDuration={6000} 
-                onClose={handleCloseSnackbar}
-              >
-                <Alert onClose={handleCloseSnackbar} severity={severity} sx={{ width: '100%' }}>
-                  {message}
-                </Alert>
-              </Snackbar>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        open={isSnackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert onClose={handleCloseSnackbar} severity={severity} sx={{ width: '100%' }}>
+          {message}
+        </Alert>
+      </Snackbar>
     </div>
   )
 }

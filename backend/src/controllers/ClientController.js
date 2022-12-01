@@ -18,24 +18,26 @@ module.exports = {
     RegisterUser: async(req, res) => {
         let json = {error:'', result: {}};
         
-        let first = req.body.first;
-        let last = req.body.last;
-        let birth = req.body.birth;
-        let cpf = req.body.cpf;
-        let telephone = req.body.telephone;
-        let email = req.body.email;
-        let password = req.body.password;
+        const { firstName } = req.body;
+        const { lastName } = req.body;
+        const { birthDate } = req.body;
+        const { cpf } = req.body;
+        const { telephone } = req.body;
+        const { email } = req.body;
+        const { password } = req.body;
         
         let user = await ClientService.LoginUser(email);
 
-        if (first && last && birth && cpf
+        console.log(firstName, lastName, birthDate, cpf, telephone, email, password)
+
+        if (firstName && lastName && birthDate && cpf
                 && telephone && email && password
         ) {
 
             if(!user) {
 
                 let newUser = await ClientService.RegisterUser (
-                    first, last, birth, cpf, telephone, email, password
+                    firstName, lastName, birthDate, cpf, telephone, email, password
                 );
 
                 json.result = {
@@ -44,7 +46,7 @@ module.exports = {
             }
             else json.error = 'E-mail já cadastrado no sistema';
 
-        } else json.error = 'djsfnjs';
+        } else json.error = 'Campos não identificados!';
         
         res.json(json);
     },

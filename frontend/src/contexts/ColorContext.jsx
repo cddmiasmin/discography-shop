@@ -12,25 +12,27 @@ export function ColorContextProvider({ children }) {
     useEffect(() => {
         document.body.style.setProperty('--colorIsWhiteOrBlack', `${colorIsWhiteOrBlack}`);
         document.body.style.setProperty('--color', `${color}`);
-    }, [color]);
+    }, [color, colorIsWhiteOrBlack]);
 
-    const getColor = (Img) => {
+    const getColor = (Img, fixColor) => {
         const fac = new FastAverageColor();
         fac.getColorAsync(Img)
             .then(color => {
                 setColor(color.hex);
-                color.isDark ? setColorIsDarkOrLight('light') : setColorIsDarkOrLight('dark');
-                color.isDark ? setColorIsWhiteOrBlack('white') : setColorIsWhiteOrBlack('black');
+
+                if(fixColor) {
+                    setColorIsDarkOrLight('light');
+                    setColorIsWhiteOrBlack('white');
+                } else {
+                    color.isDark ? setColorIsDarkOrLight('light') : setColorIsDarkOrLight('dark');
+                    color.isDark ? setColorIsWhiteOrBlack('white') : setColorIsWhiteOrBlack('black');
+                }
             })
-            .catch(e => {
+            .catch(() => {
+                setColorIsWhiteOrBlack('white');
                 setColorIsDarkOrLight('light');
                 setColor('#000');
             });
-    }
-
-    const fixColor = (color) => {
-        color === 'white' ? setColorIsDarkOrLight('light') : setColorIsDarkOrLight('dark');
-        color === 'white' ? setColorIsWhiteOrBlack('white') : setColorIsWhiteOrBlack('black');
     }
 
     console.log(colorIsDarkOrLight);
@@ -43,7 +45,6 @@ export function ColorContextProvider({ children }) {
                 colorIsDarkOrLight,
                 colorIsWhiteOrBlack,
                 getColor,
-                fixColor
             }}
         >
             {children}
