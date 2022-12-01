@@ -28,7 +28,7 @@ const Showcase = () => {
     getColor('', true);
   });
 
-  console.log(JSON.parse(localStorage.getItem('user')))
+  console.log(JSON.parse(localStorage.getItem('user')));
   return (
     <div
       className='container-showcase

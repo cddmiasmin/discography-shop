@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import { FastAverageColor } from 'fast-average-color';
 
@@ -34,7 +34,7 @@ const ProductSearch = () => {
     SetArtistIconColor(ArtistIconColor(dataArtist[1].icon))
     WhatOrientationIsTheScreenInNow('landscape');
     ChooseImageForTheBanner();
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl)
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl, true);
   }, [])
 
   const ArtistIconColor = (Img) => {

@@ -33,7 +33,7 @@ const ArtistProfile = () => {
     });
   }, [])
 
-  useEffect(() => getColor(artist.icon), [artist]);
+  useEffect(() => getColor(artist.icon, false), [artist]);
 
   if (artist.length === 0) {
     return (<Loading />)

@@ -28,8 +28,7 @@ const PreOrder = () => {
 
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
-    fixColor('white');
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl, true);
   }, []);
 
   const {
@@ -45,7 +44,6 @@ const PreOrder = () => {
 
   const {
     getColor,
-    fixColor
 } = useContext(ColorContext);
 
   const {

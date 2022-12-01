@@ -26,7 +26,6 @@ const Formats = () => {
 
   const {
     getColor,
-    fixColor
 } = useContext(ColorContext);
 
   const {
@@ -58,8 +57,7 @@ const Formats = () => {
 
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
-    fixColor('white');
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl, true);
   }, []);
 
   useEffect(() => {

@@ -80,7 +80,7 @@ const ProductDetail = () => {
   }
 
   const StyleChangeOptionVersion = () => {
-    getColor(pageData.versions[optionVersionAlbum].cover);
+    getColor(pageData.versions[optionVersionAlbum].cover, false);
     optionVersionAlbumRef.current[optionVersionAlbum].classList.add('optionVersionAlbumSelected');
   }
 

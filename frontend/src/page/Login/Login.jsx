@@ -81,11 +81,11 @@ const Login = () => {
 
         localStorage.setItem('user', JSON.stringify(pageDataAux));
         SetUser(JSON.parse(localStorage.getItem('user')));
-        
+
         navigate(`/`);
       }
     }
-  },[pageData])
+  },[pageData]);
 
   return (
     <div

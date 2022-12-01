@@ -28,7 +28,7 @@ const Releases = () => {
 
     SetBannerInPortraitOrLandscapeMode(data.landscape);
     ChooseImageForTheBanner();
-    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl);
+    getColor(bannerInPortraitOrLandscapeMode[imageNumber].imgUrl, true);
     fixColor('white');
   }, []);
 

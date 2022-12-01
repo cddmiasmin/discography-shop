@@ -14,7 +14,7 @@ const Search = () => {
     const [searchOpen, SetSearchOpen] = useState(0);
 
     const elementInputRef = useRef();
-    const elementDivRef = useRef();
+    const elementFormRef = useRef();
 
     useEffect(() => {
         SetSearchOpen(false);
@@ -24,34 +24,38 @@ const Search = () => {
         if (!searchOpen) {
             if (elementInputRef.current.value === '') {
                 elementInputRef.current.style.width = '0';
-                elementDivRef.current.style.background = 'none';
-                elementDivRef.current.style.border = 'none';
-                elementDivRef.current.style.padding = '0vh'
+                elementFormRef.current.style.background = 'none';
+                elementFormRef.current.style.border = 'none';
+                elementFormRef.current.style.padding = '0vh'
             } else {
-                if (elementInputRef.current.value.length < 1) 
+                if (elementInputRef.current.value.length < 1)
                     SetOpenSnackbar(true);
                 else navigateDesk('/busca');
             }
         }
         else {
             elementInputRef.current.style.width = '25vh';
-            elementDivRef.current.style.background = 'var(--color)';
-            elementDivRef.current.style.border = '1px solid var(--colorIsWhiteOrBlack)';
-            elementDivRef.current.style.padding = '0vh 3vh 0vh 3vh';
+            elementFormRef.current.style.background = 'var(--color)';
+            elementFormRef.current.style.border = '1px solid var(--colorIsWhiteOrBlack)';
+            elementFormRef.current.style.padding = '0vh 3vh 0vh 3vh';
         }
     }, [searchOpen]);
 
     return (
         <Tooltip title="Buscar">
-            <div className='search-box' ref={elementDivRef}>
-                <input ref={elementInputRef} className='search-txt' type="text" placeholder="O que você procura?"  />
-                <button type='button' id='button-search-desk' onClick={() => {
+            <form
+                className='search-box' ref={elementFormRef}
+                onSubmit={(e) => {
+                    e.preventDefault();
                     searchOpen ? SetSearchOpen(false) : SetSearchOpen(true);
                 }}
-                    className={`bg-transparent`} style={{color: 'var(--colorIsWhiteOrBlack)'}}>
+            >
+                <input ref={elementInputRef} className='search-txt' type="text" placeholder="O que você procura?" />
+                <button type='submit' id='button-search-desk'
+                    className={`bg-transparent`} style={{ color: 'var(--colorIsWhiteOrBlack)' }}>
                     <HiSearch className='fs-5' />
                 </button>
-            </div>
+            </form>
         </Tooltip>
     )
 }
