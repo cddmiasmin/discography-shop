@@ -113,8 +113,8 @@ export function UserContextProvider({ children }) {
                 severity,
                 message,
                 isSnackbarOpenProduct, SetIsSnackbarOpenProduct,
-                severityProduct,
-                messageProduct,
+                severityProduct, SetSeverityProduct,
+                messageProduct, SetMessageProduct,
                 DoesTheItemAlreadyExist
             }}
         >

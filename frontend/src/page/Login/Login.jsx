@@ -21,6 +21,7 @@ import { UserContext } from '../../contexts/UserContext';
 
 const Login = () => {
 
+  
   const navigate = useNavigate();
 
   const [emailValue, SetEmailValue] = useState('');
@@ -32,7 +33,7 @@ const Login = () => {
   const [severity, SetSeverity] = useState('');
   const [message, SetMessage] = useState('');
 
-  const { user, SetUser } = useContext(UserContext);
+  const { SetUser } = useContext(UserContext);
  
   const {
     color,
@@ -82,7 +83,7 @@ const Login = () => {
         localStorage.setItem('user', JSON.stringify(pageDataAux));
         SetUser(JSON.parse(localStorage.getItem('user')));
 
-        navigate(`/`);
+        navigate(-1);
       }
     }
   },[pageData]);

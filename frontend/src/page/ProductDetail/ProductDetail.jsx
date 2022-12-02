@@ -54,10 +54,9 @@ const ProductDetail = () => {
     user,
     addItem,
     alterCartItem,
-    isSnackbarOpenProduct, 
-    SetIsSnackbarOpenProduct,
-    severityProduct,
-    messageProduct,
+    isSnackbarOpenProduct, SetIsSnackbarOpenProduct,
+    severityProduct, SetSeverityProduct,
+    messageProduct, SetMessageProduct,
     DoesTheItemAlreadyExist
   } = useContext(UserContext);
 
@@ -392,17 +391,18 @@ const ProductDetail = () => {
                     width: '35vh', height: '7vh'
                   }}
                   onClick={() => {
-                    if (user.length === 0) {
+                    if (!user.length) {
                       SetSeverityProduct('warning');
                       SetMessageProduct('Para utilizar o carrinho é necessário acessar sua conta!');
                       SetIsSnackbarOpenProduct(true);
+                      console.log('oi')
                     } else {
 
                       let item = DoesTheItemAlreadyExist(
                         dataProductsGroupedByVersion[idOptionVersion][productFormat].code
                       );
 
-                      if(item) alterCartItem(item.cartCode, item.cartAmount + 1, item.price, 'product')
+                      if (item) alterCartItem(item.cartCode, item.cartAmount + 1, item.price, 'product')
                       else {
                         addItem(
                           user.code,
