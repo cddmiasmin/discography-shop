@@ -1,12 +1,16 @@
 import React, { useState, useContext } from 'react'
 
-import './header.css'
-import Logo from '../Logo'
-import Cart from '../Cart'
+import './header.css';
+import Logo from '../Logo';
+import Cart from '../Cart';
+import Search from '../Search/Search'
 
-import { Link, useNavigate } from 'react-router-dom'
+import Dropdown from 'react-bootstrap/Dropdown';
+
+import { Link, useNavigate } from 'react-router-dom';
 
 import { ColorContext } from '../../contexts/ColorContext';
+import { UserContext } from '../../contexts/UserContext';
 import { Tooltip } from '@mui/material';
 import { Drawer, Box } from '@mui/material';
 
@@ -16,15 +20,18 @@ import { IoPerson } from 'react-icons/io5';
 import { BsFillBagFill } from 'react-icons/bs';
 import { RiCloseCircleFill } from 'react-icons/ri'
 
-const Mobile = ({ isDrawerCartOpen, setIsDrawerCartOpen, isPopoverProfileOpen, setIsPopoverProfileOpen }) => {
+const Mobile = ({ isDrawerCartOpen, setIsDrawerCartOpen }) => {
+
+    const navigate = useNavigate();
+
     const [isDrawerMenuOpen, setIsDrawerMenuOpen] = useState(false);
 
-    const [openSnackBarMob, SetOpenSnackbarMob] = useState(false);
-    const navigateMob = useNavigate();
+    const { user, SetUser } = useContext(UserContext);
 
     const {
         color,
         colorIsDarkOrLight,
+        colorIsWhiteOrBlack
     } = useContext(ColorContext);
 
     return (
@@ -85,14 +92,40 @@ const Mobile = ({ isDrawerCartOpen, setIsDrawerCartOpen, isPopoverProfileOpen, s
                     </Box>
                 </Drawer>
 
-                <Tooltip
-                    id='IconButtonMyProfileMobile'
-                    title="Perfil"
-                    onClick={() => setIsPopoverProfileOpen(true)}
-                >
-                    <Link to={'/login'} className={`bg-transparent text-${colorIsDarkOrLight}`}><IoPerson className='fs-5' /></Link>
-                </Tooltip>
-                
+                <Dropdown className='bg-transparent'>
+                    <Dropdown.Toggle id="dropdown-basic" className={`bg-transparent shadow-none btn-link text-${colorIsWhiteOrBlack}`} style={{ color: 'var(colorIsWhiteOrBlack) !important' }}>
+                        <IoPerson className={`bg-transparent text-${colorIsWhiteOrBlack} fs-5`} />
+                    </Dropdown.Toggle>
+
+                    {user.length === 0
+                        ?
+                        <Dropdown.Menu>
+                            <Dropdown.Item style={{ color: 'var(--color)' }} onClick={() => navigate('/login')}>
+                                ENTRAR
+                            </Dropdown.Item>
+
+                            <Dropdown.Item style={{ color: 'var(--color)' }} onClick={() => navigate('/cadastro')}>
+                                CRIAR CONTA
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                        :
+                        <Dropdown.Menu>
+                            <Dropdown.Item
+                                className='bg-transparent w-100 h-100'
+                                style={{ color: 'var(--color)' }}
+                                onClick={() => {
+                                    localStorage.clear();
+                                    SetUser(localStorage.getItem('user'));
+                                    window.location.reload();
+                                }}
+                            >
+                                SAIR
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    }
+
+                </Dropdown>
+
 
             </div>
 
@@ -102,18 +135,8 @@ const Mobile = ({ isDrawerCartOpen, setIsDrawerCartOpen, isPopoverProfileOpen, s
             </div>
 
             <div id='RightOptionMobile' className={`col d-flex justify-content-end align-items-center gap-2 text-${colorIsDarkOrLight}`}>
-                <Tooltip id='ROM-TooltipIconButttonSearch' title="Buscar">
+                <Search />
 
-                    <button type='button' id='button-search-mob'
-
-                        className={`bg-transparent text-${colorIsDarkOrLight}`}><HiSearch className='fs-5 ' /></button>
-                </Tooltip>
-
-                {/* <Snackbar open={openSnackBarMob} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
-                        Por favor, digite pelo menos 3 caracteres para pesquisar!
-                    </Alert>
-                </Snackbar> */}
 
                 <Tooltip
                     id='ROM-TooltipIconButttonCart'

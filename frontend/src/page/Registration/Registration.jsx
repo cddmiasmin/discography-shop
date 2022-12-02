@@ -80,11 +80,6 @@ const Registration = () => {
     </Popover>
   );
 
-  
-  console.log(
-    'OF', DivFormRef.current.style.display,
-    'OS', DivSucessRef.current.style.display
-  )
 
   return (
     <div className='position-absolute flex-wrap w-100 h-100 d-flex justify-content-center align-items-center'>
@@ -150,24 +145,18 @@ const Registration = () => {
                   })
                     .then(function (response) {
 
-                      console.log(response.data);
                       if (response.data.error) {
                         SetSeverity("error");
                         SetMessage(response.data.error);
                         SetIsSnackbarOpen(true);
-                      }
-                      
-                      if(response.data.result){
-                        console.log('result')
+                      } else {
                         DivFormRef.current.style.display = 'none';
                         DivSucessRef.current.style.display = 'flex';
                       }
 
-                      console.log('end response')
-
                     })
                     .catch(function (error) {
-                      console.log(error.data);
+                      //console.log(error.data);
                     });
 
                 }
@@ -182,14 +171,14 @@ const Registration = () => {
                   className='rounded'
                   type="text" id='name-registration' required minLength={3} placeholder='NOME'
                   style={{ width: '39%' }}
-                  pattern="[A-Za-z ]{3,}" value={nameValue}
+                  pattern="[a-zA-Z\u00C0-\u00FF ]{3,}$" value={nameValue}
                   onChange={(e) => SetNameValue(e.target.value)}
                 />
                 <input
                   className='rounded'
                   type="text" id='lastname-resgistration' required minLength={3} placeholder='SOBRENOME'
                   style={{ width: '59%' }}
-                  pattern="[A-Za-z ]{3,}" value={lastNameValue}
+                  pattern="[a-zA-Z\u00C0-\u00FF ]{3,}$" value={lastNameValue}
                   onChange={(e) => SetLastNameValue(e.target.value)}
                 />
               </div>

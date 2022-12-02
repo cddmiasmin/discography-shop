@@ -10,16 +10,13 @@ import "swiper/css/scrollbar";
 import { FaTrash } from 'react-icons/fa';
 import { RiCloseCircleFill } from 'react-icons/ri';
 
-import { dataArtist } from './../data/dataArtist'
-import Loading from './Loading';
-
 import { UserContext } from './../contexts/UserContext'
 import { ColorContext } from './../contexts/ColorContext'
 import { useGoToProduct } from './../functions/useGoToProduct'
 
 import { Drawer, Box, Tooltip } from '@mui/material';
+import { BsCart4 } from 'react-icons/bs';
 import api from './../services/api';
-import { BsAppIndicator } from 'react-icons/bs';
 
 const Cart = ({ isDrawerCartOpen, setIsDrawerCartOpen }) => {
 
@@ -50,8 +47,8 @@ const Cart = ({ isDrawerCartOpen, setIsDrawerCartOpen }) => {
 
     useEffect(() => SetSubTotal(0), [subTotal < 0])
 
-    console.log(user.code);
-    console.log(subTotal);
+    // console.log(user.code);
+    // console.log(subTotal);
 
     return (
         <div>
@@ -99,6 +96,8 @@ const Cart = ({ isDrawerCartOpen, setIsDrawerCartOpen }) => {
 
                                     user.length !== 0
                                         ?
+
+                                        items.length !== 0 ?
                                         <>
                                             <Swiper
                                                 direction={"vertical"}
@@ -240,6 +239,17 @@ const Cart = ({ isDrawerCartOpen, setIsDrawerCartOpen }) => {
                                                 </button>
                                             </div>
                                         </>
+
+                                        :
+                                        <div
+                                            className="d-flex flex-column justify-content-center align-items-center w-100 h-100 rounded p-3 gap-3"
+                                            style={{ backgroundColor: `${colorIsWhiteOrBlack}`, color: `${color}` }}
+                                        >
+                                            <BsCart4 className='fs-3' />
+                                            <h4 className=''>
+                                                Seu carrinho está vazio.
+                                            </h4>
+                                        </div>
                                         :
                                         <div
                                             className="d-flex flex-column justify-content-center align-items-center w-100 h-100 rounded"

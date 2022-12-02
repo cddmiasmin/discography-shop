@@ -18,7 +18,6 @@ import { ColorContext } from '../../contexts/ColorContext'
 import { UserContext } from '../../contexts/UserContext'
 
 
-
 const Desktop = ({ isDrawerCartOpen, setIsDrawerCartOpen }) => {
 
     const navigate = useNavigate();

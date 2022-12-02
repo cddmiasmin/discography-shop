@@ -129,6 +129,15 @@
     #container-artists-options section {
         width: 95% !important;
     }
+
+    #filter-from-products {
+        height: 0.5vh !important;
+    }
+
+    #loading-img {
+        width: 30% !important;
+        height: 15% !important;
+    }
 }
 
 @media only screen and (max-width: 1200px) {

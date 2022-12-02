@@ -84,7 +84,7 @@ const Releases = () => {
       >
         <h1>LANÇAMENTOS</h1>
       </div>
-      <div className='d-flex flex-row gap-2 justify-content-center align-items-center p-4'>
+      <div className='d-flex flex-wrap gap-2 justify-content-center align-items-center p-4'>
         <h5 className='m-0'>ORDENAR POR:</h5>
         <div className="select m-2 d-flex justify-content-center align-items-center">
           <select
