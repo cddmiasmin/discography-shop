@@ -16,6 +16,21 @@ module.exports = {
         });
     },
 
+    SearchUser: (email) => {
+        return new Promise ((accepted, rejected) => {
+            db.query("SELECT cd_client as 'code', nm_first as 'name', email, password FROM tb_cassandra_client WHERE email = ?", [email], 
+                (error, result) =>{
+                    if(error) {
+                        rejected(error); 
+                        return;
+                    } 
+
+                    if(result.length > 0) accepted(result[0]);
+                    else accepted(false);
+                });
+        });
+    },
+
     RegisterUser: (
         nameFirst, nameLast, birthDate, cpf, telephone, email, password
     ) => {

@@ -1,4 +1,5 @@
 const ClientService = require('./../services/ClientService');
+const nodemailer = require("nodemailer");
 
 module.exports = {
 
@@ -48,6 +49,44 @@ module.exports = {
 
         } else json.error = 'Campos não identificados!';
         
+        res.json(json);
+    },
+
+    IForgotMyPassword: async(req, res) => {
+        let json = {error:'', result: []};
+        
+        let email = req.params.email;
+        let user = await ClientService.SearchUser(email);
+
+        if(user) {
+
+            var transport = nodemailer.createTransport({
+                host: "smtp.mailtrap.io",
+                port: 2525,
+                auth: {
+                    user: "148e8f1a3e5b03",
+                    pass: "c9086e66356588"
+                }
+            });
+    
+            var message = {
+                from: "noreply@cassandra.com",
+                to: email,
+                subject: "Cassandra | Esqueceu sua senha?",
+                text: `Olá ${user.name}, segue a senha cadastrada no sistema: ${user.password} .`,
+                html: `<html lang='pt-br'><head><title>Document</title> <style text='text/css'> body { display: flex; position: absolute; justify-content: center; align-items: center; width: 100%; padding: 4vh; flex-direction: column; } p { margin: 1vh; } </style></head><body> <img width='80vh' height='80vh' src='https://i.ibb.co/bHwc08c/logo-dark-light.png' alt='Logo Cassandra' > <h1>RECEBIMENTO DE SENHA</h1> <p>Olá ${user.name},</p> <p>Segue a senha cadastrada no sistema:</p> <b>${user.password}</b></body></html>`
+            };
+    
+            transport.sendMail(message, function (err) {
+                if(err) json.error = 'Oops! Tivemos um problema. Tente novamente.';
+                res.json(json);
+            })
+    
+            json.result = 'E-mail enviado com sucesso!';
+
+        } else {
+            json.error = 'E-mail não cadastrado no sistema!';
+        }
         res.json(json);
     },
 }

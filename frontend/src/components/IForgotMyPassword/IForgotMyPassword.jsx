@@ -1,39 +1,27 @@
-import React from 'react'
-
-import { Box, Modal } from '@mui/material';
-
+import React, { useContext, useState } from 'react'
 import { BsArrowLeftCircleFill } from 'react-icons/bs'
-import { GiKey } from 'react-icons/gi'
+import { ColorContext } from '../../contexts/ColorContext';
+import { Modal } from '@mui/material';
+import { GiKey } from 'react-icons/gi';
+import api from '../../services/api';
 
 import './iForgotMyPassword.css'
 
-const IForgotMyPassword = (props) => {
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        transform: 'translate(-50%, -50%)',
-        width: '40%',
-        backdropFilter: 'blur(25px) saturate(200%)',
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        borderRadius: '12px',
-        border: `1.5px solid ${props.color}`,
-        boxShadow: 24,
-        p: 4,
-        gap: '1vh'
-    };
+const IForgotMyPassword = ({ 
+    passwordModalIsOpen, SetPasswordModalIsOpen, SetIsSnackbarOpen, SetSeverity, SetMessage
+}) => {
+
+    const [emailValue, SetEmailValue] = useState('');
+
+    const { colorIsDarkOrLight } = useContext(ColorContext);
 
     return (
         <Modal
-            open={props.passwordModalIsOpen}
-            onClose={() => props.SetPasswordModalIsOpen(false)}
+            open={passwordModalIsOpen}
+            onClose={() => SetPasswordModalIsOpen(false)}
         >
             <div id='card-forgot-password'>
-                <div id='card-bg'/>
+                <div id='card-bg' />
                 <div className='w-100 d-flex flex-column justify-content-center align-items-center'>
                     <div
                         id='sub-card'
@@ -41,16 +29,32 @@ const IForgotMyPassword = (props) => {
                     >
                         <GiKey className='m-2' style={{ fontSize: 'xxx-large' }} />
                         <h1>ESQUECEU A SENHA?</h1>
-                        <h6 className='text-center'>Não se preocupe, enviaremos instruções de redefinição.</h6>
+                        <h6 className='text-center'>Não se preocupe, enviaremos instruções de recebê-la.</h6>
                     </div>
-                    <div className={`bg-${props.colorIsDarkOrLight} rounded `} style={{ height: '0.3vh', width: '75%' }} />
+                    <div className={`bg-${colorIsDarkOrLight} rounded `} style={{ height: '0.3vh', width: '75%' }} />
                     <form action="" id='form-forgot-password'
                         className='w-100 d-flex flex-column justify-content-center align-items-center m-1'
                         style={{ lineHeight: 1.5 }}
+                        onSubmit={(e) => {
+                            e.preventDefault();
+
+                            api.get(`/password/${emailValue}`).then((response) => {
+                                if (response.data.error) {
+                                    SetSeverity("error");
+                                    SetMessage(response.data.error);
+                                    SetIsSnackbarOpen(true);
+                                } else {
+                                    SetSeverity("success");
+                                    SetMessage(response.data.result);
+                                    SetIsSnackbarOpen(true);
+                                }
+                            });
+
+                        }}
                     >
                         <input
-                            className='rounded m-2'
-                            type="email" name="fieldEmail" id="field-email" placeholder='Digite seu e-mail' required="required"
+                            className='rounded m-2' value={emailValue} onChange={(e) => SetEmailValue(e.target.value)}
+                            type="email" name="fieldEmail" id="field-email" placeholder='Digite seu e-mail' required
                             pattern="[a-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                         />
                         <button
@@ -58,14 +62,14 @@ const IForgotMyPassword = (props) => {
                             style={{ width: '65%', height: '5vh', fontSize: 'larger' }}
                             type="submit"
                         >
-                            Redefinir senha
+                            Receber senha
                         </button>
                     </form>
                     <button
                         type='button'
-                        className={`w-100 flex-row gap-1 d-flex justify-content-center align-items-center rounded m-1 text-${props.colorIsDarkOrLight}`}
-                        style={{ fontSize: 'medium', backgroundColor: 'transparent'}}
-                        onClick={() => props.SetPasswordModalIsOpen(false)}
+                        className={`w-100 flex-row gap-1 d-flex justify-content-center align-items-center rounded m-1 text-${colorIsDarkOrLight}`}
+                        style={{ fontSize: 'medium', backgroundColor: 'transparent' }}
+                        onClick={() => SetPasswordModalIsOpen(false)}
                     >
                         <BsArrowLeftCircleFill style={{ fontSize: 'small' }} />
                         Voltar para entrar

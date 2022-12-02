@@ -33,6 +33,7 @@ router.get('/format/:format', FormatController.ListFormat);
 router.get('/product/detail/:artist/:album', ProductController.ListProductsDetails);
 
 router.get('/user/:email', ClientController.LoginUser);
+router.get('/password/:email', ClientController.IForgotMyPassword);
 router.post('/user', ClientController.RegisterUser);
 
 router.get('/search/:search', SearchController.ProductSearch);

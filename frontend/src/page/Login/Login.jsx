@@ -166,8 +166,8 @@ const Login = () => {
                 <IForgotMyPassword
                   passwordModalIsOpen={passwordModalIsOpen}
                   SetPasswordModalIsOpen={SetPasswordModalIsOpen}
-                  color={color}
-                  colorIsDarkOrLight={colorIsDarkOrLight}
+                  SetIsSnackbarOpen={SetIsSnackbarOpen}
+                  SetSeverity={SetSeverity} SetMessage={SetMessage}
                 />
               </div>
               <div className={`bg-${colorIsDarkOrLight} rounded `} style={{ height: '0.3vh', width: '55%' }} />
