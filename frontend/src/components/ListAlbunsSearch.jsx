@@ -7,17 +7,15 @@ import api from './../services/api';
 import Loading from './Loading';
 import Album from './Album/Album';
 
-const ListAlbunsSearch = (props) => {
+const ListAlbunsSearch = ({slug}) => {
 
     const [dataArtistAlbums, SetDataArtistAlbums] = useState(1);
 
     useEffect(() => {
-        api.get(`/albums/${props.slug}`).then((response) => {
+        api.get(`/albums/${slug}`).then((response) => {
             SetDataArtistAlbums(response.data.result);
         });
     }, []);
-
-    console.log(dataArtistAlbums)
 
     if (dataArtistAlbums === 1) return (<Loading />);
     else

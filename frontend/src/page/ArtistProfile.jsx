@@ -38,8 +38,7 @@ const ArtistProfile = () => {
   if (artist.length === 0) {
     return (<Loading />)
   }
-
-  console.log(artist)
+  
   return (
     <div
       id='container-artist'

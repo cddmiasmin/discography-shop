@@ -31,7 +31,6 @@ const Showcase = () => {
 
   if(pageData.length === 0) return (<Loading/>);
 
-  console.log(pageData);
   return (
     <div
       className='container-showcase

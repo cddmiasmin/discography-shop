@@ -22,7 +22,7 @@ const Mobile = () => {
     const [expandedPanel, setExpandedPanel] = useState(false);
 
     const handleAccordionChange = (panel) => (event, isExpanded) => {
-        console.log({ event, isExpanded });
+        
         setExpandedPanel(isExpanded ? panel : false);
     };
 

@@ -8,7 +8,6 @@ import './productDetail.css';
 import Header from './../../components/Header/Header'
 import Loading from './../../components/Loading'
 import Footer from './../../components/Footer/Footer'
-import LetMeKnowWhenItArrives from '../../components/LetMeKnowWhenItArrives/LetMeKnowWhenItArrives'
 
 import { ColorContext } from '../../contexts/ColorContext';
 
@@ -25,6 +24,8 @@ const ProductDetail = () => {
   const { artist } = useParams();
   const { album } = useParams();
 
+  const url = window.location.href;
+
   const optionVersionAlbumRef = useRef([]);
   const optionFormatRef = useRef([]);
 
@@ -39,9 +40,9 @@ const ProductDetail = () => {
   const [productPhoto, SetProductPhoto] = useState(0);
   const [productFormat, SetProductFormat] = useState(0);
   const [releaseDateAlbum, SetReleaseDateAlbum] = useState(0);
-  const [letMeKnowWhenItArrivesModalIsOpen, SetLetMeKnowWhenItArrivesModalIsOpen] = useState(false);
 
   const nameFormat = ['CD', 'CASSETE', 'BOX', 'DVD', 'VINIL'];
+
   const today = new Date(Date.now());
 
   const {
@@ -49,7 +50,7 @@ const ProductDetail = () => {
     colorIsDarkOrLight,
     colorIsWhiteOrBlack,
     getColor
-} = useContext(ColorContext);
+  } = useContext(ColorContext);
 
   const HowIsTheStockOfFormats = (data) => {
     const formatStockAvailableAux = _.groupBy(data, (format) => {
@@ -93,7 +94,7 @@ const ProductDetail = () => {
       SetPageData(response.data.result);
     });
     if (optionFormatRef.current[productFormat] !== undefined)
-    StyleChangeOptionFormat();
+      StyleChangeOptionFormat();
   }, []);
 
   useEffect(() => HowIsTheStockOfFormats(dataProductsGroupedByVersion[idOptionVersion]), [idOptionVersion]);
@@ -104,7 +105,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (optionFormatRef.current[productFormat] !== undefined)
-    StyleChangeOptionFormat();
+      StyleChangeOptionFormat();
   }, [productFormat]);
 
   useEffect(() => {
@@ -122,7 +123,7 @@ const ProductDetail = () => {
   }, [pageData]);
 
 
-  if (pageData.length === 0 ) {
+  if (pageData.length === 0) {
     return (<Loading />);
   }
 
@@ -138,7 +139,7 @@ const ProductDetail = () => {
 
   return (
     <div className={`flex-column w-100 h-100 d-flex justify-content-center align-items-center text-${colorIsWhiteOrBlack}`}
-      style={{ backgroundColor: '#020202'}}
+      style={{ backgroundColor: '#020202' }}
     >
       <Header colorIsDarkOrLight={colorIsDarkOrLight} color={color} colorIsWhiteOrBlack={colorIsWhiteOrBlack} />
       <div
@@ -169,28 +170,36 @@ const ProductDetail = () => {
         <a
           className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsWhiteOrBlack} rounded-circle`}
           style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
-          href="https://www.facebook.com">
+          href={`https://www.facebook.com/`}
+          rel="nofollow" target="_blank" data-href={url}
+        >
           <BsFacebook style={{ width: '60%', height: '60%' }} />
         </a>
 
         <a
           className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsWhiteOrBlack} rounded-circle`}
           style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
-          href="https://www.instagram.com">
+          href="https://www.instagram.com"
+          rel="nofollow" target="_blank"
+        >
           <BsInstagram style={{ width: '60%', height: '60%' }} />
         </a>
 
         <a
           className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsWhiteOrBlack} rounded-circle`}
           style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
-          href="https://twitter.com/home">
+          href={`http://twitter.com/intent/tweet?text=Confira%20esse%20produto:%20${url}`}
+          rel="nofollow" target="_blank"
+        >
           <BsTwitter style={{ width: '60%', height: '60%' }} />
         </a>
 
         <a
           className={`d-flex justify-content-center align-items-center text-decoration-none text-${colorIsWhiteOrBlack} rounded-circle`}
           style={{ width: '40px', height: '40px', backgroundColor: `${color}` }}
-          href="https://www.youtube.com">
+          href={`https://api.whatsapp.com/send?text=Confira%20esse%20produto:%20'${url}`}
+          rel="nofollow" target="_blank"
+        >
           <BsWhatsapp style={{ width: '60%', height: '60%' }} />
         </a>
       </div>
@@ -247,15 +256,17 @@ const ProductDetail = () => {
                   <button
                     key={key}
                     onClick={() => {
-                      if(productFormat === key) return;
+                      if (productFormat === key) return;
                       optionFormatRef.current[productFormat].classList.remove('productFormatSelected');
                       SetProductFormat(key);
                       SetProductPhoto(0);
                     }}
                     ref={b => optionFormatRef.current[key] = b}
                     className={`fs-4 rounded d-flex justify-content-center align-items-center`}
-                    style={{ color: 'var(--color)', backgroundColor: 'transparent',
-                            border: '2px solid var(--color)',  height: '6vh', width: '12vh', cursor: 'point' }}
+                    style={{
+                      color: 'var(--color)', backgroundColor: 'transparent',
+                      border: '2px solid var(--color)', height: '6vh', width: '12vh', cursor: 'point'
+                    }}
                   >
                     {nameFormat[format.format - 1]}
                   </button>
@@ -273,23 +284,14 @@ const ProductDetail = () => {
                   <button
                     key={key}
                     className={`fs-4 rounded d-flex justify-content-center align-items-center`}
-                    style={{ color: 'var(--color)', backgroundColor: 'transparent',
-                    border: '2px solid var(--color)',  height: '6vh', width: '12vh', cursor: 'default' }}
+                    style={{
+                      color: 'var(--color)', backgroundColor: 'transparent',
+                      border: '2px solid var(--color)', height: '6vh', width: '12vh', cursor: 'default'
+                    }}
                   >
                     {nameFormat[format.format - 1]}
                   </button>
                 ))}
-                <button
-                  className={`text-${colorIsDarkOrLight} fs-5 rounded d-flex justify-content-center align-items-center m-1`}
-                  style={{ backgroundColor: `${color}`, height: '6vh', width: '30vh', cursor: 'point' }}
-                  onClick={() => SetLetMeKnowWhenItArrivesModalIsOpen(true)}
-                >
-                  AVISE-ME QUANDO CHEGAR
-                </button>
-                <LetMeKnowWhenItArrives
-                  letMeKnowWhenItArrivesModalIsOpen={letMeKnowWhenItArrivesModalIsOpen}
-                  SetLetMeKnowWhenItArrivesModalIsOpen={SetLetMeKnowWhenItArrivesModalIsOpen}
-                  formatStockAvailable={formatStockAvailable['0']} />
               </div>
             </div>
           }
