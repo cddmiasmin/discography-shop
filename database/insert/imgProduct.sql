@@ -259,3 +259,9 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
         ('134','https://i.ibb.co/XFYLs5Q/Cassette-Gabrielle-Aplin-Phosphorescent-000000.webp'),
         ('135','https://i.ibb.co/Df0WKWC/Bundle1-Gabrielle-Aplin-Phosphorescent-D2-C-000000.webp'),
         ('136','https://i.ibb.co/VD52j4M/GAstandardlp.webp');
+
+/*DEMI LOVATO*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('137','https://i.ibb.co/D7JKzyv/Demi-Lovato-Holy-FVCK-Standard-602448064851-webp.png'),
+        ('138','https://i.ibb.co/bR29nTb/Demi-Lovato-Holy-FVCK-Cassete-webp.png');

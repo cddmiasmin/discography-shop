@@ -190,3 +190,8 @@ insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
 	values
 		('55','CAPA PRINCIPAL','https://i.ibb.co/SVL4mKp/Untitled-15.jpg');
+
+/*DEMI LOVATO*/
+insert into tb_cassandra_version(fk_album, desc_sm_version, img_cover)
+	values
+		('56','CAPA PRINCIPAL','https://i.ibb.co/1sJ848W/holy-fvck.jpg');
