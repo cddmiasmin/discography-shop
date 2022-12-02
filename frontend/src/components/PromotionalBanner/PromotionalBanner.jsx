@@ -8,13 +8,11 @@ import "swiper/css/navigation";
 
 import './promotionalBanner.css'
 
-import { dataPromotionalBanner } from './../../data/dataPromotionalBanner'
-
 import { Autoplay, Pagination } from "swiper";
 import { useState } from 'react';
 import { useGoToProduct } from '../../functions/useGoToProduct';
 
-const PromotionalBanner = () => {
+const PromotionalBanner = ({ data }) => {
   const [orientation, SetOrientation] = useState('993');
 
   useEffect(() => HowWideIsThisScreen());
@@ -27,10 +25,9 @@ const PromotionalBanner = () => {
     var screenWidthNow = window.screen.width;
     SetOrientation(screenWidthNow)
   }
-  
+
   return (
-    <div className='promotional-banner 
-                    container-fluid' >
+    <div className='promotional-banner container-fluid' >
       <Swiper
         spaceBetween={0}
         centeredSlides={true}
@@ -48,37 +45,35 @@ const PromotionalBanner = () => {
       >
         {orientation > 992
           ?
-          dataPromotionalBanner[0].landscape.map((banner, key) =>
+          data.map((banner) =>
             <SwiperSlide
-              onClick={() => GoToProduct()}
-              style={{cursor: 'pointer'}}
-              key={key}
-              className="MySwiperSlide
-                    d-flex justify-content-center align-items-center"
+              onClick={() => GoToProduct(banner.albumSlug, banner.artistSlug)}
+              style={{ cursor: 'pointer' }}
+              key={banner.code}
+              className="MySwiperSlide d-flex justify-content-center align-items-center"
             >
               <img
                 className='h-100 w-100'
-                src={banner.imgUrl}
-                alt=""
+                src={banner.bannerDesktop}
+                alt={`Banner Promocional`}
               />
             </SwiperSlide>
           )
           :
-          dataPromotionalBanner[0].portrait.map((banner, key) =>
+          data.map((banner) =>
             <SwiperSlide
-              key={key}
-              className="MySwiperSlide
-                  d-flex justify-content-center align-items-center"
+              onClick={() => GoToProduct(banner.albumSlug, banner.artistSlug)}
+              key={banner.code}
+              className="MySwiperSlide d-flex justify-content-center align-items-center"
             >
               <img
                 className='h-100 w-100'
-                src={banner.imgUrl}
-                alt=""
+                src={banner.bannerMobile}
+                alt={`Banner Promocional`}
               />
             </SwiperSlide>
           )
         }
-
       </Swiper>
     </div>
   )

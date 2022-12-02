@@ -10,6 +10,7 @@ const ProductController = require('./controllers/ProductController');
 const ImgProductController = require('./controllers/ImgProductController');
 const FormatController = require('./controllers/FormatController');
 const SearchController = require('./controllers/SearchController');
+const ShowcaseController = require('./controllers/ShowcaseController');
 
 router.get('/artists', ArtistController.ListArtists);
 router.get('/artist/:slug', ArtistController.ShowArtist);
@@ -37,5 +38,8 @@ router.post('/user', ClientController.RegisterUser);
 router.get('/search/:search', SearchController.ProductSearch);
 
 router.get('/cart/:user', CartController.SearchItems);
+
+router.get('/showcase', ShowcaseController.Showcase);
+
 module.exports = router;
 

@@ -118,3 +118,5 @@ FROM tb_cassandra_cart cart LEFT JOIN tb_cassandra_product product ON cart.fk_pr
                             INNER JOIN tb_cassandra_album album ON album.cd_album = versions.fk_album
                             INNER JOIN tb_cassandra_artist artist ON artist.cd_artist = album.fk_artist
 WHERE cart.fk_client = 1;
+
+SELECT artist.slug_artist, album.slug_album, banner.* FROM tb_cassandra_promotional_banner banner LEFT JOIN tb_cassandra_album album ON banner.fk_album = album.cd_album INNER JOIN tb_cassandra_artist artist ON artist.cd_artist = album.fk_artist

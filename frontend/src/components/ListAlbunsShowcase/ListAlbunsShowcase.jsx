@@ -10,17 +10,16 @@ import { Pagination, Navigation } from "swiper";
 
 import Album from '../Album/Album'
 
-const ListAlbunsShowcase = (props) => {
+const ListAlbunsShowcase = ({ data }) => {
 
-    const [slidesPerViewValue, SetSlidesPerViewValue] = useState(4);
-    const [spaceBetweenValue, SetSpaceBetweenValue] = useState(0)
-    const artist = props.data.name;
+    const [slidesPerViewValue, SetSlidesPerViewValue] = useState(data.length > 6 ? 4 : 3);
+    const [spaceBetweenValue, SetSpaceBetweenValue] = useState(0);
 
     useEffect(() => {
         var widthOfThisScreen = window.screen.width;
         if (widthOfThisScreen < 992) {
-            SetSlidesPerViewValue(2);
-            SetSpaceBetweenValue(2);
+            SetSlidesPerViewValue(1);
+            SetSpaceBetweenValue(1);
             document.body.style.setProperty('--colorIsWhiteOrBlack', 'black');
         } else document.body.style.setProperty('--colorIsWhiteOrBlack', 'white');
     })
@@ -30,14 +29,14 @@ const ListAlbunsShowcase = (props) => {
             <Swiper
                 slidesPerView={slidesPerViewValue}
                 spaceBetween={spaceBetweenValue}
-                slidesPerGroup={3}
+                slidesPerGroup={1}
                 loop={true}
                 loopFillGroupWithBlank={true}
                 navigation={true}
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
             >
-                {props.data.album.map((album, key) => (
+                {data.map((album, key) => (
                     <SwiperSlide
                         key={key}
                         className='d-flex justify-content-center align-items-center'
@@ -45,9 +44,12 @@ const ListAlbunsShowcase = (props) => {
                         <Album
                             key={key}
                             cover={album.cover}
-                            artist={artist}
-                            name={album.name}
-                            year={album.year}
+                            artist={album.artistName}
+                            name={album.albumName}
+                            date={album.releaseDate}
+                            price={null}
+                            slugArtist={album.artistSlug}
+                            slugAlbum={album.albumSlug}
                         />
                     </SwiperSlide>
                 ))}

@@ -122,3 +122,8 @@ insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
 insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
     values
 		('155','Phosphorescent','phosphorescent','2023-01-13');
+        
+/*Demi Lovato*/
+insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
+    values
+		('113','HOLY FVCK','holy-fvck','2022-08-19');
