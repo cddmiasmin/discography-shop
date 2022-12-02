@@ -61,11 +61,11 @@ module.exports = {
         if(user) {
 
             var transport = nodemailer.createTransport({
-                host: "smtp.mailtrap.io",
-                port: 2525,
+                host: process.env.NDM_HOST,
+                port: process.env.NDM_PORT,
                 auth: {
-                    user: "148e8f1a3e5b03",
-                    pass: "c9086e66356588"
+                    user: process.env.NDM_USER,
+                    pass: process.env.NDM_PASS
                 }
             });
     
