@@ -18,7 +18,10 @@ const IForgotMyPassword = ({
     return (
         <Modal
             open={passwordModalIsOpen}
-            onClose={() => SetPasswordModalIsOpen(false)}
+            onClose={() => {
+                SetEmailValue('');
+                SetPasswordModalIsOpen(false);
+            }}
         >
             <div id='card-forgot-password'>
                 <div id='card-bg' />
@@ -69,7 +72,10 @@ const IForgotMyPassword = ({
                         type='button'
                         className={`w-100 flex-row gap-1 d-flex justify-content-center align-items-center rounded m-1 text-${colorIsDarkOrLight}`}
                         style={{ fontSize: 'medium', backgroundColor: 'transparent' }}
-                        onClick={() => SetPasswordModalIsOpen(false)}
+                        onClick={() => {
+                            SetEmailValue('');
+                            SetPasswordModalIsOpen(false);
+                        }}
                     >
                         <BsArrowLeftCircleFill style={{ fontSize: 'small' }} />
                         Voltar para entrar
