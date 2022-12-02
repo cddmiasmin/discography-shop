@@ -39,6 +39,9 @@ router.post('/user', ClientController.RegisterUser);
 router.get('/search/:search', SearchController.ProductSearch);
 
 router.get('/cart/:user', CartController.SearchItems);
+router.post('/cart', CartController.AddItem);
+router.put('/cart/:code', CartController.AlterItem);
+router.delete('/cart/:code', CartController.DeleteItem);
 
 router.get('/showcase', ShowcaseController.Showcase);
 

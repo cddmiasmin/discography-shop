@@ -20,11 +20,66 @@ module.exports = {
                 format: items[i].nm_format,
                 price: items[i].vl_price,
                 cartCode: items[i].cd_cart,
+                cartProduct: items[i].fk_product,
                 cartAmount: items[i].amount,
                 cartTotalValue: items[i].total_value
-            });
+            }); 
         }
 
+        res.json(json);
+    },
+
+    AlterItem: async (req, res) => {
+        let json = {error:'', result: {}};
+        
+        const { code } = req.params;
+        const { amount } = req.body;
+        const { totalValue } = req.body;
+
+        //console.log(amount, price, code);
+
+        if (code && amount && totalValue) {
+
+            let items = await CartService.AlterItem(code, amount, totalValue);
+
+            json.result = items;
+
+        } else json.error = 'Campos não identificados!';
+    
+
+        res.json(json);
+    },
+
+    DeleteItem: async (req, res) => {
+        let json = {error: '', result: []};
+        
+        let {code} = req.params;
+
+        let del = await CartService.DeleteItems(code);
+
+        json.result = del;
+
+        res.json(json);
+    },
+
+    AddItem: async(req, res) => {
+        let json = {error:'', result: {}};
+        
+        const { client } = req.body;
+        const { product } = req.body;
+        const { amount } = req.body;
+        const { totalValue } = req.body;
+    
+        if (client && product && amount && totalValue) {
+
+            let item = await CartService.AddItem (
+                client, product, amount, totalValue
+            );
+
+            json.result = item;
+
+        } else json.error = 'Campos não identificados!';
+        
         res.json(json);
     },
 }

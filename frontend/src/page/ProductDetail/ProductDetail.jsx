@@ -11,6 +11,9 @@ import Footer from './../../components/Footer/Footer'
 
 import { ColorContext } from '../../contexts/ColorContext';
 
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
 import { Link } from 'react-router-dom'
 import { _ } from 'lodash'
 import api from '../../services/api';
@@ -18,6 +21,7 @@ import api from '../../services/api';
 import {
   BsFacebook, BsInstagram, BsTwitter, BsWhatsapp,
 } from 'react-icons/bs'
+import { UserContext } from '../../contexts/UserContext';
 
 const ProductDetail = () => {
 
@@ -35,6 +39,7 @@ const ProductDetail = () => {
 
   const [formatStockAvailable, SetFormatStockAvailable] = useState([]);
 
+  const [amount, SetAmount] = useState(1);
   const [optionVersionAlbum, SetOptionVersionAlbum] = useState(0);
   const [idOptionVersion, SetIdOptionVersion] = useState(0);
   const [productPhoto, SetProductPhoto] = useState(0);
@@ -44,6 +49,17 @@ const ProductDetail = () => {
   const nameFormat = ['CD', 'CASSETE', 'BOX', 'DVD', 'VINIL'];
 
   const today = new Date(Date.now());
+
+  const {
+    user,
+    addItem,
+    alterCartItem,
+    isSnackbarOpenProduct, 
+    SetIsSnackbarOpenProduct,
+    severityProduct,
+    messageProduct,
+    DoesTheItemAlreadyExist
+  } = useContext(UserContext);
 
   const {
     color,
@@ -79,6 +95,12 @@ const ProductDetail = () => {
 
     SetDataGroupedProductImages(groupedProductImagesAux);
   }
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') return;
+
+    SetIsSnackbarOpenProduct(false);
+  };
 
   const StyleChangeOptionVersion = () => {
     getColor(pageData.versions[optionVersionAlbum].cover, false);
@@ -332,32 +354,68 @@ const ProductDetail = () => {
             >
               <div className='d-flex flex-column justify-content-center align-items-center'>
                 {releaseDateAlbum > today && <h5 align='center'>PREVISÃO DE ESTOQUE <br /> {dataProductsGroupedByVersion[idOptionVersion][productFormat].addedFormated}</h5>}
-                <h1 className='m-3' style={{ fontSize: '10vh' }}>{dataProductsGroupedByVersion[idOptionVersion][productFormat].price}</h1>
+                <h1 className='m-3' style={{ fontSize: '10vh' }}>
+                  {dataProductsGroupedByVersion[idOptionVersion][productFormat].price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                </h1>
 
                 <div className='d-flex flex-row justify-content-center align-items-center m-1'>
-                  <button type='button' style={{
-                    backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
-                    fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
-                  }}
+                  <button
+                    type='button'
+                    style={{
+                      backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
+                      fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
+                    }}
+                    onClick={() => {
+                      if (amount === 1) return;
+                      SetAmount(amount - 1);
+                    }}
                   >
                     -
                   </button>
-                  <p className="m-1">1</p>
-                  <button type='button' style={{
-                    backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
-                    fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
-                  }}
+                  <p className="m-1">{amount}</p>
+                  <button
+                    type='button'
+                    style={{
+                      backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)', fontWeight: 'bolder',
+                      fontSize: 'medium', width: '20px', height: '20px', borderRadius: '10px'
+                    }}
+                    onClick={() => SetAmount(amount + 1)}
                   >
                     +
                   </button>
                 </div>
-                <button type='button'
+                <button
+                  type='button'
                   className='rounded m-2 fs-5'
                   style={{
                     backgroundColor: 'var(--color)', color: 'var(--colorIsWhiteOrBlack)',
                     width: '35vh', height: '7vh'
                   }}
-                >COMPRAR</button>
+                  onClick={() => {
+                    if (user.length === 0) {
+                      SetSeverityProduct('warning');
+                      SetMessageProduct('Para utilizar o carrinho é necessário acessar sua conta!');
+                      SetIsSnackbarOpenProduct(true);
+                    } else {
+
+                      let item = DoesTheItemAlreadyExist(
+                        dataProductsGroupedByVersion[idOptionVersion][productFormat].code
+                      );
+
+                      if(item) alterCartItem(item.cartCode, item.cartAmount + 1, item.price, 'product')
+                      else {
+                        addItem(
+                          user.code,
+                          dataProductsGroupedByVersion[idOptionVersion][productFormat].code,
+                          amount,
+                          dataProductsGroupedByVersion[idOptionVersion][productFormat].price
+                        );
+                      }
+                    }
+                  }}
+                >
+                  ADICIONAR AO CARRINHO
+                </button>
               </div>
             </div>
           </>
@@ -400,6 +458,17 @@ const ProductDetail = () => {
           </div>
         </div>
       }
+
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        open={isSnackbarOpenProduct}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert onClose={handleCloseSnackbar} severity={severityProduct} sx={{ width: '100%' }}>
+          {messageProduct}
+        </Alert>
+      </Snackbar>
       <Footer />
     </div >
   )

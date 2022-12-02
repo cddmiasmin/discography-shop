@@ -29,8 +29,6 @@ module.exports = {
         
         let user = await ClientService.LoginUser(email);
 
-        console.log(firstName, lastName, birthDate, cpf, telephone, email, password)
-
         if (firstName && lastName && birthDate && cpf
                 && telephone && email && password
         ) {

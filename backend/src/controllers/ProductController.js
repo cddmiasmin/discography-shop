@@ -91,7 +91,7 @@ module.exports = {
                 version : products[i].fk_version,
                 format: products[i].fk_format,
                 situation: products[i].st_product,
-                price: products[i].vl_price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}),
+                price: products[i].vl_price ,
                 added: products[i].dt_added,
                 addedFormated: dateFormated,
                 height: products[i].vl_height,
