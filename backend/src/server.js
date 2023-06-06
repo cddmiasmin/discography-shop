@@ -1,5 +1,5 @@
 require('dotenv').config({
-    path: 'variaveis.env'
+    path: '.env'
 });
 
 const express = require('express');
@@ -18,5 +18,5 @@ server.use(express.json());
 server.use('/api', routes);
 
 server.listen(process.env.PORT, () => {
-    console.log(`The server is running on http://locallhost:${process.env.PORT}`);
+    console.log(`The server is running on http://localhost:${process.env.PORT}`);
 });
