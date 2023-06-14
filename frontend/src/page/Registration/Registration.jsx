@@ -22,6 +22,8 @@ import api from '../../services/api';
 
 const Registration = () => {
 
+  const currentYear = new Date();
+
   const [nameValue, SetNameValue] = useState('');
   const [lastNameValue, SetLastNameValue] = useState('');
   const [birthDateValue, SetBirthDateValue] = useState('');
@@ -304,7 +306,7 @@ const Registration = () => {
           className='position-absolute m-2'
           style={{ bottom: 0, right: 0, fontSize: 'x-small' }}
         >
-          © Cassandra 2022
+          © Cassandra {currentYear.getFullYear()}
         </p>
       </div>
       

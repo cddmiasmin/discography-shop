@@ -18,6 +18,8 @@ const Desktop = () => {
         colorIsDarkOrLight,
     } = useContext(ColorContext);
 
+    const currentYear = new Date();
+
     return (
         <footer
             className={`container-fluid w-100 text-${colorIsDarkOrLight} d-flex flex-column justify-content-center align-items-star gap-4`}
@@ -113,7 +115,7 @@ const Desktop = () => {
                 </div>
 
                 <p className={`d-flex justify-content-center align-items-center gap-1 text-${colorIsDarkOrLight}`}>
-                    Copyright ©2022 | Cassandra | Desenvolvido por
+                    Copyright ©{currentYear.getFullYear()} | Cassandra | Desenvolvido por
                     <a className={`text-${colorIsDarkOrLight}`} href="https://github.com/cddmiasmin">Iasmin Dias</a>
                 </p>
             </div>

@@ -8,9 +8,14 @@ insert into tb_cassandra_promotional_banner
         ),
 
         (
-            '55',
-            'https://i.ibb.co/8zj7F0J/297618269-630251085125952-6384760723948275707-n.jpg',
-            'https://i.ibb.co/x6ZHSVf/311703291-694367082047685-617828752854004606-n.jpg'
+            '58',
+            'https://i.ibb.co/whCxmCF/bp-portraits-birdy.jpg',
+            'https://i.ibb.co/TYKtyjv/bp-portais-birdy.jpg'
+        ),
+        (
+            '63',
+            'https://i.ibb.co/4m07kMH/bp-speak-now-tv-ts.jpg',
+            'https://i.ibb.co/3ynJt1y/bt-speak-now-tv-ts.jpg'
         ),
 
         (

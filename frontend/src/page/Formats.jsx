@@ -149,7 +149,7 @@ const Formats = () => {
         </div>
       </div>
       <div className={`rounded `} style={{ backgroundColor: 'var(--color)', height: '0.5vh', width: '80%' }} />
-      <div className='d-flex flex-wrap justify-content-center align-items-end gap-4' style={{ marginTop: '4vh', marginBottom: '4vh', width: '85%' }}>
+      <div className='d-flex flex-wrap justify-content-center align-items-end gap-4' style={{ marginTop: '4vh', marginBottom: '4vh', width: '65%' }}>
         {currentItems.map((album, key) =>
           <Album
             key={key}

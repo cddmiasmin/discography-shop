@@ -148,6 +148,7 @@ const ProductDetail = () => {
     return (<Loading />);
   }
 
+   console.log(!Object.keys(user).length, user);
   //console.log(pageData.album);
   //console.log(pageData);
   //console.log(stockDate);
@@ -391,7 +392,7 @@ const ProductDetail = () => {
                     width: '35vh', height: '7vh'
                   }}
                   onClick={() => {
-                    if (!user.length) {
+                    if (!Object.keys(user).length) {
                       SetSeverityProduct('warning');
                       SetMessageProduct('Para utilizar o carrinho é necessário acessar sua conta!');
                       SetIsSnackbarOpenProduct(true);

@@ -194,6 +194,7 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
         ('85','https://i.ibb.co/16cnHRx/8165bc0cfe30e21dca1af388327e2b86.jpg'), 
         ('86','https://i.ibb.co/5WrKsVY/Jao-Pirata-1.png');
 
+/*SANDY E JUNIOR*/
 insert into tb_cassandra_img_product(fk_product, url_img_product)
     values 
         ('87','https://i.ibb.co/hY2039j/photogrid-15971023577281-9c9e002f36b684e28e15971671745300-1024-1024.jpg'),
@@ -219,49 +220,111 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
         ('97','https://i.ibb.co/D1W0wZB/ADE001-BUN-CD-2-LP-MC-1024x1024-2x.webp'),
         ('98','https://i.ibb.co/jg0sS9j/AA30-LP-750x.webp');
 
-/*SAM SMITH*/
-insert into tb_cassandra_img_product(fk_product, url_img_product)
-    values 
-        ('99','https://i.ibb.co/WVTJ03f/cd-sam-smith-gloria-importado-cd-sam-smith-gloria-importado-00602445856718-00060244585671.webp'),
-        ('100','https://i.ibb.co/h1HCsf9/gloria-black-cassete-store-exclusive-importado-gloria-black-cassete-store-exclusive-00602445856688-0.webp'),
-        ('101','https://i.ibb.co/Xshj32w/vinil-sam-smith-gloria-black-vinil-importado-vinil-sam-smith-gloria-black-vinil-00602445856602-00060.webp');
-
 /*BEYONCE*/
 insert into tb_cassandra_img_product(fk_product, url_img_product)
     values 
         ('102','https://i.ibb.co/KK85PGw/imagem-2022-11-21-075143415.png');
 
-/*ELLE KING*/
-insert into tb_cassandra_img_product(fk_product, url_img_product)
-    values 
-        ('104','https://i.ibb.co/g6JbN1c/Y4CDEK02.jpg'),
-        ('105','https://i.ibb.co/SNfR63L/Y4LPEK02.jpg');
-
-/*AVA MAX*/
-insert into tb_cassandra_img_product(fk_product, url_img_product)
-    values 
-        ('106','https://i.ibb.co/c6ppnMH/052722-Ava-Max-Da-D-Product-Pics-CD-1100x.webp'),
-        ('107','https://i.ibb.co/6yN1Wxd/052722-Ava-Max-Da-D-Product-Pics-Cassette-Purple-1-1100x.webp'),
-        ('108','https://i.ibb.co/SXfvRj4/052722-Ava-Max-Da-D-Product-Pics-Vinyl-Black-Ice-5-1100x.webp');
-
-/*Måneskin*/
-insert into tb_cassandra_img_product(fk_product, url_img_product)
-    values 
-        ('129','https://i.ibb.co/VHHxn2m/MAN101-A-CDBOOK-b1be1334-f998-44c1-8b79-d060f9377d4a-1024x1024-2x.webp'),
-        ('130','https://i.ibb.co/17sZtd5/MAN101-A-MCALB-905288ee-c279-42f2-9aed-963e9a13da36-1024x1024-2x.webp'),
-        ('131','https://i.ibb.co/R4pL4B6/SPECIALBOXSET-PHOTOBOOK-7-VINYL-LP-CD-CASSETTE-POSTER-2-1024x1024-2x.webp'),
-        ('132','https://i.ibb.co/ccd7KfG/LP-PICTUREDISCVINYL-2-6217bf43-4d63-4bed-a267-8409d587088f-1024x1024-2x.webp');
-
-/*Gabrielle Aplin*/
-insert into tb_cassandra_img_product(fk_product, url_img_product)
-    values 
-        ('133','https://i.ibb.co/JtjgVhx/CD-Gabrielle-Aplin-Phosphorescent-STRD-000000-0f043e90-14f8-4b3e-8d70-c3d7711c6e2b.webp'),
-        ('134','https://i.ibb.co/XFYLs5Q/Cassette-Gabrielle-Aplin-Phosphorescent-000000.webp'),
-        ('135','https://i.ibb.co/Df0WKWC/Bundle1-Gabrielle-Aplin-Phosphorescent-D2-C-000000.webp'),
-        ('136','https://i.ibb.co/VD52j4M/GAstandardlp.webp');
 
 /*DEMI LOVATO*/
 insert into tb_cassandra_img_product(fk_product, url_img_product)
     values 
         ('137','https://i.ibb.co/D7JKzyv/Demi-Lovato-Holy-FVCK-Standard-602448064851-webp.png'),
         ('138','https://i.ibb.co/bR29nTb/Demi-Lovato-Holy-FVCK-Cassete-webp.png');
+
+/*RITA ORA*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('139','https://i.ibb.co/m4BpvQp/111496-f64ef4ea43d34bbce02249761bfcb507.png'),
+        ('140','https://i.ibb.co/TYr30fM/111604-93f539ce84e0b105dbe80fafed7755d0.png');
+
+/*BIRDY*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('141','https://i.ibb.co/LS1dXQK/Portraits-Standard-CD.png'),
+        ('142','https://i.ibb.co/L6nkYfL/Portraits-Recycled-Vinyl-2.png');
+
+/*TESSA VIOLET*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('143','https://i.ibb.co/QCQ0162/Tessa-Violet-My-God-Exclusive-Color-Vinyl-LP-2647829-1-1024x1024.webp'),
+        ('144','https://i.ibb.co/3cJwp5d/Fx9-Xop-Oa-YAEdki-C.jpg');
+
+/*ANNE MARIE*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('145','https://i.ibb.co/ggYtJMR/DELUXE-CD-FRONT-2-1.jpg'),
+        ('146','https://i.ibb.co/VQNYc4G/Vinyl-CD-Cassette-Bundle-optimised.gif'),
+        ('147','https://i.ibb.co/W2HFWk0/D2-C-LP-FRONT-PINK-copy.jpg'),
+        ('148','https://i.ibb.co/cLxkTcg/D2-C-LP-FRONT-copy-1.jpg');
+
+/*POST MALONE*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('149','https://i.ibb.co/9448d22/austincd.webp'),
+        ('150','https://i.ibb.co/Qpz84q8/austinvinyl.webp');
+
+/*Ashnikko*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('151','https://i.ibb.co/SJZ2n6r/STANDARDCD.webp'),
+        ('152','https://i.ibb.co/ydV4LSD/412394-BOXSET-CLOSED-Allassets-stg05-00.webp'),
+        ('152','https://i.ibb.co/855RJVV/412394-BOXSET-OPEN-stg03-00.webp'),
+        ('152','https://i.ibb.co/QD93Hn6/412394-BOXSET-CLOSED-stg01-01-17.webp'),
+        ('153','https://i.ibb.co/hs8gpZ2/STANDARDLP.webp');
+
+/*Taylor Swift - Speak Now TV*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('154','https://i.ibb.co/XZ1XXfN/182195-400-400.webp'),
+        ('155','https://i.ibb.co/7CVCdpw/182200-1200-auto.webp'),
+        ('155','https://i.ibb.co/T2x5h5c/182199-1200-auto.webp'),
+        ('156','https://i.ibb.co/RC4DGTf/182196-400-400.webp');
+
+/*Kylie Minogue*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('157','https://i.ibb.co/nnVvn9Z/115318-61cb87a63c6b49fed0bc8f88d6ba2121.png'),
+        ('158','https://i.ibb.co/7CChMFY/115325-242fd723e5803d28917fb6491c674bd2.png');
+
+/*LP*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('159','https://i.ibb.co/3RxRvgv/LP-Product-CD-1400.webp'),
+        ('160','https://i.ibb.co/DVzM1Zx/LP-Product-Black-LP-1400.webp');
+
+/*SAM SMITH*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('161','https://i.ibb.co/WVTJ03f/cd-sam-smith-gloria-importado-cd-sam-smith-gloria-importado-00602445856718-00060244585671.webp'),
+        ('162','https://i.ibb.co/h1HCsf9/gloria-black-cassete-store-exclusive-importado-gloria-black-cassete-store-exclusive-00602445856688-0.webp'),
+        ('163','https://i.ibb.co/Xshj32w/vinil-sam-smith-gloria-black-vinil-importado-vinil-sam-smith-gloria-black-vinil-00602445856602-00060.webp');
+
+/*ELLE KING*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('164','https://i.ibb.co/g6JbN1c/Y4CDEK02.jpg'),
+        ('165','https://i.ibb.co/SNfR63L/Y4LPEK02.jpg');
+
+/*AVA MAX*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('166','https://i.ibb.co/c6ppnMH/052722-Ava-Max-Da-D-Product-Pics-CD-1100x.webp'),
+        ('167','https://i.ibb.co/6yN1Wxd/052722-Ava-Max-Da-D-Product-Pics-Cassette-Purple-1-1100x.webp'),
+        ('168','https://i.ibb.co/SXfvRj4/052722-Ava-Max-Da-D-Product-Pics-Vinyl-Black-Ice-5-1100x.webp');
+
+/*Måneskin*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('169','https://i.ibb.co/VHHxn2m/MAN101-A-CDBOOK-b1be1334-f998-44c1-8b79-d060f9377d4a-1024x1024-2x.webp'),
+        ('170','https://i.ibb.co/17sZtd5/MAN101-A-MCALB-905288ee-c279-42f2-9aed-963e9a13da36-1024x1024-2x.webp'),
+        ('171','https://i.ibb.co/R4pL4B6/SPECIALBOXSET-PHOTOBOOK-7-VINYL-LP-CD-CASSETTE-POSTER-2-1024x1024-2x.webp'),
+        ('172','https://i.ibb.co/ccd7KfG/LP-PICTUREDISCVINYL-2-6217bf43-4d63-4bed-a267-8409d587088f-1024x1024-2x.webp');
+
+/*Gabrielle Aplin*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('173','https://i.ibb.co/JtjgVhx/CD-Gabrielle-Aplin-Phosphorescent-STRD-000000-0f043e90-14f8-4b3e-8d70-c3d7711c6e2b.webp'),
+        ('174','https://i.ibb.co/XFYLs5Q/Cassette-Gabrielle-Aplin-Phosphorescent-000000.webp'),
+        ('175','https://i.ibb.co/Df0WKWC/Bundle1-Gabrielle-Aplin-Phosphorescent-D2-C-000000.webp'),
+        ('176','https://i.ibb.co/VD52j4M/GAstandardlp.webp');

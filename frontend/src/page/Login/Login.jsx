@@ -21,6 +21,7 @@ import { UserContext } from '../../contexts/UserContext';
 
 const Login = () => {
 
+  const currentYear = new Date();
   
   const navigate = useNavigate();
 
@@ -195,7 +196,7 @@ const Login = () => {
           className='position-absolute m-2'
           style={{ bottom: 0, right: 0, fontSize: 'x-small' }}
         >
-          © Cassandra 2022
+          © Cassandra {currentYear.getFullYear()}
         </p>
       </div>
 
