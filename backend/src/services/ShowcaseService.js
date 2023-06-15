@@ -48,7 +48,7 @@ module.exports = {
 
     BestSellers: () => {
         return new Promise ((accepted, rejected) => {
-            db.query("SELECT artist.slug_artist, artist.nm_artist, album.cd_album, album.nm_album, album.slug_album, year(dt_album) as 'dt_album', versions.img_cover FROM tb_cassandra_artist artist LEFT JOIN tb_cassandra_album album ON artist.cd_artist = album.fk_artist INNER JOIN tb_cassandra_version versions ON album.cd_album = versions.fk_album WHERE (versions.desc_sm_version = 'CAPA PRINCIPAL' or versions.desc_sm_version = 'PRINCIPAL') AND (album.cd_album in (10, 20, 24, 48, 38, 51, 35, 25, 44, 8, 14, 27));", 
+            db.query("SELECT artist.slug_artist, artist.nm_artist, album.cd_album, album.nm_album, album.slug_album, year(dt_album) as 'dt_album', versions.img_cover FROM tb_cassandra_artist artist LEFT JOIN tb_cassandra_album album ON artist.cd_artist = album.fk_artist INNER JOIN tb_cassandra_version versions ON album.cd_album = versions.fk_album WHERE versions.desc_sm_version = 'CAPA PRINCIPAL' or versions.desc_sm_version = 'PRINCIPAL' ORDER BY RAND() LIMIT 12", 
                 (error, result) =>{
                     if(error) {
                         rejected(error); 
@@ -63,7 +63,7 @@ module.exports = {
 
     National: () => {
         return new Promise ((accepted, rejected) => {
-            db.query("SELECT artist.slug_artist, artist.nm_artist, album.cd_album, album.nm_album, album.slug_album, year(dt_album) as 'dt_album', versions.img_cover FROM tb_cassandra_artist artist LEFT JOIN tb_cassandra_album album ON artist.cd_artist = album.fk_artist INNER JOIN tb_cassandra_version versions ON album.cd_album = versions.fk_album WHERE (album.dt_album < now()) AND (versions.desc_sm_version = 'CAPA PRINCIPAL' or versions.desc_sm_version = 'PRINCIPAL') AND (artist.fk_category = 2) ORDER BY versions.img_cover desc", 
+            db.query("SELECT artist.slug_artist, artist.nm_artist, album.cd_album, album.nm_album, album.slug_album, year(dt_album) as 'dt_album', versions.img_cover FROM tb_cassandra_artist artist LEFT JOIN tb_cassandra_album album ON artist.cd_artist = album.fk_artist INNER JOIN tb_cassandra_version versions ON album.cd_album = versions.fk_album WHERE (album.dt_album < now()) AND (versions.desc_sm_version = 'CAPA PRINCIPAL' or versions.desc_sm_version = 'PRINCIPAL') AND (artist.fk_category = 2) ORDER BY RAND() LIMIT 12", 
                 (error, result) =>{
                     if(error) {
                         rejected(error); 
