@@ -282,6 +282,7 @@ const ProductDetail = () => {
                       optionFormatRef.current[productFormat].classList.remove('productFormatSelected');
                       SetProductFormat(key);
                       SetProductPhoto(0);
+                      SetAmount(1);
                     }}
                     ref={b => optionFormatRef.current[key] = b}
                     className={`fs-4 rounded d-flex justify-content-center align-items-center`}
@@ -355,7 +356,7 @@ const ProductDetail = () => {
               <div className='d-flex flex-column justify-content-center align-items-center'>
                 {releaseDateAlbum > today && <h5 align='center'>PREVISÃO DE ESTOQUE <br /> {dataProductsGroupedByVersion[idOptionVersion][productFormat].addedFormated}</h5>}
                 <h1 className='m-3' style={{ fontSize: '10vh' }}>
-                  {dataProductsGroupedByVersion[idOptionVersion][productFormat].price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                  R$ {dataProductsGroupedByVersion[idOptionVersion][productFormat].price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
                 </h1>
 
                 <div className='d-flex flex-row justify-content-center align-items-center m-1'>
@@ -409,7 +410,7 @@ const ProductDetail = () => {
                           user.code,
                           dataProductsGroupedByVersion[idOptionVersion][productFormat].code,
                           amount,
-                          dataProductsGroupedByVersion[idOptionVersion][productFormat].price
+                          dataProductsGroupedByVersion[idOptionVersion][productFormat].price * amount
                         );
                       }
                     }

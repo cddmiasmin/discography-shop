@@ -328,3 +328,28 @@ insert into tb_cassandra_img_product(fk_product, url_img_product)
         ('174','https://i.ibb.co/XFYLs5Q/Cassette-Gabrielle-Aplin-Phosphorescent-000000.webp'),
         ('175','https://i.ibb.co/Df0WKWC/Bundle1-Gabrielle-Aplin-Phosphorescent-D2-C-000000.webp'),
         ('176','https://i.ibb.co/VD52j4M/GAstandardlp.webp');
+
+/*Foo Fighters*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('177','https://i.ibb.co/2331j23/cd.webp'),
+        ('178','https://i.ibb.co/PmJdpg3/cst.webp'),
+        ('179','https://i.ibb.co/2kZF53m/blp.webp');
+
+/*Rita Lee*/
+insert into tb_cassandra_img_product(fk_product, url_img_product)
+    values 
+        ('180','https://i.ibb.co/Hq3jrqh/176298-1600-auto-v-637964466151400000-width-1600-height-auto-aspect-true.jpg'),
+        ('180','https://i.ibb.co/8X6xmT4/176299-1200-auto-v-637964466162970000-width-1200-height-auto-aspect-true.jpg'),
+        ('180','https://i.ibb.co/DwtrYGg/176300-1200-auto-v-637964466170630000-width-1200-height-auto-aspect-true.jpg'),
+        ('180','https://i.ibb.co/8BNNxMm/176301-1200-auto-v-637964466176900000-width-1200-height-auto-aspect-true.jpg'),
+        ('181','https://i.ibb.co/yQdgwmL/182283-1200-auto-v-638203876487700000-width-1200-height-auto-aspect-true.jpg'),
+        ('181','https://i.ibb.co/HK8pnvB/182284-1200-auto-v-638203876493900000-width-1200-height-auto-aspect-true.jpg'),
+        ('181','https://i.ibb.co/ngYQsGY/182285-1200-auto-v-638203876499830000-width-1200-height-auto-aspect-true.jpg'),
+        ('181','https://i.ibb.co/YyhwH6G/182286-1200-auto-v-638203876506400000-width-1200-height-auto-aspect-true.jpg'),
+        ('182','https://i.ibb.co/y0fPBRk/179994-1200-auto-clipdrop-background-removal.webp'),
+        ('183','https://i.ibb.co/V9rPK62/174671-1200-auto-v-637913646572030000-width-1200-height-auto-aspect-true.jpg'),
+        ('183','https://i.ibb.co/1LYZ0GB/174672-1200-auto-v-637913646582530000-width-1200-height-auto-aspect-true.jpg'),
+        ('183','https://i.ibb.co/YPrh01B/174673-1200-auto-v-637913646591600000-width-1200-height-auto-aspect-true.jpg'),
+        ('183','https://i.ibb.co/cX4wDbY/174674-1200-auto-v-637913646601070000-width-1200-height-auto-aspect-true.jpg'),
+        ('184','https://i.ibb.co/rF6t9BY/174565-1200-auto-clipdrop-background-removal.webp');

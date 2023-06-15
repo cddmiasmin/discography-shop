@@ -1,7 +1,7 @@
 /**/
-insert into tb_cassandra_artist(nm_artist, slug_artist, url_icon, fk_category)
+insert into tb_cassandra_artist(cd_artist, nm_artist, slug_artist, url_icon, fk_category)
 values 
-    ('','','','');
+    ('','','','','');
 
 insert into tb_cassandra_artist(cd_artist, nm_artist, slug_artist, url_icon, fk_category)
 values 
@@ -383,5 +383,10 @@ values
 
 insert into tb_cassandra_artist(cd_artist, nm_artist, slug_artist, url_icon, fk_category)
 values 
-    ('29','Rita Lee','rita-lee','https://i.ibb.co/CB6Gx5C/rita-lee.jpg','2'),
+    ('29','Rita Lee','rita-lee','https://i.ibb.co/CB6Gx5C/rita-lee.jpg','2');
+
+insert into tb_cassandra_artist(cd_artist, nm_artist, slug_artist, url_icon, fk_category)
+values 
+    ('30','Foo Fighters', 'foo-fighters','https://i.ibb.co/W3TZJ53/ab6761610000e5ebc884df599abc793c116cdf15.jpg','1');
+
 

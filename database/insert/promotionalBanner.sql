@@ -15,7 +15,7 @@ insert into tb_cassandra_promotional_banner
         (
             '63',
             'https://i.ibb.co/4m07kMH/bp-speak-now-tv-ts.jpg',
-            'https://i.ibb.co/3ynJt1y/bt-speak-now-tv-ts.jpg'
+            'https://i.ibb.co/vhQLHhS/bt-speak-now-tv-ts.jpg'
         ),
 
         (

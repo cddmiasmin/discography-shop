@@ -6,11 +6,11 @@ insert into tb_cassandra_album(cd_album, fk_artist, nm_album, slug_album, dt_alb
 /*FLORENCE <3 x*/
 insert into tb_cassandra_album(fk_artist, nm_album, slug_album, dt_album)
     values  
-        ('101','Lungs','lungs','2009-07-03'),
-		('101','Ceremonials','ceremonials','2011-10-28'),
-		('101','How Big, How Blue, How Beautiful','how-big-how-blue-how-beautiful','2015-05-29'),
-		('101','High As Hope','high-as-hope','2018-06-29'),
-		('101','Dance Fever','dance-fever','2022-05-13');
+        ('1','Lungs','lungs','2009-07-03'),
+		('1','Ceremonials','ceremonials','2011-10-28'),
+		('1','How Big, How Blue, How Beautiful','how-big-how-blue-how-beautiful','2015-05-29'),
+		('1','High As Hope','high-as-hope','2018-06-29'),
+		('1','Dance Fever','dance-fever','2022-05-13');
 
 /*ABBA <3*/
 insert into tb_cassandra_album(cd_album, fk_artist, nm_album, slug_album, dt_album)
@@ -180,6 +180,11 @@ insert into tb_cassandra_album(cd_album, fk_artist, nm_album, slug_album, dt_alb
 /*Rita Lee*/
 insert into tb_cassandra_album(cd_album, fk_artist, nm_album, slug_album, dt_album)
     values
-		('71','29','Build Up','build-up','1970-01-01'),
-		('71','29','Fruto Proibido','fruto-proibido','1975-06-01'),
-		('71','29','Saúde','saude','1981-01-01');
+		('71','29','Build Up','build-up','1970-12-31'),
+		('72','29','Fruto Proibido','fruto-proibido','1975-06-01'),
+		('73','29','Saúde','saude','1981-12-31');
+
+/*Foo Fighters*/
+insert into tb_cassandra_album(cd_album, fk_artist, nm_album, slug_album, dt_album)
+    values
+		('74','30','But here we are','but-here-we-are','2023-06-02');

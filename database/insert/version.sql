@@ -243,3 +243,15 @@ insert into tb_cassandra_version(cd_version, fk_album, desc_sm_version, img_cove
 insert into tb_cassandra_version(cd_version, fk_album, desc_sm_version, img_cover)
 	values
 		('94', '70','CAPA PRINCIPAL','https://i.ibb.co/SVL4mKp/Untitled-15.jpg');
+
+/*Foo Fighters*/
+insert into tb_cassandra_version(cd_version, fk_album, desc_sm_version, img_cover)
+	values
+		('95','74','CAPA PRINCIPAL','https://i.ibb.co/V98TtyP/001e2f7c-614.webp');
+
+/*Rita Lee*/
+insert into tb_cassandra_version(cd_version, fk_album, desc_sm_version, img_cover)
+	values
+		('96','71','CAPA PRINCIPAL','https://i.ibb.co/NngJhgY/Rita-Lee-Build-Up.jpg'),
+		('97','72','CAPA PRINCIPAL','https://i.ibb.co/PFrVy6M/166688-1200-auto-v-637649836238030000-width-1200-height-auto-aspect-true.jpg'),
+		('98','73','CAPA PRINCIPAL','https://i.ibb.co/tQWd2nR/166691-1200-auto-v-637649910752300000-width-1200-height-auto-aspect-true.jpg');
