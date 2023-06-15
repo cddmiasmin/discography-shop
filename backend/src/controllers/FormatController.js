@@ -134,7 +134,7 @@ module.exports = {
                 artistName: artistAux[0].nm_artist,
                 artistSlug: artistAux[0].slug_artist,
                 cover: versionAux[0].img_cover,
-                price: productAux.vl_price
+                price: parseFloat(productAux.vl_price)
             });
         }
 
