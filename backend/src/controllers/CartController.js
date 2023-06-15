@@ -22,7 +22,7 @@ module.exports = {
                 cartCode: items[i].cd_cart,
                 cartProduct: items[i].fk_product,
                 cartAmount: items[i].amount,
-                cartTotalValue: items[i].total_value
+                cartTotalValue: parseFloat(items[i].total_value)
             }); 
         }
 
