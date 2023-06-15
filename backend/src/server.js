@@ -9,7 +9,12 @@ const bodyParser = require('body-parser');
 const routes = require('./routes.js');
 
 const server = express();
-server.use(cors());
+server.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+    server.use(cors());
+    next();
+});
 server.use(bodyParser.urlencoded ({
     extend: false
 }))
