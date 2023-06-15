@@ -21,7 +21,11 @@
 <div align="left">
 
   * VsCode
-  * ReactJs
+  * React Js
+  * Node Js
+  * MySQL
+  * Vercel
+  * Railway
   
 </div>
 
