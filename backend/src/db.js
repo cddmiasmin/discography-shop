@@ -14,8 +14,6 @@ connection.connect((error)=>{
         return;
     }
     console.log(`Connected to database: ${process.env.DB_NAME}`);
-
-    connection.release();
 });
 
 module.exports = connection;
